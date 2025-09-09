@@ -38,13 +38,13 @@ npm install @jamadd/react-native-template-icons @shopify/flash-list @shopify/res
 ## Installation
 
 ```sh
-yarn add @jamadd/react-native-template-icons
+yarn add @jamadd/react-native-template-lib
 ```
 
 or
 
 ```sh
-npm install @jamadd/react-native-template-icons
+npm install @jamadd/react-native-template-lib
 ```
 
 ## Usage
