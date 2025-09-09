@@ -1,11 +1,12 @@
 import { createTheme } from '@shopify/restyle';
 import { StyleSheet } from 'react-native';
 
+/** @internal */
 export enum Palette {
   Transparent = 'transparent',
   ThemePri = '#7ccf6b',
   ThemePriT = '#7ccf6b80',
-  ThemeSec = '#0a8270',
+  ThemeSec = '#20ac97ff',
   Black = '#000000',
   BlackT = '#00000080',
   White = '#ffffff',
@@ -18,6 +19,7 @@ export enum Palette {
   Red = '#ff0000',
 }
 
+/** @internal */
 export enum Spacing {
   None = 0,
   XXXS = 2,
@@ -31,6 +33,7 @@ export enum Spacing {
   XXXL = 110,
 }
 
+/** @internal */
 export enum FontSize {
   XS = 12,
   S = 16,
@@ -39,9 +42,11 @@ export enum FontSize {
   XL = 28,
 }
 
+/** @internal */
 const FontLineHeightRatio = 1.2;
 
-export enum FontLineHeight {
+/** @internal */
+enum FontLineHeight {
   XS = FontSize.XS * FontLineHeightRatio,
   S = FontSize.S * FontLineHeightRatio,
   M = FontSize.M * FontLineHeightRatio,
@@ -59,22 +64,27 @@ export enum BorderSize {
   XS = StyleSheet.hairlineWidth,
   S = 1,
   M = 2,
-  L = 3,
+  L = 4,
+  XL = 8,
 }
 
-export enum BorderRadius {
+/** @internal */
+enum BorderRadius {
   S = 12,
   M = 24,
   L = 36,
   Circle = 9999,
 }
 
-export enum ZIndex {
-  Bottom = 0,
-  Middle = 1,
-  Top = 2,
+/** @internal */
+enum ZIndex {
+  Base = 0,
+  Bottom = 1,
+  Middle = 2,
+  Top = 3,
 }
 
+/** @internal */
 const textVariants = {
   textXS: {
     fontSize: FontSize.XS,
@@ -103,6 +113,7 @@ const textVariants = {
   },
 };
 
+/** @internal */
 export const overlayMaxWidthPercent = '80%';
 
 export const lightTheme = createTheme({
