@@ -1,6 +1,6 @@
 # React Native Template Lib
 
-React Native Template Lib is a collection of UI components designed by JaMa D&D.
+React Native Template Lib is a collection of UI components designed by **JaMa D&D**.
 
 ## Features
 
