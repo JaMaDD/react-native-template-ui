@@ -1,10 +1,18 @@
-import { lightTheme } from '@jamadd/react-native-template-lib';
+import { darkTheme, lightTheme } from '@jamadd/react-native-template-lib';
 import { createTheme } from '@shopify/restyle';
 
-export const customTheme = createTheme({
+export const customLightTheme = createTheme({
   ...lightTheme,
   colors: {
     ...lightTheme.colors,
-    customColor: '#ff6347', // Example custom color
+    theme: '#ff6347',
+  },
+});
+
+export const customDarkTheme = createTheme({
+  ...darkTheme,
+  colors: {
+    ...darkTheme.colors,
+    theme: customLightTheme.colors.theme,
   },
 });

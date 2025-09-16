@@ -14,7 +14,7 @@ import {
   ToastDuration,
   ToastType,
 } from '../../../utils/overlay/const';
-import { overlayMaxWidthPercent } from '../../../utils/theme/const';
+import { overlayMaxWidthPercent } from '../../../utils/overlay/const';
 import ThemedText from '../../text/ThemedText';
 import AnimatedThemedView from '../../view/AnimatedThemedView';
 

@@ -13,6 +13,7 @@ export { default as ThemedModal } from './components/overlay/modal/ThemedModal';
 export { default as ThemedToast } from './components/overlay/toast/ThemedToast';
 export { default as GestureProvider } from './components/provider/GestureProvider';
 export { default as InsetsProvider } from './components/provider/InsetsProvider';
+export { default as ReactNativeTemplateProviders } from './components/provider/ReactNativeTemplateProviders';
 export { default as ThemeProvider } from './components/provider/ThemeProvider';
 export { default as ThemedSeparator } from './components/separator/ThemedSeparator';
 export { default as ThemedSwitch } from './components/switch/ThemedSwitch';

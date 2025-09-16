@@ -20,7 +20,7 @@ const ThemedBtn: FC<ThemedBtnProps> = ({
       alignItems={'center'}
       paddingVertical={'s'}
       paddingHorizontal={'m'}
-      backgroundColor={'themePri'}
+      backgroundColor={'theme'}
       {...props}
     >
       <ThemedText

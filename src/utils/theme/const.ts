@@ -5,16 +5,9 @@ import { StyleSheet } from 'react-native';
 export enum Palette {
   Transparent = 'transparent',
   ThemePri = '#7ccf6b',
-  ThemePriT = '#7ccf6b80',
-  ThemeSec = '#20ac97ff',
-  Black = '#000000',
   BlackT = '#00000080',
   White = '#ffffff',
-  WhiteT = '#ffffff80',
-  Grey = '#777777',
-  GreyT = '#77777780',
   DarkGrey = '#121212',
-  DarkGreyT = '#12121280',
   Silver = '#f0f0f0',
   Red = '#ff0000',
 }
@@ -46,7 +39,7 @@ export enum FontSize {
 const FontLineHeightRatio = 1.2;
 
 /** @internal */
-enum FontLineHeight {
+export enum FontLineHeight {
   XS = FontSize.XS * FontLineHeightRatio,
   S = FontSize.S * FontLineHeightRatio,
   M = FontSize.M * FontLineHeightRatio,
@@ -69,7 +62,7 @@ export enum BorderSize {
 }
 
 /** @internal */
-enum BorderRadius {
+export enum BorderRadius {
   S = 12,
   M = 24,
   L = 36,
@@ -77,7 +70,7 @@ enum BorderRadius {
 }
 
 /** @internal */
-enum ZIndex {
+export enum ZIndex {
   Base = 0,
   Bottom = 1,
   Middle = 2,
@@ -113,18 +106,12 @@ const textVariants = {
   },
 };
 
-/** @internal */
-export const overlayMaxWidthPercent = '80%';
-
 export const lightTheme = createTheme({
   colors: {
     transparent: Palette.Transparent,
-    themePri: Palette.ThemePri,
-    themePriT: Palette.ThemePriT,
-    themeSec: Palette.ThemeSec,
+    theme: Palette.ThemePri,
     background: Palette.White,
     backgroundOverlay: Palette.BlackT,
-    backgroundVideo: Palette.Black,
     text: Palette.DarkGrey,
     textOverlay: Palette.White,
     textBtn: Palette.White,

@@ -1,5 +1,5 @@
 import { useRestyle } from '@shopify/restyle';
-import { useEffect, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 import type { ViewStyle } from 'react-native';
 import type {
   AnimatedThemedPressableProps,
@@ -19,11 +19,11 @@ export function useDelayedOnPress(
 ) {
   const onPressTimestamp = useRef(0);
   const debounceTimeout = useRef<Timeout>(undefined);
-  const clearDebounceTimeout = () => {
+  const clearDebounceTimeout = useCallback(() => {
     if (debounceTimeout.current) {
       clearTimeout(debounceTimeout.current);
     }
-  };
+  }, [debounceTimeout]);
   useEffect(() => {
     return () => {
       clearDebounceTimeout();

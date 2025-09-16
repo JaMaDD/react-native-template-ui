@@ -1,5 +1,5 @@
-import type { customTheme } from './const';
+import type { customLightTheme } from './const';
 
 declare global {
-  type ReactNativeTemplateTheme = typeof customTheme;
+  type ReactNativeTemplateTheme = typeof customLightTheme;
 }

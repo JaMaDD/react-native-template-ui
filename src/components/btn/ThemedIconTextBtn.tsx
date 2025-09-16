@@ -16,7 +16,7 @@ const ThemedIconTextBtn: FC<ThemedIconTextBtnProps> = ({
   textVariant,
   textFontSize,
   textFontWeight,
-  textColor = 'themePri',
+  textColor = 'theme',
   textStyle,
   textProps,
   children,

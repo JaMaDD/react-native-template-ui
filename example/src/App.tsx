@@ -1,23 +1,22 @@
 import {
-  GestureProvider,
-  InsetsProvider,
+  ReactNativeTemplateProviders,
   ThemedScreenWrap,
-  ThemeProvider,
+  useIsDarkColorScheme,
 } from '@jamadd/react-native-template-lib';
-import { customTheme } from './const';
+import { customDarkTheme, customLightTheme } from './const';
 
 export default function App() {
+  const isDarkColorScheme = useIsDarkColorScheme();
+
   return (
-    <GestureProvider>
-      <ThemeProvider theme={customTheme}>
-        <InsetsProvider>
-          <ThemedScreenWrap
-            insetTop={true}
-            insetBottom={true}
-            backgroundColor={'customColor'}
-          ></ThemedScreenWrap>
-        </InsetsProvider>
-      </ThemeProvider>
-    </GestureProvider>
+    <ReactNativeTemplateProviders
+      theme={isDarkColorScheme ? customDarkTheme : customLightTheme}
+    >
+      <ThemedScreenWrap
+        insetTop={true}
+        insetBottom={true}
+        backgroundColor={'theme'}
+      ></ThemedScreenWrap>
+    </ReactNativeTemplateProviders>
   );
 }

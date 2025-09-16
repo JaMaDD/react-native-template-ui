@@ -359,9 +359,11 @@ export function useActionSheetScrollView(
   const [headerHeight, setHeaderHeight] = useState(0);
   const [contentHeight, setContentHeight] = useState(0);
   useLayoutEffect(() => {
-    headerViewRef.current?.measureInWindow((_x, _y, _width, height) => {
-      setHeaderHeight(height);
-    });
+    headerViewRef.current?.measureInWindow(
+      (_x, _y, _width, headerViewHeight) => {
+        setHeaderHeight(headerViewHeight);
+      }
+    );
   }, []);
   useEffect(() => {
     if (headerHeight && contentHeight) {
@@ -408,9 +410,11 @@ export function useActionSheetListView(
   const [headerHeight, setHeaderHeight] = useState(0);
   const [contentHeight, setContentHeight] = useState(0);
   useLayoutEffect(() => {
-    headerViewRef.current?.measureInWindow((_x, _y, _width, height) => {
-      setHeaderHeight(height);
-    });
+    headerViewRef.current?.measureInWindow(
+      (_x, _y, _width, headerViewHeight) => {
+        setHeaderHeight(headerViewHeight);
+      }
+    );
   }, []);
   useEffect(() => {
     if (headerHeight && contentHeight) {

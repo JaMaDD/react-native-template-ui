@@ -21,7 +21,7 @@ export type ThemedSwitchProps = Omit<
 > & {
   onPress: (enabled: boolean) => void;
   enabled?: boolean;
-  size?: SwitchSize;
+  size?: SwitchSize | number;
   onPressDelayConfig?: OnPressDelayConfig;
   customEnableAnimation?: CustomAnimation<1>;
   customDisableAnimation?: CustomAnimation<0>;

@@ -25,7 +25,7 @@ export function useThemedSwitch(
   customColors?: ThemedSwitchProps['customColors']
 ) {
   const { xxxs } = useThemeSpacing();
-  const { themePri, background } = useThemeColors();
+  const { theme, background } = useThemeColors();
   const enabledSharedVal = useAnimationSharedVal();
   const pressableOnPress: PressableOnPress = () => {
     onPress(!!enabledSharedVal.get());
@@ -56,7 +56,7 @@ export function useThemedSwitch(
   const trackAnimatedStyle = useAnimatedStyle(() => {
     const padding = xxxs;
     const borderWidth = BorderSize.S;
-    const borderColor = themePri;
+    const borderColor = theme;
 
     return {
       width: size * 2 + padding * 2 + borderWidth * 2,
@@ -79,22 +79,19 @@ export function useThemedSwitch(
         ]
       ),
     };
-  }, [size, customColors, xxxs, themePri, background, enabledSharedVal]);
+  }, [size, customColors, xxxs, theme, background, enabledSharedVal]);
   const thumbAnimatedStyle = useAnimatedStyle(
     () => ({
       backgroundColor: interpolateColor(
         enabledSharedVal.get(),
         [0, 1],
-        [
-          customColors?.thumb ?? themePri,
-          customColors?.thumbEnabled ?? background,
-        ]
+        [customColors?.thumb ?? theme, customColors?.thumbEnabled ?? background]
       ),
       transform: [
         { translateX: interpolate(enabledSharedVal.get(), [0, 1], [0, size]) },
       ],
     }),
-    [size, customColors, themePri, background, enabledSharedVal]
+    [size, customColors, theme, background, enabledSharedVal]
   );
   useEffect(() => {
     handleAnimation(enabled ? 1 : 0);

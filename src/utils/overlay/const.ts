@@ -6,6 +6,9 @@ import type {
 } from '../../types/overlay';
 import type { ThemeSpacing, ThemeTextVariants } from '../../types/theme';
 
+/** @internal */
+export const overlayMaxWidthPercent = '80%';
+
 export enum OverlayDismissResultType {
   Toast = 'toast',
   Alert = 'alert',
@@ -28,6 +31,7 @@ export enum ToastDuration {
   Long = 5000,
 }
 
+/** @internal */
 export const AlertContext = createContext<AlertContextVal>({});
 
 export enum AlertBtnType {
@@ -36,28 +40,38 @@ export enum AlertBtnType {
   Destructive = 'destructive',
 }
 
+/** @internal */
 export const ActionSheetContext = createContext<Partial<ActionSheetContextVal>>(
   {}
 );
 
+/** @internal */
 export const actionSheetOpenDuration = 300;
 
+/** @internal */
 export const actionSheetSnapDuration = 300;
 
+/** @internal */
 export const actionSheetDismissDuration = 150;
 
+/** @internal */
 export const actionSheetMaxHeightRatio = 0.6;
 
+/** @internal */
 export enum ActionSheetExpandableHeightRatio {
   Top = 0.9,
   Middle = 0.6,
   Bottom = 0.3,
 }
 
+/** @internal */
 export const actionSheetHeaderIconSize: IconSize = IconSize.M;
 
+/** @internal */
 export const actionSheetHeaderPadding: ThemeSpacing = 'm';
 
+/** @internal */
 export const actionSheetOptListItemPadding: ThemeSpacing = 'm';
 
+/** @internal */
 export const actionSheetOptListItemTextVariant: ThemeTextVariants = 'textM';

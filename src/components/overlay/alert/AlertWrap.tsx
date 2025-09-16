@@ -7,7 +7,7 @@ import type { AnimationSharedValue } from '../../../types/reanimated';
 import type { PropsWithRequiredChildren } from '../../../types/view';
 import { getAlertContext } from '../../../utils/overlay/func';
 import { updateSharedValWithSpring } from '../../../utils/reanimated/func';
-import { overlayMaxWidthPercent } from '../../../utils/theme/const';
+import { overlayMaxWidthPercent } from '../../../utils/overlay/const';
 import AnimatedThemedView from '../../view/AnimatedThemedView';
 import ThemedModal from '../modal/ThemedModal';
 

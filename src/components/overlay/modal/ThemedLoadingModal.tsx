@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import type { ThemedLoadingModalProps } from '../../../types/overlay';
-import { overlayMaxWidthPercent } from '../../../utils/theme/const';
+import { overlayMaxWidthPercent } from '../../../utils/overlay/const';
 import ThemedLoading from '../../loading/ThemedLoading';
 import ThemedText from '../../text/ThemedText';
 import ThemedModal from './ThemedModal';

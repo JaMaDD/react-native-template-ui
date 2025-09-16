@@ -10,7 +10,7 @@ import {
 const ThemedIcon: FC<ThemedIconProps> = ({
   name,
   size = IconSize.M,
-  color = 'themePri',
+  color = 'theme',
   ...props
 }) => {
   const restyle = useRestyle(themedIconRestyleFuncs, props);

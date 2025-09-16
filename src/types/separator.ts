@@ -23,6 +23,6 @@ export type ThemedSeparatorProps = ThemeBackgroundColorProps &
     | 'ms'
     | 'me'
   > & {
-    size?: BorderSize;
+    size?: BorderSize | number;
     vertical?: boolean;
   };
