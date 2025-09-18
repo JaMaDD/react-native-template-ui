@@ -14,14 +14,14 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "templatelib.example"
+      "bundleIdentifier": "templateui.example"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "templatelib.example",
+      "package": "templateui.example",
       "edgeToEdgeEnabled": true
     },
     "web": {

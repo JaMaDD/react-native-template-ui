@@ -1,7 +1,7 @@
 {
-  "name": "@jamadd/react-native-template-lib",
+  "name": "@jamadd/react-native-template-ui",
   "version": "0.0.0",
-  "description": "React Native Template Lib is a collection of UI components designed by JaMa D&D.",
+  "description": "React Native Template UI is a collection of UI components designed by JaMa D&D.",
   "source": "./src/index.ts",
   "main": "./lib/commonjs/index.js",
   "module": "./lib/module/index.js",
@@ -36,7 +36,7 @@
     "!**/.*"
   ],
   "scripts": {
-    "example": "yarn workspace react-native-template-lib-example",
+    "example": "yarn workspace react-native-template-ui-example",
     "test": "jest",
     "typecheck": "tsc",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
@@ -66,14 +66,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JaMaDD/ReactNativeTemplateLib.git"
+    "url": "git+https://github.com/JaMaDD/ReactNativeTemplateUI.git"
   },
   "author": "JaMaD&D <jameswaitingontheday@gmail.com> (https://reactnativetemplate.com)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/JaMaDD/ReactNativeTemplateLib/issues"
+    "url": "https://github.com/JaMaDD/ReactNativeTemplateUI/issues"
   },
-  "homepage": "https://github.com/JaMaDD/ReactNativeTemplateLib#readme",
+  "homepage": "https://github.com/JaMaDD/ReactNativeTemplateUI#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"

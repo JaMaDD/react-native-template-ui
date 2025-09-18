@@ -2,7 +2,7 @@ import {
   ReactNativeTemplateProviders,
   ThemedScreenWrap,
   useIsDarkColorScheme,
-} from '@jamadd/react-native-template-lib';
+} from '@jamadd/react-native-template-ui';
 import { customDarkTheme, customLightTheme } from './const';
 
 export default function App() {

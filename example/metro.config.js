@@ -31,7 +31,7 @@ config.resolver = {
   disableHierarchicalLookup: true,
   extraNodeModules: {
     // Resolve the library import to its source for Fast Refresh during local dev
-    '@jamadd/react-native-template-lib': path.resolve(workspaceRoot, 'src'),
+    '@jamadd/react-native-template-ui': path.resolve(workspaceRoot, 'src'),
     // Always use the app's React/React Native
     'react': path.resolve(projectRoot, 'node_modules/react'),
     'react-native': path.resolve(projectRoot, 'node_modules/react-native'),

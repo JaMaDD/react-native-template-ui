@@ -2484,9 +2484,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jamadd/react-native-template-lib@workspace:.":
+"@jamadd/react-native-template-ui@workspace:.":
   version: 0.0.0-use.local
-  resolution: "@jamadd/react-native-template-lib@workspace:."
+  resolution: "@jamadd/react-native-template-ui@workspace:."
   dependencies:
     "@commitlint/config-conventional": ^19.6.0
     "@eslint/compat": ^1.2.7
@@ -11210,9 +11210,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-template-lib-example@workspace:example":
+"react-native-template-ui-example@workspace:example":
   version: 0.0.0-use.local
-  resolution: "react-native-template-lib-example@workspace:example"
+  resolution: "react-native-template-ui-example@workspace:example"
   dependencies:
     "@babel/core": ^7.20.0
     "@expo/metro-runtime": ~6.1.0

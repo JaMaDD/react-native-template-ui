@@ -1,6 +1,6 @@
-# React Native Template Lib
+# React Native Template UI
 
-**React Native Template Lib** provides a set of UI components designed by **JaMa D&D**.
+**React Native Template UI** provides a set of UI components designed by **JaMa D&D**.
 
 All UI components are built on top of different common React Native packages to provide great performace, usability and flexibility.
 
@@ -13,7 +13,7 @@ All UI components are built on top of different common React Native packages to 
 
 ## Prerequisites
 
-**React Native Template Lib** requires the following dependencies to function properly:
+**React Native Template UI** requires the following dependencies to function properly:
 
 - [@jamadd/react-native-template-icons](https://github.com/jamadd/react-native-template-icons/#installation)
 - [@shopify/flash-list](https://shopify.github.io/flash-list/docs/#installation)
@@ -38,13 +38,13 @@ npm install @jamadd/react-native-template-icons @shopify/flash-list @shopify/res
 ## Installation
 
 ```sh
-yarn add @jamadd/react-native-template-lib
+yarn add @jamadd/react-native-template-ui
 ```
 
 or
 
 ```sh
-npm install @jamadd/react-native-template-lib
+npm install @jamadd/react-native-template-ui
 ```
 
 ## Usage
@@ -59,7 +59,7 @@ To create a look and feel that matches your application/brand, you **should** cr
       <summary>Click to expand</summary>
 
       ```ts
-      import { lightTheme, darkTheme } from '@jamadd/react-native-template-lib';
+      import { lightTheme, darkTheme } from '@jamadd/react-native-template-ui';
       import { createTheme } from '@shopify/restyle';
 
       // Minimal example of creating custom light & dark themes by    extending the default themes
@@ -180,7 +180,7 @@ Wrap your application with ReactNativeTemplateProviders (which includes GestureP
 import {
   ReactNativeTemplateProviders,
   useIsDarkColorScheme,
-} from '@jamadd/react-native-template-lib';
+} from '@jamadd/react-native-template-ui';
 
 const isDarkColorScheme = useIsDarkColorScheme();
 
@@ -193,10 +193,10 @@ const isDarkColorScheme = useIsDarkColorScheme();
 
 ### Using Components
 
-Now you can use the components provided by **React Native Template Lib** in your application.
+Now you can use the components provided by **React Native Template UI** in your application.
 
 ```tsx
-import { ThemedBtn } from '@jamadd/react-native-template-lib';
+import { ThemedBtn } from '@jamadd/react-native-template-ui';
 
 <ThemedBtn
   onPress={() => {
