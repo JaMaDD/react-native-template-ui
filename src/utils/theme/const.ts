@@ -92,6 +92,20 @@ export const colors = {
 };
 
 /** @internal */
+export const spacing = {
+  none: Spacing.None,
+  xxxs: Spacing.XXXS,
+  xxs: Spacing.XXS,
+  xs: Spacing.XS,
+  s: Spacing.S,
+  m: Spacing.M,
+  l: Spacing.L,
+  xl: Spacing.XL,
+  xxl: Spacing.XXL,
+  xxxl: Spacing.XXXL,
+};
+
+/** @internal */
 const textVariants = {
   textXS: {
     fontSize: FontSize.XS,
@@ -122,18 +136,7 @@ const textVariants = {
 
 export const lightTheme = createTheme({
   colors,
-  spacing: {
-    none: Spacing.None,
-    xxxs: Spacing.XXXS,
-    xxs: Spacing.XXS,
-    xs: Spacing.XS,
-    s: Spacing.S,
-    m: Spacing.M,
-    l: Spacing.L,
-    xl: Spacing.XL,
-    xxl: Spacing.XXL,
-    xxxl: Spacing.XXXL,
-  },
+  spacing,
   breakpoints: {
     smallPhone: 0,
     phone: 300,

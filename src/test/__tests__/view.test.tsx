@@ -1,5 +1,6 @@
+import ThemedScreenWrap from '../../components/view/ThemedScreenWrap';
 import ThemedView from '../../components/view/ThemedView';
-import { colors } from '../../utils/theme/const';
+import { colors, spacing } from '../../utils/theme/const';
 import { renderAsync, screen } from '../utils/func';
 
 function getView() {
@@ -19,4 +20,24 @@ test('ThemedView - render', async () => {
 test('ThemedView - change backgroundColor', async () => {
   await renderAsync(<ThemedView backgroundColor={'backgroundOverlay'} />);
   expect(getView()).toHaveStyle({ backgroundColor: colors.backgroundOverlay });
+});
+
+test('ThemedScreenWrap - snapshot', async () => {
+  const { toJSON } = await renderAsync(<ThemedScreenWrap />);
+  expect(toJSON()).toMatchSnapshot();
+});
+
+test('ThemedScreenWrap - render', async () => {
+  await renderAsync(<ThemedScreenWrap />);
+  expect(getView()).toBeOnTheScreen();
+});
+
+test('ThemedScreenWrap - change backgroundColor', async () => {
+  await renderAsync(<ThemedScreenWrap backgroundColor={'backgroundOverlay'} />);
+  expect(getView()).toHaveStyle({ backgroundColor: colors.backgroundOverlay });
+});
+
+test('ThemedScreenWrap - change insets', async () => {
+  await renderAsync(<ThemedScreenWrap insets={true} insetPaddingRight={'l'} />);
+  expect(getView()).toHaveStyle({ paddingRight: spacing.l });
 });
