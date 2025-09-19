@@ -3,6 +3,7 @@ import { FlatCompat } from '@eslint/eslintrc';
 import js from '@eslint/js';
 import prettier from 'eslint-plugin-prettier';
 import reactCompiler from 'eslint-plugin-react-compiler';
+import testingLibrary from 'eslint-plugin-testing-library';
 import { defineConfig } from 'eslint/config';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -35,6 +36,12 @@ export default defineConfig([
       ],
       'react-compiler/react-compiler': 'error',
       'react-hooks/exhaustive-deps': 'warn',
+    },
+  },
+  {
+    files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
+    plugins: {
+      'testing-library': testingLibrary,
     },
   },
   {
