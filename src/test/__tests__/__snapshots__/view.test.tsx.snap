@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ThemedView - snapshot 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessible={true}
+    role="group"
+    style={
+      [
+        {
+          "backgroundColor": "#ffffff",
+        },
+      ]
+    }
+  />
+</View>
+`;

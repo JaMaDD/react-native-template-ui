@@ -78,6 +78,20 @@ export enum ZIndex {
 }
 
 /** @internal */
+export const colors = {
+  transparent: Palette.Transparent,
+  theme: Palette.ThemePri,
+  background: Palette.White,
+  backgroundOverlay: Palette.BlackT,
+  text: Palette.DarkGrey,
+  textOverlay: Palette.White,
+  textBtn: Palette.White,
+  border: Palette.Silver,
+  separator: Palette.Silver,
+  err: Palette.Red,
+};
+
+/** @internal */
 const textVariants = {
   textXS: {
     fontSize: FontSize.XS,
@@ -107,18 +121,7 @@ const textVariants = {
 };
 
 export const lightTheme = createTheme({
-  colors: {
-    transparent: Palette.Transparent,
-    theme: Palette.ThemePri,
-    background: Palette.White,
-    backgroundOverlay: Palette.BlackT,
-    text: Palette.DarkGrey,
-    textOverlay: Palette.White,
-    textBtn: Palette.White,
-    border: Palette.Silver,
-    separator: Palette.Silver,
-    err: Palette.Red,
-  },
+  colors,
   spacing: {
     none: Spacing.None,
     xxxs: Spacing.XXXS,

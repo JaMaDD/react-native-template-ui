@@ -9,19 +9,15 @@ import {
   type PropsWithRequiredChildren,
 } from '../../index';
 
-const Providers: FC<PropsWithRequiredChildren> = ({ children }) => {
-  return (
-    <ReactNativeTemplateProviders theme={lightTheme}>
-      {children}
-    </ReactNativeTemplateProviders>
-  );
-};
+const wrapper: FC<PropsWithRequiredChildren> = (props) => (
+  <ReactNativeTemplateProviders theme={lightTheme} {...props} />
+);
 
 const customTestRender: typeof testRender = (ui, options) =>
-  testRender(ui, { wrapper: Providers, ...options });
+  testRender(ui, { wrapper, ...options });
 
 const customTestRenderAsync: typeof testRenderAsync = async (ui, options) =>
-  await testRenderAsync(ui, { wrapper: Providers, ...options });
+  await testRenderAsync(ui, { wrapper, ...options });
 
 // re-export everything
 export * from '@testing-library/react-native';

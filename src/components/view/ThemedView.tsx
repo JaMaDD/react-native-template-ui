@@ -6,7 +6,14 @@ const ThemedView: FC<ThemedViewProps> = ({
   backgroundColor = 'background',
   ...props
 }) => {
-  return <Box backgroundColor={backgroundColor} {...props} />;
+  return (
+    <Box
+      backgroundColor={backgroundColor}
+      accessible={true}
+      role={'group'}
+      {...props}
+    />
+  );
 };
 
 export default ThemedView;
