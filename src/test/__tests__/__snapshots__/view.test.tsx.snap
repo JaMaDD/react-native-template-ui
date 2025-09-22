@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ThemedScreenWrap - snapshot 1`] = `
+exports[`ThemedScreenWrap Render & Snapshot 1`] = `
 <View
   style={
     {
@@ -24,7 +24,36 @@ exports[`ThemedScreenWrap - snapshot 1`] = `
 </View>
 `;
 
-exports[`ThemedView - snapshot 1`] = `
+exports[`ThemedScrollView Render & Snapshot 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <RCTScrollView
+    accessible={true}
+    contentContainerStyle={
+      {
+        "paddingBottom": 16,
+      }
+    }
+    role="group"
+    showsHorizontalScrollIndicator={true}
+    showsVerticalScrollIndicator={true}
+    style={
+      [
+        {},
+      ]
+    }
+  >
+    <View />
+  </RCTScrollView>
+</View>
+`;
+
+exports[`ThemedView Render & Snapshot 1`] = `
 <View
   style={
     {

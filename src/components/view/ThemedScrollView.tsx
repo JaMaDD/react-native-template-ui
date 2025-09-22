@@ -44,6 +44,8 @@ const ThemedScrollView: FC<ThemedScrollViewProps> = ({
       showsVerticalScrollIndicator={__DEV__}
       showsHorizontalScrollIndicator={__DEV__}
       contentContainerStyle={contentContainerStyle}
+      accessible={true}
+      role={'group'}
       {...restyles}
     />
   );
