@@ -38,6 +38,7 @@ export * from './types/icon';
 export * from './types/list';
 export * from './types/loading';
 export * from './types/overlay';
+export * from './types/provider';
 export * from './types/react';
 export * from './types/reanimated';
 export * from './types/separator';

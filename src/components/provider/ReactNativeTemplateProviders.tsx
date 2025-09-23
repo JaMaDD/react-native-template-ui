@@ -1,13 +1,13 @@
 import type { FC } from 'react';
-import type { Theme } from '../../types/theme';
-import type { PropsWithRequiredChildren } from '../../types/view';
+import type { ReactNativeTemplateProvidersProps } from '../../types/provider';
 import GestureProvider from './GestureProvider';
 import InsetsProvider from './InsetsProvider';
 import ThemeProvider from './ThemeProvider';
 
-const ReactNativeTemplateProviders: FC<
-  PropsWithRequiredChildren<{ theme: Theme }>
-> = ({ theme, children }) => {
+const ReactNativeTemplateProviders: FC<ReactNativeTemplateProvidersProps> = ({
+  theme,
+  children,
+}) => {
   return (
     <GestureProvider>
       <InsetsProvider>

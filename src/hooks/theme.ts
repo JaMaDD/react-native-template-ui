@@ -8,7 +8,8 @@ import { useColorScheme, type ColorSchemeName } from 'react-native';
 import type { Theme, ThemeBreakpoints } from '../types/theme';
 import { darkTheme, lightTheme } from '../utils/theme/const';
 
-function useTheme() {
+/** @internal */
+export function useTheme() {
   return useRestyleTheme<Theme>();
 }
 

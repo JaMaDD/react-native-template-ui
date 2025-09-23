@@ -1,5 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`AnimatedThemedView Render & Snapshot 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessible={true}
+    collapsable={false}
+    jestAnimatedProps={
+      {
+        "value": {},
+      }
+    }
+    jestAnimatedStyle={
+      {
+        "value": {},
+      }
+    }
+    nativeID="0"
+    role="group"
+    style={
+      [
+        {
+          "backgroundColor": "#ffffff",
+        },
+      ]
+    }
+  />
+</View>
+`;
+
 exports[`ThemedScreenWrap Render & Snapshot 1`] = `
 <View
   style={

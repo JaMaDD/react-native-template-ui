@@ -6,7 +6,14 @@ const AnimatedThemedView: FC<AnimatedThemedViewProps> = ({
   backgroundColor = 'background',
   ...props
 }) => {
-  return <AnimatedBox backgroundColor={backgroundColor} {...props} />;
+  return (
+    <AnimatedBox
+      backgroundColor={backgroundColor}
+      accessible={true}
+      role={'group'}
+      {...props}
+    />
+  );
 };
 
 export default AnimatedThemedView;

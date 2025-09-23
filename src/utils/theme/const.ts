@@ -78,34 +78,6 @@ export enum ZIndex {
 }
 
 /** @internal */
-export const colors = {
-  transparent: Palette.Transparent,
-  theme: Palette.ThemePri,
-  background: Palette.White,
-  backgroundOverlay: Palette.BlackT,
-  text: Palette.DarkGrey,
-  textOverlay: Palette.White,
-  textBtn: Palette.White,
-  border: Palette.Silver,
-  separator: Palette.Silver,
-  err: Palette.Red,
-};
-
-/** @internal */
-export const spacing = {
-  none: Spacing.None,
-  xxxs: Spacing.XXXS,
-  xxs: Spacing.XXS,
-  xs: Spacing.XS,
-  s: Spacing.S,
-  m: Spacing.M,
-  l: Spacing.L,
-  xl: Spacing.XL,
-  xxl: Spacing.XXL,
-  xxxl: Spacing.XXXL,
-};
-
-/** @internal */
 const textVariants = {
   textXS: {
     fontSize: FontSize.XS,
@@ -135,8 +107,30 @@ const textVariants = {
 };
 
 export const lightTheme = createTheme({
-  colors,
-  spacing,
+  colors: {
+    transparent: Palette.Transparent,
+    theme: Palette.ThemePri,
+    background: Palette.White,
+    backgroundOverlay: Palette.BlackT,
+    text: Palette.DarkGrey,
+    textOverlay: Palette.White,
+    textBtn: Palette.White,
+    border: Palette.Silver,
+    separator: Palette.Silver,
+    err: Palette.Red,
+  },
+  spacing: {
+    none: Spacing.None,
+    xxxs: Spacing.XXXS,
+    xxs: Spacing.XXS,
+    xs: Spacing.XS,
+    s: Spacing.S,
+    m: Spacing.M,
+    l: Spacing.L,
+    xl: Spacing.XL,
+    xxl: Spacing.XXL,
+    xxxl: Spacing.XXXL,
+  },
   breakpoints: {
     smallPhone: 0,
     phone: 300,

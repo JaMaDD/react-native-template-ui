@@ -1,8 +1,10 @@
+import AnimatedThemedView from '../../components/view/AnimatedThemedView';
 import ThemedScreenWrap from '../../components/view/ThemedScreenWrap';
 import ThemedScrollView from '../../components/view/ThemedScrollView';
 import ThemedView from '../../components/view/ThemedView';
-import { BorderSize, colors, spacing } from '../../utils/theme/const';
-import { renderAsync, screen } from '../utils/func';
+import { BorderSize } from '../../utils/theme/const';
+import { getThemeColors, getThemeSpacing } from '../utils/func';
+import { renderAsync, screen } from '../utils/testingLib';
 
 function getView() {
   return screen.getByRole('group');
@@ -16,6 +18,7 @@ describe('ThemedView', () => {
   });
 
   test('Change Styles', async () => {
+    const { border, backgroundOverlay } = await getThemeColors();
     await renderAsync(
       <ThemedView
         borderWidth={BorderSize.S}
@@ -25,8 +28,8 @@ describe('ThemedView', () => {
     );
     expect(getView()).toHaveStyle({
       borderWidth: BorderSize.S,
-      borderColor: colors.border,
-      backgroundColor: colors.backgroundOverlay,
+      borderColor: border,
+      backgroundColor: backgroundOverlay,
     });
   });
 });
@@ -39,6 +42,7 @@ describe('ThemedScreenWrap', () => {
   });
 
   test('Change Styles', async () => {
+    const { border, backgroundOverlay } = await getThemeColors();
     await renderAsync(
       <ThemedScreenWrap
         borderWidth={BorderSize.S}
@@ -48,12 +52,13 @@ describe('ThemedScreenWrap', () => {
     );
     expect(getView()).toHaveStyle({
       borderWidth: BorderSize.S,
-      borderColor: colors.border,
-      backgroundColor: colors.backgroundOverlay,
+      borderColor: border,
+      backgroundColor: backgroundOverlay,
     });
   });
 
   test('Change Insets', async () => {
+    const { s, l } = await getThemeSpacing();
     await renderAsync(
       <ThemedScreenWrap
         insets={true}
@@ -61,10 +66,7 @@ describe('ThemedScreenWrap', () => {
         insetPaddingRight={'l'}
       />
     );
-    expect(getView()).toHaveStyle({
-      paddingLeft: spacing.s,
-      paddingRight: spacing.l,
-    });
+    expect(getView()).toHaveStyle({ paddingLeft: s, paddingRight: l });
   });
 });
 
@@ -76,6 +78,7 @@ describe('ThemedScrollView', () => {
   });
 
   test('Change Insets', async () => {
+    const { xxs, xxl } = await getThemeSpacing();
     await renderAsync(
       <ThemedScrollView
         insetTop={true}
@@ -85,8 +88,32 @@ describe('ThemedScrollView', () => {
       />
     );
     expect(getView()).toHaveProp('contentContainerStyle', {
-      paddingTop: spacing.xxl,
-      paddingBottom: spacing.xxs,
+      paddingTop: xxl,
+      paddingBottom: xxs,
+    });
+  });
+});
+
+describe('AnimatedThemedView', () => {
+  test('Render & Snapshot', async () => {
+    const { toJSON } = await renderAsync(<AnimatedThemedView />);
+    expect(getView()).toBeOnTheScreen();
+    expect(toJSON()).toMatchSnapshot();
+  });
+
+  test('Change Styles', async () => {
+    const { border, backgroundOverlay } = await getThemeColors();
+    await renderAsync(
+      <AnimatedThemedView
+        borderWidth={BorderSize.S}
+        borderColor={'border'}
+        backgroundColor={'backgroundOverlay'}
+      />
+    );
+    expect(getView()).toHaveStyle({
+      borderWidth: BorderSize.S,
+      borderColor: border,
+      backgroundColor: backgroundOverlay,
     });
   });
 });

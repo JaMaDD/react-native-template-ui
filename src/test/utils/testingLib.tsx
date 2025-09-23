@@ -2,16 +2,7 @@ import {
   render as testRender,
   renderAsync as testRenderAsync,
 } from '@testing-library/react-native';
-import { type FC } from 'react';
-import {
-  lightTheme,
-  ReactNativeTemplateProviders,
-  type PropsWithRequiredChildren,
-} from '../../index';
-
-const wrapper: FC<PropsWithRequiredChildren> = (props) => (
-  <ReactNativeTemplateProviders theme={lightTheme} {...props} />
-);
+import { wrapper } from './const';
 
 const customTestRender: typeof testRender = (ui, options) =>
   testRender(ui, { wrapper, ...options });
