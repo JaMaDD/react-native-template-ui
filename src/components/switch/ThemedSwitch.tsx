@@ -35,6 +35,7 @@ const ThemedSwitch: FC<ThemedSwitchProps> = ({
     <AnimatedThemedPressable
       onPress={toggleSwitch}
       style={switchStyle}
+      role={'switch'}
       {...props}
     >
       <AnimatedThemedView

@@ -9,6 +9,7 @@ import type { PressableOnPress } from '../types/btn';
 import type { AnimationValue } from '../types/reanimated';
 import type { ThemedSwitchProps } from '../types/switch';
 import { updateSharedValWithTiming } from '../utils/reanimated/func';
+import { switchAnimationDuration } from '../utils/switch/const';
 import { BorderSize, SwitchSize } from '../utils/theme/const';
 import { useDelayedOnPress } from './btn';
 import { useAnimationSharedVal } from './reanimated';
@@ -25,7 +26,7 @@ export function useThemedSwitch(
   customColors?: ThemedSwitchProps['customColors']
 ) {
   const { xxxs } = useThemeSpacing();
-  const { theme, background } = useThemeColors();
+  const colors = useThemeColors();
   const enabledSharedVal = useAnimationSharedVal();
   const pressableOnPress: PressableOnPress = () => {
     onPress(!!enabledSharedVal.get());
@@ -43,7 +44,7 @@ export function useThemedSwitch(
       updateSharedValWithTiming(
         enabledSharedVal as SharedValue<number>,
         toVal,
-        { duration: 250 },
+        { duration: switchAnimationDuration },
         cb
       );
     }
@@ -56,7 +57,7 @@ export function useThemedSwitch(
   const trackAnimatedStyle = useAnimatedStyle(() => {
     const padding = xxxs;
     const borderWidth = BorderSize.S;
-    const borderColor = theme;
+    const borderColor = colors.theme;
 
     return {
       width: size * 2 + padding * 2 + borderWidth * 2,
@@ -66,32 +67,43 @@ export function useThemedSwitch(
         enabledSharedVal.get(),
         [0, 1],
         [
-          customColors?.border ?? borderColor,
-          customColors?.borderEnabled ?? borderColor,
+          customColors?.border ? colors[customColors.border] : borderColor,
+          customColors?.borderEnabled
+            ? colors[customColors.borderEnabled]
+            : borderColor,
         ]
       ),
       backgroundColor: interpolateColor(
         enabledSharedVal.get(),
         [0, 1],
         [
-          customColors?.background ?? background,
-          customColors?.backgroundEnabled ?? borderColor,
+          customColors?.background
+            ? colors[customColors.background]
+            : colors.background,
+          customColors?.backgroundEnabled
+            ? colors[customColors.backgroundEnabled]
+            : borderColor,
         ]
       ),
     };
-  }, [size, customColors, xxxs, theme, background, enabledSharedVal]);
+  }, [size, customColors, xxxs, colors, enabledSharedVal]);
   const thumbAnimatedStyle = useAnimatedStyle(
     () => ({
       backgroundColor: interpolateColor(
         enabledSharedVal.get(),
         [0, 1],
-        [customColors?.thumb ?? theme, customColors?.thumbEnabled ?? background]
+        [
+          customColors?.thumb ? colors[customColors.thumb] : colors.theme,
+          customColors?.thumbEnabled
+            ? colors[customColors.thumbEnabled]
+            : colors.background,
+        ]
       ),
       transform: [
         { translateX: interpolate(enabledSharedVal.get(), [0, 1], [0, size]) },
       ],
     }),
-    [size, customColors, theme, background, enabledSharedVal]
+    [size, customColors, colors, enabledSharedVal]
   );
   useEffect(() => {
     handleAnimation(enabled ? 1 : 0);

@@ -1,0 +1,123 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ThemedSwitch Render & Snapshot 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    jestAnimatedProps={
+      {
+        "value": {},
+      }
+    }
+    jestAnimatedStyle={
+      {
+        "value": {
+          "backgroundColor": "rgba(255, 255, 255, 1)",
+          "borderColor": "rgba(124, 207, 107, 1)",
+          "borderWidth": 1,
+          "padding": 2,
+          "width": 50,
+        },
+      }
+    }
+    jestInlineStyle={
+      [
+        {},
+      ]
+    }
+    nativeID="0"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    role="switch"
+    style={
+      [
+        {},
+        {
+          "backgroundColor": "rgba(255, 255, 255, 1)",
+          "borderColor": "rgba(124, 207, 107, 1)",
+          "borderWidth": 1,
+          "padding": 2,
+          "width": 50,
+        },
+      ]
+    }
+  >
+    <View
+      accessible={true}
+      collapsable={false}
+      jestAnimatedProps={
+        {
+          "value": {},
+        }
+      }
+      jestAnimatedStyle={
+        {
+          "value": {
+            "backgroundColor": "rgba(124, 207, 107, 1)",
+            "transform": [
+              {
+                "translateX": 0,
+              },
+            ],
+          },
+        }
+      }
+      jestInlineStyle={{}}
+      nativeID="1"
+      role="group"
+      style={
+        [
+          {
+            "aspectRatio": 1,
+            "backgroundColor": "#ffffff",
+            "width": 22,
+          },
+          [
+            {
+              "backgroundColor": "rgba(124, 207, 107, 1)",
+              "transform": [
+                {
+                  "translateX": 0,
+                },
+              ],
+            },
+          ],
+        ]
+      }
+      testID="switchThumb"
+    />
+  </View>
+</View>
+`;
