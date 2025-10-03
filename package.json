@@ -46,7 +46,7 @@
     "release-major": "node scripts/bumpVersion.js major && yarn release-commit",
     "release-minor": "node scripts/bumpVersion.js minor && yarn release-commit",
     "release-patch": "node scripts/bumpVersion.js patch && yarn release-commit",
-    "release-commit": "git add . && git commit -m \"v${npm_package_version}\" && git tag v${npm_package_version} && git push origin master --tags"
+    "release-commit": "git add . && git commit -m \"v${npm_package_version}\" && git tag v${npm_package_version} && git push origin main --tags"
   },
   "keywords": [
     "reactnativetemplate",
