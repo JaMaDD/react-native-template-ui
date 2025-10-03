@@ -1,20 +1,30 @@
-import type { FC } from 'react';
+import { useState, type FC } from 'react';
 import ThemedSwitch from '../../components/switch/ThemedSwitch';
 import type { ThemedSwitchProps } from '../../types/switch';
+import { OnPressDelayType } from '../../utils/btn/const';
 import { switchAnimationDuration } from '../../utils/switch/const';
 import { getThemeColors, hexToRgb } from '../utils/func';
-import { renderAsync, screen, userEvent } from '../utils/testingLib';
+import {
+  act,
+  renderAsync,
+  renderHookAsync,
+  screen,
+  userEvent,
+} from '../utils/testingLib';
 
-const Switch: FC<Omit<ThemedSwitchProps, 'onPress'>> = ({
-  thumbProps,
-  ...props
-}) => (
+const onPressDelayConfigWait = 1000;
+
+const Switch: FC<Partial<ThemedSwitchProps>> = ({ thumbProps, ...props }) => (
   <ThemedSwitch
     onPress={() => {}}
     thumbProps={{ ...thumbProps, testID: 'switchThumb' }}
     {...props}
   />
 );
+
+async function renderSwitch(props?: Partial<ThemedSwitchProps>) {
+  return await renderAsync(<Switch {...props} />);
+}
 
 function getSwitch() {
   return screen.getByRole('switch');
@@ -24,25 +34,35 @@ function getSwitchThumb() {
   return screen.getByTestId('switchThumb');
 }
 
+function triggerSwitchAnimation() {
+  jest.advanceTimersByTime(switchAnimationDuration);
+}
+
+function triggerSwitchPressDelay() {
+  jest.advanceTimersByTime(onPressDelayConfigWait);
+}
+
 describe('ThemedSwitch', () => {
   beforeEach(() => {
     jest.useFakeTimers();
+    jest.spyOn(Date, 'now').mockImplementation(() => jest.now());
   });
 
   afterEach(() => {
     jest.runOnlyPendingTimers();
+    jest.restoreAllMocks();
     jest.useRealTimers();
   });
 
   test('Render & Snapshot', async () => {
-    const { toJSON } = await renderAsync(<Switch />);
+    const { toJSON } = await renderSwitch();
     expect(getSwitch()).toBeOnTheScreen();
     expect(toJSON()).toMatchSnapshot();
   });
 
   test('Press with default styles', async () => {
     const { theme, background } = await getThemeColors();
-    await renderAsync(<Switch />);
+    await renderSwitch();
     const switchComponent = getSwitch();
     const switchThumb = getSwitchThumb();
     expect(switchComponent).toHaveAnimatedStyle({
@@ -53,7 +73,7 @@ describe('ThemedSwitch', () => {
     });
     const user = userEvent.setup();
     await user.press(switchComponent);
-    jest.advanceTimersByTime(switchAnimationDuration + 50);
+    triggerSwitchAnimation();
     expect(switchComponent).toHaveAnimatedStyle({
       backgroundColor: hexToRgb(theme),
     });
@@ -64,18 +84,16 @@ describe('ThemedSwitch', () => {
 
   test('Press with custom styles', async () => {
     const { theme, background } = await getThemeColors();
-    await renderAsync(
-      <Switch
-        customColors={{
-          background: 'theme',
-          backgroundEnabled: 'background',
-          border: 'background',
-          borderEnabled: 'background',
-          thumb: 'background',
-          thumbEnabled: 'theme',
-        }}
-      />
-    );
+    await renderSwitch({
+      customColors: {
+        background: 'theme',
+        backgroundEnabled: 'background',
+        border: 'background',
+        borderEnabled: 'background',
+        thumb: 'background',
+        thumbEnabled: 'theme',
+      },
+    });
     const switchComponent = getSwitch();
     const switchThumb = getSwitchThumb();
     expect(switchComponent).toHaveAnimatedStyle({
@@ -87,7 +105,7 @@ describe('ThemedSwitch', () => {
     });
     const user = userEvent.setup();
     await user.press(switchComponent);
-    jest.advanceTimersByTime(switchAnimationDuration + 50);
+    triggerSwitchAnimation();
     expect(switchComponent).toHaveAnimatedStyle({
       borderColor: hexToRgb(background),
       backgroundColor: hexToRgb(background),
@@ -97,7 +115,73 @@ describe('ThemedSwitch', () => {
     });
   });
 
-  test('Change Enabled prop', async () => {});
+  test('Change Enabled prop', async () => {
+    const { theme, background } = await getThemeColors();
+    const { result } = await renderHookAsync(() => useState(false));
+    expect(result.current[0]).toBe(false);
+    const { rerenderAsync } = await renderAsync(
+      <Switch enabled={result.current[0]} />
+    );
+    act(() => result.current[1](true));
+    await rerenderAsync(<Switch enabled={result.current[0]} />);
+    triggerSwitchAnimation();
+    const switchComponent = getSwitch();
+    const switchThumb = getSwitchThumb();
+    expect(switchComponent).toHaveAnimatedStyle({
+      backgroundColor: hexToRgb(theme),
+    });
+    expect(switchThumb).toHaveAnimatedStyle({
+      backgroundColor: hexToRgb(background),
+    });
+  });
 
-  test('Press with delay config', async () => {});
+  test('Press with delay config (throttle)', async () => {
+    const onPress = jest.fn();
+    await renderSwitch({
+      onPress,
+      onPressDelayConfig: {
+        type: OnPressDelayType.Throttle,
+        wait: onPressDelayConfigWait,
+      },
+    });
+    const switchComponent = getSwitch();
+    const user = userEvent.setup();
+    await user.press(switchComponent);
+    triggerSwitchAnimation();
+    expect(onPress).toHaveBeenCalledTimes(1);
+
+    await user.press(switchComponent);
+    await user.press(switchComponent);
+    expect(onPress).toHaveBeenCalledTimes(1);
+
+    triggerSwitchPressDelay();
+    await user.press(switchComponent);
+    triggerSwitchAnimation();
+    expect(onPress).toHaveBeenCalledTimes(2);
+  });
+
+  test('Press with delay config (debounce)', async () => {
+    const onPress = jest.fn();
+    await renderSwitch({
+      onPress,
+      onPressDelayConfig: {
+        type: OnPressDelayType.Debounce,
+        wait: onPressDelayConfigWait,
+      },
+    });
+    const switchComponent = getSwitch();
+    const user = userEvent.setup();
+    await user.press(switchComponent);
+    triggerSwitchAnimation();
+    expect(onPress).toHaveBeenCalledTimes(0);
+    triggerSwitchPressDelay();
+    expect(onPress).toHaveBeenCalledTimes(1);
+    await user.press(switchComponent);
+    triggerSwitchAnimation();
+    await user.press(switchComponent);
+    triggerSwitchAnimation();
+    expect(onPress).toHaveBeenCalledTimes(1);
+    triggerSwitchPressDelay();
+    expect(onPress).toHaveBeenCalledTimes(2);
+  });
 });
