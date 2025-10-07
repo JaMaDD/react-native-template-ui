@@ -68,14 +68,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JaMaDD/ReactNativeTemplateUI.git"
+    "url": "git+https://github.com/JaMaDD/react-native-template-ui.git"
   },
   "author": "JaMaD&D <jameswaitingontheday@gmail.com> (https://reactnativetemplate.com)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/JaMaDD/ReactNativeTemplateUI/issues"
+    "url": "https://github.com/JaMaDD/react-native-template-ui/issues"
   },
-  "homepage": "https://github.com/JaMaDD/ReactNativeTemplateUI#readme",
+  "homepage": "https://github.com/JaMaDD/react-native-template-ui#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"
