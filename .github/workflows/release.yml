@@ -13,8 +13,6 @@ jobs:
 
       - name: Setup NPM registry authentication & install dependencies
         uses: ./.github/actions/setup
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.ACTIONS_PACKAGES_DOWNLOAD_TOKEN }}
 
       - name: Lint files
         run: yarn lint
@@ -34,6 +32,8 @@ jobs:
 
       - name: Setup NPM registry authentication & install dependencies
         uses: ./.github/actions/setup
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM }}
 
       - name: Build package
         run: npm publish
