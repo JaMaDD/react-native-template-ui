@@ -1,6 +1,6 @@
 {
   "name": "@jamadd/react-native-template-ui",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "React Native Template UI is a collection of UI components designed by JaMa D&D.",
   "source": "./src/index.ts",
   "main": "./lib/commonjs/index.js",
