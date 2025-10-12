@@ -1,18 +1,20 @@
 import { createTheme } from '@shopify/restyle';
 import { StyleSheet } from 'react-native';
 
-/** @internal */
 export enum Palette {
   Transparent = 'transparent',
   ThemePri = '#7ccf6b',
-  BlackT = '#00000080',
-  White = '#ffffff',
-  DarkGrey = '#121212',
-  Silver = '#f0f0f0',
-  Red = '#ff0000',
+  ThemeSec = '#5aa85a',
+  ThemePriT = '#7ccf6b80',
+  Black = '#1a1a1a',
+  BlackT = '#1a1a1a80',
+  White = '#fafafa',
+  WhiteT = '#fafafa80',
+  Silver = '#c4c4c4',
+  Grey = '#7a7a7a',
+  Red = '#ff3b30',
 }
 
-/** @internal */
 export enum Spacing {
   None = 0,
   XXXS = 2,
@@ -26,7 +28,6 @@ export enum Spacing {
   XXXL = 110,
 }
 
-/** @internal */
 export enum FontSize {
   XS = 12,
   S = 16,
@@ -38,7 +39,6 @@ export enum FontSize {
 /** @internal */
 const FontLineHeightRatio = 1.2;
 
-/** @internal */
 export enum FontLineHeight {
   XS = FontSize.XS * FontLineHeightRatio,
   S = FontSize.S * FontLineHeightRatio,
@@ -61,7 +61,6 @@ export enum BorderSize {
   XL = 8,
 }
 
-/** @internal */
 export enum BorderRadius {
   S = 12,
   M = 24,
@@ -69,7 +68,6 @@ export enum BorderRadius {
   Circle = 9999,
 }
 
-/** @internal */
 export enum ZIndex {
   Base = 0,
   Bottom = 1,
@@ -109,13 +107,15 @@ const textVariants = {
 export const lightTheme = createTheme({
   colors: {
     transparent: Palette.Transparent,
-    theme: Palette.ThemePri,
+    themePri: Palette.ThemePri,
+    themeSec: Palette.ThemeSec,
+    themePriT: Palette.ThemePriT,
     background: Palette.White,
     backgroundOverlay: Palette.BlackT,
-    text: Palette.DarkGrey,
+    text: Palette.Black,
     textOverlay: Palette.White,
     textBtn: Palette.White,
-    border: Palette.Silver,
+    border: Palette.Grey,
     separator: Palette.Silver,
     err: Palette.Red,
   },
@@ -179,7 +179,7 @@ export const darkTheme: typeof lightTheme = {
   ...lightTheme,
   colors: {
     ...lightTheme.colors,
-    background: Palette.DarkGrey,
+    background: Palette.Black,
     text: Palette.White,
   },
 };
