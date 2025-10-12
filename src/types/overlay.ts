@@ -22,27 +22,22 @@ import type {
   ViewRefObj,
 } from './view';
 
-/** @internal */
 type OverlayProps = {
   onDismiss: () => void;
   dismissable?: boolean;
 };
 
-/** @internal */
 type OverlayDismissBaseResult = {
   resultType: OverlayDismissResultType;
 };
 
-/** @internal */
 export type OverlayOnDismiss<T> = (result: T) => void;
 
-/** @internal */
 type OverlayDismissToastResult = OverlayDismissBaseResult &
   Pick<ThemedToastProps, 'type' | 'text' | 'duration'> & {
     resultType: OverlayDismissResultType.Toast;
   };
 
-/** @internal */
 export type OverlayDismissAlertResult = OverlayDismissBaseResult &
   Pick<AlertProps, 'title' | 'desc'> &
   Pick<AlertBtnProps, 'text' | 'type'> & {
@@ -183,13 +178,11 @@ export type ActionSheetOptListProps = Omit<
   ref?: ActionSheetOptListRefObj;
 };
 
-/** @internal */
 export type ActionSheetOptListItemProps = Omit<
   ThemedBtnProps,
   'onPress' | 'text'
 >;
 
-/** @internal */
 export type ActionSheetOptListRefObj = ListAnimatedRefObj<ActionSheetOpt>;
 
 /** @internal */

@@ -9,7 +9,6 @@ import type { ThemedSeparatorProps } from './separator';
 import type { InsetsStyleConfig } from './style';
 import type { ThemeColors } from './theme';
 
-/** @internal */
 export type ListRef<T> = FlashListRef<T>;
 
 export type ListRefObj<T> = RefObject<ListRef<T> | null>;

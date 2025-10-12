@@ -29,7 +29,6 @@ export type AnimatedThemedViewProps = AnimatedProps<
 
 export type ThemedScreenWrapProps = ThemedViewProps & InsetsStyleConfig;
 
-/** @internal */
 export type ScrollViewProps = RNScrollViewProps &
   InsetsStyleConfig & {
     ref?: ScrollViewRefObj | ScrollViewAnimatedRefObj;

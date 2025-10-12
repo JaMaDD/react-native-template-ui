@@ -18,7 +18,6 @@ export type CustomThemedTextProps = {
   >;
 };
 
-/** @internal */
 export type IconTextProps = CustomThemedIconProps &
   CustomThemedTextProps & { flip?: boolean };
 

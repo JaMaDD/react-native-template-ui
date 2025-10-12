@@ -21,7 +21,6 @@ export type OnPressDelayConfig<T = OnPressDelayType> = {
   wait: number;
 };
 
-/** @internal */
 export type PressableProps = Omit<RNPressableProps, 'style'> & {
   scaleRatio?: BtnScaleRatio;
   style?: StyleOrStyleProp<ViewStyle>;
@@ -37,7 +36,6 @@ export type AnimatedThemedPressableProps = Omit<
   style?: AnimatedStyle<ViewStyle>;
 };
 
-/** @internal */
 type BtnProps = Omit<ThemedPressableProps, 'onPress' | 'children'> &
   Required<Pick<ThemedPressableProps, 'onPress'>>;
 

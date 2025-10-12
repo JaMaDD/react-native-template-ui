@@ -3,7 +3,6 @@ import type { TextStyle } from 'react-native';
 import type { StyleOrStyleProp } from './style';
 import type { ThemeBaseProps, ThemeColors } from './theme';
 
-/** @internal */
 export type IconProps = {
   name: IconName;
   size?: IconSize;
