@@ -5,7 +5,9 @@ export const customLightTheme = createTheme({
   ...lightTheme,
   colors: {
     ...lightTheme.colors,
-    theme: '#ff6347',
+    themePri: '#ff6347',
+    themeSec: '#4caf50',
+    themePriT: '#ff634780',
   },
 });
 
@@ -13,6 +15,8 @@ export const customDarkTheme = createTheme({
   ...darkTheme,
   colors: {
     ...darkTheme.colors,
-    theme: customLightTheme.colors.theme,
+    themePri: customLightTheme.colors.themePri,
+    themeSec: customLightTheme.colors.themeSec,
+    themePriT: customLightTheme.colors.themePriT,
   },
 });

@@ -37,7 +37,7 @@ exports[`ThemedSwitch Render & Snapshot 1`] = `
     jestAnimatedStyle={
       {
         "value": {
-          "backgroundColor": "rgba(255, 255, 255, 1)",
+          "backgroundColor": "rgba(250, 250, 250, 1)",
           "borderColor": "rgba(124, 207, 107, 1)",
           "borderWidth": 1,
           "padding": 2,
@@ -65,7 +65,7 @@ exports[`ThemedSwitch Render & Snapshot 1`] = `
       [
         {},
         {
-          "backgroundColor": "rgba(255, 255, 255, 1)",
+          "backgroundColor": "rgba(250, 250, 250, 1)",
           "borderColor": "rgba(124, 207, 107, 1)",
           "borderWidth": 1,
           "padding": 2,
@@ -101,7 +101,7 @@ exports[`ThemedSwitch Render & Snapshot 1`] = `
         [
           {
             "aspectRatio": 1,
-            "backgroundColor": "#ffffff",
+            "backgroundColor": "#fafafa",
             "width": 22,
           },
           [

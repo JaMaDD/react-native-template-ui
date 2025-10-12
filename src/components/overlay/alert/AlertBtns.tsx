@@ -1,13 +1,12 @@
 import type { FC } from 'react';
-import type { AlertBtns, AlertProps } from '../../../types/overlay';
+import type { AlertBtnsProps } from '../../../types/overlay';
 import ThemedView from '../../view/ThemedView';
 import AlertBtn from './AlertBtn';
 
-const AlertBtns: FC<Pick<AlertProps, 'btns' | 'btnsWrapProps'>> = ({
-  btns,
-  btnsWrapProps,
-}) => {
-  const alertBtns: AlertBtns = btns ?? [[{ text: 'OK' }]];
+const AlertBtns: FC<AlertBtnsProps> = ({ btns, btnsWrapProps }) => {
+  const alertBtns: NonNullable<AlertBtnsProps['btns']> = btns ?? [
+    [{ text: 'OK' }],
+  ];
 
   return (
     <ThemedView marginTop={'m'} gap={'s'} {...btnsWrapProps}>

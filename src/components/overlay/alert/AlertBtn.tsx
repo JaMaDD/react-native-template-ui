@@ -19,7 +19,7 @@ const AlertBtn: FC<AlertBtnProps> = ({
   };
   const isPrimary = type === AlertBtnType.Primary;
   const isDestructive = type === AlertBtnType.Destructive;
-  const backgroundColor = isPrimary ? 'theme' : 'background';
+  const backgroundColor = isPrimary ? 'themePri' : 'background';
 
   return (
     <ThemedBtn
@@ -29,7 +29,7 @@ const AlertBtn: FC<AlertBtnProps> = ({
       borderColor={type === AlertBtnType.Destructive ? 'err' : backgroundColor}
       backgroundColor={backgroundColor}
       text={text}
-      textColor={isDestructive ? 'err' : isPrimary ? 'background' : 'theme'}
+      textColor={isDestructive ? 'err' : isPrimary ? 'background' : 'themePri'}
       {...btnProps}
       {...props}
     />

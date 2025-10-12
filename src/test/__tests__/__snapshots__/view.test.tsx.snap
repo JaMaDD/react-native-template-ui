@@ -26,7 +26,7 @@ exports[`AnimatedThemedView Render & Snapshot 1`] = `
     style={
       [
         {
-          "backgroundColor": "#ffffff",
+          "backgroundColor": "#fafafa",
         },
       ]
     }
@@ -48,7 +48,7 @@ exports[`ThemedScreenWrap Render & Snapshot 1`] = `
     style={
       [
         {
-          "backgroundColor": "#ffffff",
+          "backgroundColor": "#fafafa",
           "flex": 1,
         },
         {},
@@ -101,7 +101,7 @@ exports[`ThemedView Render & Snapshot 1`] = `
     style={
       [
         {
-          "backgroundColor": "#ffffff",
+          "backgroundColor": "#fafafa",
         },
       ]
     }

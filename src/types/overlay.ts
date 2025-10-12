@@ -93,19 +93,19 @@ export type AlertProps = Omit<OverlayProps, 'onDismiss'> & {
   titleTextProps?: Omit<CustomThemedTextProps, 'text'>;
   desc?: string;
   descTextProps?: Omit<CustomThemedTextProps, 'text'>;
-  btns?: AlertBtns;
+  btns?: AlertBtnProps[][];
   btnsWrapProps?: Omit<ThemedViewProps, 'children'>;
   btnProps?: Omit<ThemedBtnProps, 'onPress' | 'text'>;
   onDismiss?: OverlayOnDismiss<OverlayDismissAlertResult>;
 };
+
+export type AlertBtnsProps = Pick<AlertProps, 'btns' | 'btnsWrapProps'>;
 
 export type AlertBtnProps = Pick<ThemedBtnProps, 'text'> & {
   type?: AlertBtnType;
   onPress?: ThemedBtnProps['onPress'];
   props?: Omit<ThemedBtnProps, 'onPress' | 'text'>;
 };
-
-export type AlertBtns = AlertBtnProps[][];
 
 export type ActionSheetProps = (Omit<OverlayProps, 'onDismiss'> &
   Omit<ActionSheetWrapProps, 'children'> &

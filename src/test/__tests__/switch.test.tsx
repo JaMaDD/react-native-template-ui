@@ -61,7 +61,7 @@ describe('ThemedSwitch', () => {
   });
 
   test('Press with default styles', async () => {
-    const { theme, background } = await getThemeColors();
+    const { themePri, background } = await getThemeColors();
     await renderSwitch();
     const switchComponent = getSwitch();
     const switchThumb = getSwitchThumb();
@@ -69,13 +69,13 @@ describe('ThemedSwitch', () => {
       backgroundColor: hexToRgb(background),
     });
     expect(switchThumb).toHaveAnimatedStyle({
-      backgroundColor: hexToRgb(theme),
+      backgroundColor: hexToRgb(themePri),
     });
     const user = userEvent.setup();
     await user.press(switchComponent);
     triggerSwitchAnimation();
     expect(switchComponent).toHaveAnimatedStyle({
-      backgroundColor: hexToRgb(theme),
+      backgroundColor: hexToRgb(themePri),
     });
     expect(switchThumb).toHaveAnimatedStyle({
       backgroundColor: hexToRgb(background),
@@ -83,22 +83,22 @@ describe('ThemedSwitch', () => {
   });
 
   test('Press with custom styles', async () => {
-    const { theme, background } = await getThemeColors();
+    const { themePri, background } = await getThemeColors();
     await renderSwitch({
       customColors: {
-        background: 'theme',
+        background: 'themePri',
         backgroundEnabled: 'background',
         border: 'background',
         borderEnabled: 'background',
         thumb: 'background',
-        thumbEnabled: 'theme',
+        thumbEnabled: 'themePri',
       },
     });
     const switchComponent = getSwitch();
     const switchThumb = getSwitchThumb();
     expect(switchComponent).toHaveAnimatedStyle({
       borderColor: hexToRgb(background),
-      backgroundColor: hexToRgb(theme),
+      backgroundColor: hexToRgb(themePri),
     });
     expect(switchThumb).toHaveAnimatedStyle({
       backgroundColor: hexToRgb(background),
@@ -111,12 +111,12 @@ describe('ThemedSwitch', () => {
       backgroundColor: hexToRgb(background),
     });
     expect(switchThumb).toHaveAnimatedStyle({
-      backgroundColor: hexToRgb(theme),
+      backgroundColor: hexToRgb(themePri),
     });
   });
 
   test('Change Enabled prop', async () => {
-    const { theme, background } = await getThemeColors();
+    const { themePri, background } = await getThemeColors();
     const { result } = await renderHookAsync(() => useState(false));
     expect(result.current[0]).toBe(false);
     const { rerenderAsync } = await renderAsync(
@@ -128,7 +128,7 @@ describe('ThemedSwitch', () => {
     const switchComponent = getSwitch();
     const switchThumb = getSwitchThumb();
     expect(switchComponent).toHaveAnimatedStyle({
-      backgroundColor: hexToRgb(theme),
+      backgroundColor: hexToRgb(themePri),
     });
     expect(switchThumb).toHaveAnimatedStyle({
       backgroundColor: hexToRgb(background),

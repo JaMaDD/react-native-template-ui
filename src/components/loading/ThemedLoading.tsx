@@ -9,7 +9,7 @@ import {
 
 const ThemedLoading: FC<ThemedLoadingProps> = ({
   size = 'large',
-  color = 'theme',
+  color = 'themePri',
   ...props
 }) => {
   const restyle = useRestyle(themedLoadingRestyleFuncs, props);

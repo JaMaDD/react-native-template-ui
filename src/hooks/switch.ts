@@ -57,7 +57,7 @@ export function useThemedSwitch(
   const trackAnimatedStyle = useAnimatedStyle(() => {
     const padding = xxxs;
     const borderWidth = BorderSize.S;
-    const borderColor = colors.theme;
+    const borderColor = colors.themePri;
 
     return {
       width: size * 2 + padding * 2 + borderWidth * 2,
@@ -93,7 +93,7 @@ export function useThemedSwitch(
         enabledSharedVal.get(),
         [0, 1],
         [
-          customColors?.thumb ? colors[customColors.thumb] : colors.theme,
+          customColors?.thumb ? colors[customColors.thumb] : colors.themePri,
           customColors?.thumbEnabled
             ? colors[customColors.thumbEnabled]
             : colors.background,

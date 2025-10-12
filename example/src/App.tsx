@@ -15,7 +15,7 @@ export default function App() {
       <ThemedScreenWrap
         insetTop={true}
         insetBottom={true}
-        backgroundColor={'theme'}
+        backgroundColor={'themePri'}
       ></ThemedScreenWrap>
     </ReactNativeTemplateProviders>
   );
