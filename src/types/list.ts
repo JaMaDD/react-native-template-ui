@@ -4,10 +4,12 @@ import type {
   ListRenderItemInfo,
 } from '@shopify/flash-list';
 import type { ComponentType, FC, RefObject } from 'react';
+import type { ViewStyle } from 'react-native';
 import type { AnimatedRef } from 'react-native-reanimated';
 import type { ThemedSeparatorProps } from './separator';
 import type { InsetsStyleConfig } from './style';
 import type { ThemeColors } from './theme';
+import type { PropsWithRequiredChildren } from './view';
 
 export type ListRef<T> = FlashListRef<T>;
 
@@ -48,4 +50,10 @@ export type ListItemSeparatorProps = Partial<
 export type ListItemSeparatorComponent = FC<{
   leadingItem?: { type?: any };
   trailingItem?: { type?: any };
+}>;
+
+export type ListCellRendererComponentProps = PropsWithRequiredChildren<{
+  onLayout: () => void;
+  index: number;
+  style: ViewStyle;
 }>;
