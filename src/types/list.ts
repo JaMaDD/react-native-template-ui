@@ -47,9 +47,10 @@ export type ListItemSeparatorProps = Partial<
   }
 >;
 
+/** @internal */
 export type ListItemSeparatorComponent = FC<{
-  leadingItem?: { type?: any };
-  trailingItem?: { type?: any };
+  leadingItem?: { type: string };
+  trailingItem?: { type: string };
 }>;
 
 export type ListCellRendererComponentProps = PropsWithRequiredChildren<{

@@ -43,6 +43,7 @@ function List<T>({
   return (
     <FlashList
       renderItem={renderItem}
+      overScrollMode={'always'}
       showsVerticalScrollIndicator={__DEV__}
       showsHorizontalScrollIndicator={__DEV__}
       contentContainerStyle={listContentContainerStyle}

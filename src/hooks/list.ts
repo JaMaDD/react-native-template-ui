@@ -1,8 +1,8 @@
 import { useRef } from 'react';
 import type {
-  ListRef,
   ListItemSeparatorComponent,
   ListItemSeparatorProps,
+  ListRef,
 } from '../types/list';
 import { useThemedSeparator } from './separator';
 
@@ -12,8 +12,8 @@ export function useListRef<T>() {
 
 export function useListItemSeparatorComponent(
   props: ListItemSeparatorProps = {},
-  hideForLeadingItemTypes: any[] = [],
-  hideForTrailingItemTypes: any[] = []
+  hideForLeadingItemTypes: string[] = [],
+  hideForTrailingItemTypes: string[] = []
 ) {
   const ThemedSeparator = useThemedSeparator(
     props.size,
