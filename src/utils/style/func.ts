@@ -1,6 +1,10 @@
 import { Dimensions, StyleSheet } from 'react-native';
 import type { Style, StyleOrStyleProp } from '../../types/style';
 
+export function createStyleSheet<T extends Record<string, Style>>(styles: T) {
+  return StyleSheet.create<T>(styles);
+}
+
 export function composeStyles<T extends Style>(
   style1?: StyleOrStyleProp<T>,
   style2?: StyleOrStyleProp<T>
