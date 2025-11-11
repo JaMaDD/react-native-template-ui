@@ -38,7 +38,7 @@ const ThemedIconText: FC<ThemedIconTextProps> = ({
     <ThemedView
       flexDirection={'row'}
       alignItems={'center'}
-      gap={'xxs'}
+      gap={'s'}
       backgroundColor={'transparent'}
       {...props}
     >

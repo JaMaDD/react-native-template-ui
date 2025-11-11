@@ -118,7 +118,7 @@ export type ActionSheetProps = (Omit<OverlayProps, 'onDismiss'> &
         children?: never;
         listProps?: never;
       }
-    | (PropsWithRequiredChildren & {
+    | PropsWithRequiredChildren<{
         scrollViewProps?: Omit<ScrollViewProps, 'ref'> & {
           ref?: ScrollViewAnimatedRefObj;
         };
@@ -126,7 +126,7 @@ export type ActionSheetProps = (Omit<OverlayProps, 'onDismiss'> &
         optListProps?: never;
         optListItemProps?: never;
         listProps?: never;
-      })
+      }>
     | {
         listProps: Omit<ListProps<any>, 'ref'> & {
           ref?: ListAnimatedRefObj<any>;
