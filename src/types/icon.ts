@@ -5,7 +5,7 @@ import type { ThemeBaseProps, ThemeColors } from './theme';
 
 export type IconProps = {
   name: IconName;
-  size?: IconSize;
+  size?: IconSize | number;
   color?: ThemeColors;
   style?: StyleOrStyleProp<TextStyle>;
 };
