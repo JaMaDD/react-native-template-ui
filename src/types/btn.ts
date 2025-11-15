@@ -22,7 +22,7 @@ export type OnPressDelayConfig<T = OnPressDelayType> = {
 };
 
 export type PressableProps = Omit<RNPressableProps, 'style'> & {
-  scaleRatio?: BtnScaleRatio;
+  scaleRatio?: BtnScaleRatio | number;
   style?: StyleOrStyleProp<ViewStyle>;
   onPressDelayConfig?: OnPressDelayConfig;
 };
