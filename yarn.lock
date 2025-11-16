@@ -2495,7 +2495,7 @@ __metadata:
     "@react-native/babel-preset": 0.82.0
     "@react-native/eslint-config": ^0.82.0
     "@release-it/conventional-changelog": ^9.0.2
-    "@shopify/flash-list": ^2.1.0
+    "@shopify/flash-list": ^2.2.0
     "@shopify/restyle": ^2.4.5
     "@testing-library/react-native": ^13.3.3
     "@types/jest": ^29.5.14
@@ -2523,7 +2523,7 @@ __metadata:
     typescript: ^5.8.3
   peerDependencies:
     "@jamadd/react-native-template-icons": ">=0.4.2"
-    "@shopify/flash-list": ">=2.1.0"
+    "@shopify/flash-list": ">=2.2.0"
     "@shopify/restyle": ">=2.4.5"
     react: ">=19.1.1"
     react-native: ">=0.82.0"
@@ -3559,7 +3559,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@shopify/flash-list@npm:2.1.0, @shopify/flash-list@npm:^2.1.0":
+"@shopify/flash-list@npm:2.1.0":
   version: 2.1.0
   resolution: "@shopify/flash-list@npm:2.1.0"
   peerDependencies:
@@ -3567,6 +3567,17 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: cb5fd7323e81da3393c8ce17ac1d91de6f509048c68a435909e3e20bd2458e36c58ce742d6d055ae92a8c203b002a1f677fd1704cb518377cafc74669c04178f
+  languageName: node
+  linkType: hard
+
+"@shopify/flash-list@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "@shopify/flash-list@npm:2.2.0"
+  peerDependencies:
+    "@babel/runtime": "*"
+    react: "*"
+    react-native: "*"
+  checksum: b837dd511ce0dcee9429b3f7a1adfe8b2ca487018964a4942711ff20825705646f33bfcd5d0615a7631d5bd4ebdb6c001c024f1aea18ca2bae31e098c0c61734
   languageName: node
   linkType: hard
 
