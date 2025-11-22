@@ -6,7 +6,7 @@ import {
   useActionSheetHeaderMinHeight,
   useActionSheetOnDismiss,
 } from '../../../hooks/overlay';
-import type { ThemedIconBtnProps } from '../../../types/btn';
+import type { ThemedIconButtonProps } from '../../../types/button';
 import type { ActionSheetHeaderProps } from '../../../types/overlay';
 import type { ThemedTextProps } from '../../../types/text';
 import {
@@ -19,21 +19,21 @@ import ThemedView from '../../view/ThemedView';
 
 const ThemedText: FC<ThemedTextProps> =
   require('../../text/ThemedText').default;
-const ThemedIconBtn: FC<ThemedIconBtnProps> =
-  require('../../btn/ThemedIconBtn').default;
+const ThemedIconButton: FC<ThemedIconButtonProps> =
+  require('../../button/ThemedIconButton').default;
 
 const ActionSheetHeader: FC<ActionSheetHeaderProps> = ({
   headerShowIcon = true,
   headerWrapProps,
   headerTextProps,
-  headerIconBtnProps,
+  headerIconButtonProps,
 }) => {
   const gesture = useActionSheetGesture();
   const minHeight = useActionSheetHeaderMinHeight();
   const onDismiss = useActionSheetOnDismiss();
 
   const { title, headerViewRef } = getActionSheetContext();
-  const onIconPress: ThemedIconBtnProps['onPress'] = () => {
+  const onIconPress: ThemedIconButtonProps['onPress'] = () => {
     onDismiss();
   };
 
@@ -55,13 +55,13 @@ const ActionSheetHeader: FC<ActionSheetHeaderProps> = ({
           </ThemedText>
         )}
         {headerShowIcon && (
-          <ThemedIconBtn
+          <ThemedIconButton
             onPress={onIconPress}
             iconName={'cross'}
             iconSize={actionSheetHeaderIconSize}
             position={'absolute'}
             left={0}
-            {...headerIconBtnProps}
+            {...headerIconButtonProps}
           />
         )}
       </ThemedView>

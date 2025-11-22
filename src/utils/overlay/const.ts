@@ -34,7 +34,7 @@ export enum ToastDuration {
 /** @internal */
 export const AlertContext = createContext<AlertContextVal>({});
 
-export enum AlertBtnType {
+export enum AlertButtonType {
   Primary = 'primary',
   Secondary = 'secondary',
   Destructive = 'destructive',

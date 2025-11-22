@@ -12,7 +12,7 @@ import {
   spacing,
   spacingShorthand,
 } from '@shopify/restyle';
-import type { PressableProps, ThemedPressableProps } from '../../types/btn';
+import type { PressableProps, ThemedPressableProps } from '../../types/button';
 import type { IconProps, ThemedIconProps } from '../../types/icon';
 import type { LoadingProps, ThemedLoadingProps } from '../../types/loading';
 import type { InsetsStyleConfig } from '../../types/style';

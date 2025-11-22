@@ -1,22 +1,22 @@
 import type { FC } from 'react';
-import type { ThemedBtnProps } from '../../types/btn';
-import { BtnScaleRatio } from '../../utils/btn/const';
+import type { ThemedButtonProps } from '../../types/button';
+import { ButtonScaleRatio } from '../../utils/button/const';
 import ThemedText from '../text/ThemedText';
 import ThemedPressable from './ThemedPressable';
 
-const ThemedBtn: FC<ThemedBtnProps> = ({
+const ThemedButton: FC<ThemedButtonProps> = ({
   text,
   textVariant,
   textFontSize,
   textFontWeight,
-  textColor = 'textBtn',
+  textColor = 'textButton',
   textStyle,
   textProps,
   ...props
 }) => {
   return (
     <ThemedPressable
-      scaleRatio={BtnScaleRatio.Rectangle}
+      scaleRatio={ButtonScaleRatio.Rectangle}
       alignItems={'center'}
       paddingVertical={'s'}
       paddingHorizontal={'m'}
@@ -38,4 +38,4 @@ const ThemedBtn: FC<ThemedBtnProps> = ({
   );
 };
 
-export default ThemedBtn;
+export default ThemedButton;

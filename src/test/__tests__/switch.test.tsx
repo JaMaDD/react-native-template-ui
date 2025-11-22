@@ -1,7 +1,7 @@
 import { useState, type FC } from 'react';
 import ThemedSwitch from '../../components/switch/ThemedSwitch';
 import type { ThemedSwitchProps } from '../../types/switch';
-import { OnPressDelayType } from '../../utils/btn/const';
+import { OnPressDelayType } from '../../utils/button/const';
 import { switchAnimationDuration } from '../../utils/switch/const';
 import { getThemeColors, hexToRgb } from '../utils/func';
 import {

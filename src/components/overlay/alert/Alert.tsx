@@ -10,7 +10,7 @@ import {
   overlayDismissResultDefaultText,
   OverlayDismissResultType,
 } from '../../../utils/overlay/const';
-import AlertBtns from './AlertBtns';
+import AlertButtons from './AlertButtons';
 import AlertContent from './AlertContent';
 import AlertWrap from './AlertWrap';
 
@@ -22,9 +22,9 @@ const Alert: FC<AlertProps> = ({
   titleTextProps,
   desc,
   descTextProps,
-  btns,
-  btnsWrapProps,
-  btnProps,
+  buttons,
+  buttonsWrapProps,
+  buttonProps,
   onDismiss,
   dismissable,
 }) => {
@@ -42,7 +42,7 @@ const Alert: FC<AlertProps> = ({
     setVisible(false);
   };
   const alertContextVal: AlertContextVal = {
-    btnProps,
+    buttonProps,
     onDismiss: (result) => {
       if (customHideAnimation) {
         customHideAnimation(showSharedVal, 0, () => {
@@ -62,7 +62,7 @@ const Alert: FC<AlertProps> = ({
         wrapProps={wrapProps}
         title={title}
         desc={desc}
-        btns={btns}
+        buttons={buttons}
         dismissable={dismissable}
         visible={visible}
         setVisible={setVisible}
@@ -74,7 +74,7 @@ const Alert: FC<AlertProps> = ({
           desc={desc}
           descTextProps={descTextProps}
         />
-        <AlertBtns btns={btns} btnsWrapProps={btnsWrapProps} />
+        <AlertButtons buttons={buttons} buttonsWrapProps={buttonsWrapProps} />
       </AlertWrap>
     </AlertContext.Provider>
   );

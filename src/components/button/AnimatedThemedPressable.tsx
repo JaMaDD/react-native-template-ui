@@ -1,6 +1,6 @@
 import type { FC } from 'react';
-import { useThemedPressable } from '../../hooks/btn';
-import type { AnimatedThemedPressableProps } from '../../types/btn';
+import { useThemedPressable } from '../../hooks/button';
+import type { AnimatedThemedPressableProps } from '../../types/button';
 import AnimatedPressable from './AnimatedPressable';
 
 const AnimatedThemedPressable: FC<AnimatedThemedPressableProps> = (props) => {

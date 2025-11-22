@@ -1,6 +1,9 @@
 import type { ViewStyle } from 'react-native';
 import type { SwitchSize } from '../utils/theme/const';
-import type { AnimatedThemedPressableProps, OnPressDelayConfig } from './btn';
+import type {
+  AnimatedThemedPressableProps,
+  OnPressDelayConfig,
+} from './button';
 import type { CustomAnimation } from './reanimated';
 import type { StyleOrStyleProp } from './style';
 import type { ThemeColors } from './theme';

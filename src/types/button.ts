@@ -5,7 +5,7 @@ import type {
   ViewStyle,
 } from 'react-native';
 import type { AnimatedStyle } from 'react-native-reanimated';
-import type { BtnScaleRatio, OnPressDelayType } from '../utils/btn/const';
+import type { ButtonScaleRatio, OnPressDelayType } from '../utils/button/const';
 import type { CustomThemedIconProps } from './icon';
 import type { StyleOrStyleProp } from './style';
 import type { CustomThemedTextProps, IconTextProps } from './text';
@@ -22,7 +22,7 @@ export type OnPressDelayConfig<T = OnPressDelayType> = {
 };
 
 export type PressableProps = Omit<RNPressableProps, 'style'> & {
-  scaleRatio?: BtnScaleRatio | number;
+  scaleRatio?: ButtonScaleRatio | number;
   style?: StyleOrStyleProp<ViewStyle>;
   onPressDelayConfig?: OnPressDelayConfig;
 };
@@ -36,13 +36,13 @@ export type AnimatedThemedPressableProps = Omit<
   style?: AnimatedStyle<ViewStyle>;
 };
 
-type BtnProps = Omit<ThemedPressableProps, 'onPress' | 'children'> &
+type ButtonProps = Omit<ThemedPressableProps, 'onPress' | 'children'> &
   Required<Pick<ThemedPressableProps, 'onPress'>>;
 
-export type ThemedBtnProps = BtnProps & CustomThemedTextProps;
+export type ThemedButtonProps = ButtonProps & CustomThemedTextProps;
 
-export type ThemedIconBtnProps = BtnProps & CustomThemedIconProps;
+export type ThemedIconButtonProps = ButtonProps & CustomThemedIconProps;
 
-export type ThemedIconTextBtnProps = PropsWithChildren<
-  BtnProps & IconTextProps & { iconTextProps?: ThemedViewProps }
+export type ThemedIconTextButtonProps = PropsWithChildren<
+  ButtonProps & IconTextProps & { iconTextProps?: ThemedViewProps }
 >;

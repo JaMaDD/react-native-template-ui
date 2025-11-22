@@ -98,7 +98,7 @@ To create a look and feel that matches your application/brand, you **should** cr
           backgroundOverlay: YOUR_CUSTOM_COLOR,
           text: YOUR_CUSTOM_COLOR,
           textOverlay: YOUR_CUSTOM_COLOR,
-          textBtn: YOUR_CUSTOM_COLOR,
+          textButton: YOUR_CUSTOM_COLOR,
           border: YOUR_CUSTOM_COLOR,
           separator: YOUR_CUSTOM_COLOR,
           err: YOUR_CUSTOM_COLOR,
@@ -131,7 +131,7 @@ To create a look and feel that matches your application/brand, you **should** cr
           s: YOUR_CUSTOM_RADIUS,
           m: YOUR_CUSTOM_RADIUS,
           l: YOUR_CUSTOM_RADIUS,
-          circle: YOUR_CUSTOM_RADIUS,
+          round: YOUR_CUSTOM_RADIUS,
         },
         textVariants: {
           textXS: YOUR_CUSTOM_TEXT_VARIANT,
@@ -196,9 +196,9 @@ const isDarkColorScheme = useIsDarkColorScheme();
 Now you can use the components provided by **React Native Template UI** in your application.
 
 ```tsx
-import { ThemedBtn } from '@jamadd/react-native-template-ui';
+import { ThemedButton } from '@jamadd/react-native-template-ui';
 
-<ThemedBtn
+<ThemedButton
   onPress={() => {
     console.log('Button pressed');
   }}
@@ -211,9 +211,9 @@ import { ThemedBtn } from '@jamadd/react-native-template-ui';
 ### Buttons
 
 - AnimatedThemedPressable
-- ThemedBtn
-- ThemedIconBtn
-- ThemedIconTextBtn
+- ThemedButton
+- ThemedIconButton
+- ThemedIconTextButton
 - ThemedPressable
 
 ### List

@@ -7,9 +7,9 @@ import type {
   PressableOnPress,
   PressableStyle,
   ThemedPressableProps,
-} from '../types/btn';
+} from '../types/button';
 import type { Timeout } from '../types/react';
-import { BtnScaleRatio, OnPressDelayType } from '../utils/btn/const';
+import { ButtonScaleRatio, OnPressDelayType } from '../utils/button/const';
 import { composeStyles } from '../utils/style/func';
 import { themedPressableRestyleFuncs } from '../utils/theme/restyle';
 
@@ -80,7 +80,7 @@ export function useThemedPressable(
 ) {
   const { themedPressableProps, scaleRatio } = useMemo(() => {
     const tempThemedPressableProps = { ...props };
-    let tempScaleRatio: BtnScaleRatio | undefined;
+    let tempScaleRatio: ButtonScaleRatio | undefined;
     if ('scaleRatio' in tempThemedPressableProps) {
       tempScaleRatio = tempThemedPressableProps.scaleRatio;
       delete tempThemedPressableProps.scaleRatio;

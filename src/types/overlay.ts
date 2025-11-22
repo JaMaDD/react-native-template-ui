@@ -1,12 +1,12 @@
 import type { ModalProps, ViewStyle } from 'react-native';
 import type { SharedValue } from 'react-native-reanimated';
 import type {
-  AlertBtnType,
+  AlertButtonType,
   OverlayDismissResultType,
   ToastDuration,
   ToastType,
 } from '../utils/overlay/const';
-import type { ThemedBtnProps } from './btn';
+import type { ThemedButtonProps } from './button';
 import type { ListAnimatedRefObj, ListProps } from './list';
 import type { CustomThemedLoadingProps } from './loading';
 import type { SetState } from './react';
@@ -40,7 +40,7 @@ type OverlayDismissToastResult = OverlayDismissBaseResult &
 
 export type OverlayDismissAlertResult = OverlayDismissBaseResult &
   Pick<AlertProps, 'title' | 'desc'> &
-  Pick<AlertBtnProps, 'text' | 'type'> & {
+  Pick<AlertButtonProps, 'text' | 'type'> & {
     resultType: OverlayDismissResultType.Alert;
   };
 
@@ -75,7 +75,7 @@ export type ThemedLoadingModalProps = Omit<ThemedModalProps, 'children'> &
   Partial<CustomThemedTextProps>;
 
 export type AlertContextVal = Partial<
-  Pick<AlertProps, 'btnProps'> & {
+  Pick<AlertProps, 'buttonProps'> & {
     onDismiss: (result?: Partial<OverlayDismissAlertResult>) => void;
   }
 >;
@@ -88,18 +88,21 @@ export type AlertProps = Omit<OverlayProps, 'onDismiss'> & {
   titleTextProps?: Omit<CustomThemedTextProps, 'text'>;
   desc?: string;
   descTextProps?: Omit<CustomThemedTextProps, 'text'>;
-  btns?: AlertBtnProps[][];
-  btnsWrapProps?: Omit<ThemedViewProps, 'children'>;
-  btnProps?: Omit<ThemedBtnProps, 'onPress' | 'text'>;
+  buttons?: AlertButtonProps[][];
+  buttonsWrapProps?: Omit<ThemedViewProps, 'children'>;
+  buttonProps?: Omit<ThemedButtonProps, 'onPress' | 'text'>;
   onDismiss?: OverlayOnDismiss<OverlayDismissAlertResult>;
 };
 
-export type AlertBtnsProps = Pick<AlertProps, 'btns' | 'btnsWrapProps'>;
+export type AlertButtonsProps = Pick<
+  AlertProps,
+  'buttons' | 'buttonsWrapProps'
+>;
 
-export type AlertBtnProps = Pick<ThemedBtnProps, 'text'> & {
-  type?: AlertBtnType;
-  onPress?: ThemedBtnProps['onPress'];
-  props?: Omit<ThemedBtnProps, 'onPress' | 'text'>;
+export type AlertButtonProps = Pick<ThemedButtonProps, 'text'> & {
+  type?: AlertButtonType;
+  onPress?: ThemedButtonProps['onPress'];
+  props?: Omit<ThemedButtonProps, 'onPress' | 'text'>;
 };
 
 export type ActionSheetProps = (Omit<OverlayProps, 'onDismiss'> &
@@ -149,7 +152,7 @@ export type ActionSheetHeaderProps = {
   headerShowIcon?: boolean;
   headerWrapProps?: Omit<ThemedViewProps, 'children'>;
   headerTextProps?: Omit<ThemedTextProps, 'children'>;
-  headerIconBtnProps?: Omit<ThemedBtnProps, 'onPress'>;
+  headerIconButtonProps?: Omit<ThemedButtonProps, 'onPress'>;
 };
 
 /** @internal */
@@ -179,7 +182,7 @@ export type ActionSheetOptListProps = Omit<
 };
 
 export type ActionSheetOptListItemProps = Omit<
-  ThemedBtnProps,
+  ThemedButtonProps,
   'onPress' | 'text'
 >;
 
@@ -191,7 +194,7 @@ export type ActionSheetOptListExtraData = {
   onDismiss: (text?: string) => void;
 };
 
-export type ActionSheetOpt = Partial<Pick<ThemedBtnProps, 'onPress'>> & {
+export type ActionSheetOpt = Partial<Pick<ThemedButtonProps, 'onPress'>> & {
   text: string;
   props?: ActionSheetOptListItemProps;
 };

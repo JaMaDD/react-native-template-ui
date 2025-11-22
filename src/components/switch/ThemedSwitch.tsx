@@ -3,7 +3,7 @@ import { useThemedSwitch } from '../../hooks/switch';
 import type { ThemedSwitchProps } from '../../types/switch';
 import { composeStyles, flattenStyle } from '../../utils/style/func';
 import { SwitchSize } from '../../utils/theme/const';
-import AnimatedThemedPressable from '../btn/AnimatedThemedPressable';
+import AnimatedThemedPressable from '../button/AnimatedThemedPressable';
 import AnimatedThemedView from '../view/AnimatedThemedView';
 
 const ThemedSwitch: FC<ThemedSwitchProps> = ({

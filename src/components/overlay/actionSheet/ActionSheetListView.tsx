@@ -16,7 +16,7 @@ const ActionSheetListView: FC<ActionSheetListViewProps> = ({
   headerShowIcon,
   headerWrapProps,
   headerTextProps,
-  headerIconBtnProps,
+  headerIconButtonProps,
 }) => {
   const actionSheetContextVal = useActionSheetListView(
     title,
@@ -33,7 +33,7 @@ const ActionSheetListView: FC<ActionSheetListViewProps> = ({
           headerShowIcon={headerShowIcon}
           headerWrapProps={headerWrapProps}
           headerTextProps={headerTextProps}
-          headerIconBtnProps={headerIconBtnProps}
+          headerIconButtonProps={headerIconButtonProps}
         />
         <ActionSheetListViewContent listProps={listProps} />
       </ActionSheetWrap>

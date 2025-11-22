@@ -1,10 +1,10 @@
 import type { FC } from 'react';
-import type { ThemedIconTextBtnProps } from '../../types/btn';
-import { BtnScaleRatio } from '../../utils/btn/const';
+import type { ThemedIconTextButtonProps } from '../../types/button';
+import { ButtonScaleRatio } from '../../utils/button/const';
 import ThemedIconText from '../text/ThemedIconText';
 import ThemedPressable from './ThemedPressable';
 
-const ThemedIconTextBtn: FC<ThemedIconTextBtnProps> = ({
+const ThemedIconTextButton: FC<ThemedIconTextButtonProps> = ({
   flip,
   iconTextProps,
   iconName,
@@ -24,7 +24,7 @@ const ThemedIconTextBtn: FC<ThemedIconTextBtnProps> = ({
 }) => {
   return (
     <ThemedPressable
-      scaleRatio={BtnScaleRatio.Rectangle}
+      scaleRatio={ButtonScaleRatio.Rectangle}
       flexDirection={'row'}
       alignItems={'center'}
       justifyContent={children ? 'space-between' : 'center'}
@@ -53,4 +53,4 @@ const ThemedIconTextBtn: FC<ThemedIconTextBtnProps> = ({
   );
 };
 
-export default ThemedIconTextBtn;
+export default ThemedIconTextButton;

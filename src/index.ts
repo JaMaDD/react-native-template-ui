@@ -1,8 +1,8 @@
-export { default as AnimatedThemedPressable } from './components/btn/AnimatedThemedPressable';
-export { default as ThemedBtn } from './components/btn/ThemedBtn';
-export { default as ThemedIconBtn } from './components/btn/ThemedIconBtn';
-export { default as ThemedIconTextBtn } from './components/btn/ThemedIconTextBtn';
-export { default as ThemedPressable } from './components/btn/ThemedPressable';
+export { default as AnimatedThemedPressable } from './components/button/AnimatedThemedPressable';
+export { default as ThemedButton } from './components/button/ThemedButton';
+export { default as ThemedIconButton } from './components/button/ThemedIconButton';
+export { default as ThemedIconTextButton } from './components/button/ThemedIconTextButton';
+export { default as ThemedPressable } from './components/button/ThemedPressable';
 export { default as ThemedIcon } from './components/icon/ThemedIcon';
 export { default as List } from './components/list/List';
 export { default as ThemedLoading } from './components/loading/ThemedLoading';
@@ -24,7 +24,7 @@ export { default as ThemedScreenWrap } from './components/view/ThemedScreenWrap'
 export { default as ThemedScrollView } from './components/view/ThemedScrollView';
 export { default as ThemedView } from './components/view/ThemedView';
 
-export * from './hooks/btn';
+export * from './hooks/button';
 export * from './hooks/list';
 export * from './hooks/overlay';
 export * from './hooks/reanimated';
@@ -33,7 +33,7 @@ export * from './hooks/style';
 export * from './hooks/theme';
 export * from './hooks/view';
 
-export * from './types/btn';
+export * from './types/button';
 export * from './types/icon';
 export * from './types/list';
 export * from './types/loading';
@@ -48,7 +48,7 @@ export * from './types/text';
 export * from './types/theme';
 export * from './types/view';
 
-export * from './utils/btn/const';
+export * from './utils/button/const';
 export * from './utils/overlay/const';
 export * from './utils/style/const';
 export * from './utils/style/func';

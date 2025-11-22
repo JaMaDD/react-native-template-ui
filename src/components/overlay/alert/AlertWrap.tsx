@@ -19,7 +19,7 @@ const AlertWrap: FC<
       | 'wrapProps'
       | 'title'
       | 'desc'
-      | 'btns'
+      | 'buttons'
       | 'dismissable'
     > & {
       visible: boolean;
@@ -32,7 +32,7 @@ const AlertWrap: FC<
   wrapProps,
   title,
   desc,
-  btns,
+  buttons,
   dismissable,
   visible,
   setVisible,
@@ -56,7 +56,7 @@ const AlertWrap: FC<
         mass: 20,
       });
     }
-  }, [title, desc, btns]);
+  }, [title, desc, buttons]);
 
   const { onDismiss } = getAlertContext();
   const modalProps: ThemedModalProps['modalProps'] = { visible };

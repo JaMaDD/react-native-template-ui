@@ -65,7 +65,7 @@ export enum BorderRadius {
   S = 12,
   M = 24,
   L = 36,
-  Circle = 9999,
+  Round = 9999,
 }
 
 export enum ZIndex {
@@ -114,7 +114,7 @@ export const lightTheme = createTheme({
     backgroundOverlay: Palette.BlackT,
     text: Palette.Black,
     textOverlay: Palette.White,
-    textBtn: Palette.White,
+    textButton: Palette.White,
     border: Palette.Grey,
     separator: Palette.Silver,
     err: Palette.Red,
@@ -147,7 +147,7 @@ export const lightTheme = createTheme({
     s: BorderRadius.S,
     m: BorderRadius.M,
     l: BorderRadius.L,
-    circle: BorderRadius.Circle,
+    round: BorderRadius.Round,
   },
   textVariants: {
     ...textVariants,

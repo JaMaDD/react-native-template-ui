@@ -1,6 +1,6 @@
 /** @internal */
 import type { FC } from 'react';
-import type { ThemedBtnProps } from '../../../types/btn';
+import type { ThemedButtonProps } from '../../../types/button';
 import type { ListItemProps } from '../../../types/list';
 import type {
   ActionSheetOpt,
@@ -10,7 +10,7 @@ import {
   actionSheetOptListItemPadding,
   actionSheetOptListItemTextVariant,
 } from '../../../utils/overlay/const';
-import ThemedBtn from '../../btn/ThemedBtn';
+import ThemedButton from '../../button/ThemedButton';
 
 const ActionSheetOptListItem: FC<ListItemProps<ActionSheetOpt>> = ({
   item: { text, onPress, props },
@@ -18,20 +18,20 @@ const ActionSheetOptListItem: FC<ListItemProps<ActionSheetOpt>> = ({
 }) => {
   const { optListItemProps, onDismiss } =
     extraData as ActionSheetOptListExtraData;
-  const onItemPress: ThemedBtnProps['onPress'] = (event) => {
+  const onItemPress: ThemedButtonProps['onPress'] = (event) => {
     onPress?.(event);
     onDismiss(text);
   };
 
   return (
-    <ThemedBtn
+    <ThemedButton
       onPress={onItemPress}
       alignItems={'flex-start'}
       paddingVertical={actionSheetOptListItemPadding}
       backgroundColor={'background'}
       text={text}
       textVariant={
-        actionSheetOptListItemTextVariant as ThemedBtnProps['textVariant']
+        actionSheetOptListItemTextVariant as ThemedButtonProps['textVariant']
       }
       textColor={'text'}
       {...optListItemProps}

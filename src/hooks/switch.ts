@@ -5,13 +5,13 @@ import {
   useAnimatedStyle,
   type SharedValue,
 } from 'react-native-reanimated';
-import type { PressableOnPress } from '../types/btn';
+import type { PressableOnPress } from '../types/button';
 import type { AnimationValue } from '../types/reanimated';
 import type { ThemedSwitchProps } from '../types/switch';
 import { updateSharedValWithTiming } from '../utils/reanimated/func';
 import { switchAnimationDuration } from '../utils/switch/const';
 import { BorderSize, SwitchSize } from '../utils/theme/const';
-import { useDelayedOnPress } from './btn';
+import { useDelayedOnPress } from './button';
 import { useAnimationSharedVal } from './reanimated';
 import { useThemeColors, useThemeSpacing } from './theme';
 

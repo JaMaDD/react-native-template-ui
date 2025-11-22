@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import { Modal, StyleSheet } from 'react-native';
 import type { ThemedModalProps } from '../../../types/overlay';
-import ThemedPressable from '../../btn/ThemedPressable';
+import ThemedPressable from '../../button/ThemedPressable';
 import GestureProvider from '../../provider/GestureProvider';
 import ThemedView from '../../view/ThemedView';
 
