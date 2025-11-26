@@ -29,7 +29,7 @@ export function useThemedSwitch(
   const colors = useThemeColors();
   const enabledSharedVal = useAnimationSharedVal();
   const pressableOnPress: PressableOnPress = () => {
-    onPress(!!enabledSharedVal.get());
+    onPress(enabledSharedVal.get() > 0.5);
   };
   const delayedOnPress = useDelayedOnPress(
     pressableOnPress,
@@ -50,7 +50,7 @@ export function useThemedSwitch(
     }
   };
   const toggleSwitch: PressableOnPress = (event) => {
-    handleAnimation(enabledSharedVal.get() ? 0 : 1, () => {
+    handleAnimation(enabledSharedVal.get() > 0.5 ? 0 : 1, () => {
       delayedOnPress(event);
     });
   };
