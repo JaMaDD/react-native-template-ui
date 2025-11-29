@@ -11,22 +11,26 @@ import type { ThemedToastProps } from '../../../types/overlay';
 import type { AnimatedThemedViewProps } from '../../../types/view';
 import {
   OverlayDismissResultType,
+  overlayMaxWidthPercent,
   ToastDuration,
   ToastType,
 } from '../../../utils/overlay/const';
-import { overlayMaxWidthPercent } from '../../../utils/overlay/const';
 import ThemedText from '../../text/ThemedText';
 import AnimatedThemedView from '../../view/AnimatedThemedView';
 
 const ThemedToast: FC<ThemedToastProps> = ({
   type = ToastType.Bottom,
   duration = ToastDuration.Short,
+  onDismiss,
+  top: propsTop,
+  bottom: propsBottom,
+  left: propsLeft,
+  right: propsRight,
   insetsPadding,
   insetPaddingTop,
   insetPaddingBottom,
   insetPaddingLeft,
   insetPaddingRight,
-  onDismiss,
   text,
   textVariant = 'textS',
   textFontSize,
@@ -101,26 +105,26 @@ const ThemedToast: FC<ThemedToastProps> = ({
     ToastType.TopLeft,
     ToastType.TopRight,
   ].includes(type)
-    ? paddingTop
+    ? (propsTop ?? paddingTop)
     : undefined;
   const bottom: AnimatedThemedViewProps['bottom'] = [
     ToastType.Bottom,
     ToastType.BottomLeft,
     ToastType.BottomRight,
   ].includes(type)
-    ? paddingBottom
+    ? (propsBottom ?? paddingBottom)
     : undefined;
   const left: AnimatedThemedViewProps['left'] = [
     ToastType.TopLeft,
     ToastType.BottomLeft,
   ].includes(type)
-    ? paddingLeft
+    ? (propsLeft ?? paddingLeft)
     : undefined;
   const right: AnimatedThemedViewProps['right'] = [
     ToastType.TopRight,
     ToastType.BottomRight,
   ].includes(type)
-    ? paddingRight
+    ? (propsRight ?? paddingRight)
     : undefined;
 
   return (
