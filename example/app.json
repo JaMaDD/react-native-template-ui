@@ -21,8 +21,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "templateui.example",
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "templateui.example"
     },
     "web": {
       "favicon": "./assets/favicon.png"
