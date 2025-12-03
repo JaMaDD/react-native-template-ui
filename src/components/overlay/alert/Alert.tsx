@@ -1,4 +1,4 @@
-import { useState, type FC } from 'react';
+import { useLayoutEffect, useState, type FC } from 'react';
 import { useAnimationSharedVal } from '../../../hooks/reanimated';
 import type {
   AlertContextVal,
@@ -27,9 +27,13 @@ const Alert: FC<AlertProps> = ({
   buttonProps,
   onDismiss,
   dismissable,
+  visible = true,
 }) => {
-  const [visible, setVisible] = useState(true);
+  const [alertVisible, setAlertVisible] = useState(visible);
   const showSharedVal = useAnimationSharedVal();
+  useLayoutEffect(() => {
+    setAlertVisible(visible);
+  }, [visible]);
 
   const handleDismiss = (result?: Partial<OverlayDismissAlertResult>) => {
     const tempResult: OverlayDismissAlertResult = {
@@ -39,7 +43,7 @@ const Alert: FC<AlertProps> = ({
       text: overlayDismissResultDefaultText,
     };
     onDismiss?.(result ? { ...tempResult, ...result } : tempResult);
-    setVisible(false);
+    setAlertVisible(false);
   };
   const alertContextVal: AlertContextVal = {
     buttonProps,
@@ -64,8 +68,8 @@ const Alert: FC<AlertProps> = ({
         desc={desc}
         buttons={buttons}
         dismissable={dismissable}
-        visible={visible}
-        setVisible={setVisible}
+        visible={alertVisible}
+        setVisible={setAlertVisible}
         showSharedVal={showSharedVal}
       >
         <AlertContent

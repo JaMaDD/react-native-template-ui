@@ -80,19 +80,20 @@ export type AlertContextVal = Partial<
   }
 >;
 
-export type AlertProps = Omit<OverlayProps, 'onDismiss'> & {
-  customShowAnimation?: CustomAnimation<1>;
-  customHideAnimation?: CustomAnimation<0>;
-  wrapProps?: Omit<ThemedViewProps, 'children'>;
-  title: string;
-  titleTextProps?: Omit<CustomThemedTextProps, 'text'>;
-  desc?: string;
-  descTextProps?: Omit<CustomThemedTextProps, 'text'>;
-  buttons?: AlertButtonProps[][];
-  buttonsWrapProps?: Omit<ThemedViewProps, 'children'>;
-  buttonProps?: Omit<ThemedButtonProps, 'onPress' | 'text'>;
-  onDismiss?: OverlayOnDismiss<OverlayDismissAlertResult>;
-};
+export type AlertProps = Omit<OverlayProps, 'onDismiss'> &
+  Pick<ModalProps, 'visible'> & {
+    customShowAnimation?: CustomAnimation<1>;
+    customHideAnimation?: CustomAnimation<0>;
+    wrapProps?: Omit<ThemedViewProps, 'children'>;
+    title: string;
+    titleTextProps?: Omit<CustomThemedTextProps, 'text'>;
+    desc?: string;
+    descTextProps?: Omit<CustomThemedTextProps, 'text'>;
+    buttons?: AlertButtonProps[][];
+    buttonsWrapProps?: Omit<ThemedViewProps, 'children'>;
+    buttonProps?: Omit<ThemedButtonProps, 'onPress' | 'text'>;
+    onDismiss?: OverlayOnDismiss<OverlayDismissAlertResult>;
+  };
 
 export type AlertButtonsProps = Pick<
   AlertProps,
