@@ -5,6 +5,7 @@ export function useTimeout() {
   const clearTimeoutRef = () => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
     }
   };
   useEffect(() => clearTimeoutRef, []);
@@ -17,6 +18,7 @@ export function useInterval() {
   const clearIntervalRef = () => {
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
+      intervalRef.current = null;
     }
   };
   useEffect(() => clearIntervalRef, []);
