@@ -2,12 +2,11 @@ import { useEffect, type FC } from 'react';
 import type { ViewStyle } from 'react-native';
 import { useAnimatedStyle, type SharedValue } from 'react-native-reanimated';
 import type { AlertProps, ThemedModalProps } from '../../../types/overlay';
-import type { SetState } from '../../../types/react';
 import type { AnimationSharedValue } from '../../../types/reanimated';
 import type { PropsWithRequiredChildren } from '../../../types/view';
+import { overlayMaxWidthPercent } from '../../../utils/overlay/const';
 import { getAlertContext } from '../../../utils/overlay/func';
 import { updateSharedValWithSpring } from '../../../utils/reanimated/func';
-import { overlayMaxWidthPercent } from '../../../utils/overlay/const';
 import AnimatedThemedView from '../../view/AnimatedThemedView';
 import ThemedModal from '../modal/ThemedModal';
 
@@ -23,7 +22,6 @@ const AlertWrap: FC<
       | 'dismissable'
     > & {
       visible: boolean;
-      setVisible: SetState<boolean>;
       showSharedVal: AnimationSharedValue;
     }
   >
@@ -35,7 +33,6 @@ const AlertWrap: FC<
   buttons,
   dismissable,
   visible,
-  setVisible,
   showSharedVal,
   children,
 }) => {
@@ -46,7 +43,10 @@ const AlertWrap: FC<
     [showSharedVal]
   );
   useEffect(() => {
-    setVisible(true);
+    if (!visible) {
+      return;
+    }
+
     if (customShowAnimation) {
       customShowAnimation(showSharedVal, 1);
     } else {
@@ -56,7 +56,7 @@ const AlertWrap: FC<
         mass: 20,
       });
     }
-  }, [title, desc, buttons]);
+  }, [customShowAnimation, title, desc, buttons, visible, showSharedVal]);
 
   const { onDismiss } = getAlertContext();
   const modalProps: ThemedModalProps['modalProps'] = { visible };

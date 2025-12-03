@@ -69,7 +69,6 @@ const Alert: FC<AlertProps> = ({
         buttons={buttons}
         dismissable={dismissable}
         visible={alertVisible}
-        setVisible={setAlertVisible}
         showSharedVal={showSharedVal}
       >
         <AlertContent
