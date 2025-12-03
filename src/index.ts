@@ -27,6 +27,7 @@ export { default as ThemedView } from './components/view/ThemedView';
 export * from './hooks/button';
 export * from './hooks/list';
 export * from './hooks/overlay';
+export * from './hooks/react';
 export * from './hooks/reanimated';
 export * from './hooks/separator';
 export * from './hooks/style';
