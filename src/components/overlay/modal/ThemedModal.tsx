@@ -6,7 +6,7 @@ import GestureProvider from '../../provider/GestureProvider';
 import ThemedView from '../../view/ThemedView';
 
 const ThemedModal: FC<ThemedModalProps> = ({
-  modalProps,
+  contentWrapProps,
   onDismiss,
   dismissable = true,
   children,
@@ -17,7 +17,7 @@ const ThemedModal: FC<ThemedModalProps> = ({
       animationType={'fade'}
       transparent={true}
       statusBarTranslucent={true}
-      {...modalProps}
+      {...props}
     >
       <GestureProvider>
         <ThemedView
@@ -25,7 +25,7 @@ const ThemedModal: FC<ThemedModalProps> = ({
           justifyContent={'center'}
           backgroundColor={'backgroundOverlay'}
           style={StyleSheet.absoluteFill}
-          {...props}
+          {...contentWrapProps}
         >
           <ThemedPressable
             onPress={onDismiss}

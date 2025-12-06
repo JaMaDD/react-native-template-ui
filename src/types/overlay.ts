@@ -68,7 +68,7 @@ export type ThemedToastProps = Omit<OverlayProps, 'onDismiss'> &
   };
 
 export type ThemedModalProps = Partial<OverlayProps> &
-  ThemedViewProps & { modalProps?: ModalProps };
+  ModalProps & { contentWrapProps?: ThemedViewProps };
 
 export type ThemedLoadingModalProps = Omit<ThemedModalProps, 'children'> &
   CustomThemedLoadingProps &
