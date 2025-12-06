@@ -12,12 +12,14 @@ const ThemedButton: FC<ThemedButtonProps> = ({
   textColor = 'textButton',
   textStyle,
   textProps,
+  children,
   ...props
 }) => {
   return (
     <ThemedPressable
       scaleRatio={ButtonScaleRatio.Rectangle}
       alignItems={'center'}
+      justifyContent={children ? 'space-between' : 'center'}
       paddingVertical={'s'}
       paddingHorizontal={'m'}
       backgroundColor={'themePri'}
@@ -34,6 +36,7 @@ const ThemedButton: FC<ThemedButtonProps> = ({
       >
         {text}
       </ThemedText>
+      {children}
     </ThemedPressable>
   );
 };

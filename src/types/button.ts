@@ -36,8 +36,10 @@ export type AnimatedThemedPressableProps = Omit<
   style?: AnimatedStyle<ViewStyle>;
 };
 
-type ButtonProps = Omit<ThemedPressableProps, 'onPress' | 'children'> &
-  Required<Pick<ThemedPressableProps, 'onPress'>>;
+type ButtonProps = PropsWithChildren<
+  Omit<ThemedPressableProps, 'onPress' | 'children'> &
+    Required<Pick<ThemedPressableProps, 'onPress'>>
+>;
 
 export type ThemedButtonProps = ButtonProps & CustomThemedTextProps;
 
