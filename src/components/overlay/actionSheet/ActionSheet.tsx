@@ -1,13 +1,13 @@
 import type { FC } from 'react';
 import type {
   ActionSheetListViewProps,
-  ActionSheetOptsProps,
+  ActionSheetOptionsProps,
   ActionSheetProps,
   ActionSheetScrollViewProps,
 } from '../../../types/overlay';
 
-const ActionSheetOpts: FC<ActionSheetOptsProps> =
-  require('./ActionSheetOpts').default;
+const ActionSheetOptions: FC<ActionSheetOptionsProps> =
+  require('./ActionSheetOptions').default;
 const ActionSheetScrollView: FC<ActionSheetScrollViewProps> =
   require('./ActionSheetScrollView').default;
 const ActionSheetListView: FC<ActionSheetListViewProps> =
@@ -17,8 +17,8 @@ const ActionSheet: FC<ActionSheetProps> = ({
   dismissable = true,
   ...props
 }) => {
-  if (props.opts?.length) {
-    return <ActionSheetOpts dismissable={dismissable} {...props} />;
+  if (props.options?.length) {
+    return <ActionSheetOptions dismissable={dismissable} {...props} />;
   } else if (props.children) {
     return <ActionSheetScrollView dismissable={dismissable} {...props} />;
   } else if (props.listProps) {

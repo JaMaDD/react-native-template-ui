@@ -1,5 +1,8 @@
-import type { FC } from 'react';
-import { useActionSheetListView } from '../../../hooks/overlay';
+import { type FC } from 'react';
+import {
+  useActionSheetListView,
+  useActionSheetVisible,
+} from '../../../hooks/overlay';
 import type { ActionSheetListViewProps } from '../../../types/overlay';
 import { ActionSheetContext } from '../../../utils/overlay/const';
 import ActionSheetHeader from './ActionSheetHeader';
@@ -19,17 +22,22 @@ const ActionSheetListView: FC<ActionSheetListViewProps> = ({
   headerIconButtonProps,
   visible,
 }) => {
+  const { actionSheetVisible } = useActionSheetVisible(visible);
   const actionSheetContextVal = useActionSheetListView(
     title,
     expandable,
     listProps,
     onDismiss,
-    dismissable
+    dismissable,
+    actionSheetVisible
   );
 
   return (
     <ActionSheetContext.Provider value={actionSheetContextVal}>
-      <ActionSheetWrap wrapViewProps={wrapViewProps} visible={visible}>
+      <ActionSheetWrap
+        wrapViewProps={wrapViewProps}
+        actionSheetVisible={actionSheetVisible}
+      >
         <ActionSheetHeader
           headerShowIcon={headerShowIcon}
           headerWrapProps={headerWrapProps}

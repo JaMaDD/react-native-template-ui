@@ -71,7 +71,7 @@ export const actionSheetHeaderIconSize: IconSize = IconSize.M;
 export const actionSheetHeaderPadding: ThemeSpacing = 'm';
 
 /** @internal */
-export const actionSheetOptListItemPadding: ThemeSpacing = 'm';
+export const actionSheetOptionListItemPadding: ThemeSpacing = 'm';
 
 /** @internal */
-export const actionSheetOptListItemTextVariant: ThemeTextVariants = 'textM';
+export const actionSheetOptionListItemTextVariant: ThemeTextVariants = 'textM';

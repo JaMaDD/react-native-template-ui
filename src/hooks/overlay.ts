@@ -13,9 +13,9 @@ import type { ListAnimatedRefObj, ListRef } from '../types/list';
 import type {
   ActionSheetContextVal,
   ActionSheetListViewProps,
-  ActionSheetOpt,
-  ActionSheetOptListProps,
-  ActionSheetOpts,
+  ActionSheetOption,
+  ActionSheetOptionListProps,
+  ActionSheetOptions,
   ActionSheetScrollViewProps,
   OverlayDismissActionSheetResult,
   OverlayOnDismiss,
@@ -27,8 +27,8 @@ import {
   actionSheetHeaderIconSize,
   actionSheetHeaderPadding,
   actionSheetOpenDuration,
-  actionSheetOptListItemPadding,
-  actionSheetOptListItemTextVariant,
+  actionSheetOptionListItemPadding,
+  actionSheetOptionListItemTextVariant,
   actionSheetSnapDuration,
   overlayDismissResultDefaultText,
   OverlayDismissResultType,
@@ -52,7 +52,7 @@ export function useActionSheetContext() {
 }
 
 /** @internal */
-function useActionSheet() {
+function useActionSheet(actionSheetVisible: boolean) {
   const windowHeight = useWindowDimensionsHeight();
   const headerViewRef = useViewRef();
   const [height, setHeight] = useState(0);
@@ -61,7 +61,11 @@ function useActionSheet() {
   const expandableHeightSharedVal = useSharedValue(0);
   const { expandable } = getActionSheetContext();
   useEffect(() => {
-    if (height && translateYSharedVal.get() === windowHeight) {
+    if (
+      actionSheetVisible &&
+      height &&
+      translateYSharedVal.get() === windowHeight
+    ) {
       const tempHeight = expandable
         ? getActionSheetExpandableInitHeight()
         : height;
@@ -72,7 +76,7 @@ function useActionSheet() {
         duration: actionSheetOpenDuration,
       });
     }
-  }, [height]);
+  }, [actionSheetVisible, height]);
 
   const updateHeight = (tempHeight: number) => {
     setHeight(
@@ -250,13 +254,24 @@ export function useActionSheetScrollViewRefAndOffset(
 }
 
 /** @internal */
+export function useActionSheetVisible(visible = true) {
+  const [actionSheetVisible, setActionSheetVisible] = useState(visible);
+  useLayoutEffect(() => {
+    setActionSheetVisible(visible);
+  }, [visible]);
+
+  return { actionSheetVisible, setActionSheetVisible };
+}
+
+/** @internal */
 export function useActionSheetOpts(
   title: string | undefined,
   expandable: boolean | undefined,
-  opts: ActionSheetOpts,
-  optListProps: ActionSheetOptListProps | undefined,
+  options: ActionSheetOptions,
+  optionListProps: ActionSheetOptionListProps | undefined,
   onDismiss: OverlayOnDismiss<OverlayDismissActionSheetResult> | undefined,
-  dismissable: boolean | undefined
+  dismissable: boolean | undefined,
+  actionSheetVisible: boolean
 ) {
   const {
     headerViewRef,
@@ -265,15 +280,16 @@ export function useActionSheetOpts(
     heightSharedVal,
     expandableHeightSharedVal,
     updateHeight,
-  } = useActionSheet();
+  } = useActionSheet(actionSheetVisible);
   const { listViewListAnimatedRefObj, contentOffsetSharedVal } =
-    useActionSheetListViewRefAndOffset<ActionSheetOpt>(optListProps?.ref);
+    useActionSheetListViewRefAndOffset<ActionSheetOption>(optionListProps?.ref);
 
-  const { itemSize, insetsStyle } = useActionSheetOptItemSize(optListProps);
+  const { itemSize, insetsStyle } = useActionSheetOptItemSize(optionListProps);
   useLayoutEffect(() => {
     headerViewRef.current?.measureInWindow((_x, _y, _width, headerHeight) => {
       const contentHeight =
-        opts.length * itemSize + ((insetsStyle.paddingBottom ?? 0) as number);
+        options.length * itemSize +
+        ((insetsStyle.paddingBottom ?? 0) as number);
       updateHeight(headerHeight + contentHeight);
     });
   }, []);
@@ -308,7 +324,7 @@ export function useActionSheetOptItemSize(
     insetPaddingBottom,
     insetPaddingLeft,
     insetPaddingRight,
-  }: ActionSheetOptListProps = {
+  }: ActionSheetOptionListProps = {
     insetBottom: true,
     insetPaddingBottom: 'm',
   }
@@ -330,8 +346,8 @@ export function useActionSheetOptItemSize(
 
   const actionSheetOptItemSize = {
     itemSize:
-      themeSpacing[actionSheetOptListItemPadding] * 2 +
-      themeTextVariants[actionSheetOptListItemTextVariant].lineHeight,
+      themeSpacing[actionSheetOptionListItemPadding] * 2 +
+      themeTextVariants[actionSheetOptionListItemTextVariant].lineHeight,
     insetsStyle,
   };
 
@@ -344,7 +360,8 @@ export function useActionSheetScrollView(
   expandable: boolean | undefined,
   scrollViewProps: ActionSheetScrollViewProps['scrollViewProps'] | undefined,
   onDismiss: OverlayOnDismiss<OverlayDismissActionSheetResult> | undefined,
-  dismissable: boolean | undefined
+  dismissable: boolean | undefined,
+  actionSheetVisible: boolean
 ) {
   const {
     headerViewRef,
@@ -353,7 +370,7 @@ export function useActionSheetScrollView(
     heightSharedVal,
     expandableHeightSharedVal,
     updateHeight,
-  } = useActionSheet();
+  } = useActionSheet(actionSheetVisible);
   const { scrollViewAnimatedRefObj, contentOffsetSharedVal } =
     useActionSheetScrollViewRefAndOffset(scrollViewProps?.ref);
   const [headerHeight, setHeaderHeight] = useState(0);
@@ -395,7 +412,8 @@ export function useActionSheetListView(
   expandable: boolean | undefined,
   listProps: ActionSheetListViewProps['listProps'] | undefined,
   onDismiss: OverlayOnDismiss<OverlayDismissActionSheetResult> | undefined,
-  dismissable: boolean | undefined
+  dismissable: boolean | undefined,
+  actionSheetVisible: boolean
 ) {
   const {
     headerViewRef,
@@ -404,7 +422,7 @@ export function useActionSheetListView(
     heightSharedVal,
     expandableHeightSharedVal,
     updateHeight,
-  } = useActionSheet();
+  } = useActionSheet(actionSheetVisible);
   const { listViewListAnimatedRefObj, contentOffsetSharedVal } =
     useActionSheetListViewRefAndOffset(listProps?.ref);
   const [headerHeight, setHeaderHeight] = useState(0);

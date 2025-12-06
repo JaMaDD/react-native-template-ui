@@ -1,5 +1,5 @@
 /** @internal */
-import { useEffect, useLayoutEffect, useState, type FC } from 'react';
+import { useEffect, type FC } from 'react';
 import { useAnimatedStyle } from 'react-native-reanimated';
 import { useActionSheetOnDismiss } from '../../../hooks/overlay';
 import type {
@@ -16,7 +16,7 @@ import ThemedModal from '../modal/ThemedModal';
 const ActionSheetWrap: FC<ActionSheetWrapProps> = ({
   wrapViewProps,
   children,
-  visible = true,
+  actionSheetVisible,
 }) => {
   const {
     expandable,
@@ -25,7 +25,6 @@ const ActionSheetWrap: FC<ActionSheetWrapProps> = ({
     heightSharedVal,
     expandableHeightSharedVal,
   } = getActionSheetContext();
-  const [actionSheetVisible, setActionSheetVisible] = useState(visible);
   const onDismiss = useActionSheetOnDismiss();
   const outerWrapAnimatedStyle = useAnimatedStyle(
     () => ({
@@ -43,9 +42,6 @@ const ActionSheetWrap: FC<ActionSheetWrapProps> = ({
     }),
     [expandable, heightSharedVal, expandableHeightSharedVal]
   );
-  useLayoutEffect(() => {
-    setActionSheetVisible(visible);
-  }, [visible]);
   useEffect(() => {
     if (!actionSheetVisible) {
       onDismiss();

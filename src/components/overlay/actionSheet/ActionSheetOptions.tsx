@@ -1,18 +1,21 @@
 /** @internal */
 import type { FC } from 'react';
-import { useActionSheetOpts } from '../../../hooks/overlay';
-import type { ActionSheetOptsProps } from '../../../types/overlay';
+import {
+  useActionSheetOpts,
+  useActionSheetVisible,
+} from '../../../hooks/overlay';
+import type { ActionSheetOptionsProps } from '../../../types/overlay';
 import { ActionSheetContext } from '../../../utils/overlay/const';
 import ActionSheetHeader from './ActionSheetHeader';
-import ActionSheetOptList from './ActionSheetOptList';
+import ActionSheetOptionList from './ActionSheetOptionList';
 import ActionSheetWrap from './ActionSheetWrap';
 
-const ActionSheetOpts: FC<ActionSheetOptsProps> = ({
+const ActionSheetOptions: FC<ActionSheetOptionsProps> = ({
   title,
   expandable,
-  opts,
-  optListProps,
-  optListItemProps,
+  options,
+  optionListProps,
+  optionListItemProps,
   onDismiss,
   dismissable,
   wrapViewProps,
@@ -22,32 +25,37 @@ const ActionSheetOpts: FC<ActionSheetOptsProps> = ({
   headerIconButtonProps,
   visible,
 }) => {
+  const { actionSheetVisible } = useActionSheetVisible(visible);
   const actionSheetContextVal = useActionSheetOpts(
     title,
     expandable,
-    opts,
-    optListProps,
+    options,
+    optionListProps,
     onDismiss,
-    dismissable
+    dismissable,
+    actionSheetVisible
   );
 
   return (
     <ActionSheetContext.Provider value={actionSheetContextVal}>
-      <ActionSheetWrap wrapViewProps={wrapViewProps} visible={visible}>
+      <ActionSheetWrap
+        wrapViewProps={wrapViewProps}
+        actionSheetVisible={actionSheetVisible}
+      >
         <ActionSheetHeader
           headerShowIcon={headerShowIcon}
           headerWrapProps={headerWrapProps}
           headerTextProps={headerTextProps}
           headerIconButtonProps={headerIconButtonProps}
         />
-        <ActionSheetOptList
-          opts={opts}
-          optListProps={optListProps}
-          optListItemProps={optListItemProps}
+        <ActionSheetOptionList
+          options={options}
+          optionListProps={optionListProps}
+          optionListItemProps={optionListItemProps}
         />
       </ActionSheetWrap>
     </ActionSheetContext.Provider>
   );
 };
 
-export default ActionSheetOpts;
+export default ActionSheetOptions;

@@ -1,6 +1,9 @@
 /** @internal */
 import type { FC } from 'react';
-import { useActionSheetScrollView } from '../../../hooks/overlay';
+import {
+  useActionSheetScrollView,
+  useActionSheetVisible,
+} from '../../../hooks/overlay';
 import type { ActionSheetScrollViewProps } from '../../../types/overlay';
 import { ActionSheetContext } from '../../../utils/overlay/const';
 import ActionSheetHeader from './ActionSheetHeader';
@@ -21,17 +24,22 @@ const ActionSheetScrollView: FC<ActionSheetScrollViewProps> = ({
   headerIconButtonProps,
   visible,
 }) => {
+  const { actionSheetVisible } = useActionSheetVisible(visible);
   const actionSheetContextVal = useActionSheetScrollView(
     title,
     expandable,
     scrollViewProps,
     onDismiss,
-    dismissable
+    dismissable,
+    actionSheetVisible
   );
 
   return (
     <ActionSheetContext.Provider value={actionSheetContextVal}>
-      <ActionSheetWrap wrapViewProps={wrapViewProps} visible={visible}>
+      <ActionSheetWrap
+        wrapViewProps={wrapViewProps}
+        actionSheetVisible={actionSheetVisible}
+      >
         <ActionSheetHeader
           headerShowIcon={headerShowIcon}
           headerWrapProps={headerWrapProps}

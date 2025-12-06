@@ -47,7 +47,7 @@ export type OverlayDismissAlertResult = OverlayDismissBaseResult &
 /** @internal */
 export type OverlayDismissActionSheetResult = OverlayDismissBaseResult &
   Pick<ActionSheetProps, 'title'> &
-  Pick<ActionSheetOpt, 'text'> & {
+  Pick<ActionSheetOption, 'text'> & {
     resultType: OverlayDismissResultType.ActionSheet;
   };
 
@@ -107,6 +107,7 @@ export type AlertButtonProps = Pick<ThemedButtonProps, 'text'> & {
 };
 
 export type ActionSheetProps = (Omit<OverlayProps, 'onDismiss'> &
+  Pick<ModalProps, 'visible'> &
   Omit<ActionSheetWrapProps, 'children'> &
   ActionSheetHeaderProps & {
     title?: string;
@@ -115,9 +116,9 @@ export type ActionSheetProps = (Omit<OverlayProps, 'onDismiss'> &
   }) &
   (
     | {
-        opts: ActionSheetOpts;
-        optListProps?: ActionSheetOptListProps;
-        optListItemProps?: ActionSheetOptListItemProps;
+        options: ActionSheetOptions;
+        optionListProps?: ActionSheetOptionListProps;
+        optionListItemProps?: ActionSheetOptionListItemProps;
         scrollViewProps?: never;
         children?: never;
         listProps?: never;
@@ -126,30 +127,29 @@ export type ActionSheetProps = (Omit<OverlayProps, 'onDismiss'> &
         scrollViewProps?: Omit<ScrollViewProps, 'ref'> & {
           ref?: ScrollViewAnimatedRefObj;
         };
-        opts?: never;
-        optListProps?: never;
-        optListItemProps?: never;
+        options?: never;
+        optionListProps?: never;
+        optionListItemProps?: never;
         listProps?: never;
       }>
     | {
         listProps: Omit<ListProps<any>, 'ref'> & {
           ref?: ListAnimatedRefObj<any>;
         };
-        opts?: never;
-        optListProps?: never;
-        optListItemProps?: never;
+        options?: never;
+        optionListProps?: never;
+        optionListItemProps?: never;
         scrollViewProps?: never;
         children?: never;
       }
   );
 
-export type ActionSheetWrapProps = PropsWithRequiredChildren<
-  Pick<ModalProps, 'visible'> & {
-    wrapViewProps?: Omit<AnimatedThemedViewProps, 'children' | 'style'> & {
-      style?: ViewStyle;
-    };
-  }
->;
+export type ActionSheetWrapProps = PropsWithRequiredChildren<{
+  wrapViewProps?: Omit<AnimatedThemedViewProps, 'children' | 'style'> & {
+    style?: ViewStyle;
+  };
+  actionSheetVisible: boolean;
+}>;
 
 export type ActionSheetHeaderProps = {
   headerShowIcon?: boolean;
@@ -174,35 +174,35 @@ export type ActionSheetContextVal = Pick<
 };
 
 /** @internal */
-export type ActionSheetOptsProps = ActionSheetProps &
-  Required<Pick<ActionSheetProps, 'opts'>>;
+export type ActionSheetOptionsProps = ActionSheetProps &
+  Required<Pick<ActionSheetProps, 'options'>>;
 
-export type ActionSheetOptListProps = Omit<
-  ListProps<ActionSheetOpt>,
+export type ActionSheetOptionListProps = Omit<
+  ListProps<ActionSheetOption>,
   'ref' | 'data' | 'Item' | 'keyExtractor' | 'extraData'
 > & {
-  ref?: ActionSheetOptListRefObj;
+  ref?: ActionSheetOptionListRefObj;
 };
 
-export type ActionSheetOptListItemProps = Omit<
+export type ActionSheetOptionListItemProps = Omit<
   ThemedButtonProps,
   'onPress' | 'text'
 >;
 
-export type ActionSheetOptListRefObj = ListAnimatedRefObj<ActionSheetOpt>;
+export type ActionSheetOptionListRefObj = ListAnimatedRefObj<ActionSheetOption>;
 
 /** @internal */
-export type ActionSheetOptListExtraData = {
-  optListItemProps?: ActionSheetOptListItemProps;
+export type ActionSheetOptionListExtraData = {
+  optionListItemProps?: ActionSheetOptionListItemProps;
   onDismiss: (text?: string) => void;
 };
 
-export type ActionSheetOpt = Partial<Pick<ThemedButtonProps, 'onPress'>> & {
+export type ActionSheetOption = Partial<Pick<ThemedButtonProps, 'onPress'>> & {
   text: string;
-  props?: ActionSheetOptListItemProps;
+  props?: ActionSheetOptionListItemProps;
 };
 
-export type ActionSheetOpts = ActionSheetOpt[];
+export type ActionSheetOptions = ActionSheetOption[];
 
 /** @internal */
 export type ActionSheetScrollViewProps = ActionSheetProps &

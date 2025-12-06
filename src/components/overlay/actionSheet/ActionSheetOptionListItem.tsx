@@ -3,21 +3,21 @@ import type { FC } from 'react';
 import type { ThemedButtonProps } from '../../../types/button';
 import type { ListItemProps } from '../../../types/list';
 import type {
-  ActionSheetOpt,
-  ActionSheetOptListExtraData,
+  ActionSheetOption,
+  ActionSheetOptionListExtraData,
 } from '../../../types/overlay';
 import {
-  actionSheetOptListItemPadding,
-  actionSheetOptListItemTextVariant,
+  actionSheetOptionListItemPadding,
+  actionSheetOptionListItemTextVariant,
 } from '../../../utils/overlay/const';
 import ThemedButton from '../../button/ThemedButton';
 
-const ActionSheetOptListItem: FC<ListItemProps<ActionSheetOpt>> = ({
+const ActionSheetOptionListItem: FC<ListItemProps<ActionSheetOption>> = ({
   item: { text, onPress, props },
   extraData,
 }) => {
-  const { optListItemProps, onDismiss } =
-    extraData as ActionSheetOptListExtraData;
+  const { optionListItemProps, onDismiss } =
+    extraData as ActionSheetOptionListExtraData;
   const onItemPress: ThemedButtonProps['onPress'] = (event) => {
     onPress?.(event);
     onDismiss(text);
@@ -27,17 +27,17 @@ const ActionSheetOptListItem: FC<ListItemProps<ActionSheetOpt>> = ({
     <ThemedButton
       onPress={onItemPress}
       alignItems={'flex-start'}
-      paddingVertical={actionSheetOptListItemPadding}
+      paddingVertical={actionSheetOptionListItemPadding}
       backgroundColor={'background'}
       text={text}
       textVariant={
-        actionSheetOptListItemTextVariant as ThemedButtonProps['textVariant']
+        actionSheetOptionListItemTextVariant as ThemedButtonProps['textVariant']
       }
       textColor={'text'}
-      {...optListItemProps}
+      {...optionListItemProps}
       {...props}
     />
   );
 };
 
-export default ActionSheetOptListItem;
+export default ActionSheetOptionListItem;
