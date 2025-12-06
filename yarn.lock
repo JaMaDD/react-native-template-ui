@@ -3559,18 +3559,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@shopify/flash-list@npm:2.1.0":
-  version: 2.1.0
-  resolution: "@shopify/flash-list@npm:2.1.0"
-  peerDependencies:
-    "@babel/runtime": "*"
-    react: "*"
-    react-native: "*"
-  checksum: 10c0/88f566814307838296df053aa33544cf0b268dc3574526fd4002cd73b3aa33e6cc8af3d5284b0f5eecf490cbf772078d07a0c9193b2486be9cc077eb5cb7c27d
-  languageName: node
-  linkType: hard
-
-"@shopify/flash-list@npm:^2.2.0":
+"@shopify/flash-list@npm:2.2.0, @shopify/flash-list@npm:^2.2.0":
   version: 2.2.0
   resolution: "@shopify/flash-list@npm:2.2.0"
   peerDependencies:
@@ -11130,7 +11119,7 @@ __metadata:
   dependencies:
     "@expo/metro-runtime": "npm:~6.1.2"
     "@jamadd/react-native-template-icons": "npm:^0.4.2"
-    "@shopify/flash-list": "npm:2.1.0"
+    "@shopify/flash-list": "npm:2.2.0"
     "@shopify/restyle": "npm:^2.4.5"
     expo: "npm:~54.0.25"
     expo-status-bar: "npm:~3.0.8"
