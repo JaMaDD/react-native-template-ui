@@ -57,6 +57,7 @@ const ActionSheetWrap: FC<ActionSheetWrapProps> = ({
 
   return (
     <ThemedModal
+      visible={actionSheetVisible}
       contentWrapProps={contentWrapProps}
       onDismiss={onModalDismiss}
       dismissable={dismissable}
