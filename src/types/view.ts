@@ -6,7 +6,8 @@ import type {
   ScrollView,
   View,
 } from 'react-native';
-import type { AnimatedProps, AnimatedRef } from 'react-native-reanimated';
+import type { AnimatedRef } from 'react-native-reanimated';
+import type AnimatedBox from '../components/view/AnimatedBox';
 import type Box from '../components/view/Box';
 import type { InsetsStyleConfig } from './style';
 import type { ThemeViewProps } from './theme';
@@ -23,8 +24,9 @@ export type OnContentSizeChange = (width: number, height: number) => void;
 
 export type ThemedViewProps = ComponentProps<typeof Box>;
 
-export type AnimatedThemedViewProps = AnimatedProps<
-  Omit<ThemedViewProps, 'key'>
+export type AnimatedThemedViewProps = Omit<
+  ComponentProps<typeof AnimatedBox>,
+  'key'
 >;
 
 export type ThemedScreenWrapProps = ThemedViewProps & InsetsStyleConfig;
