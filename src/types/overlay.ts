@@ -143,11 +143,13 @@ export type ActionSheetProps = (Omit<OverlayProps, 'onDismiss'> &
       }
   );
 
-export type ActionSheetWrapProps = PropsWithRequiredChildren<{
-  wrapViewProps?: Omit<AnimatedThemedViewProps, 'children' | 'style'> & {
-    style?: ViewStyle;
-  };
-}>;
+export type ActionSheetWrapProps = PropsWithRequiredChildren<
+  Pick<ModalProps, 'visible'> & {
+    wrapViewProps?: Omit<AnimatedThemedViewProps, 'children' | 'style'> & {
+      style?: ViewStyle;
+    };
+  }
+>;
 
 export type ActionSheetHeaderProps = {
   headerShowIcon?: boolean;

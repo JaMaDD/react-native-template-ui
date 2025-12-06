@@ -19,6 +19,7 @@ const ActionSheetScrollView: FC<ActionSheetScrollViewProps> = ({
   headerWrapProps,
   headerTextProps,
   headerIconButtonProps,
+  visible,
 }) => {
   const actionSheetContextVal = useActionSheetScrollView(
     title,
@@ -30,7 +31,7 @@ const ActionSheetScrollView: FC<ActionSheetScrollViewProps> = ({
 
   return (
     <ActionSheetContext.Provider value={actionSheetContextVal}>
-      <ActionSheetWrap wrapViewProps={wrapViewProps}>
+      <ActionSheetWrap wrapViewProps={wrapViewProps} visible={visible}>
         <ActionSheetHeader
           headerShowIcon={headerShowIcon}
           headerWrapProps={headerWrapProps}

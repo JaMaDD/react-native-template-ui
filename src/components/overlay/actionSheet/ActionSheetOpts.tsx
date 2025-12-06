@@ -20,6 +20,7 @@ const ActionSheetOpts: FC<ActionSheetOptsProps> = ({
   headerWrapProps,
   headerTextProps,
   headerIconButtonProps,
+  visible,
 }) => {
   const actionSheetContextVal = useActionSheetOpts(
     title,
@@ -32,7 +33,7 @@ const ActionSheetOpts: FC<ActionSheetOptsProps> = ({
 
   return (
     <ActionSheetContext.Provider value={actionSheetContextVal}>
-      <ActionSheetWrap wrapViewProps={wrapViewProps}>
+      <ActionSheetWrap wrapViewProps={wrapViewProps} visible={visible}>
         <ActionSheetHeader
           headerShowIcon={headerShowIcon}
           headerWrapProps={headerWrapProps}

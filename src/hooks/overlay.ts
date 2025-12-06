@@ -107,7 +107,7 @@ export function useActionSheetOnDismiss(force = true) {
     expandableHeightSharedVal,
   } = useActionSheetContext();
   const actionSheetOnDismiss = (text = overlayDismissResultDefaultText) => {
-    if (!onDismiss || !height || !heightSharedVal || !translateYSharedVal) {
+    if (!height || !heightSharedVal || !translateYSharedVal) {
       return;
     }
 
@@ -133,7 +133,7 @@ export function useActionSheetOnDismiss(force = true) {
         return;
       }
 
-      onDismiss({
+      onDismiss?.({
         resultType: OverlayDismissResultType.ActionSheet,
         title,
         text,
