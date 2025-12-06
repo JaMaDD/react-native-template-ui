@@ -108,7 +108,7 @@ export type AlertButtonProps = Pick<ThemedButtonProps, 'text'> & {
 
 export type ActionSheetProps = (Omit<OverlayProps, 'onDismiss'> &
   Pick<ModalProps, 'visible'> &
-  Omit<ActionSheetWrapProps, 'children'> &
+  Omit<ActionSheetWrapProps, 'actionSheetVisible' | 'children'> &
   ActionSheetHeaderProps & {
     title?: string;
     expandable?: boolean;
