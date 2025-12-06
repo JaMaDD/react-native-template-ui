@@ -107,8 +107,7 @@ export type AlertButtonProps = Pick<ThemedButtonProps, 'text'> & {
 };
 
 export type ActionSheetProps = (Omit<OverlayProps, 'onDismiss'> &
-  Pick<ModalProps, 'visible'> &
-  Omit<ActionSheetWrapProps, 'actionSheetVisible' | 'children'> &
+  Omit<ActionSheetWrapProps, 'children'> &
   ActionSheetHeaderProps & {
     title?: string;
     expandable?: boolean;
@@ -144,12 +143,13 @@ export type ActionSheetProps = (Omit<OverlayProps, 'onDismiss'> &
       }
   );
 
-export type ActionSheetWrapProps = PropsWithRequiredChildren<{
-  wrapViewProps?: Omit<AnimatedThemedViewProps, 'children' | 'style'> & {
-    style?: ViewStyle;
-  };
-  actionSheetVisible: boolean;
-}>;
+export type ActionSheetWrapProps = PropsWithRequiredChildren<
+  Pick<ModalProps, 'visible'> & {
+    wrapViewProps?: Omit<AnimatedThemedViewProps, 'children' | 'style'> & {
+      style?: ViewStyle;
+    };
+  }
+>;
 
 export type ActionSheetHeaderProps = {
   headerShowIcon?: boolean;

@@ -37,8 +37,8 @@ const ActionSheetScrollView: FC<ActionSheetScrollViewProps> = ({
   return (
     <ActionSheetContext.Provider value={actionSheetContextVal}>
       <ActionSheetWrap
+        visible={actionSheetVisible}
         wrapViewProps={wrapViewProps}
-        actionSheetVisible={actionSheetVisible}
       >
         <ActionSheetHeader
           headerShowIcon={headerShowIcon}

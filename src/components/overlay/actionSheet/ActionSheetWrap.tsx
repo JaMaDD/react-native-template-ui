@@ -16,7 +16,7 @@ import ThemedModal from '../modal/ThemedModal';
 const ActionSheetWrap: FC<ActionSheetWrapProps> = ({
   wrapViewProps,
   children,
-  actionSheetVisible,
+  visible,
 }) => {
   const {
     expandable,
@@ -43,10 +43,10 @@ const ActionSheetWrap: FC<ActionSheetWrapProps> = ({
     [expandable, heightSharedVal, expandableHeightSharedVal]
   );
   useEffect(() => {
-    if (!actionSheetVisible) {
+    if (!visible) {
       onDismiss();
     }
-  }, [actionSheetVisible]);
+  }, [visible]);
 
   const contentWrapProps: ThemedModalProps['contentWrapProps'] = {
     justifyContent: 'flex-end',
@@ -57,7 +57,7 @@ const ActionSheetWrap: FC<ActionSheetWrapProps> = ({
 
   return (
     <ThemedModal
-      visible={actionSheetVisible}
+      visible={visible}
       contentWrapProps={contentWrapProps}
       onDismiss={onModalDismiss}
       dismissable={dismissable}

@@ -61,20 +61,18 @@ function useActionSheet(actionSheetVisible: boolean) {
   const expandableHeightSharedVal = useSharedValue(0);
   const { expandable } = getActionSheetContext();
   useEffect(() => {
-    if (
-      actionSheetVisible &&
-      height &&
-      translateYSharedVal.get() === windowHeight
-    ) {
+    if (height && translateYSharedVal.get() === windowHeight) {
       const tempHeight = expandable
         ? getActionSheetExpandableInitHeight()
         : height;
       heightSharedVal.set(tempHeight);
       expandableHeightSharedVal.set(tempHeight);
       translateYSharedVal.set(height);
-      updateSharedValWithTiming(translateYSharedVal, 0, {
-        duration: actionSheetOpenDuration,
-      });
+      if (actionSheetVisible) {
+        updateSharedValWithTiming(translateYSharedVal, 0, {
+          duration: actionSheetOpenDuration,
+        });
+      }
     }
   }, [actionSheetVisible, height]);
 

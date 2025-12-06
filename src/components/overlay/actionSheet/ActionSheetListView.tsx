@@ -35,8 +35,8 @@ const ActionSheetListView: FC<ActionSheetListViewProps> = ({
   return (
     <ActionSheetContext.Provider value={actionSheetContextVal}>
       <ActionSheetWrap
+        visible={actionSheetVisible}
         wrapViewProps={wrapViewProps}
-        actionSheetVisible={actionSheetVisible}
       >
         <ActionSheetHeader
           headerShowIcon={headerShowIcon}
