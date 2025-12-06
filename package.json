@@ -69,7 +69,7 @@
   "bugs": {
     "url": "https://github.com/JaMaDD/react-native-template-ui/issues"
   },
-  "homepage": "https://github.com/JaMaDD/react-native-template-ui#readme",
+  "homepage": "https://github.com/JaMaDD/react-native-template-ui",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"
