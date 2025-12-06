@@ -18,6 +18,7 @@ const ThemedButton: FC<ThemedButtonProps> = ({
   return (
     <ThemedPressable
       scaleRatio={ButtonScaleRatio.Rectangle}
+      flexDirection={'row'}
       alignItems={'center'}
       justifyContent={children ? 'space-between' : 'center'}
       paddingVertical={'s'}
