@@ -42,15 +42,18 @@ const ActionSheetWrap: FC<ActionSheetWrapProps> = ({
     [expandable, heightSharedVal, expandableHeightSharedVal]
   );
 
+  const contentWrapProps: ThemedModalProps['contentWrapProps'] = {
+    justifyContent: 'flex-end',
+  };
   const onModalDismiss: ThemedModalProps['onDismiss'] = () => {
     onDismiss();
   };
 
   return (
     <ThemedModal
+      contentWrapProps={contentWrapProps}
       onDismiss={onModalDismiss}
       dismissable={dismissable}
-      justifyContent={'flex-end'}
     >
       <AnimatedThemedView
         alignSelf={'stretch'}
