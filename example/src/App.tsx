@@ -1,60 +1,20 @@
 import {
+  ActionSheet,
   ReactNativeTemplateProviders,
+  ThemedButton,
   ThemedScreenWrap,
-  ThemedSwitch,
   useIsDarkColorScheme,
-  type ThemedSwitchProps,
 } from '@jamadd/react-native-template-ui';
-import { withSpring } from 'react-native-reanimated';
-import { scheduleOnRN } from 'react-native-worklets';
+import { useState } from 'react';
 import { customDarkTheme, customLightTheme } from './const';
 
 export default function App() {
   const isDarkColorScheme = useIsDarkColorScheme();
+  const [visible, setVisible] = useState<boolean>(false);
 
-  const customEnableAnimation: ThemedSwitchProps['customEnableAnimation'] = (
-    sharedVal,
-    toVal,
-    animationCompletedCb
-  ) => {
-    console.log('enable animation');
-    sharedVal.set(
-      withSpring(
-        toVal,
-        {
-          duration: 300,
-          dampingRatio: 0.25,
-          mass: 40,
-        },
-        () => {
-          if (animationCompletedCb) {
-            scheduleOnRN(animationCompletedCb);
-          }
-        }
-      )
-    );
-  };
-  const customDisableAnimation: ThemedSwitchProps['customDisableAnimation'] = (
-    sharedVal,
-    toVal,
-    animationCompletedCb
-  ) => {
-    console.log('disable animation');
-    sharedVal.set(
-      withSpring(
-        toVal,
-        {
-          duration: 300,
-          dampingRatio: 0.25,
-          mass: 40,
-        },
-        () => {
-          if (animationCompletedCb) {
-            scheduleOnRN(animationCompletedCb);
-          }
-        }
-      )
-    );
+  const toggleVisible = () => {
+    console.log('toggleVisible called. Current visible:', visible);
+    setVisible((prev) => !prev);
   };
 
   return (
@@ -66,10 +26,15 @@ export default function App() {
         insetBottom={true}
         backgroundColor={'themePri'}
       >
-        <ThemedSwitch
-          onPress={() => {}}
-          customEnableAnimation={customEnableAnimation}
-          customDisableAnimation={customDisableAnimation}
+        <ThemedButton text={'click'} onPress={toggleVisible} />
+        <ActionSheet
+          visible={visible}
+          onDismiss={toggleVisible}
+          options={[
+            {
+              text: 'testinghere',
+            },
+          ]}
         />
       </ThemedScreenWrap>
     </ReactNativeTemplateProviders>

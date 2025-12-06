@@ -61,18 +61,20 @@ function useActionSheet(actionSheetVisible: boolean) {
   const expandableHeightSharedVal = useSharedValue(0);
   const { expandable } = getActionSheetContext();
   useEffect(() => {
-    if (height && translateYSharedVal.get() === windowHeight) {
+    if (
+      actionSheetVisible &&
+      height &&
+      translateYSharedVal.get() === windowHeight
+    ) {
       const tempHeight = expandable
         ? getActionSheetExpandableInitHeight()
         : height;
       heightSharedVal.set(tempHeight);
       expandableHeightSharedVal.set(tempHeight);
       translateYSharedVal.set(height);
-      if (actionSheetVisible) {
-        updateSharedValWithTiming(translateYSharedVal, 0, {
-          duration: actionSheetOpenDuration,
-        });
-      }
+      updateSharedValWithTiming(translateYSharedVal, 0, {
+        duration: actionSheetOpenDuration,
+      });
     }
   }, [actionSheetVisible, height]);
 
@@ -284,13 +286,17 @@ export function useActionSheetOpts(
 
   const { itemSize, insetsStyle } = useActionSheetOptItemSize(optionListProps);
   useLayoutEffect(() => {
+    if (!actionSheetVisible) {
+      return;
+    }
+
     headerViewRef.current?.measureInWindow((_x, _y, _width, headerHeight) => {
       const contentHeight =
         options.length * itemSize +
         ((insetsStyle.paddingBottom ?? 0) as number);
       updateHeight(headerHeight + contentHeight);
     });
-  }, []);
+  }, [actionSheetVisible]);
 
   const actionSheetContextVal: ActionSheetContextVal = {
     title,
@@ -342,14 +348,14 @@ export function useActionSheetOptItemSize(
     insetPaddingRight,
   });
 
-  const actionSheetOptItemSize = {
+  const actionSheetOptionItemSize = {
     itemSize:
       themeSpacing[actionSheetOptionListItemPadding] * 2 +
       themeTextVariants[actionSheetOptionListItemTextVariant].lineHeight,
     insetsStyle,
   };
 
-  return actionSheetOptItemSize;
+  return actionSheetOptionItemSize;
 }
 
 /** @internal */
@@ -374,12 +380,16 @@ export function useActionSheetScrollView(
   const [headerHeight, setHeaderHeight] = useState(0);
   const [contentHeight, setContentHeight] = useState(0);
   useLayoutEffect(() => {
+    if (!actionSheetVisible) {
+      return;
+    }
+
     headerViewRef.current?.measureInWindow(
       (_x, _y, _width, headerViewHeight) => {
         setHeaderHeight(headerViewHeight);
       }
     );
-  }, []);
+  }, [actionSheetVisible]);
   useEffect(() => {
     if (headerHeight && contentHeight) {
       updateHeight(headerHeight + contentHeight);
@@ -426,12 +436,16 @@ export function useActionSheetListView(
   const [headerHeight, setHeaderHeight] = useState(0);
   const [contentHeight, setContentHeight] = useState(0);
   useLayoutEffect(() => {
+    if (!actionSheetVisible) {
+      return;
+    }
+
     headerViewRef.current?.measureInWindow(
       (_x, _y, _width, headerViewHeight) => {
         setHeaderHeight(headerViewHeight);
       }
     );
-  }, []);
+  }, [actionSheetVisible]);
   useEffect(() => {
     if (headerHeight && contentHeight) {
       updateHeight(headerHeight + contentHeight);

@@ -1,5 +1,5 @@
 /** @internal */
-import { useEffect, type FC } from 'react';
+import { type FC } from 'react';
 import { useAnimatedStyle } from 'react-native-reanimated';
 import { useActionSheetOnDismiss } from '../../../hooks/overlay';
 import type {
@@ -42,11 +42,6 @@ const ActionSheetWrap: FC<ActionSheetWrapProps> = ({
     }),
     [expandable, heightSharedVal, expandableHeightSharedVal]
   );
-  useEffect(() => {
-    if (!visible) {
-      onDismiss();
-    }
-  }, [visible]);
 
   const contentWrapProps: ThemedModalProps['contentWrapProps'] = {
     justifyContent: 'flex-end',
