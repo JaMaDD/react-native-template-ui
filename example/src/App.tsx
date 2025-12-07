@@ -2,6 +2,7 @@ import {
   ActionSheet,
   ReactNativeTemplateProviders,
   ThemedButton,
+  ThemedModal,
   ThemedScreenWrap,
   useIsDarkColorScheme,
 } from '@jamadd/react-native-template-ui';
@@ -27,6 +28,13 @@ export default function App() {
         backgroundColor={'themePri'}
       >
         <ThemedButton text={'click'} onPress={toggleVisible} />
+        <ThemedModal contentWrapProps={{ backgroundColor: 'reactnative' }}>
+          <ThemedButton
+            text={'click'}
+            onPress={toggleVisible}
+            backgroundColor={'reactnative'}
+          />
+        </ThemedModal>
         <ActionSheet
           visible={visible}
           onDismiss={toggleVisible}

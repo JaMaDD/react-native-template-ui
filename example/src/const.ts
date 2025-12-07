@@ -8,6 +8,7 @@ export const customLightTheme = createTheme({
     themePri: '#ff6347',
     themeSec: '#4caf50',
     themePriT: '#ff634780',
+    reactnative: '#58c4dc',
   },
 });
 
@@ -15,8 +16,6 @@ export const customDarkTheme = createTheme({
   ...darkTheme,
   colors: {
     ...darkTheme.colors,
-    themePri: customLightTheme.colors.themePri,
-    themeSec: customLightTheme.colors.themeSec,
-    themePriT: customLightTheme.colors.themePriT,
+    ...customLightTheme.colors,
   },
 });
