@@ -1,11 +1,10 @@
 import type { TextProps } from '@shopify/restyle';
-import type { ComponentProps } from 'react';
-import type Text from '../components/text/Text';
+import type { TextProps as RNTextProps } from 'react-native';
 import type { CustomThemedIconProps } from './icon';
 import type { Theme } from './theme';
 import type { ThemedViewProps } from './view';
 
-export type ThemedTextProps = ComponentProps<typeof Text> & TextProps<Theme>;
+export type ThemedTextProps = RNTextProps & TextProps<Theme>;
 
 export type CustomThemedTextProps = {
   text: ThemedTextProps['children'];

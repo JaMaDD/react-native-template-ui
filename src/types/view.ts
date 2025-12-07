@@ -6,10 +6,10 @@ import type {
   ScrollViewProps as RNScrollViewProps,
   ScrollView,
   View,
+  ViewProps,
 } from 'react-native';
 import type { AnimatedRef } from 'react-native-reanimated';
 import type AnimatedBox from '../components/view/AnimatedBox';
-import type Box from '../components/view/Box';
 import type { InsetsStyleConfig } from './style';
 import type { Theme } from './theme';
 
@@ -23,7 +23,10 @@ export type OnScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
 
 export type OnContentSizeChange = (width: number, height: number) => void;
 
-export type ThemedViewProps = ComponentProps<typeof Box> & BoxProps<Theme>;
+export type ThemedViewProps = ViewProps &
+  BoxProps<Theme> & {
+    ref?: ViewRefObj;
+  };
 
 export type AnimatedThemedViewProps = Omit<
   ComponentProps<typeof AnimatedBox>,
@@ -33,11 +36,10 @@ export type AnimatedThemedViewProps = Omit<
 export type ThemedScreenWrapProps = ThemedViewProps & InsetsStyleConfig;
 
 export type ScrollViewProps = RNScrollViewProps &
-  InsetsStyleConfig & {
-    ref?: ScrollViewRefObj | ScrollViewAnimatedRefObj;
-  };
+  InsetsStyleConfig & { ref?: ScrollViewRefObj };
 
-export type ThemedScrollViewProps = ScrollViewProps & ThemedViewProps;
+export type ThemedScrollViewProps = ScrollViewProps &
+  Omit<ThemedViewProps, 'ref'>;
 
 export type PropsWithRequiredChildren<P = unknown> = P & {
   children: NonNullable<ReactNode>;
