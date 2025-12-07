@@ -1,3 +1,4 @@
+import type { BoxProps } from '@shopify/restyle';
 import type { ComponentProps, ReactNode, RefObject } from 'react';
 import type {
   NativeScrollEvent,
@@ -10,7 +11,7 @@ import type { AnimatedRef } from 'react-native-reanimated';
 import type AnimatedBox from '../components/view/AnimatedBox';
 import type Box from '../components/view/Box';
 import type { InsetsStyleConfig } from './style';
-import type { ThemeViewProps } from './theme';
+import type { Theme } from './theme';
 
 export type ViewRefObj = RefObject<View | null>;
 
@@ -22,7 +23,7 @@ export type OnScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
 
 export type OnContentSizeChange = (width: number, height: number) => void;
 
-export type ThemedViewProps = ComponentProps<typeof Box>;
+export type ThemedViewProps = ComponentProps<typeof Box> & BoxProps<Theme>;
 
 export type AnimatedThemedViewProps = Omit<
   ComponentProps<typeof AnimatedBox>,
@@ -36,7 +37,7 @@ export type ScrollViewProps = RNScrollViewProps &
     ref?: ScrollViewRefObj | ScrollViewAnimatedRefObj;
   };
 
-export type ThemedScrollViewProps = ScrollViewProps & ThemeViewProps;
+export type ThemedScrollViewProps = ScrollViewProps & ThemedViewProps;
 
 export type PropsWithRequiredChildren<P = unknown> = P & {
   children: NonNullable<ReactNode>;

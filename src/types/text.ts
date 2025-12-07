@@ -1,9 +1,11 @@
+import type { TextProps } from '@shopify/restyle';
 import type { ComponentProps } from 'react';
 import type Text from '../components/text/Text';
 import type { CustomThemedIconProps } from './icon';
-import type { ThemeTextProps, ThemeViewProps } from './theme';
+import type { Theme } from './theme';
+import type { ThemedViewProps } from './view';
 
-export type ThemedTextProps = ComponentProps<typeof Text>;
+export type ThemedTextProps = ComponentProps<typeof Text> & TextProps<Theme>;
 
 export type CustomThemedTextProps = {
   text: ThemedTextProps['children'];
@@ -13,7 +15,7 @@ export type CustomThemedTextProps = {
   textColor?: ThemedTextProps['color'];
   textStyle?: ThemedTextProps['style'];
   textProps?: Omit<
-    ThemeTextProps,
+    ThemedTextProps,
     'children' | 'variant' | 'fontSize' | 'fontWeight' | 'color' | 'style'
   >;
 };
@@ -21,4 +23,4 @@ export type CustomThemedTextProps = {
 export type IconTextProps = CustomThemedIconProps &
   CustomThemedTextProps & { flip?: boolean };
 
-export type ThemedIconTextProps = IconTextProps & ThemeViewProps;
+export type ThemedIconTextProps = IconTextProps & ThemedViewProps;

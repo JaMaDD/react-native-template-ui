@@ -7,7 +7,6 @@ import type {
   PositionProps,
   SpacingProps,
   SpacingShorthandProps,
-  TextProps,
 } from '@shopify/restyle';
 
 export type Theme = globalThis.ReactNativeTemplateTheme;
@@ -25,8 +24,6 @@ export type ThemeBorderRadii = keyof Theme['borderRadii'];
 export type ThemeTextVariants = keyof Theme['textVariants'];
 
 export type ThemeViewProps = BoxProps<Theme>;
-
-export type ThemeTextProps = TextProps<Theme>;
 
 export type ThemeColorProps = ColorProps<Theme>;
 
