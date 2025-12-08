@@ -3,16 +3,16 @@ import type { AlertProps } from '../../../types/overlay';
 import ThemedText from '../../text/ThemedText';
 
 const AlertContent: FC<
-  Pick<AlertProps, 'title' | 'titleTextProps' | 'desc' | 'descTextProps'>
-> = ({ title, titleTextProps, desc, descTextProps }) => {
+  Pick<AlertProps, 'title' | 'titleTextProps' | 'description' | 'descTextProps'>
+> = ({ title, titleTextProps, description, descTextProps }) => {
   return (
     <>
       <ThemedText textAlign={'center'} fontWeight={'bold'} {...titleTextProps}>
         {title}
       </ThemedText>
-      {!!desc && (
+      {!!description && (
         <ThemedText textAlign={'center'} variant={'textS'} {...descTextProps}>
-          {desc}
+          {description}
         </ThemedText>
       )}
     </>

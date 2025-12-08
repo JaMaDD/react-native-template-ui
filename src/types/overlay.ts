@@ -39,7 +39,7 @@ type OverlayDismissToastResult = OverlayDismissBaseResult &
   };
 
 export type OverlayDismissAlertResult = OverlayDismissBaseResult &
-  Pick<AlertProps, 'title' | 'desc'> &
+  Pick<AlertProps, 'title' | 'description'> &
   Pick<AlertButtonProps, 'text' | 'type'> & {
     resultType: OverlayDismissResultType.Alert;
   };
@@ -87,7 +87,7 @@ export type AlertProps = Omit<OverlayProps, 'onDismiss'> &
     wrapProps?: Omit<ThemedViewProps, 'children'>;
     title: string;
     titleTextProps?: Omit<CustomThemedTextProps, 'text'>;
-    desc?: string;
+    description?: string;
     descTextProps?: Omit<CustomThemedTextProps, 'text'>;
     buttons?: AlertButtonProps[][];
     buttonsWrapProps?: Omit<ThemedViewProps, 'children'>;

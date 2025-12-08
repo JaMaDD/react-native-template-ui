@@ -17,7 +17,7 @@ const AlertWrap: FC<
       | 'customShowAnimation'
       | 'wrapProps'
       | 'title'
-      | 'desc'
+      | 'description'
       | 'buttons'
       | 'dismissable'
     > & {
@@ -29,7 +29,7 @@ const AlertWrap: FC<
   customShowAnimation,
   wrapProps,
   title,
-  desc,
+  description,
   buttons,
   dismissable,
   visible,
@@ -56,7 +56,14 @@ const AlertWrap: FC<
         mass: 20,
       });
     }
-  }, [customShowAnimation, title, desc, buttons, visible, showSharedVal]);
+  }, [
+    customShowAnimation,
+    title,
+    description,
+    buttons,
+    visible,
+    showSharedVal,
+  ]);
 
   const { onDismiss } = getAlertContext();
   const modalOnDismiss = () => {

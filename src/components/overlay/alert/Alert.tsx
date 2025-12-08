@@ -20,7 +20,7 @@ const Alert: FC<AlertProps> = ({
   wrapProps,
   title,
   titleTextProps,
-  desc,
+  description,
   descTextProps,
   buttons,
   buttonsWrapProps,
@@ -39,7 +39,7 @@ const Alert: FC<AlertProps> = ({
     const tempResult: OverlayDismissAlertResult = {
       resultType: OverlayDismissResultType.Alert,
       title,
-      desc,
+      description,
       text: overlayDismissResultDefaultText,
     };
     onDismiss?.(result ? { ...tempResult, ...result } : tempResult);
@@ -65,7 +65,7 @@ const Alert: FC<AlertProps> = ({
         customShowAnimation={customShowAnimation}
         wrapProps={wrapProps}
         title={title}
-        desc={desc}
+        description={description}
         buttons={buttons}
         dismissable={dismissable}
         visible={alertVisible}
@@ -74,7 +74,7 @@ const Alert: FC<AlertProps> = ({
         <AlertContent
           title={title}
           titleTextProps={titleTextProps}
-          desc={desc}
+          description={description}
           descTextProps={descTextProps}
         />
         <AlertButtons buttons={buttons} buttonsWrapProps={buttonsWrapProps} />
