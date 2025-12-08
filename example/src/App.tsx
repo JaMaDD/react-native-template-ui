@@ -28,11 +28,11 @@ export default function App() {
         backgroundColor={'themePri'}
       >
         <ThemedButton text={'click'} onPress={toggleVisible} />
-        <ThemedModal contentWrapProps={{ backgroundColor: 'reactnative' }}>
+        <ThemedModal contentWrapProps={{ backgroundColor: 'background' }}>
           <ThemedButton
             text={'click'}
             onPress={toggleVisible}
-            backgroundColor={'reactnative'}
+            backgroundColor={'background'}
           />
         </ThemedModal>
         <ActionSheet
