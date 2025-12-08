@@ -88,7 +88,7 @@ export type AlertProps = Omit<OverlayProps, 'onDismiss'> &
     title: string;
     titleTextProps?: Omit<CustomThemedTextProps, 'text'>;
     description?: string;
-    descTextProps?: Omit<CustomThemedTextProps, 'text'>;
+    descriptionTextProps?: Omit<CustomThemedTextProps, 'text'>;
     buttons?: AlertButtonProps[][];
     buttonsWrapProps?: Omit<ThemedViewProps, 'children'>;
     buttonProps?: Omit<ThemedButtonProps, 'onPress' | 'text'>;

@@ -21,7 +21,7 @@ const Alert: FC<AlertProps> = ({
   title,
   titleTextProps,
   description,
-  descTextProps,
+  descriptionTextProps,
   buttons,
   buttonsWrapProps,
   buttonProps,
@@ -75,7 +75,7 @@ const Alert: FC<AlertProps> = ({
           title={title}
           titleTextProps={titleTextProps}
           description={description}
-          descTextProps={descTextProps}
+          descriptionTextProps={descriptionTextProps}
         />
         <AlertButtons buttons={buttons} buttonsWrapProps={buttonsWrapProps} />
       </AlertWrap>
