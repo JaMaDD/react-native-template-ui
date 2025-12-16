@@ -84,7 +84,7 @@ export type AlertProps = Omit<OverlayProps, 'onDismiss'> &
   Pick<ModalProps, 'visible'> & {
     customShowAnimation?: CustomAnimation<1>;
     customHideAnimation?: CustomAnimation<0>;
-    wrapProps?: Omit<ThemedViewProps, 'children'>;
+    wrapProps?: Omit<AnimatedThemedViewProps, 'children'>;
     title: string;
     titleTextProps?: Omit<CustomThemedTextProps, 'text'>;
     description?: string;
