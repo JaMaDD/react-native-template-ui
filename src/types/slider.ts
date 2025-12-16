@@ -22,6 +22,7 @@ export type StringSlider = {
 export type ThemedSliderProps = (NumberSlider | StringSlider) &
   Omit<CustomThemedTextProps, 'text'> & {
     currentValueDisplayMode?: SliderCurrentValueDisplayMode;
+    onValueChange: (value: number | string) => void;
     trackSize?: SliderTrackSize | number;
     trackActiveColor?: ThemeColors;
     trackActiveProps?: ThemedViewProps;

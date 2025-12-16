@@ -6,7 +6,6 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
-import { useWindowDimensionsWidth } from '../../hooks/style';
 import { useViewRef } from '../../hooks/view';
 import type {
   NumberSlider,
@@ -30,6 +29,7 @@ const ThemedSlider: FC<ThemedSliderProps> = ({
   steps = 1,
   currentValue,
   currentValueDisplayMode = SliderCurrentValueDisplayMode.None,
+  onValueChange,
   trackSize = SliderTrackSize.M,
   trackActiveColor = 'themePri',
   trackActiveProps,
@@ -50,29 +50,35 @@ const ThemedSlider: FC<ThemedSliderProps> = ({
       ) / steps
     : processedRange.length - 1;
   const thumbSizeHalf = thumbSize / 2;
-  const windowWidth = useWindowDimensionsWidth();
-  const viewRef = useViewRef();
-  const [width, setWidth] = useState<number>();
+  const sliderViewRef = useViewRef();
+  const trackViewRef = useViewRef();
+  const [sliderWidth, setSliderWidth] = useState<number>();
+  const [trackWidth, setTrackWidth] = useState<number>();
   const [stepWidth, setStepWidth] = useState<number>();
   const [selectedVal, setSelectedVal] = useState<number | string | undefined>(
     currentValue
   );
   const deferredSelectedValue = useDeferredValue(selectedVal);
-  const xSharedVal = useSharedValue(-(width ?? 0));
+  const xSharedVal = useSharedValue(-(trackWidth ?? 0));
 
   const trackAnimatedStyle = useAnimatedStyle(
     () => ({ transform: [{ translateX: xSharedVal.get() }] }),
-    [width]
+    [trackWidth]
   );
   const thumbAnimatedStyle = useAnimatedStyle(
     () => ({ transform: [{ translateX: xSharedVal.get() - thumbSizeHalf }] }),
     [thumbSizeHalf]
   );
   useLayoutEffect(() => {
-    viewRef.current?.measure((_x, _y, w) => {
+    sliderViewRef.current?.measure((_x, _y, w) => {
+      setSliderWidth(w);
+    });
+  }, []);
+  useLayoutEffect(() => {
+    trackViewRef.current?.measure((_x, _y, w) => {
       const tempWidth = w - thumbSize;
       const tempStepWidth = tempWidth / totalSteps;
-      setWidth(tempWidth);
+      setTrackWidth(tempWidth);
       setStepWidth(tempStepWidth);
       setSelectedVal(currentValue);
       let index = 0;
@@ -100,16 +106,20 @@ const ThemedSlider: FC<ThemedSliderProps> = ({
     if (isNumRange) {
       const numRange = processedRange as NumberSlider['range'];
       const numIndex = Math.round(x / stepWidth);
-      setSelectedVal(numRange[1] - numIndex * steps);
+      const tempSelectedVal = numRange[1] - numIndex * steps;
+      setSelectedVal(tempSelectedVal);
+      onValueChange(tempSelectedVal);
     } else {
       const strRange = processedRange as StringSlider['range'];
       const strIndex = Math.round(x / stepWidth);
-      setSelectedVal(strRange[totalSteps - strIndex]);
+      const tempSelectedVal = strRange[totalSteps - strIndex];
+      setSelectedVal(tempSelectedVal);
+      onValueChange(tempSelectedVal!);
     }
   };
   const updateXSharedVal = (x: number, animated = false) => {
     'worklet';
-    const tempX = Math.min(0, Math.max(x, -(width ?? 0)));
+    const tempX = Math.min(0, Math.max(x, -(trackWidth ?? 0)));
     xSharedVal.set(animated ? withTiming(tempX) : tempX);
     scheduleOnRN(updateSelectedVal, Math.abs(tempX));
   };
@@ -117,17 +127,17 @@ const ThemedSlider: FC<ThemedSliderProps> = ({
     Gesture.Tap()
       .onTouchesDown(({ allTouches }) => {
         const touch = allTouches[0];
-        if (touch) {
+        if (touch && sliderWidth) {
           updateXSharedVal(
-            -(windowWidth - (touch.x + thumbSize + thumbSizeHalf))
+            -(sliderWidth - (touch.x + thumbSize + thumbSizeHalf))
           );
         }
       })
       .onTouchesUp(({ allTouches }) => {
         const touch = allTouches[0];
-        if (touch && stepWidth) {
+        if (touch && sliderWidth && stepWidth) {
           const nearestStep = Math.round(
-            -(windowWidth - (touch.x + thumbSize + thumbSizeHalf)) / stepWidth
+            -(sliderWidth - (touch.x + thumbSize + thumbSizeHalf)) / stepWidth
           );
           updateXSharedVal(nearestStep * stepWidth, true);
         }
@@ -151,29 +161,29 @@ const ThemedSlider: FC<ThemedSliderProps> = ({
   );
 
   return (
-    <ThemedView alignItems={'center'}>
+    <ThemedView ref={sliderViewRef} alignItems={'center'}>
       {currentValueDisplayMode === SliderCurrentValueDisplayMode.Top &&
         currentValueComponent}
       <GestureDetector gesture={gesture}>
         <ThemedView
-          ref={viewRef}
+          ref={trackViewRef}
           alignItems={'center'}
           justifyContent={'center'}
           alignSelf={'stretch'}
           height={thumbSize}
           style={wrapStyle}
+          backgroundColor={'themeSec'}
           {...wrapProps}
         >
           <ThemedView
             position={'absolute'}
-            width={width}
+            width={trackWidth}
             height={trackSize}
             overflow={'hidden'}
             backgroundColor={trackInactiveColor}
             {...trackActiveProps}
           >
             <AnimatedThemedView
-              width={width}
               height={trackSize}
               backgroundColor={trackActiveColor}
               style={trackAnimatedStyle}
