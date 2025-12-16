@@ -16,6 +16,7 @@ export { default as InsetsProvider } from './components/provider/InsetsProvider'
 export { default as ReactNativeTemplateProviders } from './components/provider/ReactNativeTemplateProviders';
 export { default as ThemeProvider } from './components/provider/ThemeProvider';
 export { default as ThemedSeparator } from './components/separator/ThemedSeparator';
+export { default as ThemedSlider } from './components/slider/ThemedSlider';
 export { default as ThemedSwitch } from './components/switch/ThemedSwitch';
 export { default as ThemedIconText } from './components/text/ThemedIconText';
 export { default as ThemedText } from './components/text/ThemedText';
@@ -43,6 +44,7 @@ export * from './types/provider';
 export * from './types/react';
 export * from './types/reanimated';
 export * from './types/separator';
+export * from './types/slider';
 export * from './types/style';
 export * from './types/switch';
 export * from './types/text';
@@ -51,6 +53,7 @@ export * from './types/view';
 
 export * from './utils/button/const';
 export * from './utils/overlay/const';
+export * from './utils/slider/const';
 export * from './utils/style/const';
 export * from './utils/style/func';
 export * from './utils/theme/const';

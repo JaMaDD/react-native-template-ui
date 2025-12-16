@@ -1,22 +1,14 @@
 import {
-  ActionSheet,
   ReactNativeTemplateProviders,
-  ThemedButton,
-  ThemedModal,
+  SliderCurrentValueDisplayMode,
   ThemedScreenWrap,
+  ThemedSlider,
   useIsDarkColorScheme,
 } from '@jamadd/react-native-template-ui';
-import { useState } from 'react';
 import { customDarkTheme, customLightTheme } from './const';
 
 export default function App() {
   const isDarkColorScheme = useIsDarkColorScheme();
-  const [visible, setVisible] = useState<boolean>(false);
-
-  const toggleVisible = () => {
-    console.log('toggleVisible called. Current visible:', visible);
-    setVisible((prev) => !prev);
-  };
 
   return (
     <ReactNativeTemplateProviders
@@ -25,24 +17,19 @@ export default function App() {
       <ThemedScreenWrap
         insetTop={true}
         insetBottom={true}
-        backgroundColor={'themePri'}
+        insetPaddingTop={'xxxl'}
+        backgroundColor={'background'}
       >
-        <ThemedButton text={'click'} onPress={toggleVisible} />
-        <ThemedModal contentWrapProps={{ backgroundColor: 'background' }}>
-          <ThemedButton
-            text={'click'}
-            onPress={toggleVisible}
-            backgroundColor={'background'}
-          />
-        </ThemedModal>
-        <ActionSheet
-          visible={visible}
-          onDismiss={toggleVisible}
-          options={[
-            {
-              text: 'testinghere',
-            },
-          ]}
+        <ThemedSlider
+          range={[100, 0]}
+          steps={1}
+          currentValue={75}
+          currentValueDisplayMode={SliderCurrentValueDisplayMode.Top}
+        />
+        <ThemedSlider
+          range={['9', '200', '100']}
+          currentValue={'100'}
+          currentValueDisplayMode={SliderCurrentValueDisplayMode.Bottom}
         />
       </ThemedScreenWrap>
     </ReactNativeTemplateProviders>
