@@ -9,8 +9,8 @@ import { scheduleOnRN } from 'react-native-worklets';
 import { useWindowDimensionsWidth } from '../../hooks/style';
 import { useViewRef } from '../../hooks/view';
 import type {
-  NumSlider,
-  StrSlider,
+  NumberSlider,
+  StringSlider,
   ThemedSliderProps,
 } from '../../types/slider';
 import type { ThemedTextProps } from '../../types/text';
@@ -45,8 +45,8 @@ const ThemedSlider: FC<ThemedSliderProps> = ({
   const processedRange = isNumRange ? range.sort() : range;
   const totalSteps = isNumRange
     ? Math.abs(
-        (processedRange as NumSlider['range'])[1] -
-          (processedRange as NumSlider['range'])[0]
+        (processedRange as NumberSlider['range'])[1] -
+          (processedRange as NumberSlider['range'])[0]
       ) / steps
     : processedRange.length - 1;
   const thumbSizeHalf = thumbSize / 2;
@@ -77,12 +77,12 @@ const ThemedSlider: FC<ThemedSliderProps> = ({
       setSelectedVal(currentValue);
       let index = 0;
       if (isNumRange) {
-        const numRange = processedRange as NumSlider['range'];
-        const numCurrentValue = currentValue as NumSlider['currentValue'];
+        const numRange = processedRange as NumberSlider['range'];
+        const numCurrentValue = currentValue as NumberSlider['currentValue'];
         index = numCurrentValue ? (numCurrentValue - numRange[0]) / steps : 0;
       } else {
-        const strRange = processedRange as StrSlider['range'];
-        const strCurrentValue = currentValue as StrSlider['currentValue'];
+        const strRange = processedRange as StringSlider['range'];
+        const strCurrentValue = currentValue as StringSlider['currentValue'];
         index = strCurrentValue ? strRange.indexOf(strCurrentValue) : 0;
       }
       xSharedVal.set(-(totalSteps - index) * tempStepWidth);
@@ -98,11 +98,11 @@ const ThemedSlider: FC<ThemedSliderProps> = ({
     }
 
     if (isNumRange) {
-      const numRange = processedRange as NumSlider['range'];
+      const numRange = processedRange as NumberSlider['range'];
       const numIndex = Math.round(x / stepWidth);
       setSelectedVal(numRange[1] - numIndex * steps);
     } else {
-      const strRange = processedRange as StrSlider['range'];
+      const strRange = processedRange as StringSlider['range'];
       const strIndex = Math.round(x / stepWidth);
       setSelectedVal(strRange[totalSteps - strIndex]);
     }

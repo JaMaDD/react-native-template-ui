@@ -7,21 +7,19 @@ import type { CustomThemedTextProps } from './text';
 import type { ThemeColors } from './theme';
 import type { AnimatedThemedViewProps, ThemedViewProps } from './view';
 
-/** @internal */
-export type NumSlider = {
+export type NumberSlider = {
   range: [number, number];
   steps: number;
   currentValue?: number;
 };
 
-/** @internal */
-export type StrSlider = {
+export type StringSlider = {
   range: string[];
   steps?: never;
   currentValue?: string;
 };
 
-export type ThemedSliderProps = (NumSlider | StrSlider) &
+export type ThemedSliderProps = (NumberSlider | StringSlider) &
   Omit<CustomThemedTextProps, 'text'> & {
     currentValueDisplayMode?: SliderCurrentValueDisplayMode;
     trackSize?: SliderTrackSize | number;
