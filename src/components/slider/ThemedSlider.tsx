@@ -164,13 +164,18 @@ const ThemedSlider: FC<ThemedSliderProps> = ({
         }
       })
   );
-  const valueDisplayComponent = valueDisplayMode !==
-    SliderValueDisplayMode.None && (
+  const isValueDisplayModeNone =
+    valueDisplayMode === SliderValueDisplayMode.None;
+  const isValueDisplayModeTop = valueDisplayMode === SliderValueDisplayMode.Top;
+  const isValueDisplayModeBottom =
+    valueDisplayMode === SliderValueDisplayMode.Bottom;
+  const valueDisplayComponent = !isValueDisplayModeNone && (
     <ThemedView
       flexDirection={'row'}
       alignItems={'center'}
       alignSelf={'stretch'}
-      marginTop={'s'}
+      marginTop={isValueDisplayModeBottom ? 's' : undefined}
+      marginBottom={isValueDisplayModeTop ? 's' : undefined}
       {...valueDisplayWrapProps}
     >
       {!!valueDescription && (
@@ -196,7 +201,7 @@ const ThemedSlider: FC<ThemedSliderProps> = ({
 
   return (
     <ThemedView ref={sliderViewRef} alignItems={'center'}>
-      {valueDisplayMode === SliderValueDisplayMode.Top && valueDisplayComponent}
+      {isValueDisplayModeTop && valueDisplayComponent}
       <GestureDetector gesture={gesture}>
         <ThemedView
           ref={trackViewRef}
@@ -247,8 +252,7 @@ const ThemedSlider: FC<ThemedSliderProps> = ({
           />
         </ThemedView>
       </GestureDetector>
-      {valueDisplayMode === SliderValueDisplayMode.Bottom &&
-        valueDisplayComponent}
+      {isValueDisplayModeBottom && valueDisplayComponent}
     </ThemedView>
   );
 };
