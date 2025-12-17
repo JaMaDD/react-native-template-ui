@@ -1,6 +1,6 @@
 import {
   ReactNativeTemplateProviders,
-  SliderCurrentValueDisplayMode,
+  SliderValueDisplayMode,
   ThemedScreenWrap,
   ThemedSlider,
   useIsDarkColorScheme,
@@ -24,14 +24,16 @@ export default function App() {
         <ThemedSlider
           range={[100, 0]}
           steps={1}
-          currentValue={75}
-          currentValueDisplayMode={SliderCurrentValueDisplayMode.Top}
+          defaultValue={75}
+          valueDisplayMode={SliderValueDisplayMode.Top}
           onValueChange={(value) => console.log('Number Slider Value:', value)}
         />
         <ThemedSlider
           range={['9', '200', '100']}
-          currentValue={'100'}
-          currentValueDisplayMode={SliderCurrentValueDisplayMode.Bottom}
+          defaultValue={'100'}
+          stepIndicator={true}
+          snapToStepAnimated={false}
+          valueDisplayMode={SliderValueDisplayMode.Bottom}
           onValueChange={(value) => console.log('String Slider Value:', value)}
         />
       </ThemedScreenWrap>

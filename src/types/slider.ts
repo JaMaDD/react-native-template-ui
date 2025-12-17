@@ -1,7 +1,7 @@
 import type {
-  SliderCurrentValueDisplayMode,
   SliderThumbSize,
   SliderTrackSize,
+  SliderValueDisplayMode,
 } from '../utils/slider/const';
 import type { CustomThemedTextProps } from './text';
 import type { ThemeColors } from './theme';
@@ -10,18 +10,23 @@ import type { AnimatedThemedViewProps, ThemedViewProps } from './view';
 export type NumberSlider = {
   range: [number, number];
   steps: number;
-  currentValue?: number;
+  defaultValue?: number;
+  stepIndicator?: never;
+  stepIndicatorProps?: never;
 };
 
 export type StringSlider = {
   range: string[];
   steps?: never;
-  currentValue?: string;
+  defaultValue?: string;
+  stepIndicator?: boolean;
+  stepIndicatorProps?: ThemedSliderStepIndicatorProps;
 };
 
 export type ThemedSliderProps = (NumberSlider | StringSlider) &
   Omit<CustomThemedTextProps, 'text'> & {
-    currentValueDisplayMode?: SliderCurrentValueDisplayMode;
+    snapToStepAnimated?: boolean;
+    valueDisplayMode?: SliderValueDisplayMode;
     onValueChange: (value: number | string) => void;
     trackSize?: SliderTrackSize | number;
     trackActiveColor?: ThemeColors;
@@ -33,3 +38,5 @@ export type ThemedSliderProps = (NumberSlider | StringSlider) &
     thumbProps?: AnimatedThemedViewProps;
     wrapProps?: ThemedViewProps;
   };
+
+export type ThemedSliderStepIndicatorProps = ThemedViewProps;

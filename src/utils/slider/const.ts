@@ -1,4 +1,6 @@
-export enum SliderCurrentValueDisplayMode {
+import { BorderSize } from '../theme/const';
+
+export enum SliderValueDisplayMode {
   None = 'none',
   Top = 'top',
   Bottom = 'bottom',
@@ -15,3 +17,5 @@ export enum SliderThumbSize {
   M = 24,
   L = 28,
 }
+
+export const sliderStepIndicatorDefaultWidth = BorderSize.M;

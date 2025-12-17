@@ -1,3 +1,4 @@
+import { useMappingHelper } from '@shopify/flash-list';
 import { useDeferredValue, useLayoutEffect, useState, type FC } from 'react';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import {
@@ -11,24 +12,31 @@ import type {
   NumberSlider,
   StringSlider,
   ThemedSliderProps,
+  ThemedSliderStepIndicatorProps,
 } from '../../types/slider';
 import type { ThemedTextProps } from '../../types/text';
 import type { ThemedViewProps } from '../../types/view';
 import {
-  SliderCurrentValueDisplayMode,
+  sliderStepIndicatorDefaultWidth,
   SliderThumbSize,
   SliderTrackSize,
+  SliderValueDisplayMode,
 } from '../../utils/slider/const';
 import AnimatedThemedView from '../view/AnimatedThemedView';
 import ThemedView from '../view/ThemedView';
 
 const ThemedText: FC<ThemedTextProps> = require('../text/ThemedText').default;
+const ThemedSliderStepIndicator: FC<ThemedSliderStepIndicatorProps> =
+  require('./ThemedSliderStepIndicator').default;
 
 const ThemedSlider: FC<ThemedSliderProps> = ({
   range,
   steps = 1,
-  currentValue,
-  currentValueDisplayMode = SliderCurrentValueDisplayMode.None,
+  defaultValue,
+  stepIndicator,
+  stepIndicatorProps,
+  snapToStepAnimated = true,
+  valueDisplayMode = SliderValueDisplayMode.None,
   onValueChange,
   trackSize = SliderTrackSize.M,
   trackActiveColor = 'themePri',
@@ -50,17 +58,17 @@ const ThemedSlider: FC<ThemedSliderProps> = ({
       ) / steps
     : processedRange.length - 1;
   const thumbSizeHalf = thumbSize / 2;
+  const { getMappingKey } = useMappingHelper();
   const sliderViewRef = useViewRef();
   const trackViewRef = useViewRef();
   const [sliderWidth, setSliderWidth] = useState<number>();
   const [trackWidth, setTrackWidth] = useState<number>();
   const [stepWidth, setStepWidth] = useState<number>();
   const [selectedVal, setSelectedVal] = useState<number | string | undefined>(
-    currentValue
+    defaultValue
   );
   const deferredSelectedValue = useDeferredValue(selectedVal);
   const xSharedVal = useSharedValue(-(trackWidth ?? 0));
-
   const trackAnimatedStyle = useAnimatedStyle(
     () => ({ transform: [{ translateX: xSharedVal.get() }] }),
     [trackWidth]
@@ -80,20 +88,19 @@ const ThemedSlider: FC<ThemedSliderProps> = ({
       const tempStepWidth = tempWidth / totalSteps;
       setTrackWidth(tempWidth);
       setStepWidth(tempStepWidth);
-      setSelectedVal(currentValue);
       let index = 0;
       if (isNumRange) {
         const numRange = processedRange as NumberSlider['range'];
-        const numCurrentValue = currentValue as NumberSlider['currentValue'];
+        const numCurrentValue = selectedVal as NumberSlider['defaultValue'];
         index = numCurrentValue ? (numCurrentValue - numRange[0]) / steps : 0;
       } else {
         const strRange = processedRange as StringSlider['range'];
-        const strCurrentValue = currentValue as StringSlider['currentValue'];
+        const strCurrentValue = selectedVal as StringSlider['defaultValue'];
         index = strCurrentValue ? strRange.indexOf(strCurrentValue) : 0;
       }
       xSharedVal.set(-(totalSteps - index) * tempStepWidth);
     });
-  }, [currentValue, thumbSize, isNumRange, processedRange, totalSteps]);
+  }, [thumbSize, isNumRange, processedRange, totalSteps]);
 
   const wrapStyle: ThemedViewProps['style'] = {
     marginHorizontal: thumbSizeHalf,
@@ -139,7 +146,7 @@ const ThemedSlider: FC<ThemedSliderProps> = ({
           const nearestStep = Math.round(
             -(sliderWidth - (touch.x + thumbSize + thumbSizeHalf)) / stepWidth
           );
-          updateXSharedVal(nearestStep * stepWidth, true);
+          updateXSharedVal(nearestStep * stepWidth, snapToStepAnimated);
         }
       }),
     Gesture.Pan()
@@ -149,12 +156,12 @@ const ThemedSlider: FC<ThemedSliderProps> = ({
       .onEnd(() => {
         if (stepWidth) {
           const nearestStep = Math.round(xSharedVal.get() / stepWidth);
-          updateXSharedVal(nearestStep * stepWidth, true);
+          updateXSharedVal(nearestStep * stepWidth, snapToStepAnimated);
         }
       })
   );
-  const currentValueComponent = currentValueDisplayMode !==
-    SliderCurrentValueDisplayMode.None && (
+  const valueDisplayComponent = valueDisplayMode !==
+    SliderValueDisplayMode.None && (
     <ThemedText marginTop={'s'} {...props}>
       {deferredSelectedValue}
     </ThemedText>
@@ -162,8 +169,7 @@ const ThemedSlider: FC<ThemedSliderProps> = ({
 
   return (
     <ThemedView ref={sliderViewRef} alignItems={'center'}>
-      {currentValueDisplayMode === SliderCurrentValueDisplayMode.Top &&
-        currentValueComponent}
+      {valueDisplayMode === SliderValueDisplayMode.Top && valueDisplayComponent}
       <GestureDetector gesture={gesture}>
         <ThemedView
           ref={trackViewRef}
@@ -172,7 +178,6 @@ const ThemedSlider: FC<ThemedSliderProps> = ({
           alignSelf={'stretch'}
           height={thumbSize}
           style={wrapStyle}
-          backgroundColor={'themeSec'}
           {...wrapProps}
         >
           <ThemedView
@@ -190,6 +195,19 @@ const ThemedSlider: FC<ThemedSliderProps> = ({
               {...trackInactiveProps}
             />
           </ThemedView>
+          {!!stepIndicator &&
+            processedRange.map((value, index) => (
+              <ThemedSliderStepIndicator
+                key={getMappingKey(value, index)}
+                left={
+                  index * (stepWidth ?? 0) +
+                  thumbSizeHalf -
+                  sliderStepIndicatorDefaultWidth / 2
+                }
+                height={thumbSize}
+                {...stepIndicatorProps}
+              />
+            ))}
           <AnimatedThemedView
             position={'absolute'}
             right={-thumbSizeHalf}
@@ -202,8 +220,8 @@ const ThemedSlider: FC<ThemedSliderProps> = ({
           />
         </ThemedView>
       </GestureDetector>
-      {currentValueDisplayMode === SliderCurrentValueDisplayMode.Bottom &&
-        currentValueComponent}
+      {valueDisplayMode === SliderValueDisplayMode.Bottom &&
+        valueDisplayComponent}
     </ThemedView>
   );
 };
