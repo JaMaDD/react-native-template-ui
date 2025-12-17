@@ -29,11 +29,12 @@ export default function App() {
           onValueChange={(value) => console.log('Number Slider Value:', value)}
         />
         <ThemedSlider
-          range={['9', '200', '100']}
+          range={['textM', 'textSs', 'textMBold']}
           defaultValue={'100'}
           stepIndicator={true}
           snapToStepAnimated={false}
           valueDisplayMode={SliderValueDisplayMode.Bottom}
+          valueDescription={'units'}
           onValueChange={(value) => console.log('String Slider Value:', value)}
         />
       </ThemedScreenWrap>

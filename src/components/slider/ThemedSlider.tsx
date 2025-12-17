@@ -36,7 +36,7 @@ const ThemedSlider: FC<ThemedSliderProps> = ({
   stepIndicator,
   stepIndicatorProps,
   snapToStepAnimated = true,
-  valueDisplayMode = SliderValueDisplayMode.None,
+
   onValueChange,
   trackSize = SliderTrackSize.M,
   trackActiveColor = 'themePri',
@@ -46,8 +46,12 @@ const ThemedSlider: FC<ThemedSliderProps> = ({
   thumbSize = SliderThumbSize.M,
   thumbColor = 'themePri',
   thumbProps,
+  valueDisplayMode = SliderValueDisplayMode.None,
+  valueDisplayWrapProps,
+  valueTextProps,
+  valueDescription,
+  valueDescriptionTextProps,
   wrapProps,
-  ...props
 }) => {
   const isNumRange = typeof range[0] === 'number';
   const processedRange = isNumRange ? range.sort() : range;
@@ -162,9 +166,27 @@ const ThemedSlider: FC<ThemedSliderProps> = ({
   );
   const valueDisplayComponent = valueDisplayMode !==
     SliderValueDisplayMode.None && (
-    <ThemedText marginTop={'s'} {...props}>
-      {deferredSelectedValue}
-    </ThemedText>
+    <ThemedView
+      flexDirection={'row'}
+      alignItems={'center'}
+      alignSelf={'stretch'}
+      marginTop={'s'}
+      backgroundColor={'err'}
+      {...valueDisplayWrapProps}
+    >
+      {!!valueDescription && (
+        <ThemedText
+          flex={1}
+          textAlign={'center'}
+          {...valueDescriptionTextProps}
+        >
+          {valueDescription}
+        </ThemedText>
+      )}
+      <ThemedText flex={1} textAlign={'center'} {...valueTextProps}>
+        {deferredSelectedValue}
+      </ThemedText>
+    </ThemedView>
   );
 
   return (

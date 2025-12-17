@@ -23,20 +23,23 @@ export type StringSlider = {
   stepIndicatorProps?: ThemedSliderStepIndicatorProps;
 };
 
-export type ThemedSliderProps = (NumberSlider | StringSlider) &
-  Omit<CustomThemedTextProps, 'text'> & {
-    snapToStepAnimated?: boolean;
-    valueDisplayMode?: SliderValueDisplayMode;
-    onValueChange: (value: number | string) => void;
-    trackSize?: SliderTrackSize | number;
-    trackActiveColor?: ThemeColors;
-    trackActiveProps?: ThemedViewProps;
-    trackInactiveColor?: ThemeColors;
-    trackInactiveProps?: AnimatedThemedViewProps;
-    thumbSize?: SliderThumbSize | number;
-    thumbColor?: ThemeColors;
-    thumbProps?: AnimatedThemedViewProps;
-    wrapProps?: ThemedViewProps;
-  };
+export type ThemedSliderProps = (NumberSlider | StringSlider) & {
+  snapToStepAnimated?: boolean;
+  onValueChange: (value: number | string) => void;
+  trackSize?: SliderTrackSize | number;
+  trackActiveColor?: ThemeColors;
+  trackActiveProps?: ThemedViewProps;
+  trackInactiveColor?: ThemeColors;
+  trackInactiveProps?: AnimatedThemedViewProps;
+  thumbSize?: SliderThumbSize | number;
+  thumbColor?: ThemeColors;
+  thumbProps?: AnimatedThemedViewProps;
+  valueDisplayMode?: SliderValueDisplayMode;
+  valueDisplayWrapProps?: ThemedViewProps;
+  valueTextProps?: Omit<CustomThemedTextProps, 'text'>;
+  valueDescription?: string;
+  valueDescriptionTextProps?: Omit<CustomThemedTextProps, 'text'>;
+  wrapProps?: ThemedViewProps;
+};
 
 export type ThemedSliderStepIndicatorProps = ThemedViewProps;
