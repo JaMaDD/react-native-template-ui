@@ -3,7 +3,7 @@ import type {
   SliderTrackSize,
   SliderValueDisplayMode,
 } from '../utils/slider/const';
-import type { CustomThemedTextProps } from './text';
+import type { ThemedTextProps } from './text';
 import type { ThemeColors } from './theme';
 import type { AnimatedThemedViewProps, ThemedViewProps } from './view';
 
@@ -36,9 +36,9 @@ export type ThemedSliderProps = (NumberSlider | StringSlider) & {
   thumbProps?: AnimatedThemedViewProps;
   valueDisplayMode?: SliderValueDisplayMode;
   valueDisplayWrapProps?: ThemedViewProps;
-  valueTextProps?: Omit<CustomThemedTextProps, 'text'>;
+  valueTextProps?: Omit<ThemedTextProps, 'children'>;
   valueDescription?: string;
-  valueDescriptionTextProps?: Omit<CustomThemedTextProps, 'text'>;
+  valueDescriptionTextProps?: Omit<ThemedTextProps, 'children'>;
   wrapProps?: ThemedViewProps;
 };
 

@@ -175,6 +175,7 @@ const ThemedSlider: FC<ThemedSliderProps> = ({
     >
       {!!valueDescription && (
         <ThemedText
+          variant={'textS'}
           flex={1}
           textAlign={'center'}
           {...valueDescriptionTextProps}
@@ -182,7 +183,12 @@ const ThemedSlider: FC<ThemedSliderProps> = ({
           {valueDescription}
         </ThemedText>
       )}
-      <ThemedText flex={1} textAlign={'center'} {...valueTextProps}>
+      <ThemedText
+        variant={'textSBold'}
+        flex={1}
+        textAlign={'center'}
+        {...valueTextProps}
+      >
         {deferredSelectedValue}
       </ThemedText>
     </ThemedView>
