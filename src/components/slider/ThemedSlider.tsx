@@ -171,7 +171,6 @@ const ThemedSlider: FC<ThemedSliderProps> = ({
       alignItems={'center'}
       alignSelf={'stretch'}
       marginTop={'s'}
-      backgroundColor={'err'}
       {...valueDisplayWrapProps}
     >
       {!!valueDescription && (
