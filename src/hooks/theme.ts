@@ -8,20 +8,20 @@ import { useColorScheme, type ColorSchemeName } from 'react-native';
 import type { Theme, ThemeBreakpoints } from '../types/theme';
 import { darkTheme, lightTheme } from '../utils/theme/const';
 
-export function useTheme<T extends Theme>() {
-  return useRestyleTheme<T>();
+export function useTheme(): Theme {
+  return useRestyleTheme<Theme>();
 }
 
-export function useThemeColors<T extends Theme>() {
-  return useTheme<T>().colors;
+export function useThemeColors(): Theme['colors'] {
+  return useTheme().colors;
 }
 
-export function useThemeSpacing<T extends Theme>() {
-  return useTheme<T>().spacing;
+export function useThemeSpacing(): Theme['spacing'] {
+  return useTheme().spacing;
 }
 
-export function useThemeBreakpoints<T extends Theme>() {
-  return useTheme<T>().breakpoints;
+export function useThemeBreakpoints(): Theme['breakpoints'] {
+  return useTheme().breakpoints;
 }
 
 export function useThemeBreakpointValues<T extends PropValue>(
@@ -42,16 +42,16 @@ export function useThemeBreakpoint() {
   return useThemeBreakpointValues(responsiveVal) as ThemeBreakpoints;
 }
 
-export function useThemeZIndices<T extends Theme>() {
-  return useTheme<T>().zIndices;
+export function useThemeZIndices(): Theme['zIndices'] {
+  return useTheme().zIndices;
 }
 
-export function useThemeBorderRadii<T extends Theme>() {
-  return useTheme<T>().borderRadii;
+export function useThemeBorderRadii(): Theme['borderRadii'] {
+  return useTheme().borderRadii;
 }
 
-export function useThemeTextVariants<T extends Theme>() {
-  return useTheme<T>().textVariants;
+export function useThemeTextVariants(): Theme['textVariants'] {
+  return useTheme().textVariants;
 }
 
 export function useIsDarkColorScheme(overrideColorScheme?: ColorSchemeName) {
