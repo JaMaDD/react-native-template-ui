@@ -12,16 +12,16 @@ export function useTheme<T extends Theme>() {
   return useRestyleTheme<T>();
 }
 
-export function useThemeColors() {
-  return useTheme().colors;
+export function useThemeColors<T extends Theme>() {
+  return useTheme<T>().colors;
 }
 
-export function useThemeSpacing() {
-  return useTheme().spacing;
+export function useThemeSpacing<T extends Theme>() {
+  return useTheme<T>().spacing;
 }
 
-export function useThemeBreakpoints() {
-  return useTheme().breakpoints;
+export function useThemeBreakpoints<T extends Theme>() {
+  return useTheme<T>().breakpoints;
 }
 
 export function useThemeBreakpointValues<T extends PropValue>(
@@ -42,16 +42,16 @@ export function useThemeBreakpoint() {
   return useThemeBreakpointValues(responsiveVal) as ThemeBreakpoints;
 }
 
-export function useThemeZIndices() {
-  return useTheme().zIndices;
+export function useThemeZIndices<T extends Theme>() {
+  return useTheme<T>().zIndices;
 }
 
-export function useThemeBorderRadii() {
-  return useTheme().borderRadii;
+export function useThemeBorderRadii<T extends Theme>() {
+  return useTheme<T>().borderRadii;
 }
 
-export function useThemeTextVariants() {
-  return useTheme().textVariants;
+export function useThemeTextVariants<T extends Theme>() {
+  return useTheme<T>().textVariants;
 }
 
 export function useIsDarkColorScheme(overrideColorScheme?: ColorSchemeName) {
