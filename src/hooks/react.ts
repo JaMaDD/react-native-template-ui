@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useDeferredValue, useEffect, useRef, useState } from 'react';
 
 export function useTimeout() {
   const timeoutRef = useRef<number>(null);
@@ -24,4 +24,11 @@ export function useInterval() {
   useEffect(() => clearIntervalRef, []);
 
   return { intervalRef, clearIntervalRef };
+}
+
+export function useDeferredState<T>(initialState?: T) {
+  const [state, setState] = useState<T | undefined>(initialState);
+  const deferredState = useDeferredValue(state);
+
+  return { state, setState, deferredState };
 }

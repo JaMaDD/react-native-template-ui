@@ -1,5 +1,5 @@
 import { useMappingHelper } from '@shopify/flash-list';
-import { useDeferredValue, useLayoutEffect, useState, type FC } from 'react';
+import { useLayoutEffect, useState, type FC } from 'react';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import {
   useAnimatedStyle,
@@ -7,6 +7,7 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
+import { useDeferredState } from '../../hooks/react';
 import { useViewRef } from '../../hooks/view';
 import type {
   NumberSlider,
@@ -68,10 +69,11 @@ const ThemedSlider: FC<ThemedSliderProps> = ({
   const [sliderWidth, setSliderWidth] = useState<number>();
   const [trackWidth, setTrackWidth] = useState<number>();
   const [stepWidth, setStepWidth] = useState<number>();
-  const [selectedVal, setSelectedVal] = useState<number | string | undefined>(
-    defaultValue
-  );
-  const deferredSelectedValue = useDeferredValue(selectedVal);
+  const {
+    state: selectedVal,
+    setState: setSelectedVal,
+    deferredState: deferredSelectedValue,
+  } = useDeferredState(defaultValue);
   const xSharedVal = useSharedValue(-(trackWidth ?? 0));
   const trackAnimatedStyle = useAnimatedStyle(
     () => ({ transform: [{ translateX: xSharedVal.get() }] }),
