@@ -18,4 +18,6 @@ export enum SliderThumbSize {
   L = 28,
 }
 
+export const sliderThumbDefaultSize = SliderThumbSize.M;
+
 export const sliderStepIndicatorDefaultWidth = BorderSize.M;
