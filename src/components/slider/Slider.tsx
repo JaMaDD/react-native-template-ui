@@ -7,6 +7,7 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
+import { useWindowDimensionsWidth } from '../../hooks/style';
 import { useViewRef } from '../../hooks/view';
 import type {
   NumberSlider,
@@ -42,6 +43,7 @@ const Slider: FC<SliderProps> = ({
   setSelectedVal,
   selectedValSharedVal,
 }) => {
+  const windowWidth = useWindowDimensionsWidth();
   const isNumRange = typeof range[0] === 'number';
   const processedRange = isNumRange ? range.sort() : range;
   const totalSteps = isNumRange
@@ -117,22 +119,24 @@ const Slider: FC<SliderProps> = ({
   const gesture = Gesture.Simultaneous(
     Gesture.LongPress()
       .minDuration(gestureActivateDuration)
+      .maxDistance(windowWidth * 10)
+      .shouldCancelWhenOutside(false)
       .onStart(({ x }) => {
         if (sliderWidth) {
           updateXSharedVal(-(sliderWidth - (x + thumbSize + thumbSizeHalf)));
         }
       })
-      .onTouchesUp(({ allTouches }) => {
-        const touch = allTouches[0];
-        if (touch && sliderWidth && stepWidth) {
+      .onEnd(({ x }) => {
+        if (sliderWidth && stepWidth) {
           const nearestStep = Math.round(
-            -(sliderWidth - (touch.x + thumbSize + thumbSizeHalf)) / stepWidth
+            -(sliderWidth - (x + thumbSize + thumbSizeHalf)) / stepWidth
           );
           updateXSharedVal(nearestStep * stepWidth, snapToStepAnimated);
         }
       }),
     Gesture.Pan()
       .manualActivation(true)
+      .shouldCancelWhenOutside(false)
       .onBegin(() => {
         touchStart.set(Date.now());
       })
