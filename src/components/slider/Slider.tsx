@@ -1,5 +1,5 @@
 import { useMappingHelper } from '@shopify/flash-list';
-import { memo, useLayoutEffect, useState, type FC } from 'react';
+import { memo, useLayoutEffect, useMemo, useState, type FC } from 'react';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import {
   useAnimatedStyle,
@@ -52,6 +52,18 @@ const Slider: FC<SliderProps> = ({
           (processedRange as NumberSlider['range'])[0]
       ) / steps
     : processedRange.length - 1;
+  const stepsFractionDigits = useMemo(() => {
+    if (!isNumRange || Number.isInteger(steps)) {
+      return 0;
+    }
+
+    const stepsStrSplit = steps.toString().split('.');
+    if (stepsStrSplit.length < 2) {
+      return 0;
+    }
+
+    return stepsStrSplit[1]?.length ?? 0;
+  }, [isNumRange, steps]);
   const thumbSizeHalf = thumbSize / 2;
   const { getMappingKey } = useMappingHelper();
   const trackViewRef = useViewRef();
@@ -97,8 +109,10 @@ const Slider: FC<SliderProps> = ({
 
     if (isNumRange) {
       const numRange = processedRange as NumberSlider['range'];
-      const numIndex = Math.round(x / stepWidth);
-      const tempSelectedVal = numRange[1] - numIndex * steps;
+      const numIndex = Math.f16round(x / stepWidth);
+      const tempSelectedVal = (numRange[1] - numIndex * steps).toFixed(
+        stepsFractionDigits
+      );
       setSelectedVal?.(tempSelectedVal);
       onValueChange(tempSelectedVal);
     } else {
