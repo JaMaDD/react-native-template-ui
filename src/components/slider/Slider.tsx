@@ -109,7 +109,7 @@ const Slider: FC<SliderProps> = ({
 
     if (isNumRange) {
       const numRange = processedRange as NumberSlider['range'];
-      const numIndex = Math.f16round(x / stepWidth);
+      const numIndex = Math.round(x / stepWidth);
       const tempSelectedVal = (numRange[1] - numIndex * steps).toFixed(
         stepsFractionDigits
       );
