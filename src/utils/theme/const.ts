@@ -54,6 +54,7 @@ export enum SwitchSize {
 }
 
 export enum BorderSize {
+  None = 0,
   XS = StyleSheet.hairlineWidth,
   S = 1,
   M = 2,
@@ -62,6 +63,7 @@ export enum BorderSize {
 }
 
 export enum BorderRadius {
+  None = 0,
   S = 12,
   M = 24,
   L = 36,
@@ -139,11 +141,13 @@ export const lightTheme = createTheme({
     desktop: 1200,
   },
   zIndices: {
+    base: ZIndex.Base,
     bottom: ZIndex.Bottom,
     middle: ZIndex.Middle,
     top: ZIndex.Top,
   },
   borderRadii: {
+    none: BorderRadius.None,
     s: BorderRadius.S,
     m: BorderRadius.M,
     l: BorderRadius.L,
