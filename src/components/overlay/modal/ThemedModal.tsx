@@ -28,7 +28,7 @@ const ThemedModal: FC<ThemedModalProps> = ({
           {...contentWrapProps}
         >
           <ThemedPressable
-            onPress={onDismiss}
+            onPress={onDismiss ?? null}
             disabled={!dismissable}
             style={StyleSheet.absoluteFill}
           />

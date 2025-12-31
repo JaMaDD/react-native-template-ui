@@ -96,7 +96,7 @@ export function useThemedPressable(
     themedPressableProps
   );
   const pressableOnPress = useDelayedOnPress(
-    onPress ?? undefined,
+    onPress ?? null,
     onPressDelayConfig
   );
 
