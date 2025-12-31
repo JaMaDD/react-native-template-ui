@@ -27,7 +27,9 @@ export type PressableProps = Omit<RNPressableProps, 'style'> & {
   onPressDelayConfig?: OnPressDelayConfig;
 };
 
-export type ThemedPressableProps = PressableProps & ThemeViewProps;
+export type ThemedPressableProps = Omit<PressableProps, 'onPress'> &
+  Required<Pick<PressableProps, 'onPress'>> &
+  ThemeViewProps;
 
 export type AnimatedThemedPressableProps = Omit<
   ThemedPressableProps,
@@ -36,10 +38,7 @@ export type AnimatedThemedPressableProps = Omit<
   style?: AnimatedStyle<ViewStyle>;
 };
 
-type ButtonProps = PropsWithChildren<
-  Omit<ThemedPressableProps, 'onPress' | 'children'> &
-    Required<Pick<ThemedPressableProps, 'onPress'>>
->;
+type ButtonProps = PropsWithChildren<Omit<ThemedPressableProps, 'children'>>;
 
 export type ThemedButtonProps = ButtonProps & CustomThemedTextProps;
 
