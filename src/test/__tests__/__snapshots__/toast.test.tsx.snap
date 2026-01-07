@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ThemedToast Render & Snapshot 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessible={true}
+    collapsable={false}
+    jestAnimatedProps={
+      {
+        "value": {},
+      }
+    }
+    jestAnimatedStyle={
+      {
+        "value": {
+          "opacity": 0,
+          "transform": [
+            {
+              "translateY": 32,
+            },
+          ],
+        },
+      }
+    }
+    jestInlineStyle={{}}
+    nativeID="0"
+    role="group"
+    style={
+      [
+        {
+          "alignSelf": "center",
+          "backgroundColor": "#00050180",
+          "bottom": 16,
+          "maxWidth": "80%",
+          "paddingHorizontal": 10,
+          "paddingVertical": 4,
+          "position": "absolute",
+        },
+        [
+          {
+            "opacity": 0,
+            "transform": [
+              {
+                "translateY": 32,
+              },
+            ],
+          },
+        ],
+      ]
+    }
+  >
+    <Text
+      numberOfLines={1}
+      style={
+        [
+          {
+            "color": "#fafafa",
+            "fontSize": 16,
+            "lineHeight": 19.2,
+          },
+        ]
+      }
+    >
+      Toast message
+    </Text>
+  </View>
+</View>
+`;
