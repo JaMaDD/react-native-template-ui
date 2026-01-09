@@ -1,6 +1,5 @@
 import ThemedLoading from '../../components/loading/ThemedLoading';
-import { getThemeColors } from '../utils/func';
-import { renderAsync, screen } from '../utils/testingLib';
+import { getThemeColors, renderAsync, screen } from '../utils';
 
 describe('ThemedLoading', () => {
   test('Render & Snapshot', async () => {

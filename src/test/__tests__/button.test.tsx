@@ -6,14 +6,17 @@ import ThemedIconTextButton from '../../components/button/ThemedIconTextButton';
 import ThemedPressable from '../../components/button/ThemedPressable';
 import type { ThemedPressableProps } from '../../types/button';
 import { OnPressDelayType } from '../../utils/button/const';
-import { getThemeColors } from '../utils/func';
 import {
   act,
+  advanceTimers,
+  cleanupFakeTimers,
+  getThemeColors,
   renderAsync,
   renderHookAsync,
   screen,
+  setupFakeTimers,
   userEvent,
-} from '../utils/testingLib';
+} from '../utils';
 
 const onPressDelayConfigWait = 1000;
 
@@ -34,19 +37,16 @@ function getPressable() {
 }
 
 function triggerPressDelay() {
-  jest.advanceTimersByTime(onPressDelayConfigWait);
+  advanceTimers(onPressDelayConfigWait);
 }
 
 describe('ThemedPressable', () => {
   beforeEach(() => {
-    jest.useFakeTimers();
-    jest.spyOn(Date, 'now').mockImplementation(() => jest.now());
+    setupFakeTimers();
   });
 
   afterEach(() => {
-    jest.runOnlyPendingTimers();
-    jest.restoreAllMocks();
-    jest.useRealTimers();
+    cleanupFakeTimers();
   });
 
   test('Render & Snapshot', async () => {

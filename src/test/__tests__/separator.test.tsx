@@ -1,7 +1,6 @@
 import ThemedSeparator from '../../components/separator/ThemedSeparator';
 import { BorderSize } from '../../utils/theme/const';
-import { getThemeColors } from '../utils/func';
-import { renderAsync, screen } from '../utils/testingLib';
+import { getThemeColors, renderAsync, screen } from '../utils';
 
 function getSeparator() {
   return screen.getByRole('group');

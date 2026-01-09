@@ -1,7 +1,6 @@
 import ThemedIconText from '../../components/text/ThemedIconText';
 import ThemedText from '../../components/text/ThemedText';
-import { getThemeColors } from '../utils/func';
-import { renderAsync, screen } from '../utils/testingLib';
+import { getThemeColors, renderAsync, screen } from '../utils';
 
 describe('ThemedText', () => {
   test('Render & Snapshot', async () => {

@@ -1,7 +1,6 @@
 import { IconSize } from '@jamadd/react-native-template-icons';
 import ThemedIcon from '../../components/icon/ThemedIcon';
-import { getThemeColors } from '../utils/func';
-import { renderAsync, screen } from '../utils/testingLib';
+import { getThemeColors, renderAsync, screen } from '../utils';
 
 describe('ThemedIcon', () => {
   test('Render & Snapshot', async () => {

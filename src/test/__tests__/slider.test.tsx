@@ -1,6 +1,6 @@
 import ThemedSlider from '../../components/slider/ThemedSlider';
 import { SliderValueDisplayMode } from '../../utils/slider/const';
-import { renderAsync, screen } from '../utils/testingLib';
+import { renderAsync, screen } from '../utils';
 
 const defaultRange = [0, 100];
 

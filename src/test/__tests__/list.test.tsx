@@ -2,7 +2,7 @@ import type { ListRenderItemInfo } from '@shopify/flash-list';
 import { type FC } from 'react';
 import List from '../../components/list/List';
 import ThemedText from '../../components/text/ThemedText';
-import { renderAsync, screen } from '../utils/testingLib';
+import { renderAsync, screen } from '../utils';
 
 interface TestItem {
   id: string;

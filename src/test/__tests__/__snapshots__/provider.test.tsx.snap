@@ -1,0 +1,169 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GestureProvider Render & Snapshot 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      {
+        "flex": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "color": "#000501",
+            "fontSize": 20,
+            "lineHeight": 24,
+          },
+        ]
+      }
+    >
+      Gesture Provider Test
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`InsetsProvider Render & Snapshot 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <Text
+    style={
+      [
+        {
+          "color": "#000501",
+          "fontSize": 20,
+          "lineHeight": 24,
+        },
+      ]
+    }
+  >
+    Insets Provider Test
+  </Text>
+</View>
+`;
+
+exports[`ReactNativeTemplateProviders Render & Snapshot 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      {
+        "flex": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "color": "#000501",
+            "fontSize": 20,
+            "lineHeight": 24,
+          },
+        ]
+      }
+    >
+      All Providers Test
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`ReactNativeTemplateProviders Render with dark theme 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      {
+        "flex": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "color": "#fafafa",
+            "fontSize": 20,
+            "lineHeight": 24,
+          },
+        ]
+      }
+    >
+      Dark Theme All Providers
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`ThemeProvider Render & Snapshot 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <Text
+    style={
+      [
+        {
+          "color": "#000501",
+          "fontSize": 20,
+          "lineHeight": 24,
+        },
+      ]
+    }
+  >
+    Theme Provider Test
+  </Text>
+</View>
+`;
+
+exports[`ThemeProvider Render with dark theme 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <Text
+    style={
+      [
+        {
+          "color": "#fafafa",
+          "fontSize": 20,
+          "lineHeight": 24,
+        },
+      ]
+    }
+  >
+    Dark Theme Test
+  </Text>
+</View>
+`;
