@@ -1,0 +1,364 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`List Render & Snapshot 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    collapsable={false}
+    onLayout={[Function]}
+    style={
+      [
+        {
+          "flex": 1,
+          "overflow": "hidden",
+        },
+        undefined,
+      ]
+    }
+  >
+    <RCTScrollView
+      collapsable={false}
+      contentContainerStyle={
+        {
+          "paddingBottom": 16,
+        }
+      }
+      estimatedItemSize={50}
+      maintainVisibleContentPosition={
+        {
+          "minIndexForVisible": 0,
+        }
+      }
+      onScroll={[Function]}
+      overScrollMode="always"
+      scrollEventThrottle={0.0001}
+      showsHorizontalScrollIndicator={true}
+      showsVerticalScrollIndicator={true}
+      testID="list"
+    >
+      <View>
+        <View
+          style={
+            {
+              "height": 0,
+              "left": 0,
+              "position": "absolute",
+              "top": 1000000,
+            }
+          }
+        />
+        <View
+          style={
+            {
+              "height": 0,
+              "marginTop": 0,
+              "width": undefined,
+            }
+          }
+        />
+        <View
+          style={
+            {
+              "height": 0,
+              "marginLeft": undefined,
+              "marginTop": 0,
+              "opacity": 1,
+              "width": undefined,
+            }
+          }
+        >
+          <View
+            index={0}
+            onLayout={[Function]}
+            style={
+              {
+                "flexDirection": "column",
+                "height": undefined,
+                "left": 0,
+                "maxHeight": undefined,
+                "maxWidth": undefined,
+                "minHeight": undefined,
+                "minWidth": undefined,
+                "opacity": 1,
+                "position": "absolute",
+                "top": 0,
+                "width": 0,
+              }
+            }
+          >
+            <Text
+              style={
+                [
+                  {
+                    "color": "#000501",
+                    "fontSize": 20,
+                    "lineHeight": 24,
+                  },
+                ]
+              }
+              testID="item-1"
+            >
+              Item 1
+            </Text>
+          </View>
+          <View
+            index={1}
+            onLayout={[Function]}
+            style={
+              {
+                "flexDirection": "column",
+                "height": undefined,
+                "left": 0,
+                "maxHeight": undefined,
+                "maxWidth": undefined,
+                "minHeight": undefined,
+                "minWidth": undefined,
+                "opacity": 1,
+                "position": "absolute",
+                "top": 0,
+                "width": 0,
+              }
+            }
+          >
+            <Text
+              style={
+                [
+                  {
+                    "color": "#000501",
+                    "fontSize": 20,
+                    "lineHeight": 24,
+                  },
+                ]
+              }
+              testID="item-2"
+            >
+              Item 2
+            </Text>
+          </View>
+          <View
+            index={2}
+            onLayout={[Function]}
+            style={
+              {
+                "flexDirection": "column",
+                "height": undefined,
+                "left": 0,
+                "maxHeight": undefined,
+                "maxWidth": undefined,
+                "minHeight": undefined,
+                "minWidth": undefined,
+                "opacity": 1,
+                "position": "absolute",
+                "top": 0,
+                "width": 0,
+              }
+            }
+          >
+            <Text
+              style={
+                [
+                  {
+                    "color": "#000501",
+                    "fontSize": 20,
+                    "lineHeight": 24,
+                  },
+                ]
+              }
+              testID="item-3"
+            >
+              Item 3
+            </Text>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</View>
+`;
+
+exports[`List Render with insets 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    collapsable={false}
+    onLayout={[Function]}
+    style={
+      [
+        {
+          "flex": 1,
+          "overflow": "hidden",
+        },
+        undefined,
+      ]
+    }
+  >
+    <RCTScrollView
+      collapsable={false}
+      contentContainerStyle={
+        {
+          "paddingBottom": 16,
+          "paddingTop": 0,
+        }
+      }
+      estimatedItemSize={50}
+      maintainVisibleContentPosition={
+        {
+          "minIndexForVisible": 0,
+        }
+      }
+      onScroll={[Function]}
+      overScrollMode="always"
+      scrollEventThrottle={0.0001}
+      showsHorizontalScrollIndicator={true}
+      showsVerticalScrollIndicator={true}
+      testID="list-insets"
+    >
+      <View>
+        <View
+          style={
+            {
+              "height": 0,
+              "left": 0,
+              "position": "absolute",
+              "top": 1000000,
+            }
+          }
+        />
+        <View
+          style={
+            {
+              "height": 0,
+              "marginTop": 0,
+              "width": undefined,
+            }
+          }
+        />
+        <View
+          style={
+            {
+              "height": 0,
+              "marginLeft": undefined,
+              "marginTop": 0,
+              "opacity": 1,
+              "width": undefined,
+            }
+          }
+        >
+          <View
+            index={0}
+            onLayout={[Function]}
+            style={
+              {
+                "flexDirection": "column",
+                "height": undefined,
+                "left": 0,
+                "maxHeight": undefined,
+                "maxWidth": undefined,
+                "minHeight": undefined,
+                "minWidth": undefined,
+                "opacity": 1,
+                "position": "absolute",
+                "top": 0,
+                "width": 0,
+              }
+            }
+          >
+            <Text
+              style={
+                [
+                  {
+                    "color": "#000501",
+                    "fontSize": 20,
+                    "lineHeight": 24,
+                  },
+                ]
+              }
+              testID="item-1"
+            >
+              Item 1
+            </Text>
+          </View>
+          <View
+            index={1}
+            onLayout={[Function]}
+            style={
+              {
+                "flexDirection": "column",
+                "height": undefined,
+                "left": 0,
+                "maxHeight": undefined,
+                "maxWidth": undefined,
+                "minHeight": undefined,
+                "minWidth": undefined,
+                "opacity": 1,
+                "position": "absolute",
+                "top": 0,
+                "width": 0,
+              }
+            }
+          >
+            <Text
+              style={
+                [
+                  {
+                    "color": "#000501",
+                    "fontSize": 20,
+                    "lineHeight": 24,
+                  },
+                ]
+              }
+              testID="item-2"
+            >
+              Item 2
+            </Text>
+          </View>
+          <View
+            index={2}
+            onLayout={[Function]}
+            style={
+              {
+                "flexDirection": "column",
+                "height": undefined,
+                "left": 0,
+                "maxHeight": undefined,
+                "maxWidth": undefined,
+                "minHeight": undefined,
+                "minWidth": undefined,
+                "opacity": 1,
+                "position": "absolute",
+                "top": 0,
+                "width": 0,
+              }
+            }
+          >
+            <Text
+              style={
+                [
+                  {
+                    "color": "#000501",
+                    "fontSize": 20,
+                    "lineHeight": 24,
+                  },
+                ]
+              }
+              testID="item-3"
+            >
+              Item 3
+            </Text>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</View>
+`;

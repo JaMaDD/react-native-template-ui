@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ThemedIcon Render & Snapshot 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <icon
+    color="#7ccf6b"
+    name="check"
+    size={30}
+    style={
+      [
+        {},
+      ]
+    }
+    testID="icon"
+  />
+</View>
+`;
