@@ -3,8 +3,7 @@ import ThemedScreenWrap from '../../components/view/ThemedScreenWrap';
 import ThemedScrollView from '../../components/view/ThemedScrollView';
 import ThemedView from '../../components/view/ThemedView';
 import { BorderSize } from '../../utils/theme/const';
-import { getThemeColors, getThemeSpacing } from '../utils/func';
-import { renderAsync, screen } from '../utils/testingLib';
+import { getThemeColors, getThemeSpacing, renderAsync, screen } from '../utils';
 
 function getView() {
   return screen.getByRole('group');

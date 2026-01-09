@@ -3,14 +3,18 @@ import ThemedSwitch from '../../components/switch/ThemedSwitch';
 import type { ThemedSwitchProps } from '../../types/switch';
 import { OnPressDelayType } from '../../utils/button/const';
 import { switchAnimationDuration } from '../../utils/switch/const';
-import { getThemeColors, hexToRgb } from '../utils/func';
 import {
   act,
+  advanceTimers,
+  cleanupFakeTimers,
+  getThemeColors,
+  hexToRgb,
   renderAsync,
   renderHookAsync,
   screen,
+  setupFakeTimers,
   userEvent,
-} from '../utils/testingLib';
+} from '../utils';
 
 const onPressDelayConfigWait = 1000;
 
@@ -35,23 +39,20 @@ function getSwitchThumb() {
 }
 
 function triggerSwitchAnimation() {
-  jest.advanceTimersByTime(switchAnimationDuration);
+  advanceTimers(switchAnimationDuration);
 }
 
 function triggerSwitchPressDelay() {
-  jest.advanceTimersByTime(onPressDelayConfigWait);
+  advanceTimers(onPressDelayConfigWait);
 }
 
 describe('ThemedSwitch', () => {
   beforeEach(() => {
-    jest.useFakeTimers();
-    jest.spyOn(Date, 'now').mockImplementation(() => jest.now());
+    setupFakeTimers();
   });
 
   afterEach(() => {
-    jest.runOnlyPendingTimers();
-    jest.restoreAllMocks();
-    jest.useRealTimers();
+    cleanupFakeTimers();
   });
 
   test('Render & Snapshot', async () => {

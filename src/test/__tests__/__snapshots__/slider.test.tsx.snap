@@ -1,0 +1,670 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ThemedSlider Render & Snapshot 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessible={true}
+    role="group"
+    style={
+      [
+        {
+          "backgroundColor": "#fafafa",
+          "gap": 6,
+          "paddingVertical": 10,
+        },
+        {
+          "marginHorizontal": 12,
+        },
+      ]
+    }
+  >
+    <View
+      accessible={true}
+      collapsable={false}
+      role="group"
+      style={
+        [
+          {
+            "alignItems": "center",
+            "alignSelf": "stretch",
+            "backgroundColor": "#fafafa",
+            "height": 24,
+            "justifyContent": "center",
+          },
+        ]
+      }
+    >
+      <View
+        accessible={true}
+        role="group"
+        style={
+          [
+            {
+              "backgroundColor": "#c4c4c4",
+              "height": 10,
+              "overflow": "hidden",
+              "position": "absolute",
+            },
+          ]
+        }
+      >
+        <View
+          accessible={true}
+          collapsable={false}
+          jestAnimatedProps={
+            {
+              "value": {},
+            }
+          }
+          jestAnimatedStyle={
+            {
+              "value": {
+                "transform": [
+                  {
+                    "translateX": -0,
+                  },
+                ],
+              },
+            }
+          }
+          jestInlineStyle={{}}
+          nativeID="0"
+          role="group"
+          style={
+            [
+              {
+                "backgroundColor": "#7ccf6b",
+                "height": 10,
+              },
+              [
+                {
+                  "transform": [
+                    {
+                      "translateX": -0,
+                    },
+                  ],
+                },
+              ],
+            ]
+          }
+        />
+      </View>
+      <View
+        accessible={true}
+        collapsable={false}
+        jestAnimatedProps={
+          {
+            "value": {},
+          }
+        }
+        jestAnimatedStyle={
+          {
+            "value": {
+              "transform": [
+                {
+                  "translateX": -12,
+                },
+              ],
+            },
+          }
+        }
+        jestInlineStyle={{}}
+        nativeID="1"
+        role="group"
+        style={
+          [
+            {
+              "aspectRatio": 1,
+              "backgroundColor": "#7ccf6b",
+              "opacity": 0.8,
+              "position": "absolute",
+              "right": -12,
+              "width": 24,
+            },
+            [
+              {
+                "transform": [
+                  {
+                    "translateX": -12,
+                  },
+                ],
+              },
+            ],
+          ]
+        }
+      />
+    </View>
+  </View>
+</View>
+`;
+
+exports[`ThemedSlider Render with custom range 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessible={true}
+    role="group"
+    style={
+      [
+        {
+          "backgroundColor": "#fafafa",
+          "gap": 6,
+          "paddingVertical": 10,
+        },
+        {
+          "marginHorizontal": 12,
+        },
+      ]
+    }
+  >
+    <View
+      accessible={true}
+      role="group"
+      style={
+        [
+          {
+            "alignItems": "center",
+            "alignSelf": "stretch",
+            "backgroundColor": "#fafafa",
+            "flexDirection": "row",
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          [
+            {
+              "color": "#000501",
+              "flex": 1,
+              "fontSize": 16,
+              "fontWeight": "bold",
+              "lineHeight": 19.2,
+              "textAlign": "center",
+            },
+          ]
+        }
+      >
+        150
+      </Text>
+    </View>
+    <View
+      accessible={true}
+      collapsable={false}
+      role="group"
+      style={
+        [
+          {
+            "alignItems": "center",
+            "alignSelf": "stretch",
+            "backgroundColor": "#fafafa",
+            "height": 24,
+            "justifyContent": "center",
+          },
+        ]
+      }
+    >
+      <View
+        accessible={true}
+        role="group"
+        style={
+          [
+            {
+              "backgroundColor": "#c4c4c4",
+              "height": 10,
+              "overflow": "hidden",
+              "position": "absolute",
+            },
+          ]
+        }
+      >
+        <View
+          accessible={true}
+          collapsable={false}
+          jestAnimatedProps={
+            {
+              "value": {},
+            }
+          }
+          jestAnimatedStyle={
+            {
+              "value": {
+                "transform": [
+                  {
+                    "translateX": -0,
+                  },
+                ],
+              },
+            }
+          }
+          jestInlineStyle={{}}
+          nativeID="8"
+          role="group"
+          style={
+            [
+              {
+                "backgroundColor": "#7ccf6b",
+                "height": 10,
+              },
+              [
+                {
+                  "transform": [
+                    {
+                      "translateX": -0,
+                    },
+                  ],
+                },
+              ],
+            ]
+          }
+        />
+      </View>
+      <View
+        accessible={true}
+        collapsable={false}
+        jestAnimatedProps={
+          {
+            "value": {},
+          }
+        }
+        jestAnimatedStyle={
+          {
+            "value": {
+              "transform": [
+                {
+                  "translateX": -12,
+                },
+              ],
+            },
+          }
+        }
+        jestInlineStyle={{}}
+        nativeID="9"
+        role="group"
+        style={
+          [
+            {
+              "aspectRatio": 1,
+              "backgroundColor": "#7ccf6b",
+              "opacity": 0.8,
+              "position": "absolute",
+              "right": -12,
+              "width": 24,
+            },
+            [
+              {
+                "transform": [
+                  {
+                    "translateX": -12,
+                  },
+                ],
+              },
+            ],
+          ]
+        }
+      />
+    </View>
+  </View>
+</View>
+`;
+
+exports[`ThemedSlider Render with value display on bottom 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessible={true}
+    role="group"
+    style={
+      [
+        {
+          "backgroundColor": "#fafafa",
+          "gap": 6,
+          "paddingVertical": 10,
+        },
+        {
+          "marginHorizontal": 12,
+        },
+      ]
+    }
+  >
+    <View
+      accessible={true}
+      collapsable={false}
+      role="group"
+      style={
+        [
+          {
+            "alignItems": "center",
+            "alignSelf": "stretch",
+            "backgroundColor": "#fafafa",
+            "height": 24,
+            "justifyContent": "center",
+          },
+        ]
+      }
+    >
+      <View
+        accessible={true}
+        role="group"
+        style={
+          [
+            {
+              "backgroundColor": "#c4c4c4",
+              "height": 10,
+              "overflow": "hidden",
+              "position": "absolute",
+            },
+          ]
+        }
+      >
+        <View
+          accessible={true}
+          collapsable={false}
+          jestAnimatedProps={
+            {
+              "value": {},
+            }
+          }
+          jestAnimatedStyle={
+            {
+              "value": {
+                "transform": [
+                  {
+                    "translateX": -0,
+                  },
+                ],
+              },
+            }
+          }
+          jestInlineStyle={{}}
+          nativeID="4"
+          role="group"
+          style={
+            [
+              {
+                "backgroundColor": "#7ccf6b",
+                "height": 10,
+              },
+              [
+                {
+                  "transform": [
+                    {
+                      "translateX": -0,
+                    },
+                  ],
+                },
+              ],
+            ]
+          }
+        />
+      </View>
+      <View
+        accessible={true}
+        collapsable={false}
+        jestAnimatedProps={
+          {
+            "value": {},
+          }
+        }
+        jestAnimatedStyle={
+          {
+            "value": {
+              "transform": [
+                {
+                  "translateX": -12,
+                },
+              ],
+            },
+          }
+        }
+        jestInlineStyle={{}}
+        nativeID="5"
+        role="group"
+        style={
+          [
+            {
+              "aspectRatio": 1,
+              "backgroundColor": "#7ccf6b",
+              "opacity": 0.8,
+              "position": "absolute",
+              "right": -12,
+              "width": 24,
+            },
+            [
+              {
+                "transform": [
+                  {
+                    "translateX": -12,
+                  },
+                ],
+              },
+            ],
+          ]
+        }
+      />
+    </View>
+    <View
+      accessible={true}
+      role="group"
+      style={
+        [
+          {
+            "alignItems": "center",
+            "alignSelf": "stretch",
+            "backgroundColor": "#fafafa",
+            "flexDirection": "row",
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          [
+            {
+              "color": "#000501",
+              "flex": 1,
+              "fontSize": 16,
+              "fontWeight": "bold",
+              "lineHeight": 19.2,
+              "textAlign": "center",
+            },
+          ]
+        }
+      >
+        75
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`ThemedSlider Render with value display on top 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessible={true}
+    role="group"
+    style={
+      [
+        {
+          "backgroundColor": "#fafafa",
+          "gap": 6,
+          "paddingVertical": 10,
+        },
+        {
+          "marginHorizontal": 12,
+        },
+      ]
+    }
+  >
+    <View
+      accessible={true}
+      role="group"
+      style={
+        [
+          {
+            "alignItems": "center",
+            "alignSelf": "stretch",
+            "backgroundColor": "#fafafa",
+            "flexDirection": "row",
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          [
+            {
+              "color": "#000501",
+              "flex": 1,
+              "fontSize": 16,
+              "fontWeight": "bold",
+              "lineHeight": 19.2,
+              "textAlign": "center",
+            },
+          ]
+        }
+      >
+        25
+      </Text>
+    </View>
+    <View
+      accessible={true}
+      collapsable={false}
+      role="group"
+      style={
+        [
+          {
+            "alignItems": "center",
+            "alignSelf": "stretch",
+            "backgroundColor": "#fafafa",
+            "height": 24,
+            "justifyContent": "center",
+          },
+        ]
+      }
+    >
+      <View
+        accessible={true}
+        role="group"
+        style={
+          [
+            {
+              "backgroundColor": "#c4c4c4",
+              "height": 10,
+              "overflow": "hidden",
+              "position": "absolute",
+            },
+          ]
+        }
+      >
+        <View
+          accessible={true}
+          collapsable={false}
+          jestAnimatedProps={
+            {
+              "value": {},
+            }
+          }
+          jestAnimatedStyle={
+            {
+              "value": {
+                "transform": [
+                  {
+                    "translateX": -0,
+                  },
+                ],
+              },
+            }
+          }
+          jestInlineStyle={{}}
+          nativeID="2"
+          role="group"
+          style={
+            [
+              {
+                "backgroundColor": "#7ccf6b",
+                "height": 10,
+              },
+              [
+                {
+                  "transform": [
+                    {
+                      "translateX": -0,
+                    },
+                  ],
+                },
+              ],
+            ]
+          }
+        />
+      </View>
+      <View
+        accessible={true}
+        collapsable={false}
+        jestAnimatedProps={
+          {
+            "value": {},
+          }
+        }
+        jestAnimatedStyle={
+          {
+            "value": {
+              "transform": [
+                {
+                  "translateX": -12,
+                },
+              ],
+            },
+          }
+        }
+        jestInlineStyle={{}}
+        nativeID="3"
+        role="group"
+        style={
+          [
+            {
+              "aspectRatio": 1,
+              "backgroundColor": "#7ccf6b",
+              "opacity": 0.8,
+              "position": "absolute",
+              "right": -12,
+              "width": 24,
+            },
+            [
+              {
+                "transform": [
+                  {
+                    "translateX": -12,
+                  },
+                ],
+              },
+            ],
+          ]
+        }
+      />
+    </View>
+  </View>
+</View>
+`;
