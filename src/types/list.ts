@@ -29,10 +29,11 @@ export type ListGetItemType<T> = (
 
 export type ListProps<T> = Omit<
   FlashListProps<T>,
-  'renderItem' | 'keyExtractor'
+  'data' | 'renderItem' | 'keyExtractor'
 > &
   InsetsStyleConfig & {
     ref?: ListRefObj<T> | ListAnimatedRefObj<T>;
+    data: T[];
     Item: ComponentType<ListItemProps<T>>;
     keyExtractor: ListKeyExtractor<T>;
   };
