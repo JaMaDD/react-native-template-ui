@@ -1,5 +1,5 @@
 import type { BoxProps } from '@shopify/restyle';
-import type { ReactNode, RefObject } from 'react';
+import type { DependencyList, ReactNode, RefObject } from 'react';
 import type {
   NativeScrollEvent,
   NativeSyntheticEvent,
@@ -31,7 +31,12 @@ export type AnimatedThemedViewProps = Omit<ThemedViewProps, 'ref'> & {
   ref?: AnimatedRef<View>;
 };
 
-export type ThemedScreenWrapProps = ThemedViewProps & InsetsStyleConfig;
+export type ThemedScreenWrapProps = ThemedViewProps &
+  InsetsStyleConfig & {
+    effectSetup?: () => void;
+    effectCleanup?: () => void;
+    effectDependencies?: DependencyList;
+  };
 
 export type ScrollViewProps = RNScrollViewProps &
   InsetsStyleConfig & { ref?: ScrollViewRefObj };
