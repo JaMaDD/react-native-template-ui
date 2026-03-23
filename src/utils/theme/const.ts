@@ -37,7 +37,7 @@ export enum FontSize {
 }
 
 /** @internal */
-const FontLineHeightRatio = 1.2;
+const FontLineHeightRatio = 1.4;
 
 export enum FontLineHeight {
   XS = FontSize.XS * FontLineHeightRatio,
