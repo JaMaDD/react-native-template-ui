@@ -1,4 +1,4 @@
-import { useState, type FC } from 'react';
+import type { FC } from 'react';
 import AnimatedThemedPressable from '../../components/button/AnimatedThemedPressable';
 import ThemedButton from '../../components/button/ThemedButton';
 import ThemedIconButton from '../../components/button/ThemedIconButton';
@@ -7,12 +7,10 @@ import ThemedPressable from '../../components/button/ThemedPressable';
 import type { ThemedPressableProps } from '../../types/button';
 import { OnPressDelayType } from '../../utils/button/const';
 import {
-  act,
   advanceTimers,
   cleanupFakeTimers,
   getThemeColors,
   renderAsync,
-  renderHookAsync,
   screen,
   setupFakeTimers,
   userEvent,
@@ -21,11 +19,7 @@ import {
 const onPressDelayConfigWait = 1000;
 
 const Pressable: FC<Partial<ThemedPressableProps>> = (props) => (
-  <ThemedPressable
-    onPress={() => {}}
-    testID={'pressable'}
-    {...props}
-  />
+  <ThemedPressable onPress={() => {}} testID={'pressable'} {...props} />
 );
 
 async function renderPressable(props?: Partial<ThemedPressableProps>) {
@@ -125,7 +119,10 @@ describe('ThemedPressable', () => {
 describe('AnimatedThemedPressable', () => {
   test('Render & Snapshot', async () => {
     const { toJSON } = await renderAsync(
-      <AnimatedThemedPressable onPress={() => {}} testID={'animated-pressable'} />
+      <AnimatedThemedPressable
+        onPress={() => {}}
+        testID={'animated-pressable'}
+      />
     );
     expect(screen.getByTestId('animated-pressable')).toBeOnTheScreen();
     expect(toJSON()).toMatchSnapshot();
@@ -134,7 +131,10 @@ describe('AnimatedThemedPressable', () => {
   test('Press callback', async () => {
     const onPress = jest.fn();
     await renderAsync(
-      <AnimatedThemedPressable onPress={onPress} testID={'animated-pressable'} />
+      <AnimatedThemedPressable
+        onPress={onPress}
+        testID={'animated-pressable'}
+      />
     );
     const user = userEvent.setup();
     await user.press(screen.getByTestId('animated-pressable'));
@@ -162,7 +162,11 @@ describe('ThemedButton', () => {
   test('Change text color', async () => {
     const { themeSec } = await getThemeColors();
     await renderAsync(
-      <ThemedButton text={'Colored Button'} textColor={'themeSec'} onPress={() => {}} />
+      <ThemedButton
+        text={'Colored Button'}
+        textColor={'themeSec'}
+        onPress={() => {}}
+      />
     );
     expect(screen.getByText('Colored Button')).toHaveStyle({
       color: themeSec,
@@ -184,7 +188,11 @@ describe('ThemedButton', () => {
 describe('ThemedIconButton', () => {
   test('Render & Snapshot', async () => {
     const { toJSON } = await renderAsync(
-      <ThemedIconButton iconName={'check'} onPress={() => {}} testID={'icon-button'} />
+      <ThemedIconButton
+        iconName={'check'}
+        onPress={() => {}}
+        testID={'icon-button'}
+      />
     );
     expect(screen.getByTestId('icon-button')).toBeOnTheScreen();
     expect(toJSON()).toMatchSnapshot();
@@ -193,7 +201,11 @@ describe('ThemedIconButton', () => {
   test('Press callback', async () => {
     const onPress = jest.fn();
     await renderAsync(
-      <ThemedIconButton iconName={'check'} onPress={onPress} testID={'icon-button'} />
+      <ThemedIconButton
+        iconName={'check'}
+        onPress={onPress}
+        testID={'icon-button'}
+      />
     );
     const user = userEvent.setup();
     await user.press(screen.getByTestId('icon-button'));

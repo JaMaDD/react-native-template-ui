@@ -9,7 +9,9 @@ describe('ThemedLoading', () => {
   });
 
   test('Render with small size', async () => {
-    await renderAsync(<ThemedLoading size={'small'} testID={'small-loading'} />);
+    await renderAsync(
+      <ThemedLoading size={'small'} testID={'small-loading'} />
+    );
     const loading = screen.getByTestId('small-loading');
     expect(loading).toBeOnTheScreen();
     expect(loading).toHaveProp('size', 'small');

@@ -18,7 +18,9 @@ describe('ThemedText', () => {
   });
 
   test('Change variant', async () => {
-    await renderAsync(<ThemedText variant={'textXLBold'}>Bold Text</ThemedText>);
+    await renderAsync(
+      <ThemedText variant={'textXLBold'}>Bold Text</ThemedText>
+    );
     const textElement = screen.getByText('Bold Text');
     expect(textElement).toBeOnTheScreen();
   });
@@ -42,7 +44,7 @@ describe('ThemedIconText', () => {
   });
 
   test('Change icon and text colors', async () => {
-    const { themeSec, themePri } = await getThemeColors();
+    const { themePri } = await getThemeColors();
     await renderAsync(
       <ThemedIconText
         iconName={'check'}
