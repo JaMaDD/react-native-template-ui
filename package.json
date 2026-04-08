@@ -174,7 +174,7 @@
       "<rootDir>/node_modules/react-native-gesture-handler/jestSetup.js"
     ],
     "transformIgnorePatterns": [
-      "<rootDir>/node_modules/(?!(jest-)?react-native|@react-native|react-native-reanimated)"
+      "<rootDir>/node_modules/(?!(jest-)?react-native|@react-native|react-native-reanimated|@shopify/flash-list)"
     ],
     "modulePathIgnorePatterns": [
       "<rootDir>/example/node_modules",
