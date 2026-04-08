@@ -1,12 +1,12 @@
 import type { FC } from 'react';
-import { useThemedPressable } from '../../hooks/button';
+import { useAnimatedThemedPressable } from '../../hooks/button';
 import type { AnimatedThemedPressableProps } from '../../types/button';
 import AnimatedPressable from './AnimatedPressable';
 
 const AnimatedThemedPressable: FC<AnimatedThemedPressableProps> = (props) => {
-  const { onPress, style, restyle } = useThemedPressable(props, true);
+  const animatedThemedPressableProps = useAnimatedThemedPressable(props);
 
-  return <AnimatedPressable onPress={onPress} style={style} {...restyle} />;
+  return <AnimatedPressable {...animatedThemedPressableProps} />;
 };
 
 export default AnimatedThemedPressable;

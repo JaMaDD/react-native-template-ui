@@ -62,9 +62,9 @@ const ActionSheetWrap: FC<ActionSheetWrapProps> = ({
         maxHeight={getActionSheetMaxHeight(expandable)}
         overflow={'hidden'}
         {...wrapViewProps}
-        style={outerWrapAnimatedStyle}
+        animatedStyle={outerWrapAnimatedStyle}
       >
-        <AnimatedThemedView style={innerWrapAnimatedStyle}>
+        <AnimatedThemedView animatedStyle={innerWrapAnimatedStyle}>
           {children}
         </AnimatedThemedView>
       </AnimatedThemedView>

@@ -1,5 +1,10 @@
 import type { BoxProps } from '@shopify/restyle';
-import type { DependencyList, ReactNode, RefObject } from 'react';
+import type {
+  ComponentProps,
+  DependencyList,
+  ReactNode,
+  RefObject,
+} from 'react';
 import type {
   NativeScrollEvent,
   NativeSyntheticEvent,
@@ -9,6 +14,7 @@ import type {
   ViewProps,
 } from 'react-native';
 import type { AnimatedRef } from 'react-native-reanimated';
+import type AnimatedView from '../components/view/AnimatedView';
 import type { InsetsStyleConfig } from './style';
 import type { Theme } from './theme';
 
@@ -27,9 +33,12 @@ export type ThemedViewProps = ViewProps &
     ref?: ViewRefObj;
   };
 
-export type AnimatedThemedViewProps = Omit<ThemedViewProps, 'ref'> & {
-  ref?: AnimatedRef<View>;
-};
+export type AnimatedViewProps = ComponentProps<typeof AnimatedView>;
+
+export type AnimatedThemedViewProps = Omit<ThemedViewProps, 'ref'> &
+  Omit<AnimatedViewProps, 'key' | 'style'> & {
+    animatedStyle?: AnimatedViewProps['style'];
+  };
 
 export type ThemedScreenWrapProps = ThemedViewProps &
   InsetsStyleConfig & {

@@ -1,20 +1,23 @@
 import { useRestyle } from '@shopify/restyle';
 import { useCallback, useEffect, useMemo, useRef } from 'react';
-import type { ViewStyle } from 'react-native';
 import type {
+  AnimatedPressableProps,
   AnimatedThemedPressableProps,
   OnPressDelayConfig,
   PressableOnPress,
-  PressableStyle,
+  PressableProps,
   ThemedPressableProps,
 } from '../types/button';
 import type { Timeout } from '../types/react';
 import { ButtonScaleRatio, OnPressDelayType } from '../utils/button/const';
 import { composeStyles } from '../utils/style/func';
-import { themedPressableRestyleFuncs } from '../utils/theme/restyle';
+import {
+  animatedThemedPressableRestyleFuncs,
+  themedPressableRestyleFuncs,
+} from '../utils/theme/restyle';
 
 export function useDelayedOnPress(
-  onPress: ThemedPressableProps['onPress'],
+  onPress: PressableOnPress | null,
   onPressDelayConfig?: OnPressDelayConfig
 ) {
   const onPressTimestamp = useRef(0);
@@ -70,49 +73,80 @@ export function useDelayedOnPress(
   ]);
 }
 
-export function useThemedPressable(
-  {
-    onPress,
-    onPressDelayConfig,
-    ...props
-  }: ThemedPressableProps | AnimatedThemedPressableProps,
-  animated = false
-) {
-  const { themedPressableProps, scaleRatio } = useMemo(() => {
-    const tempThemedPressableProps = { ...props };
-    let tempScaleRatio: ButtonScaleRatio | undefined;
-    if ('scaleRatio' in tempThemedPressableProps) {
-      tempScaleRatio = tempThemedPressableProps.scaleRatio;
-      delete tempThemedPressableProps.scaleRatio;
-    }
-
-    return {
-      themedPressableProps: tempThemedPressableProps,
-      scaleRatio: tempScaleRatio,
-    };
-  }, [props]);
-  const { style, ...restyle } = useRestyle(
-    themedPressableRestyleFuncs,
-    themedPressableProps
-  );
+function usePressableProps({
+  onPress,
+  scaleRatio = ButtonScaleRatio.None,
+  onPressDelayConfig,
+  style,
+}: Pick<
+  PressableProps,
+  'onPress' | 'scaleRatio' | 'onPressDelayConfig' | 'style'
+>) {
   const pressableOnPress = useDelayedOnPress(
     onPress ?? null,
     onPressDelayConfig
   );
 
-  const styleCb: PressableStyle =
-    scaleRatio && !animated
-      ? ({ pressed }) =>
-          composeStyles<ViewStyle>(
+  const styleCb: PressableProps['style'] =
+    typeof style === 'function' || scaleRatio === ButtonScaleRatio.None
+      ? style
+      : ({ pressed }) =>
+          composeStyles(
             { transform: [{ scale: pressed ? scaleRatio : 1 }] },
             style
-          )
-      : style;
-  const themedPressable = {
+          );
+  const pressableProps: PressableProps = {
     onPress: pressableOnPress,
     style: styleCb,
-    restyle,
   };
 
-  return themedPressable;
+  return pressableProps;
+}
+
+export function useThemedPressable({
+  onPress,
+  scaleRatio,
+  onPressDelayConfig,
+  ...props
+}: ThemedPressableProps) {
+  const { style, ...restyle } = useRestyle(themedPressableRestyleFuncs, props);
+  const pressableProps = usePressableProps({
+    onPress,
+    scaleRatio,
+    onPressDelayConfig,
+    style,
+  });
+
+  const themedPressableProps: ThemedPressableProps = {
+    ...restyle,
+    ...pressableProps,
+  };
+
+  return themedPressableProps;
+}
+
+export function useAnimatedThemedPressable({
+  onPress,
+  onPressDelayConfig,
+  animatedStyle,
+  ...props
+}: AnimatedThemedPressableProps) {
+  const { style, ...restyle } = useRestyle(
+    animatedThemedPressableRestyleFuncs,
+    props
+  );
+  const pressableProps = usePressableProps({
+    onPress,
+    scaleRatio: ButtonScaleRatio.None,
+    onPressDelayConfig,
+    style,
+  });
+
+  const animatedThemedPressableProps: Omit<AnimatedPressableProps, 'key'> = {
+    ...restyle,
+    ...pressableProps,
+    style: [pressableProps.style, animatedStyle],
+  };
+
+  return animatedThemedPressableProps;
 }

@@ -1,7 +1,6 @@
 import type { FC } from 'react';
 import { useThemedSwitch } from '../../hooks/switch';
 import type { ThemedSwitchProps } from '../../types/switch';
-import { composeStyles, flattenStyle } from '../../utils/style/func';
 import { SwitchSize } from '../../utils/theme/const';
 import AnimatedThemedPressable from '../button/AnimatedThemedPressable';
 import AnimatedThemedView from '../view/AnimatedThemedView';
@@ -29,19 +28,18 @@ const ThemedSwitch: FC<ThemedSwitchProps> = ({
       customColors
     );
 
-  const switchStyle = flattenStyle(composeStyles(style, trackAnimatedStyle));
-
   return (
     <AnimatedThemedPressable
       onPress={toggleSwitch}
-      style={switchStyle}
+      style={style}
+      animatedStyle={trackAnimatedStyle}
       role={'switch'}
       {...props}
     >
       <AnimatedThemedView
         width={size}
         aspectRatio={1}
-        style={thumbAnimatedStyle}
+        animatedStyle={thumbAnimatedStyle}
         {...thumbProps}
       />
     </AnimatedThemedPressable>

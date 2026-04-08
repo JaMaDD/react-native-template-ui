@@ -12,21 +12,43 @@ import {
   spacing,
   spacingShorthand,
 } from '@shopify/restyle';
-import type { PressableProps, ThemedPressableProps } from '../../types/button';
+import type {
+  AnimatedThemedPressableProps,
+  ThemedPressableProps,
+} from '../../types/button';
 import type { IconProps, ThemedIconProps } from '../../types/icon';
 import type { LoadingProps, ThemedLoadingProps } from '../../types/loading';
 import type { InsetsStyleConfig } from '../../types/style';
 import type { Theme } from '../../types/theme';
-import type { ThemedScrollViewProps } from '../../types/view';
+import type {
+  AnimatedThemedViewProps,
+  ThemedScrollViewProps,
+} from '../../types/view';
 
 const restyleBaseFuncs = [spacing, spacingShorthand, layout, position];
 
 const restyleBackgroundFuncs = [backgroundColor, backgroundColorShorthand];
 
+const restyleViewFuncs = [
+  ...restyleBaseFuncs,
+  ...restyleBackgroundFuncs,
+  opacity,
+  border,
+  shadow,
+];
+
 export const themedPressableRestyleFuncs = composeRestyleFunctions<
   Theme,
-  Omit<ThemedPressableProps, keyof PressableProps>
->([...restyleBaseFuncs, ...restyleBackgroundFuncs, opacity, border, shadow]);
+  Omit<ThemedPressableProps, 'onPress' | 'scaleRatio' | 'onPressDelayConfig'>
+>(restyleViewFuncs);
+
+export const animatedThemedPressableRestyleFuncs = composeRestyleFunctions<
+  Theme,
+  Omit<
+    AnimatedThemedPressableProps,
+    'onPress' | 'scaleRatio' | 'onPressDelayConfig' | 'animatedStyle'
+  >
+>(restyleViewFuncs);
 
 export const themedLoadingRestyleFuncs = composeRestyleFunctions<
   Theme,
@@ -53,6 +75,11 @@ export const themedIconColorRestyleFuncs = composeRestyleFunctions<
   // @ts-expect-error
   color,
 ]);
+
+export const animatedThemedViewRestyleFuncs = composeRestyleFunctions<
+  Theme,
+  Omit<AnimatedThemedViewProps, 'animatedStyle'>
+>(restyleViewFuncs);
 
 export const themedScrollViewRestyleFuncs = composeRestyleFunctions<
   Theme,

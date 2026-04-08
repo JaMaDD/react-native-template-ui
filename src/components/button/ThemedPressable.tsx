@@ -4,9 +4,9 @@ import { useThemedPressable } from '../../hooks/button';
 import type { ThemedPressableProps } from '../../types/button';
 
 const ThemedPressable: FC<ThemedPressableProps> = (props) => {
-  const { onPress, style, restyle } = useThemedPressable(props);
+  const themedPressableProps = useThemedPressable(props);
 
-  return <Pressable onPress={onPress} style={style} {...restyle} />;
+  return <Pressable {...themedPressableProps} />;
 };
 
 export default ThemedPressable;

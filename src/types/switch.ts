@@ -1,11 +1,9 @@
-import type { ViewStyle } from 'react-native';
 import type { SwitchSize } from '../utils/theme/const';
 import type {
   AnimatedThemedPressableProps,
   OnPressDelayConfig,
 } from './button';
 import type { CustomAnimation } from './reanimated';
-import type { StyleOrStyleProp } from './style';
 import type { ThemeColors } from './theme';
 import type { AnimatedThemedViewProps } from './view';
 
@@ -30,5 +28,4 @@ export type ThemedSwitchProps = Omit<
   customDisableAnimation?: CustomAnimation<0>;
   customColors?: CustomSwitchColors;
   thumbProps?: AnimatedThemedViewProps;
-  style?: StyleOrStyleProp<ViewStyle>;
 };

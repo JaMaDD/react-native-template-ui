@@ -1,19 +1,18 @@
 import type { FC } from 'react';
+import { useAnimatedThemedView } from '../../hooks/view';
 import type { AnimatedThemedViewProps } from '../../types/view';
-import AnimatedBox from './AnimatedBox';
+import AnimatedView from './AnimatedView';
 
 const AnimatedThemedView: FC<AnimatedThemedViewProps> = ({
   backgroundColor = 'background',
   ...props
 }) => {
-  return (
-    <AnimatedBox
-      backgroundColor={backgroundColor}
-      accessible={true}
-      role={'group'}
-      {...props}
-    />
-  );
+  const animatedThemedViewProps = useAnimatedThemedView({
+    backgroundColor,
+    ...props,
+  });
+
+  return <AnimatedView {...animatedThemedViewProps} />;
 };
 
 export default AnimatedThemedView;

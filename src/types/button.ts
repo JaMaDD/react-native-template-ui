@@ -1,42 +1,43 @@
-import type { PropsWithChildren } from 'react';
+import type { ComponentProps, PropsWithChildren } from 'react';
 import type {
   GestureResponderEvent,
   PressableProps as RNPressableProps,
-  ViewStyle,
 } from 'react-native';
-import type { AnimatedStyle } from 'react-native-reanimated';
+import type { SharedValue } from 'react-native-reanimated';
+import type AnimatedPressable from '../components/button/AnimatedPressable';
 import type { ButtonScaleRatio, OnPressDelayType } from '../utils/button/const';
 import type { CustomThemedIconProps } from './icon';
-import type { StyleOrStyleProp } from './style';
 import type { CustomThemedTextProps, IconTextProps } from './text';
 import type { ThemeViewProps } from './theme';
-import type { ThemedViewProps } from './view';
+import type { ThemedViewProps, ViewRefObj } from './view';
 
-export type PressableOnPress = (event: GestureResponderEvent) => void;
-
-export type PressableStyle = RNPressableProps['style'];
+export type PressableOnPress = (
+  event: GestureResponderEvent
+) => void | SharedValue<(event: GestureResponderEvent) => void>;
 
 export type OnPressDelayConfig<T = OnPressDelayType> = {
   type: T;
   wait: number;
 };
 
-export type PressableProps = Omit<RNPressableProps, 'style'> & {
-  scaleRatio?: ButtonScaleRatio | number;
-  style?: StyleOrStyleProp<ViewStyle>;
-  onPressDelayConfig?: OnPressDelayConfig;
-};
+export type PressableProps = Omit<RNPressableProps, 'onPress'> &
+  Required<Pick<RNPressableProps, 'onPress'>> & {
+    scaleRatio?: ButtonScaleRatio | number;
+    onPressDelayConfig?: OnPressDelayConfig;
+    ref?: ViewRefObj;
+  };
 
-export type ThemedPressableProps = Omit<PressableProps, 'onPress'> &
-  Required<Pick<PressableProps, 'onPress'>> &
-  ThemeViewProps;
+export type ThemedPressableProps = PressableProps & ThemeViewProps;
+
+export type AnimatedPressableProps = ComponentProps<typeof AnimatedPressable>;
 
 export type AnimatedThemedPressableProps = Omit<
   ThemedPressableProps,
-  'scaleRatio'
-> & {
-  style?: AnimatedStyle<ViewStyle>;
-};
+  'ref' | 'scaleRatio'
+> &
+  Omit<AnimatedPressableProps, 'key' | 'style'> & {
+    animatedStyle?: AnimatedPressableProps['style'];
+  };
 
 type ButtonProps = PropsWithChildren<Omit<ThemedPressableProps, 'children'>>;
 

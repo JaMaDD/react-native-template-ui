@@ -81,7 +81,7 @@ const AlertWrap: FC<
         padding={'l'}
         gap={'m'}
         backgroundColor={'background'}
-        style={animatedStyle}
+        animatedStyle={animatedStyle}
         {...wrapProps}
       >
         {children}

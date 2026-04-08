@@ -139,7 +139,7 @@ const ThemedToast: FC<ThemedToastProps> = ({
       paddingVertical={'xxs'}
       paddingHorizontal={'s'}
       backgroundColor={'backgroundOverlay'}
-      style={animatedStyle}
+      animatedStyle={animatedStyle}
       {...props}
     >
       <ThemedText

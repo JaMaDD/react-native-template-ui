@@ -50,10 +50,6 @@ export function useThemedSwitch(
     }
   };
   const toggleSwitch: PressableOnPress = (event) => {
-    console.log(
-      'enabledSharedVal.get() > 0.5 ? 0 : 1',
-      enabledSharedVal.get() > 0.5 ? 0 : 1
-    );
     handleAnimation(enabledSharedVal.get() > 0.5 ? 0 : 1, () => {
       delayedOnPress(event);
     });

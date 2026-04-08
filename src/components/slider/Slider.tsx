@@ -194,7 +194,7 @@ const Slider: FC<SliderProps> = ({
           <AnimatedThemedView
             height={trackSize}
             backgroundColor={trackActiveColor}
-            style={trackAnimatedStyle}
+            animatedStyle={trackAnimatedStyle}
             {...trackInactiveProps}
           />
         </ThemedView>
@@ -218,7 +218,7 @@ const Slider: FC<SliderProps> = ({
           aspectRatio={1}
           opacity={0.8}
           backgroundColor={thumbColor}
-          style={thumbAnimatedStyle}
+          animatedStyle={thumbAnimatedStyle}
           {...thumbProps}
         />
       </ThemedView>
