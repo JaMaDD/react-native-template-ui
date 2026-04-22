@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ThemedLoading Render & Snapshot 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <ActivityIndicator
+    color="#7ccf6b"
+    size="large"
+    style={
+      [
+        {},
+      ]
+    }
+    testID="loading-indicator"
+  />
+</View>
+`;
