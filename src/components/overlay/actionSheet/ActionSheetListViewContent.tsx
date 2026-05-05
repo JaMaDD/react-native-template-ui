@@ -1,3 +1,4 @@
+/** @internal */
 import { useLayoutEffect, type FC } from 'react';
 import type {
   ActionSheetListViewListRefObj,

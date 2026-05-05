@@ -1,3 +1,4 @@
+/** @internal */
 import { type FC } from 'react';
 import {
   useActionSheetListView,
