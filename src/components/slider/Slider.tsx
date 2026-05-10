@@ -1,5 +1,5 @@
 import { useMappingHelper } from '@shopify/flash-list';
-import { memo, useLayoutEffect, useMemo, useState, type FC } from 'react';
+import { useLayoutEffect, useMemo, useState, type FC } from 'react';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import {
   useAnimatedStyle,
@@ -79,6 +79,97 @@ const Slider: FC<SliderProps> = ({
     () => ({ transform: [{ translateX: xSharedVal.get() - thumbSizeHalf }] }),
     [thumbSizeHalf]
   );
+  const touchStart = useSharedValue(0);
+  const gesture = useMemo(() => {
+    const updateSelectedVal = (x: number) => {
+      if (!stepWidth) {
+        return;
+      }
+
+      if (isNumRange) {
+        const numRange = processedRange as NumberSlider['range'];
+        const numIndex = Math.round(x / stepWidth);
+        const tempSelectedVal = Number(
+          (numRange[1] - numIndex * steps).toFixed(stepsFractionDigits)
+        );
+        setSelectedVal?.(tempSelectedVal);
+        onValueChange(tempSelectedVal);
+      } else {
+        const strRange = processedRange as StringSlider['range'];
+        const strIndex = Math.round(x / stepWidth);
+        const tempSelectedVal = strRange[totalSteps - strIndex];
+        setSelectedVal?.(tempSelectedVal);
+        onValueChange(tempSelectedVal!);
+      }
+    };
+    const updateXSharedVal = (x: number, animated = false) => {
+      'worklet';
+      const tempX = Math.min(0, Math.max(x, -(trackWidth ?? 0)));
+      xSharedVal.set(animated ? withTiming(tempX) : tempX);
+      scheduleOnRN(updateSelectedVal, Math.abs(tempX));
+    };
+
+    return Gesture.Simultaneous(
+      Gesture.LongPress()
+        .minDuration(gestureActivateDuration)
+        .maxDistance(windowWidth * 10)
+        .shouldCancelWhenOutside(false)
+        .onStart(({ x }) => {
+          if (sliderWidth) {
+            updateXSharedVal(-(sliderWidth - (x + thumbSize + thumbSizeHalf)));
+          }
+        })
+        .onEnd(({ x }) => {
+          if (sliderWidth && stepWidth) {
+            const nearestStep = Math.round(
+              -(sliderWidth - (x + thumbSize + thumbSizeHalf)) / stepWidth
+            );
+            updateXSharedVal(nearestStep * stepWidth, snapToStepAnimated);
+          }
+        }),
+      Gesture.Pan()
+        .manualActivation(true)
+        .shouldCancelWhenOutside(false)
+        .onBegin(() => {
+          touchStart.set(Date.now());
+        })
+        .onTouchesMove(({}, state) => {
+          const timeToCheck = Date.now() - touchStart.get();
+          if (timeToCheck >= gestureActivateDuration) {
+            state.activate();
+          } else {
+            state.fail();
+          }
+        })
+        .onChange(({ changeX }) => {
+          updateXSharedVal(xSharedVal.get() + changeX);
+        })
+        .onEnd(() => {
+          if (stepWidth) {
+            const nearestStep = Math.round(xSharedVal.get() / stepWidth);
+            updateXSharedVal(nearestStep * stepWidth, snapToStepAnimated);
+          }
+        })
+    );
+  }, [
+    gestureActivateDuration,
+    windowWidth,
+    stepWidth,
+    isNumRange,
+    processedRange,
+    steps,
+    stepsFractionDigits,
+    setSelectedVal,
+    onValueChange,
+    totalSteps,
+    trackWidth,
+    xSharedVal,
+    sliderWidth,
+    thumbSize,
+    thumbSizeHalf,
+    snapToStepAnimated,
+    touchStart,
+  ]);
   useLayoutEffect(() => {
     trackViewRef.current?.measure((_x, _y, w) => {
       const tempWidth = w - thumbSize;
@@ -101,77 +192,6 @@ const Slider: FC<SliderProps> = ({
       xSharedVal.set(-(totalSteps - index) * tempStepWidth);
     });
   }, [thumbSize, isNumRange, processedRange, totalSteps]);
-
-  const updateSelectedVal = (x: number) => {
-    if (!stepWidth) {
-      return;
-    }
-
-    if (isNumRange) {
-      const numRange = processedRange as NumberSlider['range'];
-      const numIndex = Math.round(x / stepWidth);
-      const tempSelectedVal = Number(
-        (numRange[1] - numIndex * steps).toFixed(stepsFractionDigits)
-      );
-      setSelectedVal?.(tempSelectedVal);
-      onValueChange(tempSelectedVal);
-    } else {
-      const strRange = processedRange as StringSlider['range'];
-      const strIndex = Math.round(x / stepWidth);
-      const tempSelectedVal = strRange[totalSteps - strIndex];
-      setSelectedVal?.(tempSelectedVal);
-      onValueChange(tempSelectedVal!);
-    }
-  };
-  const updateXSharedVal = (x: number, animated = false) => {
-    'worklet';
-    const tempX = Math.min(0, Math.max(x, -(trackWidth ?? 0)));
-    xSharedVal.set(animated ? withTiming(tempX) : tempX);
-    scheduleOnRN(updateSelectedVal, Math.abs(tempX));
-  };
-  const touchStart = useSharedValue(0);
-  const gesture = Gesture.Simultaneous(
-    Gesture.LongPress()
-      .minDuration(gestureActivateDuration)
-      .maxDistance(windowWidth * 10)
-      .shouldCancelWhenOutside(false)
-      .onStart(({ x }) => {
-        if (sliderWidth) {
-          updateXSharedVal(-(sliderWidth - (x + thumbSize + thumbSizeHalf)));
-        }
-      })
-      .onEnd(({ x }) => {
-        if (sliderWidth && stepWidth) {
-          const nearestStep = Math.round(
-            -(sliderWidth - (x + thumbSize + thumbSizeHalf)) / stepWidth
-          );
-          updateXSharedVal(nearestStep * stepWidth, snapToStepAnimated);
-        }
-      }),
-    Gesture.Pan()
-      .manualActivation(true)
-      .shouldCancelWhenOutside(false)
-      .onBegin(() => {
-        touchStart.set(Date.now());
-      })
-      .onTouchesMove(({}, state) => {
-        const timeToCheck = Date.now() - touchStart.get();
-        if (timeToCheck >= gestureActivateDuration) {
-          state.activate();
-        } else {
-          state.fail();
-        }
-      })
-      .onChange(({ changeX }) => {
-        updateXSharedVal(xSharedVal.get() + changeX);
-      })
-      .onEnd(() => {
-        if (stepWidth) {
-          const nearestStep = Math.round(xSharedVal.get() / stepWidth);
-          updateXSharedVal(nearestStep * stepWidth, snapToStepAnimated);
-        }
-      })
-  );
 
   return (
     <GestureDetector gesture={gesture}>
@@ -226,4 +246,4 @@ const Slider: FC<SliderProps> = ({
   );
 };
 
-export default memo(Slider);
+export default Slider;

@@ -1,4 +1,4 @@
-import { memo, useLayoutEffect, type FC } from 'react';
+import { useLayoutEffect, type FC } from 'react';
 import { useSharedValue } from 'react-native-reanimated';
 import { useDeferredState } from '../../hooks/react';
 import { useThemeSpacing } from '../../hooks/theme';
@@ -11,8 +11,6 @@ import {
 import ThemedText from '../text/ThemedText';
 import ThemedView from '../view/ThemedView';
 import Slider from './Slider';
-
-const MemoThemedText = memo(ThemedText);
 
 const ThemedSlider: FC<ThemedSliderProps> = ({
   defaultValue,
@@ -59,23 +57,23 @@ const ThemedSlider: FC<ThemedSliderProps> = ({
       {...valueDisplayWrapProps}
     >
       {!!valueDescription && (
-        <MemoThemedText
+        <ThemedText
           variant={'textS'}
           flex={1}
           textAlign={'center'}
           {...valueDescriptionTextProps}
         >
           {valueDescription}
-        </MemoThemedText>
+        </ThemedText>
       )}
-      <MemoThemedText
+      <ThemedText
         variant={'textSBold'}
         flex={1}
         textAlign={'center'}
         {...valueTextProps}
       >
         {deferredSelectedValue}
-      </MemoThemedText>
+      </ThemedText>
     </ThemedView>
   );
   const sliderProps = {

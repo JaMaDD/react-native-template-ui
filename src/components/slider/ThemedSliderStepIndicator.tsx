@@ -1,6 +1,5 @@
 /** @internal */
 import type { FC } from 'react';
-import { memo } from 'react';
 import type { ThemedSliderStepIndicatorProps } from '../../types/slider';
 import { sliderStepIndicatorDefaultWidth } from '../../utils/slider/const';
 import ThemedView from '../view/ThemedView';
@@ -21,4 +20,4 @@ const ThemedSliderStepIndicator: FC<ThemedSliderStepIndicatorProps> = ({
   );
 };
 
-export default memo(ThemedSliderStepIndicator);
+export default ThemedSliderStepIndicator;
