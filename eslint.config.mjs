@@ -2,7 +2,6 @@ import { fixupConfigRules } from '@eslint/compat';
 import { FlatCompat } from '@eslint/eslintrc';
 import js from '@eslint/js';
 import prettier from 'eslint-plugin-prettier';
-import reactCompiler from 'eslint-plugin-react-compiler';
 import testingLibrary from 'eslint-plugin-testing-library';
 import { defineConfig } from 'eslint/config';
 import path from 'node:path';
@@ -32,7 +31,6 @@ export default defineConfig([
           useTabs: false,
         },
       ],
-      'react-compiler/react-compiler': 'error',
       'react-hooks/exhaustive-deps': 'warn',
     },
   },
@@ -45,5 +43,4 @@ export default defineConfig([
   {
     ignores: ['node_modules/', 'lib/'],
   },
-  reactCompiler.configs.recommended,
 ]);
