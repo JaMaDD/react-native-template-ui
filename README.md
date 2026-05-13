@@ -208,6 +208,10 @@ import { ThemedButton } from '@jamadd/react-native-template-ui';
 
 ## Available Components
 
+### Accordion
+
+- ThemedAccordion
+
 ### Buttons
 
 - AnimatedThemedPressable
@@ -247,6 +251,10 @@ import { ThemedButton } from '@jamadd/react-native-template-ui';
 ### Separator
 
 - ThemedSeparator
+
+### Slider
+
+- ThemedSlider
 
 ### Switch
 

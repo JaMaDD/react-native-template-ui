@@ -13,7 +13,6 @@ import type {
   NumberSlider,
   SliderProps,
   StringSlider,
-  ThemedSliderStepIndicatorProps,
 } from '../../types/slider';
 import {
   sliderStepIndicatorDefaultWidth,
@@ -22,9 +21,7 @@ import {
 } from '../../utils/slider/const';
 import AnimatedThemedView from '../view/AnimatedThemedView';
 import ThemedView from '../view/ThemedView';
-
-const ThemedSliderStepIndicator: FC<ThemedSliderStepIndicatorProps> =
-  require('./ThemedSliderStepIndicator').default;
+import ThemedSliderStepIndicator from './ThemedSliderStepIndicator';
 
 const Slider: FC<SliderProps> = ({
   range,

@@ -1,3 +1,4 @@
+export { default as ThemedAccordion } from './components/accordion/ThemedAccordion';
 export { default as AnimatedThemedPressable } from './components/button/AnimatedThemedPressable';
 export { default as ThemedButton } from './components/button/ThemedButton';
 export { default as ThemedIconButton } from './components/button/ThemedIconButton';
@@ -35,6 +36,7 @@ export * from './hooks/style';
 export * from './hooks/theme';
 export * from './hooks/view';
 
+export * from './types/accordion';
 export * from './types/button';
 export * from './types/icon';
 export * from './types/list';
