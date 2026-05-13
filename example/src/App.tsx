@@ -37,7 +37,7 @@ export default function App() {
             defaultValue={75}
             valueDisplayMode={SliderValueDisplayMode.Top}
             onValueChange={(value) => {
-              // console.log('Number Slider Value:', value)
+              console.log('Number Slider Value:', value);
             }}
           />
           <ThemedSlider
@@ -48,7 +48,7 @@ export default function App() {
             valueDisplayMode={SliderValueDisplayMode.Bottom}
             valueDescription={'units'}
             onValueChange={(value) => {
-              // console.log('String Slider Value:', value);
+              console.log('String Slider Value:', value);
             }}
           />
         </ThemedAccordion>
