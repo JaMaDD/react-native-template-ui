@@ -41,9 +41,9 @@
     "clean": "del-cli lib && rm -rf node_modules && yarn",
     "prepare": "bob build",
     "release": "release-it --only-version",
-    "release-major": "yarn prepare && node scripts/bumpVersion.js major && yarn release-commit",
-    "release-minor": "yarn prepare && node scripts/bumpVersion.js minor && yarn release-commit",
-    "release-patch": "yarn prepare && node scripts/bumpVersion.js patch && yarn release-commit",
+    "release-major": "yarn lint && yarn prepare && node scripts/bumpVersion.js major && yarn release-commit",
+    "release-minor": "yarn lint && yarn prepare && node scripts/bumpVersion.js minor && yarn release-commit",
+    "release-patch": "yarn lint && yarn prepare && node scripts/bumpVersion.js patch && yarn release-commit",
     "release-commit": "git add . && git commit -m \"v${npm_package_version}\" && git tag v${npm_package_version} && git push origin main --tags"
   },
   "keywords": [
