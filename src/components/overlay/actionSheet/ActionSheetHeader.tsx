@@ -22,6 +22,11 @@ const ThemedText: FC<ThemedTextProps> =
 const ThemedIconButton: FC<ThemedIconButtonProps> =
   require('../../button/ThemedIconButton').default;
 
+/**
+ * @internal
+ * Header component for action sheets with optional title and close button.
+ * Supports gesture detection for drag-to-dismiss functionality.
+ */
 const ActionSheetHeader: FC<ActionSheetHeaderProps> = ({
   headerShowIcon = true,
   headerWrapProps,

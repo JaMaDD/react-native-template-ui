@@ -12,6 +12,21 @@ import ThemedText from '../text/ThemedText';
 import ThemedView from '../view/ThemedView';
 import Slider from './Slider';
 
+/**
+ * A themed slider component with optional value display and description.
+ * Wraps the base Slider component with theme-aware styling and value state management.
+ * Displays the current value with configurable positioning (top/bottom/none) and deferred updates.
+ * @param props - Component props of type ThemedSliderProps
+ * @returns JSX element rendering a themed slider with value display
+ * @example
+ * <ThemedSlider
+ *   range={[0, 100]}
+ *   defaultValue={50}
+ *   valueDisplayMode={SliderValueDisplayMode.Top}
+ *   valueDescription="Volume"
+ *   onValueChange={(value) => console.log(value)}
+ * />
+ */
 const ThemedSlider: FC<ThemedSliderProps> = ({
   defaultValue,
   wrapProps: { paddingHorizontal, px, ...wrapProps } = {},

@@ -2,6 +2,11 @@ import type { FC } from 'react';
 import type { AlertProps } from '../../../types/overlay';
 import ThemedText from '../../text/ThemedText';
 
+/**
+ * @internal
+ * Renders the title and optional description content of an alert.
+ * Applies appropriate text styling and alignment for alert content.
+ */
 const AlertContent: FC<
   Pick<
     AlertProps,

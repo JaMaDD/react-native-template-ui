@@ -16,6 +16,17 @@ import {
   themedPressableRestyleFuncs,
 } from '../utils/theme/restyle';
 
+/**
+ * Hook to wrap an onPress handler with debounce or throttle behavior.
+ * @param onPress - The press handler function to be delayed
+ * @param onPressDelayConfig - Configuration for delay type (debounce/throttle) and wait time
+ * @returns A memoized onPress handler with the configured delay behavior
+ * @example
+ * const delayedPress = useDelayedOnPress(
+ *   () => console.log('Pressed'),
+ *   { type: OnPressDelayType.Debounce, wait: 500 }
+ * );
+ */
 export function useDelayedOnPress(
   onPress: PressableOnPress | null,
   onPressDelayConfig?: OnPressDelayConfig
@@ -73,6 +84,7 @@ export function useDelayedOnPress(
   ]);
 }
 
+/** @internal */
 function usePressableProps({
   onPress,
   scaleRatio = ButtonScaleRatio.None,
@@ -103,6 +115,20 @@ function usePressableProps({
   return pressableProps;
 }
 
+/**
+ * Hook to create themed pressable props with restyle support, scale animation, and delayed press handling.
+ * @param props - Themed pressable properties including theme props, onPress, scaleRatio, and onPressDelayConfig
+ * @returns Object containing all pressable props with applied theme styles and behaviors
+ * @example
+ * const pressableProps = useThemedPressable({
+ *   backgroundColor: 'themePri',
+ *   padding: 'm',
+ *   borderRadius: 'm',
+ *   onPress: () => console.log('Pressed'),
+ *   scaleRatio: ButtonScaleRatio.Small,
+ *   onPressDelayConfig: { type: OnPressDelayType.Debounce, wait: 300 }
+ * });
+ */
 export function useThemedPressable({
   onPress,
   scaleRatio,
@@ -125,6 +151,22 @@ export function useThemedPressable({
   return themedPressableProps;
 }
 
+/**
+ * Hook to create animated themed pressable props with reanimated support and delayed press handling.
+ * @param props - Animated themed pressable properties including theme props, onPress, animatedStyle, and onPressDelayConfig
+ * @returns Object containing all animated pressable props with applied theme styles, animations, and behaviors
+ * @example
+ * const animatedStyle = useAnimatedStyle(() => ({
+ *   opacity: interpolate(progress.value, [0, 1], [0.5, 1])
+ * }));
+ * const pressableProps = useAnimatedThemedPressable({
+ *   backgroundColor: 'themePri',
+ *   padding: 'm',
+ *   animatedStyle,
+ *   onPress: () => console.log('Pressed'),
+ *   onPressDelayConfig: { type: OnPressDelayType.Throttle, wait: 1000 }
+ * });
+ */
 export function useAnimatedThemedPressable({
   onPress,
   onPressDelayConfig,

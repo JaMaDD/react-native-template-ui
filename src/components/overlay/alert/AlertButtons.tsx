@@ -3,6 +3,11 @@ import type { AlertButtonsProps } from '../../../types/overlay';
 import ThemedView from '../../view/ThemedView';
 import AlertButton from './AlertButton';
 
+/**
+ * @internal
+ * Renders a grid of alert buttons arranged in rows.
+ * Defaults to a single OK button if no buttons are provided.
+ */
 const AlertButtons: FC<AlertButtonsProps> = ({ buttons, buttonsWrapProps }) => {
   const alertButtons: NonNullable<AlertButtonsProps['buttons']> = buttons ?? [
     [{ text: 'OK' }],

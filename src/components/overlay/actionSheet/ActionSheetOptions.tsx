@@ -10,6 +10,11 @@ import ActionSheetHeader from './ActionSheetHeader';
 import ActionSheetOptionList from './ActionSheetOptionList';
 import ActionSheetWrap from './ActionSheetWrap';
 
+/**
+ * @internal
+ * Action sheet variant that displays a list of selectable options.
+ * Used when the options prop is provided to ActionSheet.
+ */
 const ActionSheetOptions: FC<ActionSheetOptionsProps> = ({
   title,
   expandable,

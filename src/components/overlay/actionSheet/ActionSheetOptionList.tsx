@@ -16,6 +16,11 @@ import List from '../../list/List';
 import ActionSheetContentGesture from './ActionSheetContentGesture';
 import ActionSheetOptionListItem from './ActionSheetOptionListItem';
 
+/**
+ * @internal
+ * Renders the list of option items within an action sheet.
+ * Uses FlashList for performance with gesture handling.
+ */
 const ActionSheetOptionList: FC<
   Pick<
     ActionSheetOptionsProps,

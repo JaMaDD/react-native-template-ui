@@ -11,6 +11,21 @@ import ThemedText from '../text/ThemedText';
 import AnimatedThemedView from '../view/AnimatedThemedView';
 import ThemedView from '../view/ThemedView';
 
+/**
+ * A themed accordion component that expands and collapses content with smooth animations.
+ * Features a clickable header with text and icon, and animates the height of the content area.
+ * Supports customization of borders, colors, icons, and internal layout through comprehensive props.
+ * @param props - Component props of type ThemedAccordionProps
+ * @returns JSX element rendering an expandable/collapsible accordion
+ * @example
+ * <ThemedAccordion
+ *   text="FAQ Section"
+ *   iconNameOpened="up"
+ *   iconNameClosed="down"
+ * >
+ *   <ThemedText>This is the accordion content</ThemedText>
+ * </ThemedAccordion>
+ */
 const ThemedAccordion: FC<ThemedAccordionProps> = ({
   borderWidth = BorderSize.XS,
   borderColor = 'themePri',

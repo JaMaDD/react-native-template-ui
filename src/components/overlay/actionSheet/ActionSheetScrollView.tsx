@@ -10,6 +10,11 @@ import ActionSheetHeader from './ActionSheetHeader';
 import ActionSheetScrollViewContent from './ActionSheetScrollViewContent';
 import ActionSheetWrap from './ActionSheetWrap';
 
+/**
+ * @internal
+ * Action sheet variant that displays custom scrollable content.
+ * Used when the children prop is provided to ActionSheet.
+ */
 const ActionSheetScrollView: FC<ActionSheetScrollViewProps> = ({
   title,
   expandable,

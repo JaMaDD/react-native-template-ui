@@ -10,6 +10,11 @@ import ActionSheetHeader from './ActionSheetHeader';
 import ActionSheetListViewContent from './ActionSheetListViewContent';
 import ActionSheetWrap from './ActionSheetWrap';
 
+/**
+ * @internal
+ * Action sheet variant that displays a FlashList with custom items.
+ * Used when the listProps prop is provided to ActionSheet.
+ */
 const ActionSheetListView: FC<ActionSheetListViewProps> = ({
   title,
   expandable,

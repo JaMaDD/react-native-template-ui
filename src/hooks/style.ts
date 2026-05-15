@@ -7,6 +7,27 @@ import type { InsetsStyleConfig } from '../types/style';
 import { Orientation } from '../utils/style/const';
 import { useThemeSpacing } from './theme';
 
+/**
+ * Hook to calculate padding styles based on safe area insets.
+ * @param config - Configuration object specifying which insets to apply and optional padding values
+ * @param config.insets - If true, applies all insets (top, bottom, left, right)
+ * @param config.insetTop - If true, applies top inset
+ * @param config.insetBottom - If true, applies bottom inset
+ * @param config.insetLeft - If true, applies left inset
+ * @param config.insetRight - If true, applies right inset
+ * @param config.insetsPadding - Additional padding to apply to all insets
+ * @param config.insetPaddingTop - Additional padding to apply to top inset
+ * @param config.insetPaddingBottom - Additional padding to apply to bottom inset
+ * @param config.insetPaddingLeft - Additional padding to apply to left inset
+ * @param config.insetPaddingRight - Additional padding to apply to right inset
+ * @returns ViewStyle object with calculated padding values for safe areas
+ * @example
+ * const insetsStyle = useInsetsStyle({
+ *   insets: true,
+ *   insetsPadding: 'm'
+ * });
+ * // Returns: { paddingTop: 44 + 16, paddingBottom: 34 + 16, ... }
+ */
 export function useInsetsStyle({
   insets,
   insetTop,
@@ -49,26 +70,70 @@ export function useInsetsStyle({
   return insetsStyle;
 }
 
+/**
+ * Hook to get the window dimensions including width, height, scale, and fontScale.
+ * @returns Object containing window dimensions { width, height, scale, fontScale }
+ * @example
+ * const { width, height } = useWindowDimensions();
+ * console.log(`Screen size: ${width}x${height}`);
+ */
 export function useWindowDimensions() {
   return useRNWindowDimensions();
 }
 
+/**
+ * Hook to get the current window width in pixels.
+ * @returns The width of the window in pixels
+ * @example
+ * const width = useWindowDimensionsWidth();
+ * console.log(`Window width: ${width}px`);
+ */
 export function useWindowDimensionsWidth() {
   return useWindowDimensions().width;
 }
 
+/**
+ * Hook to get the current window height in pixels.
+ * @returns The height of the window in pixels
+ * @example
+ * const height = useWindowDimensionsHeight();
+ * console.log(`Window height: ${height}px`);
+ */
 export function useWindowDimensionsHeight() {
   return useWindowDimensions().height;
 }
 
+/**
+ * Hook to get the pixel density scale of the device.
+ * @returns The scale factor (e.g., 2 for @2x, 3 for @3x displays)
+ * @example
+ * const scale = useWindowDimensionsScale();
+ * console.log(`Device scale: ${scale}x`);
+ */
 export function useWindowDimensionsScale() {
   return useWindowDimensions().scale;
 }
 
+/**
+ * Hook to get the font scaling factor set by the user in device settings.
+ * @returns The font scale factor (1.0 is default, >1.0 means larger text is enabled)
+ * @example
+ * const fontScale = useWindowDimensionsFontScale();
+ * const adjustedFontSize = 16 * fontScale;
+ */
 export function useWindowDimensionsFontScale() {
   return useWindowDimensions().fontScale;
 }
 
+/**
+ * Hook to determine the current device orientation.
+ * @returns The current orientation ('portrait' or 'landscape')
+ * @example
+ * const orientation = useOrientation();
+ * if (orientation === Orientation.Landscape) {
+ *   // Render landscape layout
+ * }
+ */
 export function useOrientation() {
   const { width, height } = useWindowDimensions();
 

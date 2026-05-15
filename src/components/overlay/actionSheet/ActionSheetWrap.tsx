@@ -13,6 +13,11 @@ import {
 import AnimatedThemedView from '../../view/AnimatedThemedView';
 import ThemedModal from '../modal/ThemedModal';
 
+/**
+ * @internal
+ * Wrapper component that handles action sheet animations, positioning, and modal presentation.
+ * Manages height calculations and translate animations for smooth sheet appearance.
+ */
 const ActionSheetWrap: FC<ActionSheetWrapProps> = ({
   wrapViewProps,
   children,

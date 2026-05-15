@@ -26,6 +26,26 @@ import ThemedView from '../view/ThemedView';
 const ThemedSliderStepIndicator: FC<ThemedSliderStepIndicatorProps> =
   require('./ThemedSliderStepIndicator').default;
 
+/**
+ * A slider component for selecting values from a range using touch or drag gestures.
+ * Supports both numeric ranges (with steps) and string array selections.
+ * Features smooth animations, step indicators, and customizable track/thumb appearance.
+ * @param props - Component props of type SliderProps
+ * @returns JSX element rendering an interactive slider
+ * @example
+ * <Slider
+ *   range={[0, 100]}
+ *   steps={5}
+ *   onValueChange={(value) => console.log(value)}
+ *   trackActiveColor="themePri"
+ * />
+ * @example
+ * <Slider
+ *   range={['Small', 'Medium', 'Large']}
+ *   stepIndicator={true}
+ *   onValueChange={(value) => console.log(value)}
+ * />
+ */
 const Slider: FC<SliderProps> = ({
   range,
   steps = 1,
