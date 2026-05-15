@@ -137,8 +137,9 @@ export type ThemedIconButtonProps = ButtonProps & CustomThemedIconProps;
  * ```
  */
 export type ThemedIconTextButtonProps = PropsWithChildren<
-  ButtonProps & IconTextProps & {
-    /** Additional props for the icon-text container wrapper */
-    iconTextProps?: ThemedViewProps
-  }
+  ButtonProps &
+    IconTextProps & {
+      /** Additional props for the icon-text container wrapper */
+      iconTextProps?: ThemedViewProps;
+    }
 >;

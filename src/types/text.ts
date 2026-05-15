@@ -78,7 +78,7 @@ export type CustomThemedTextProps = {
 export type IconTextProps = CustomThemedIconProps &
   CustomThemedTextProps & {
     /** Whether to flip icon and text positions (default: icon left, text right) */
-    flip?: boolean
+    flip?: boolean;
   };
 
 /**

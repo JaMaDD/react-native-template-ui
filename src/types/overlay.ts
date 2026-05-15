@@ -140,7 +140,7 @@ export type ThemedToastProps = Omit<OverlayProps, 'onDismiss'> &
 export type ThemedModalProps = Partial<OverlayProps> &
   ModalProps & {
     /** Props for the content container wrapper */
-    contentWrapProps?: ThemedViewProps
+    contentWrapProps?: ThemedViewProps;
   };
 
 /**

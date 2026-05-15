@@ -156,7 +156,7 @@ export type ThemedScreenWrapProps = ThemedViewProps &
 export type ScrollViewProps = RNScrollViewProps &
   InsetsStyleConfig & {
     /** Reference to the ScrollView component */
-    ref?: ScrollViewRefObj
+    ref?: ScrollViewRefObj;
   };
 
 /**
