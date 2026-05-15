@@ -4,6 +4,21 @@ import { ButtonScaleRatio } from '../../utils/button/const';
 import ThemedIconText from '../text/ThemedIconText';
 import ThemedPressable from './ThemedPressable';
 
+/**
+ * A themed button component that displays both an icon and text label.
+ * Combines icon and text in a flexible layout with customizable ordering via the flip prop.
+ * Perfect for primary action buttons that need both visual and textual context.
+ * @param props - Component props of type ThemedIconTextButtonProps
+ * @returns JSX element rendering a themed button with icon and text
+ * @example
+ * <ThemedIconTextButton
+ *   iconName="plus"
+ *   iconSize={IconSize.S}
+ *   text="Add Item"
+ *   textColor="themePri"
+ *   onPress={() => console.log('add')}
+ * />
+ */
 const ThemedIconTextButton: FC<ThemedIconTextButtonProps> = ({
   flip,
   iconTextProps,

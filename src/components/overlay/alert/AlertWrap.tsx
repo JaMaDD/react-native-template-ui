@@ -10,6 +10,11 @@ import { updateSharedValWithSpring } from '../../../utils/reanimated/func';
 import AnimatedThemedView from '../../view/AnimatedThemedView';
 import ThemedModal from '../modal/ThemedModal';
 
+/**
+ * @internal
+ * Wrapper component that manages alert modal presentation and scale animations.
+ * Handles show/hide animations with spring physics for smooth appearance.
+ */
 const AlertWrap: FC<
   PropsWithRequiredChildren<
     Pick<

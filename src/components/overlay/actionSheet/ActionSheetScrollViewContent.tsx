@@ -10,6 +10,11 @@ import { getActionSheetContext } from '../../../utils/overlay/func';
 import ThemedScrollView from '../../view/ThemedScrollView';
 import ActionSheetContentGesture from './ActionSheetContentGesture';
 
+/**
+ * @internal
+ * Wraps action sheet scroll view content with gesture handling and height tracking.
+ * Manages content size changes for dynamic sheet height.
+ */
 const ActionSheetScrollViewContent: FC<
   PropsWithRequiredChildren<Pick<ActionSheetScrollViewProps, 'scrollViewProps'>>
 > = ({ scrollViewProps, children }) => {

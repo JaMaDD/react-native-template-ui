@@ -5,6 +5,19 @@ import { SwitchSize } from '../../utils/theme/const';
 import AnimatedThemedPressable from '../button/AnimatedThemedPressable';
 import AnimatedThemedView from '../view/AnimatedThemedView';
 
+/**
+ * A themed switch component for toggling between enabled and disabled states.
+ * Features smooth animations, customizable colors, and configurable sizes.
+ * Provides visual feedback through track and thumb animations with spring physics.
+ * @param props - Component props of type ThemedSwitchProps
+ * @returns JSX element rendering an animated switch
+ * @example
+ * <ThemedSwitch
+ *   enabled={isEnabled}
+ *   onPress={(enabled) => setEnabled(enabled)}
+ *   size={SwitchSize.M}
+ * />
+ */
 const ThemedSwitch: FC<ThemedSwitchProps> = ({
   onPress,
   enabled,

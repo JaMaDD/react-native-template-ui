@@ -6,6 +6,11 @@ import { getAlertContext } from '../../../utils/overlay/func';
 import { BorderSize } from '../../../utils/theme/const';
 import ThemedButton from '../../button/ThemedButton';
 
+/**
+ * @internal
+ * Renders a single button within an alert dialog.
+ * Applies appropriate styling based on button type (Primary, Secondary, Destructive).
+ */
 const AlertButton: FC<AlertButtonProps> = ({
   type = AlertButtonType.Primary,
   text,

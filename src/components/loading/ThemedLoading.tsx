@@ -7,6 +7,18 @@ import {
   themedLoadingRestyleFuncs,
 } from '../../utils/theme/restyle';
 
+/**
+ * A themed loading indicator component that displays a spinning activity indicator.
+ * Applies theme-aware colors through the restyle system while wrapping React Native's
+ * ActivityIndicator. Supports both small and large sizes with customizable colors.
+ * @param props - Component props of type ThemedLoadingProps
+ * @returns JSX element rendering a themed activity indicator
+ * @example
+ * <ThemedLoading
+ *   size="large"
+ *   color="themePri"
+ * />
+ */
 const ThemedLoading: FC<ThemedLoadingProps> = ({
   size = 'large',
   color = 'themePri',

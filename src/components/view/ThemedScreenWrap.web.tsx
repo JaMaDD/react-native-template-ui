@@ -5,6 +5,20 @@ import type { ThemedScreenWrapProps } from '../../types/view';
 import { composeStyles } from '../../utils/style/func';
 import ThemedView from './ThemedView';
 
+/**
+ * A themed screen wrapper component for full-screen layouts on web platforms.
+ * Provides a height-constrained container with safe area inset support.
+ * Automatically adjusts to window dimensions for consistent web layout.
+ * @param props - Component props of type ThemedScreenWrapProps
+ * @returns JSX element rendering a full-screen themed container
+ * @example
+ * <ThemedScreenWrap
+ *   insetTop={true}
+ *   insetBottom={true}
+ * >
+ *   <ThemedText>Screen content</ThemedText>
+ * </ThemedScreenWrap>
+ */
 const ThemedScreenWrap: FC<ThemedScreenWrapProps> = ({
   style: themedScreenWrapStyle,
   insets,

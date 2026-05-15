@@ -14,6 +14,24 @@ import AlertButtons from './AlertButtons';
 import AlertContent from './AlertContent';
 import AlertWrap from './AlertWrap';
 
+/**
+ * A modal alert component that displays a title, optional description, and customizable buttons.
+ * Supports custom show/hide animations, multiple button layouts, and dismissal callbacks.
+ * Provides a consistent, theme-aware alert experience across the application.
+ * @param props - Component props of type AlertProps
+ * @returns JSX element rendering a modal alert dialog
+ * @example
+ * <Alert
+ *   visible={isVisible}
+ *   title="Confirm Action"
+ *   description="Are you sure you want to proceed?"
+ *   buttons={[
+ *     [{ text: 'Cancel', type: AlertButtonType.Secondary }],
+ *     [{ text: 'Confirm', type: AlertButtonType.Primary }]
+ *   ]}
+ *   onDismiss={(result) => console.log(result)}
+ * />
+ */
 const Alert: FC<AlertProps> = ({
   customShowAnimation,
   customHideAnimation,

@@ -4,6 +4,20 @@ import { ButtonScaleRatio } from '../../utils/button/const';
 import ThemedText from '../text/ThemedText';
 import ThemedPressable from './ThemedPressable';
 
+/**
+ * A themed button component with text label and optional children.
+ * Provides a standard button layout with centered text and customizable appearance.
+ * Automatically handles text styling, background colors, and scale animations on press.
+ * @param props - Component props of type ThemedButtonProps
+ * @returns JSX element rendering a themed button with text
+ * @example
+ * <ThemedButton
+ *   text="Submit"
+ *   textColor="textButton"
+ *   backgroundColor="themePri"
+ *   onPress={() => console.log('submitted')}
+ * />
+ */
 const ThemedButton: FC<ThemedButtonProps> = ({
   text,
   textVariant,

@@ -8,6 +8,11 @@ import { getActionSheetContext } from '../../../utils/overlay/func';
 import List from '../../list/List';
 import ActionSheetContentGesture from './ActionSheetContentGesture';
 
+/**
+ * @internal
+ * Wraps action sheet list view content with gesture handling and dynamic height calculation.
+ * Measures list container dimensions for proper sheet sizing.
+ */
 const ActionSheetListViewContent: FC<
   Pick<ActionSheetListViewProps, 'listProps'>
 > = ({ listProps }) => {

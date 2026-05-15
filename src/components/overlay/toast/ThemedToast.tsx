@@ -18,6 +18,20 @@ import {
 import ThemedText from '../../text/ThemedText';
 import AnimatedThemedView from '../../view/AnimatedThemedView';
 
+/**
+ * A themed toast notification component that displays brief messages with automatic dismissal.
+ * Supports multiple positioning options (top, bottom, corners) with slide-in/slide-out animations.
+ * Automatically dismisses after the specified duration and includes safe area inset support.
+ * @param props - Component props of type ThemedToastProps
+ * @returns JSX element rendering an animated toast notification
+ * @example
+ * <ThemedToast
+ *   text="Operation completed successfully"
+ *   type={ToastType.Bottom}
+ *   duration={ToastDuration.Short}
+ *   onDismiss={(result) => console.log('dismissed', result)}
+ * />
+ */
 const ThemedToast: FC<ThemedToastProps> = ({
   type = ToastType.Bottom,
   duration = ToastDuration.Short,

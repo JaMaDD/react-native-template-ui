@@ -12,6 +12,11 @@ import {
 } from '../../../utils/overlay/const';
 import ThemedButton from '../../button/ThemedButton';
 
+/**
+ * @internal
+ * Renders a single option item in the action sheet options list.
+ * Handles press events and dismissal with option selection.
+ */
 const ActionSheetOptionListItem: FC<ListItemProps<ActionSheetOption>> = ({
   item: { text, onPress, props },
   extraData,

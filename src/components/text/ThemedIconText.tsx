@@ -4,6 +4,27 @@ import ThemedIcon from '../icon/ThemedIcon';
 import ThemedView from '../view/ThemedView';
 import ThemedText from './ThemedText';
 
+/**
+ * A themed component that displays an icon and text together in a flexible layout.
+ * Supports customizable icon position (before or after text) via the flip prop.
+ * Ideal for labels, menu items, and buttons requiring both icon and text.
+ * @param props - Component props of type ThemedIconTextProps
+ * @returns JSX element rendering icon and text in a horizontal layout
+ * @example
+ * <ThemedIconText
+ *   iconName="star"
+ *   iconSize={IconSize.S}
+ *   iconColor="themePri"
+ *   text="Favorite"
+ *   textColor="text"
+ * />
+ * @example
+ * <ThemedIconText
+ *   iconName="arrow-right"
+ *   text="Next"
+ *   flip={true}
+ * />
+ */
 const ThemedIconText: FC<ThemedIconTextProps> = ({
   flip = false,
   iconName,

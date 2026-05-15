@@ -18,6 +18,11 @@ import ThemedIconButton from '../../button/ThemedIconButton';
 import ThemedText from '../../text/ThemedText';
 import ThemedView from '../../view/ThemedView';
 
+/**
+ * @internal
+ * Header component for action sheets with optional title and close button.
+ * Supports gesture detection for drag-to-dismiss functionality.
+ */
 const ActionSheetHeader: FC<ActionSheetHeaderProps> = ({
   headerShowIcon = true,
   headerWrapProps,

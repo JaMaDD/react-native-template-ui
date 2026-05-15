@@ -6,6 +6,22 @@ import type { ThemedScrollViewProps } from '../../types/view';
 import { composeStyles } from '../../utils/style/func';
 import { themedScrollViewRestyleFuncs } from '../../utils/theme/restyle';
 
+/**
+ * A themed scroll view component with safe area inset support.
+ * Wraps React Native's ScrollView with theme-aware styling and automatic inset handling.
+ * Provides smooth scrolling with optional bottom padding for safe areas.
+ * @param props - Component props of type ThemedScrollViewProps
+ * @returns JSX element rendering a themed scrollable container
+ * @example
+ * <ThemedScrollView
+ *   insetBottom={true}
+ *   insetPaddingBottom="m"
+ * >
+ *   <ThemedView>
+ *     <ThemedText>Scrollable content</ThemedText>
+ *   </ThemedView>
+ * </ThemedScrollView>
+ */
 const ThemedScrollView: FC<ThemedScrollViewProps> = ({
   insets,
   insetTop,
