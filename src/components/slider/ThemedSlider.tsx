@@ -1,4 +1,5 @@
-import { useLayoutEffect, type FC } from 'react';
+import { lazy, useLayoutEffect, type FC } from 'react';
+import { Platform } from 'react-native';
 import { useSharedValue } from 'react-native-reanimated';
 import { useDeferredState } from '../../hooks/react';
 import { useThemeSpacing } from '../../hooks/theme';
@@ -12,7 +13,12 @@ import {
 import ThemedView from '../view/ThemedView';
 import Slider from './Slider';
 
-const ThemedText: FC<ThemedTextProps> = require('../text/ThemedText').default;
+let ThemedText: FC<ThemedTextProps>;
+if (Platform.OS === 'web') {
+  ThemedText = lazy(() => import('../text/ThemedText'));
+} else {
+  ThemedText = require('../text/ThemedText').default;
+}
 
 /**
  * A themed slider component with optional value display and description.

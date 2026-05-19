@@ -1,5 +1,7 @@
 import { IconSize } from '@jamadd/react-native-template-icons';
-import { useLayoutEffect, useReducer, useState, type FC } from 'react';
+import { lazy, useLayoutEffect, useReducer, useState, type FC } from 'react';
+import { Platform } from 'react-native';
+import { useWindowDimensionsWidth } from '../../hooks/style';
 import { useViewRef } from '../../hooks/view';
 import type { ThemedAccordionProps } from '../../types/accordion';
 import type { AnimatedThemedPressableProps } from '../../types/button';
@@ -11,7 +13,12 @@ import ThemedIcon from '../icon/ThemedIcon';
 import AnimatedThemedView from '../view/AnimatedThemedView';
 import ThemedView from '../view/ThemedView';
 
-const ThemedText: FC<ThemedTextProps> = require('../text/ThemedText').default;
+let ThemedText: FC<ThemedTextProps>;
+if (Platform.OS === 'web') {
+  ThemedText = lazy(() => import('../text/ThemedText'));
+} else {
+  ThemedText = require('../text/ThemedText').default;
+}
 
 /**
  * A themed accordion component that expands and collapses content with smooth animations.
@@ -29,7 +36,7 @@ const ThemedText: FC<ThemedTextProps> = require('../text/ThemedText').default;
  * </ThemedAccordion>
  */
 const ThemedAccordion: FC<ThemedAccordionProps> = ({
-  borderWidth = BorderSize.XS,
+  borderWidth = BorderSize.S,
   borderColor = 'themePri',
   wrapProps,
   headerWrapProps,
@@ -49,6 +56,7 @@ const ThemedAccordion: FC<ThemedAccordionProps> = ({
   contentWrapProps,
   children,
 }) => {
+  const windowWidth = useWindowDimensionsWidth();
   const wrapRef = useViewRef();
   const headerRef = useViewRef();
   const contentRef = useViewRef();
@@ -75,7 +83,15 @@ const ThemedAccordion: FC<ThemedAccordionProps> = ({
     if (contentBounds) {
       updateContentHeight(contentBounds.height);
     }
-  }, [text, textVariant, textFontSize, textFontWeight, iconSize, children]);
+  }, [
+    text,
+    textVariant,
+    textFontSize,
+    textFontWeight,
+    iconSize,
+    children,
+    windowWidth,
+  ]);
 
   const animatedStyle: AnimatedThemedPressableProps['animatedStyle'] = {
     width: '100%',

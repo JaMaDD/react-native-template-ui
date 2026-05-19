@@ -1,5 +1,6 @@
 import { useMappingHelper } from '@shopify/flash-list';
-import { useLayoutEffect, useMemo, useState, type FC } from 'react';
+import { lazy, useLayoutEffect, useMemo, useState, type FC } from 'react';
+import { Platform } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import {
   useAnimatedStyle,
@@ -23,8 +24,12 @@ import {
 import AnimatedThemedView from '../view/AnimatedThemedView';
 import ThemedView from '../view/ThemedView';
 
-const ThemedSliderStepIndicator: FC<ThemedSliderStepIndicatorProps> =
-  require('./ThemedSliderStepIndicator').default;
+let ThemedSliderStepIndicator: FC<ThemedSliderStepIndicatorProps>;
+if (Platform.OS === 'web') {
+  ThemedSliderStepIndicator = lazy(() => import('./ThemedSliderStepIndicator'));
+} else {
+  ThemedSliderStepIndicator = require('./ThemedSliderStepIndicator').default;
+}
 
 /**
  * A slider component for selecting values from a range using touch or drag gestures.
@@ -200,7 +205,7 @@ const Slider: FC<SliderProps> = ({
       }
       xSharedVal.set(-(totalSteps - index) * tempStepWidth);
     });
-  }, [thumbSize, isNumRange, processedRange, totalSteps]);
+  }, [thumbSize, windowWidth, isNumRange, processedRange, totalSteps]);
 
   return (
     <GestureDetector gesture={gesture}>

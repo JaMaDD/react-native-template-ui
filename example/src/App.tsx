@@ -3,6 +3,8 @@ import {
   SliderValueDisplayMode,
   ThemedAccordion,
   ThemedScreenWrap,
+  ThemedScrollView,
+  ThemedSeparator,
   ThemedSlider,
   ThemedSwitch,
   ThemedText,
@@ -24,34 +26,37 @@ export default function App() {
         backgroundColor={'background'}
         paddingHorizontal={'l'}
       >
-        <ThemedAccordion text={'Accordion Title'}>
-          <ThemedText>Accordion Content 1</ThemedText>
-          <ThemedText>Accordion Content 2</ThemedText>
-          <ThemedText>Accordion Content 3</ThemedText>
-          <ThemedSwitch onPress={() => {}} />
-          <ThemedText>Accordion Content 4</ThemedText>
-          <ThemedText>Accordion Content 5</ThemedText>
-          <ThemedSlider
-            range={[100, 0]}
-            steps={1}
-            defaultValue={75}
-            valueDisplayMode={SliderValueDisplayMode.Top}
-            onValueChange={(value) => {
-              console.log('Number Slider Value:', value);
-            }}
-          />
-          <ThemedSlider
-            range={['textM', 'textSs', 'textMBold']}
-            defaultValue={'100'}
-            stepIndicator={true}
-            snapToStepAnimated={false}
-            valueDisplayMode={SliderValueDisplayMode.Bottom}
-            valueDescription={'units'}
-            onValueChange={(value) => {
-              console.log('String Slider Value:', value);
-            }}
-          />
-        </ThemedAccordion>
+        <ThemedScrollView>
+          <ThemedAccordion text={'Accordion Title'}>
+            <ThemedText>Accordion Content 1</ThemedText>
+            <ThemedText>Accordion Content 2</ThemedText>
+            <ThemedText>Accordion Content 3</ThemedText>
+            <ThemedSwitch onPress={() => {}} />
+            <ThemedText>Accordion Content 4</ThemedText>
+            <ThemedText>Accordion Content 5</ThemedText>
+            <ThemedSlider
+              range={[100, 0]}
+              steps={1}
+              defaultValue={75}
+              valueDisplayMode={SliderValueDisplayMode.Top}
+              onValueChange={(value) => {
+                console.log('Number Slider Value:', value);
+              }}
+            />
+            <ThemedSeparator />
+            <ThemedSlider
+              range={['textM', 'textSs', 'textMBold']}
+              defaultValue={'100'}
+              stepIndicator={true}
+              snapToStepAnimated={false}
+              valueDisplayMode={SliderValueDisplayMode.Bottom}
+              valueDescription={'units'}
+              onValueChange={(value) => {
+                console.log('String Slider Value:', value);
+              }}
+            />
+          </ThemedAccordion>
+        </ThemedScrollView>
       </ThemedScreenWrap>
     </ReactNativeTemplateProviders>
   );

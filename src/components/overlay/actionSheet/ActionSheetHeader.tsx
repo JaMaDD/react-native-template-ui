@@ -1,5 +1,6 @@
 /** @internal */
-import type { FC } from 'react';
+import { lazy, type FC } from 'react';
+import { Platform } from 'react-native';
 import { GestureDetector } from 'react-native-gesture-handler';
 import {
   useActionSheetGesture,
@@ -17,10 +18,15 @@ import { getActionSheetContext } from '../../../utils/overlay/func';
 import { BorderSize } from '../../../utils/theme/const';
 import ThemedView from '../../view/ThemedView';
 
-const ThemedText: FC<ThemedTextProps> =
-  require('../../text/ThemedText').default;
-const ThemedIconButton: FC<ThemedIconButtonProps> =
-  require('../../button/ThemedIconButton').default;
+let ThemedText: FC<ThemedTextProps>;
+let ThemedIconButton: FC<ThemedIconButtonProps>;
+if (Platform.OS === 'web') {
+  ThemedText = lazy(() => import('../../text/ThemedText'));
+  ThemedIconButton = lazy(() => import('../../button/ThemedIconButton'));
+} else {
+  ThemedText = require('../../text/ThemedText').default;
+  ThemedIconButton = require('../../button/ThemedIconButton').default;
+}
 
 /**
  * @internal

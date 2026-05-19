@@ -1,8 +1,6 @@
-import { useEffect, type FC } from 'react';
-import type { ViewStyle } from 'react-native';
-import { useInsetsStyle } from '../../hooks/style';
+import { type FC } from 'react';
+import { useThemedScreenWrap } from '../../hooks/view';
 import type { ThemedScreenWrapProps } from '../../types/view';
-import { composeStyles } from '../../utils/style/func';
 import ThemedView from './ThemedView';
 
 /**
@@ -24,7 +22,7 @@ import ThemedView from './ThemedView';
 const ThemedScreenWrap: FC<ThemedScreenWrapProps> = ({
   effectSetup,
   effectCleanup,
-  effectDependencies = [],
+  effectDependencies,
   style: themedScreenWrapStyle,
   insets,
   insetTop,
@@ -38,7 +36,11 @@ const ThemedScreenWrap: FC<ThemedScreenWrapProps> = ({
   insetPaddingRight,
   ...props
 }) => {
-  const insetsStyle = useInsetsStyle({
+  const style = useThemedScreenWrap({
+    effectSetup,
+    effectCleanup,
+    effectDependencies,
+    style: themedScreenWrapStyle,
     insets,
     insetTop,
     insetBottom,
@@ -50,13 +52,6 @@ const ThemedScreenWrap: FC<ThemedScreenWrapProps> = ({
     insetPaddingLeft,
     insetPaddingRight,
   });
-  useEffect(() => {
-    effectSetup?.();
-
-    return effectCleanup;
-  }, effectDependencies);
-
-  const style = composeStyles<ViewStyle>(themedScreenWrapStyle, insetsStyle);
 
   return <ThemedView flex={1} style={style} {...props} />;
 };

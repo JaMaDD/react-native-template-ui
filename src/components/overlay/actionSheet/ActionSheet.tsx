@@ -1,4 +1,5 @@
-import type { FC } from 'react';
+import { lazy, type FC } from 'react';
+import { Platform } from 'react-native';
 import type {
   ActionSheetListViewProps,
   ActionSheetOptionsProps,
@@ -6,12 +7,18 @@ import type {
   ActionSheetScrollViewProps,
 } from '../../../types/overlay';
 
-const ActionSheetOptions: FC<ActionSheetOptionsProps> =
-  require('./ActionSheetOptions').default;
-const ActionSheetScrollView: FC<ActionSheetScrollViewProps> =
-  require('./ActionSheetScrollView').default;
-const ActionSheetListView: FC<ActionSheetListViewProps> =
-  require('./ActionSheetListView').default;
+let ActionSheetOptions: FC<ActionSheetOptionsProps>;
+let ActionSheetScrollView: FC<ActionSheetScrollViewProps>;
+let ActionSheetListView: FC<ActionSheetListViewProps>;
+if (Platform.OS === 'web') {
+  ActionSheetOptions = lazy(() => import('./ActionSheetOptions'));
+  ActionSheetScrollView = lazy(() => import('./ActionSheetScrollView'));
+  ActionSheetListView = lazy(() => import('./ActionSheetListView'));
+} else {
+  ActionSheetOptions = require('./ActionSheetOptions').default;
+  ActionSheetScrollView = require('./ActionSheetScrollView').default;
+  ActionSheetListView = require('./ActionSheetListView').default;
+}
 
 /**
  * A flexible action sheet component that supports three display modes: options list, scroll view, or list view.

@@ -1,8 +1,15 @@
 import { useRestyle } from '@shopify/restyle';
-import { useRef } from 'react';
-import type { View } from 'react-native';
-import type { AnimatedThemedViewProps, AnimatedViewProps } from '../types/view';
+import { useEffect, useRef } from 'react';
+import type { View, ViewStyle } from 'react-native';
+import type { InsetsStyleConfig } from '../types/style';
+import type {
+  AnimatedThemedViewProps,
+  AnimatedViewProps,
+  ThemedScreenWrapProps,
+} from '../types/view';
+import { composeStyles } from '../utils/style/func';
 import { animatedThemedViewRestyleFuncs } from '../utils/theme/restyle';
+import { useInsetsStyle } from './style';
 
 /**
  * Hook to create a ref for a View component.
@@ -49,4 +56,60 @@ export function useAnimatedThemedView({
   };
 
   return animatedThemedViewProps;
+}
+
+/**
+ * Hook to create themed screen wrap styles with safe area inset support and effect management.
+ * @param props - Themed screen wrap properties including effect setup/cleanup and inset styles
+ * @returns Style object combining themed screen wrap styles with calculated inset styles
+ * @example
+ * const style = useThemedScreenWrap({
+ *   effectSetup: () => console.log('Mounted'),
+ *   effectCleanup: () => console.log('Unmounted'),
+ *   insets: true,
+ *   insetPaddingTop: 'm',
+ * });
+ */
+export function useThemedScreenWrap({
+  effectSetup,
+  effectCleanup,
+  effectDependencies = [],
+  style: themedScreenWrapStyle,
+  insets,
+  insetTop,
+  insetBottom,
+  insetLeft,
+  insetRight,
+  insetsPadding,
+  insetPaddingTop,
+  insetPaddingBottom,
+  insetPaddingLeft,
+  insetPaddingRight,
+}: Pick<
+  ThemedScreenWrapProps,
+  | 'effectSetup'
+  | 'effectCleanup'
+  | 'effectDependencies'
+  | 'style'
+  | keyof InsetsStyleConfig
+>) {
+  const insetsStyle = useInsetsStyle({
+    insets,
+    insetTop,
+    insetBottom,
+    insetLeft,
+    insetRight,
+    insetsPadding,
+    insetPaddingTop,
+    insetPaddingBottom,
+    insetPaddingLeft,
+    insetPaddingRight,
+  });
+  useEffect(() => {
+    effectSetup?.();
+
+    return effectCleanup;
+  }, effectDependencies);
+
+  return composeStyles<ViewStyle>(themedScreenWrapStyle, insetsStyle);
 }

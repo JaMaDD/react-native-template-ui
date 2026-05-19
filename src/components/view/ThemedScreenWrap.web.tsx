@@ -1,8 +1,7 @@
 import type { FC } from 'react';
-import type { ViewStyle } from 'react-native';
-import { useInsetsStyle, useWindowDimensionsHeight } from '../../hooks/style';
+import { useWindowDimensionsHeight } from '../../hooks/style';
+import { useThemedScreenWrap } from '../../hooks/view';
 import type { ThemedScreenWrapProps } from '../../types/view';
-import { composeStyles } from '../../utils/style/func';
 import ThemedView from './ThemedView';
 
 /**
@@ -20,6 +19,9 @@ import ThemedView from './ThemedView';
  * </ThemedScreenWrap>
  */
 const ThemedScreenWrap: FC<ThemedScreenWrapProps> = ({
+  effectSetup,
+  effectCleanup,
+  effectDependencies,
   style: themedScreenWrapStyle,
   insets,
   insetTop,
@@ -34,7 +36,11 @@ const ThemedScreenWrap: FC<ThemedScreenWrapProps> = ({
   ...props
 }) => {
   const height = useWindowDimensionsHeight();
-  const insetsStyle = useInsetsStyle({
+  const style = useThemedScreenWrap({
+    effectSetup,
+    effectCleanup,
+    effectDependencies,
+    style: themedScreenWrapStyle,
     insets,
     insetTop,
     insetBottom,
@@ -46,8 +52,6 @@ const ThemedScreenWrap: FC<ThemedScreenWrapProps> = ({
     insetPaddingLeft,
     insetPaddingRight,
   });
-
-  const style = composeStyles<ViewStyle>(themedScreenWrapStyle, insetsStyle);
 
   return <ThemedView height={height} style={style} {...props} />;
 };
