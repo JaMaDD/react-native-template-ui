@@ -26,6 +26,6 @@
     "target": "ESNext",
     "types": ["jest"],
     "verbatimModuleSyntax": true,
-    "stripInternal": true
+    "stripInternal": false
   }
 }
