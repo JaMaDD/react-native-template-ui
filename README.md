@@ -269,7 +269,14 @@ import { ThemedButton } from '@jamadd/react-native-template-ui';
 
 ## Demo Applications
 
-TODO
+ReactNativeTemplate web application:
+
+- Web - TODO
+
+ReactNativeTemplate mobile application:
+
+- [Android](https://play.google.com/store/apps/details?id=com.reactnativetemplate.prod)
+- [iOS](https://apps.apple.com/us/app/reactnativetemplate/id6762295071)
 
 ## Contributing
 
