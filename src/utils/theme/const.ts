@@ -20,24 +20,26 @@ export enum Palette {
   Transparent = 'transparent',
   /** Primary theme color - bright green */
   ThemePri = '#7ccf6b',
-  /** Secondary theme color - darker green */
-  ThemeSec = '#5aa85a',
   /** Primary theme color with 50% transparency */
   ThemePriT = '#7ccf6b80',
+  /** Secondary theme color - darker green */
+  ThemeSec = '#5aa85a',
+  /** Secondary theme color with 50% transparency */
+  ThemeSecT = '#5aa85a80',
   /** Near black - used for text in light mode */
   Black = '#000501',
   /** Black with 50% transparency */
   BlackT = '#00050180',
   /** Off-white - used for backgrounds in light mode */
-  White = '#fafafa',
+  White = '#f2f7f2',
   /** White with 50% transparency */
-  WhiteT = '#fafafa80',
+  WhiteT = '#f2f7f280',
   /** Light gray - used for disabled states */
-  Silver = '#c4c4c4',
+  Silver = '#a0b4a0',
   /** Medium gray - used for borders */
-  Grey = '#7a7a7a',
+  Grey = '#6b7b6b',
   /** Red - used for errors and destructive actions */
-  Red = '#ff3b30',
+  Red = '#cc2e28',
 }
 
 /**
@@ -353,6 +355,9 @@ export const darkTheme: typeof lightTheme = {
   ...lightTheme,
   colors: {
     ...lightTheme.colors,
+    themePri: Palette.ThemeSec,
+    themeSec: Palette.ThemePri,
+    themePriT: Palette.ThemeSecT,
     background: Palette.Black,
     text: Palette.White,
   },
