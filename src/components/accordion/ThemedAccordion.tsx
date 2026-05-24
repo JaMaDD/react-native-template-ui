@@ -1,7 +1,6 @@
 import { IconSize } from '@jamadd/react-native-template-icons';
 import { lazy, useLayoutEffect, useReducer, useState, type FC } from 'react';
 import { Platform } from 'react-native';
-import { useWindowDimensionsWidth } from '../../hooks/style';
 import { useViewRef } from '../../hooks/view';
 import type { ThemedAccordionProps } from '../../types/accordion';
 import type { AnimatedThemedPressableProps } from '../../types/button';
@@ -56,7 +55,6 @@ const ThemedAccordion: FC<ThemedAccordionProps> = ({
   contentWrapProps,
   children,
 }) => {
-  const windowWidth = useWindowDimensionsWidth();
   const wrapRef = useViewRef();
   const headerRef = useViewRef();
   const contentRef = useViewRef();
@@ -78,15 +76,7 @@ const ThemedAccordion: FC<ThemedAccordionProps> = ({
     if (contentBounds) {
       updateContentHeight(contentBounds.height);
     }
-  }, [
-    text,
-    textVariant,
-    textFontSize,
-    textFontWeight,
-    iconSize,
-    children,
-    windowWidth,
-  ]);
+  }, [text, textVariant, textFontSize, textFontWeight, iconSize, children]);
 
   const animatedStyle: AnimatedThemedPressableProps['animatedStyle'] = {
     width: '100%',

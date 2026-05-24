@@ -16,6 +16,7 @@ import type {
   StringSlider,
   ThemedSliderStepIndicatorProps,
 } from '../../types/slider';
+import type { ThemedViewProps } from '../../types/view';
 import {
   sliderStepIndicatorDefaultWidth,
   sliderThumbDefaultSize,
@@ -184,28 +185,39 @@ const Slider: FC<SliderProps> = ({
     thumbSizeHalf,
     snapToStepAnimated,
   ]);
+  const updateSliderLayout = (width: number) => {
+    const tempWidth = width - thumbSize;
+    const tempStepWidth = tempWidth / totalSteps;
+    setSliderWidth(width + thumbSize + thumbSizeHalf);
+    setTrackWidth(tempWidth);
+    setStepWidth(tempStepWidth);
+    let index = 0;
+    if (isNumRange) {
+      const numRange = processedRange as NumberSlider['range'];
+      const numCurrentValue =
+        selectedValSharedVal?.get() as NumberSlider['defaultValue'];
+      index = numCurrentValue ? (numCurrentValue - numRange[0]) / steps : 0;
+    } else {
+      const strRange = processedRange as StringSlider['range'];
+      const strCurrentValue =
+        selectedValSharedVal?.get() as StringSlider['defaultValue'];
+      index = strCurrentValue ? strRange.indexOf(strCurrentValue) : 0;
+    }
+    xSharedVal.set(-(totalSteps - index) * tempStepWidth);
+  };
   useLayoutEffect(() => {
     trackViewRef.current?.measure((_x, _y, w) => {
-      const tempWidth = w - thumbSize;
-      const tempStepWidth = tempWidth / totalSteps;
-      setSliderWidth(w + thumbSize + thumbSizeHalf);
-      setTrackWidth(tempWidth);
-      setStepWidth(tempStepWidth);
-      let index = 0;
-      if (isNumRange) {
-        const numRange = processedRange as NumberSlider['range'];
-        const numCurrentValue =
-          selectedValSharedVal?.get() as NumberSlider['defaultValue'];
-        index = numCurrentValue ? (numCurrentValue - numRange[0]) / steps : 0;
-      } else {
-        const strRange = processedRange as StringSlider['range'];
-        const strCurrentValue =
-          selectedValSharedVal?.get() as StringSlider['defaultValue'];
-        index = strCurrentValue ? strRange.indexOf(strCurrentValue) : 0;
-      }
-      xSharedVal.set(-(totalSteps - index) * tempStepWidth);
+      updateSliderLayout(w);
     });
-  }, [thumbSize, windowWidth, isNumRange, processedRange, totalSteps]);
+  }, [thumbSize, isNumRange, processedRange, totalSteps]);
+
+  const onLayout: ThemedViewProps['onLayout'] = ({
+    nativeEvent: {
+      layout: { width },
+    },
+  }) => {
+    updateSliderLayout(width);
+  };
 
   return (
     <GestureDetector gesture={gesture}>
@@ -215,6 +227,7 @@ const Slider: FC<SliderProps> = ({
         justifyContent={'center'}
         alignSelf={'stretch'}
         height={thumbSize}
+        onLayout={onLayout}
         {...sliderWrapProps}
       >
         <ThemedView
