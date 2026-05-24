@@ -1,3 +1,3 @@
 ## What's Changed
 
-- fix: Fix ThemedAccordion component and Slider component incorrect styles after changing orientation
+- improvement: improve theme colours on light & dark modes
