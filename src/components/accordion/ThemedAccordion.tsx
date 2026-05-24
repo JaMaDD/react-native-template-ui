@@ -60,7 +60,6 @@ const ThemedAccordion: FC<ThemedAccordionProps> = ({
   const wrapRef = useViewRef();
   const headerRef = useViewRef();
   const contentRef = useViewRef();
-  const [wrapWidth, setWrapWidth] = useState(0);
   const [headerHeight, setHeaderHeight] = useState(0);
   const [contentHeight, updateContentHeight] = useReducer(
     (_prevContentHeight, newContentHeight) => newContentHeight,
@@ -71,10 +70,6 @@ const ThemedAccordion: FC<ThemedAccordionProps> = ({
     false
   );
   useLayoutEffect(() => {
-    const wrapBounds = wrapRef.current?.getBoundingClientRect();
-    if (wrapBounds) {
-      setWrapWidth(wrapBounds.width);
-    }
     const headerBounds = headerRef.current?.getBoundingClientRect();
     if (headerBounds) {
       setHeaderHeight(headerBounds.height);
@@ -120,7 +115,7 @@ const ThemedAccordion: FC<ThemedAccordionProps> = ({
         ref={headerRef}
         onPress={toggleAccordion}
         position={'absolute'}
-        width={wrapWidth ? wrapWidth : '100%'}
+        width={'100%'}
         flexDirection={'row'}
         alignItems={'center'}
         justifyContent={'space-between'}
