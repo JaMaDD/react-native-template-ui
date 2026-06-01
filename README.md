@@ -10,6 +10,7 @@ All UI components are built on top of different common React Native packages to 
 - Built on top of popular packages like [`React Native Reanimated`](https://docs.swmansion.com/react-native-reanimated/), [`React Native Gesture Handler`](https://docs.swmansion.com/react-native-gesture-handler/) and [`FlashList`](https://shopify.github.io/flash-list/)
 - Supports theming and customization with [`Restyle`](https://shopify.github.io/restyle/)
 - Supports edge-to-edge design with [`React Native Safe Area Context`](https://appandflow.github.io/react-native-safe-area-context/)
+- Integrated React Compiler for optimal performance
 
 ## Prerequisites
 
