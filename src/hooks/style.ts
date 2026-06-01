@@ -1,11 +1,13 @@
+import { useMemo } from 'react';
 import {
   useWindowDimensions as useRNWindowDimensions,
   type ViewStyle,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import type { InsetsStyleConfig } from '../types/style';
-import { Orientation } from '../utils/style/const';
-import { useThemeSpacing } from './theme';
+import type { ThemeColors } from '../types/theme';
+import { Orientation, ShadowDirection } from '../utils/style/const';
+import { useThemeColors, useThemeSpacing } from './theme';
 
 /**
  * Hook to calculate padding styles based on safe area insets.
@@ -141,4 +143,30 @@ export function useOrientation() {
     width > height ? Orientation.Landscape : Orientation.Portrait;
 
   return orientation;
+}
+
+export function useShadowStyle(
+  direction: ShadowDirection,
+  color: ThemeColors = 'themePriT'
+): ViewStyle {
+  const themeColors = useThemeColors();
+  const boxShadow = useMemo(() => {
+    const shadowColor = themeColors[color];
+    switch (direction) {
+      case ShadowDirection.Top:
+        return `0px -5px 10px ${shadowColor}`;
+      case ShadowDirection.Bottom:
+        return `0px 5px 10px ${shadowColor}`;
+      case ShadowDirection.Left:
+        return `-5px 0px 10px ${shadowColor}`;
+      case ShadowDirection.Right:
+        return `5px 0px 10px ${shadowColor}`;
+      case ShadowDirection.All:
+        return `0px 0px 10px ${shadowColor}`;
+      default:
+        return undefined;
+    }
+  }, [direction, color, themeColors]);
+
+  return { boxShadow };
 }

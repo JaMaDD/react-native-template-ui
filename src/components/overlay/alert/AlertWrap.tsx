@@ -1,12 +1,17 @@
 import { useEffect, type FC } from 'react';
 import type { ViewStyle } from 'react-native';
 import { useAnimatedStyle, type SharedValue } from 'react-native-reanimated';
+import { useShadowStyle } from '../../../hooks/style';
 import type { AlertProps } from '../../../types/overlay';
 import type { AnimationSharedValue } from '../../../types/reanimated';
-import type { PropsWithRequiredChildren } from '../../../types/view';
+import type {
+  AnimatedThemedViewProps,
+  PropsWithRequiredChildren,
+} from '../../../types/view';
 import { overlayMaxWidthPercent } from '../../../utils/overlay/const';
 import { getAlertContext } from '../../../utils/overlay/func';
 import { updateSharedValWithSpring } from '../../../utils/reanimated/func';
+import { ShadowDirection } from '../../../utils/style/const';
 import AnimatedThemedView from '../../view/AnimatedThemedView';
 import ThemedModal from '../modal/ThemedModal';
 
@@ -41,6 +46,7 @@ const AlertWrap: FC<
   showSharedVal,
   children,
 }) => {
+  const shadowStyle = useShadowStyle(ShadowDirection.All);
   const animatedStyle = useAnimatedStyle<ViewStyle>(
     () => ({
       transform: [{ scale: showSharedVal.get() }],
@@ -74,6 +80,10 @@ const AlertWrap: FC<
   const modalOnDismiss = () => {
     onDismiss?.();
   };
+  const style: AnimatedThemedViewProps['style'] = [
+    shadowStyle,
+    wrapProps?.style,
+  ];
 
   return (
     <ThemedModal
@@ -88,6 +98,7 @@ const AlertWrap: FC<
         backgroundColor={'background'}
         animatedStyle={animatedStyle}
         {...wrapProps}
+        style={style}
       >
         {children}
       </AnimatedThemedView>

@@ -16,3 +16,11 @@ export enum Orientation {
   /** Landscape orientation - width is greater than height */
   Landscape = 'landscape',
 }
+
+export enum ShadowDirection {
+  Top = 'top',
+  Bottom = 'bottom',
+  Left = 'left',
+  Right = 'right',
+  All = 'all',
+}

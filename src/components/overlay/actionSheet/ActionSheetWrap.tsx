@@ -2,14 +2,17 @@
 import { type FC } from 'react';
 import { useAnimatedStyle } from 'react-native-reanimated';
 import { useActionSheetOnDismiss } from '../../../hooks/overlay';
+import { useShadowStyle } from '../../../hooks/style';
 import type {
   ActionSheetWrapProps,
   ThemedModalProps,
 } from '../../../types/overlay';
+import type { AnimatedThemedViewProps } from '../../../types/view';
 import {
   getActionSheetContext,
   getActionSheetMaxHeight,
 } from '../../../utils/overlay/func';
+import { ShadowDirection } from '../../../utils/style/const';
 import AnimatedThemedView from '../../view/AnimatedThemedView';
 import ThemedModal from '../modal/ThemedModal';
 
@@ -31,13 +34,13 @@ const ActionSheetWrap: FC<ActionSheetWrapProps> = ({
     expandableHeightSharedVal,
   } = getActionSheetContext();
   const onDismiss = useActionSheetOnDismiss();
+  const shadowStyle = useShadowStyle(ShadowDirection.Top);
   const outerWrapAnimatedStyle = useAnimatedStyle(
     () => ({
-      ...wrapViewProps?.style,
       height: heightSharedVal?.get() ?? 0,
       transform: [{ translateY: translateYSharedVal?.get() ?? 0 }],
     }),
-    [wrapViewProps, translateYSharedVal, heightSharedVal]
+    [translateYSharedVal, heightSharedVal]
   );
   const innerWrapAnimatedStyle = useAnimatedStyle(
     () => ({
@@ -54,6 +57,10 @@ const ActionSheetWrap: FC<ActionSheetWrapProps> = ({
   const onModalDismiss: ThemedModalProps['onDismiss'] = () => {
     onDismiss();
   };
+  const outerWrapStyle: AnimatedThemedViewProps['style'] = [
+    shadowStyle,
+    wrapViewProps?.style,
+  ];
 
   return (
     <ThemedModal
@@ -67,6 +74,7 @@ const ActionSheetWrap: FC<ActionSheetWrapProps> = ({
         maxHeight={getActionSheetMaxHeight(expandable)}
         overflow={'hidden'}
         {...wrapViewProps}
+        style={outerWrapStyle}
         animatedStyle={outerWrapAnimatedStyle}
       >
         <AnimatedThemedView animatedStyle={innerWrapAnimatedStyle}>
