@@ -1,3 +1,5 @@
 ## What's Changed
 
-- improvement: improve theme colours on light & dark modes
+- misc: updated README for Demo Application section
+- misc: updated README to mention integrated React Compiler
+- feat: implemented shadow style hook
