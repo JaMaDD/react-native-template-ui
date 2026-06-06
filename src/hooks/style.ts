@@ -145,6 +145,15 @@ export function useOrientation() {
   return orientation;
 }
 
+/**
+ * Hook to generate a box shadow style based on the specified direction and theme color.
+ * @param direction - The direction of the shadow (top, bottom, left, right, all)
+ * @param color - The theme color to use for the shadow (default is 'themePriT')
+ * @returns A ViewStyle object containing the calculated boxShadow property
+ * @example
+ * const shadowStyle = useShadowStyle(ShadowDirection.Bottom, 'themeSecT');
+ * // Returns: { boxShadow: '0px 5px 10px rgba(0, 0, 0, 0.1)' }
+ */
 export function useShadowStyle(
   direction: ShadowDirection,
   color: ThemeColors = 'themePriT'
