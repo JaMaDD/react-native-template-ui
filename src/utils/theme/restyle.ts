@@ -11,6 +11,7 @@ import {
   shadow,
   spacing,
   spacingShorthand,
+  typography,
 } from '@shopify/restyle';
 import type {
   AnimatedThemedPressableProps,
@@ -19,6 +20,10 @@ import type {
 import type { IconProps, ThemedIconProps } from '../../types/icon';
 import type { LoadingProps, ThemedLoadingProps } from '../../types/loading';
 import type { InsetsStyleConfig } from '../../types/style';
+import type {
+  TextInputProps,
+  ThemedTextInputProps,
+} from '../../types/textInput';
 import type { Theme } from '../../types/theme';
 import type {
   AnimatedThemedViewProps,
@@ -28,6 +33,8 @@ import type {
 const restyleBaseFuncs = [spacing, spacingShorthand, layout, position];
 
 const restyleBackgroundFuncs = [backgroundColor, backgroundColorShorthand];
+
+const restyleTextFuncs = [color, typography];
 
 const restyleViewFuncs = [
   ...restyleBaseFuncs,
@@ -201,3 +208,8 @@ export const themedScrollViewRestyleFuncs = composeRestyleFunctions<
   Theme,
   Omit<ThemedScrollViewProps, keyof InsetsStyleConfig | 'ref'>
 >(restyleBaseFuncs);
+
+export const themedTextInputRestyleFuncs = composeRestyleFunctions<
+  Theme,
+  Omit<ThemedTextInputProps, keyof TextInputProps | 'ref' | 'variant'>
+>([...restyleTextFuncs, ...restyleViewFuncs]);

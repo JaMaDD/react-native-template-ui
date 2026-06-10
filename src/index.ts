@@ -21,6 +21,7 @@ export { default as ThemedSlider } from './components/slider/ThemedSlider';
 export { default as ThemedSwitch } from './components/switch/ThemedSwitch';
 export { default as ThemedIconText } from './components/text/ThemedIconText';
 export { default as ThemedText } from './components/text/ThemedText';
+export { default as ThemedTextInput } from './components/textInput/ThemedTextInput';
 export { default as AnimatedThemedView } from './components/view/AnimatedThemedView';
 export { default as ThemedScreenWrap } from './components/view/ThemedScreenWrap';
 export { default as ThemedScrollView } from './components/view/ThemedScrollView';
@@ -50,6 +51,7 @@ export * from './types/slider';
 export * from './types/style';
 export * from './types/switch';
 export * from './types/text';
+export * from './types/textInput';
 export * from './types/theme';
 export * from './types/view';
 
@@ -59,3 +61,4 @@ export * from './utils/slider/const';
 export * from './utils/style/const';
 export * from './utils/style/func';
 export * from './utils/theme/const';
+
