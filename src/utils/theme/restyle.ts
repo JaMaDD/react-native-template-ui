@@ -211,5 +211,5 @@ export const themedScrollViewRestyleFuncs = composeRestyleFunctions<
 
 export const themedTextInputRestyleFuncs = composeRestyleFunctions<
   Theme,
-  Omit<ThemedTextInputProps, keyof TextInputProps | 'ref' | 'variant'>
+  Omit<ThemedTextInputProps, keyof TextInputProps | 'variant'>
 >([...restyleTextFuncs, ...restyleViewFuncs]);

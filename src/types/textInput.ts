@@ -27,5 +27,5 @@ export type ThemedTextInputProps = TextInputProps &
   > &
   Omit<ThemedTextProps, 'children'> &
   Omit<ThemedViewProps, 'ref' | 'children'> & {
-    ref?: RefObject<TextInput>;
+    ref?: RefObject<TextInput | null>;
   };

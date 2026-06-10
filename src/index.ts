@@ -34,6 +34,7 @@ export * from './hooks/react';
 export * from './hooks/reanimated';
 export * from './hooks/separator';
 export * from './hooks/style';
+export * from './hooks/textInput';
 export * from './hooks/theme';
 export * from './hooks/view';
 
@@ -61,4 +62,3 @@ export * from './utils/slider/const';
 export * from './utils/style/const';
 export * from './utils/style/func';
 export * from './utils/theme/const';
-

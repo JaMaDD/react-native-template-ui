@@ -274,6 +274,7 @@ export const lightTheme = createTheme({
     background: Palette.White,
     backgroundOverlay: Palette.BlackT,
     text: Palette.Black,
+    textDesc: Palette.Grey,
     textOverlay: Palette.White,
     textButton: Palette.White,
     border: Palette.Grey,

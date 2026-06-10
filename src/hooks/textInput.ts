@@ -1,4 +1,6 @@
 import { useRestyle } from '@shopify/restyle';
+import { useRef } from 'react';
+import type { TextInput } from 'react-native';
 import type { TextInputProps, ThemedTextInputProps } from '../types/textInput';
 import type { ThemeTextVariants } from '../types/theme';
 import { textInputDefaultTextVariant } from '../utils/textInput/const';
@@ -11,11 +13,11 @@ import {
 
 /** @internal */
 export function useThemedTextInput({
-  cursorColor,
-  selectionHandleColor,
+  cursorColor = 'themePri',
+  selectionHandleColor = 'themePri',
   underlineColorAndroid,
-  placeholderTextColor,
-  selectionColor,
+  placeholderTextColor = 'textDesc',
+  selectionColor = 'themePriT',
   variant = textInputDefaultTextVariant,
   ...props
 }: ThemedTextInputProps) {
@@ -30,16 +32,20 @@ export function useThemedTextInput({
         : (variant as ThemeTextVariants)
     ],
     ...props,
-  } as Omit<ThemedTextInputProps, keyof TextInputProps | 'ref' | 'variant'>);
+  } as Omit<ThemedTextInputProps, keyof TextInputProps | 'variant'>);
 
   return {
-    cursorColor: themeColors[cursorColor ?? 'themePri'],
-    selectionHandleColor: themeColors[selectionHandleColor ?? 'themePri'],
+    cursorColor: themeColors[cursorColor],
+    selectionHandleColor: themeColors[selectionHandleColor],
     underlineColorAndroid: underlineColorAndroid
       ? themeColors[underlineColorAndroid]
       : undefined,
-    placeholderTextColor: themeColors[placeholderTextColor ?? 'text'],
-    selectionColor: themeColors[selectionColor ?? 'themePriT'],
+    placeholderTextColor: themeColors[placeholderTextColor],
+    selectionColor: themeColors[selectionColor],
     restyle,
   };
+}
+
+export function useTextInputRef() {
+  return useRef<TextInput>(null);
 }

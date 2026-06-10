@@ -1,19 +1,29 @@
 import {
+  BorderSize,
+  getElementBoundingClientRect,
   ReactNativeTemplateProviders,
-  SliderValueDisplayMode,
-  ThemedAccordion,
   ThemedScreenWrap,
   ThemedScrollView,
-  ThemedSeparator,
-  ThemedSlider,
-  ThemedSwitch,
-  ThemedText,
+  ThemedTextInput,
   useIsDarkColorScheme,
+  useTextInputRef,
 } from '@jamadd/react-native-template-ui';
 import { customDarkTheme, customLightTheme } from './const';
+import { useLayoutEffect } from 'react';
 
 export default function App() {
   const isDarkColorScheme = useIsDarkColorScheme();
+  const textInputRef = useTextInputRef();
+  useLayoutEffect(() => {
+    textInputRef.current?.measure((x, y, width, height) => {
+      console.log('testing here', x, y, width, height);
+    });
+    console.log(
+      'App useLayoutEffect textInputRef',
+      textInputRef.current,
+      getElementBoundingClientRect(textInputRef)
+    );
+  }, [textInputRef]);
 
   return (
     <ReactNativeTemplateProviders
@@ -27,35 +37,16 @@ export default function App() {
         paddingHorizontal={'l'}
       >
         <ThemedScrollView>
-          <ThemedAccordion text={'Accordion Title'}>
-            <ThemedText>Accordion Content 1</ThemedText>
-            <ThemedText>Accordion Content 2</ThemedText>
-            <ThemedText>Accordion Content 3</ThemedText>
-            <ThemedSwitch onPress={() => {}} />
-            <ThemedText>Accordion Content 4</ThemedText>
-            <ThemedText>Accordion Content 5</ThemedText>
-            <ThemedSlider
-              range={[100, 0]}
-              steps={1}
-              defaultValue={75}
-              valueDisplayMode={SliderValueDisplayMode.Top}
-              onValueChange={(value) => {
-                console.log('Number Slider Value:', value);
-              }}
-            />
-            <ThemedSeparator />
-            <ThemedSlider
-              range={['textM', 'textSs', 'textMBold']}
-              defaultValue={'100'}
-              stepIndicator={true}
-              snapToStepAnimated={false}
-              valueDisplayMode={SliderValueDisplayMode.Bottom}
-              valueDescription={'units'}
-              onValueChange={(value) => {
-                console.log('String Slider Value:', value);
-              }}
-            />
-          </ThemedAccordion>
+          <ThemedTextInput
+            ref={textInputRef}
+            borderWidth={BorderSize.S}
+            onChange={({ nativeEvent }) => {
+              console.log('nativeEvent', nativeEvent);
+            }}
+            onChangeText={(text) => {
+              console.log('text', text);
+            }}
+          />
         </ThemedScrollView>
       </ThemedScreenWrap>
     </ReactNativeTemplateProviders>
