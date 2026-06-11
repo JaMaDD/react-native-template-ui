@@ -43,6 +43,7 @@ export type ThemedTextProps = RNTextProps & TextProps<Theme>;
 export type CustomThemedTextProps = {
   /** Text content to display */
   text: ThemedTextProps['children'];
+  textNumberOfLines?: ThemedTextProps['numberOfLines'];
   /** Text style variant from theme */
   textVariant?: ThemedTextProps['variant'];
   /** Font size (from theme or custom number) */
@@ -56,7 +57,13 @@ export type CustomThemedTextProps = {
   /** Additional text props (excluding specified ones) */
   textProps?: Omit<
     ThemedTextProps,
-    'children' | 'variant' | 'fontSize' | 'fontWeight' | 'color' | 'style'
+    | 'children'
+    | 'numberOfLines'
+    | 'variant'
+    | 'fontSize'
+    | 'fontWeight'
+    | 'color'
+    | 'style'
   >;
 };
 

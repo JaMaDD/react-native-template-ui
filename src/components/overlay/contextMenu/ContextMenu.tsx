@@ -1,11 +1,14 @@
 import { lazy, useReducer, type FC } from 'react';
 import type { View } from 'react-native';
+import { FadeInDown, FadeInUp } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
   useElementBoundingClientRect,
   useShadowStyle,
+  useWindowDimensionsHeight,
   useWindowDimensionsWidth,
 } from '../../../hooks/style';
+import { useThemeBreakpoint } from '../../../hooks/theme';
 import type { ThemedPressableProps } from '../../../types/button';
 import type {
   ContextMenuOptionListProps,
@@ -16,7 +19,7 @@ import type { AnimatedThemedViewProps } from '../../../types/view';
 import { isPlatformWeb } from '../../../utils/common/func';
 import { OverlayDismissResultType } from '../../../utils/overlay/const';
 import {
-  shadowDefaultOffset,
+  ElementScreenPosition,
   ShadowDirection,
 } from '../../../utils/style/const';
 import ThemedPressable from '../../button/ThemedPressable';
@@ -39,10 +42,14 @@ const ContextMenu: FC<ContextMenuProps> = ({
   optionListProps,
   optionListItemProps,
   onDismiss,
+  pressableProps,
+  contentWidth: propsContentWidth,
   children,
 }) => {
   const windowWidth = useWindowDimensionsWidth();
-  const { top } = useSafeAreaInsets();
+  const windowHeight = useWindowDimensionsHeight();
+  const { top: insetsTop } = useSafeAreaInsets();
+  const breakpoint = useThemeBreakpoint();
   const [visible, updateVisible] = useReducer(
     (_prevVisible, nextVisible) => nextVisible,
     false
@@ -50,6 +57,8 @@ const ContextMenu: FC<ContextMenuProps> = ({
   const {
     ref,
     elementBoundingClientRect: { width, height, x, y },
+    elementScreenPosition,
+    refreshElementBoundingClientReact,
   } = useElementBoundingClientRect<View>();
   const shadowStyle = useShadowStyle(ShadowDirection.All);
 
@@ -57,6 +66,7 @@ const ContextMenu: FC<ContextMenuProps> = ({
     updateVisible(false);
   };
   const onModalShow: ThemedPressableProps['onPress'] = () => {
+    refreshElementBoundingClientReact();
     updateVisible(true);
   };
   const onModalDismiss: ThemedModalProps['onDismiss'] = () => {
@@ -76,13 +86,36 @@ const ContextMenu: FC<ContextMenuProps> = ({
   const contentWrapProps: ThemedModalProps['contentWrapProps'] = {
     backgroundColor: 'transparent',
   };
-  const contentWidth: AnimatedThemedViewProps['width'] =
-    x + width > windowWidth ? windowWidth - x - shadowDefaultOffset : width;
-  const contentTop: AnimatedThemedViewProps['top'] = top + y + height;
+
+  const contentWidth: AnimatedThemedViewProps['width'] = Math.min(
+    windowWidth,
+    (typeof propsContentWidth === 'object'
+      ? propsContentWidth[breakpoint]
+      : propsContentWidth) || windowWidth
+  );
+  const contentTop: AnimatedThemedViewProps['top'] =
+    elementScreenPosition === ElementScreenPosition.Upper
+      ? undefined
+      : insetsTop + y + height;
+  const contentBottom: AnimatedThemedViewProps['bottom'] =
+    elementScreenPosition === ElementScreenPosition.Lower
+      ? undefined
+      : windowHeight - insetsTop - y;
+  const contentLeft: AnimatedThemedViewProps['left'] =
+    contentWidth === windowWidth
+      ? 0
+      : contentWidth > x + width
+        ? x
+        : x + width - contentWidth;
 
   return (
     <>
-      <ThemedPressable ref={ref} onPress={onModalShow}>
+      <ThemedPressable
+        ref={ref}
+        onPress={onModalShow}
+        alignSelf={'baseline'}
+        {...pressableProps}
+      >
         {children}
       </ThemedPressable>
       {visible && (
@@ -93,9 +126,15 @@ const ContextMenu: FC<ContextMenuProps> = ({
           contentWrapProps={contentWrapProps}
         >
           <AnimatedThemedView
+            entering={
+              elementScreenPosition === ElementScreenPosition.Upper
+                ? FadeInDown
+                : FadeInUp
+            }
             position={'absolute'}
-            left={x}
             top={contentTop}
+            bottom={contentBottom}
+            left={contentLeft}
             width={contentWidth}
             style={shadowStyle}
           >

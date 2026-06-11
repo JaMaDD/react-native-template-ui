@@ -28,6 +28,7 @@ const ThemedIconTextButton: FC<ThemedIconTextButtonProps> = ({
   iconStyle,
   iconProps,
   text,
+  textNumberOfLines = 1,
   textVariant,
   textFontSize,
   textFontWeight,
@@ -54,6 +55,7 @@ const ThemedIconTextButton: FC<ThemedIconTextButtonProps> = ({
         iconStyle={iconStyle}
         iconProps={iconProps}
         text={text}
+        textNumberOfLines={textNumberOfLines}
         textVariant={textVariant}
         textFontSize={textFontSize}
         textFontWeight={textFontWeight}

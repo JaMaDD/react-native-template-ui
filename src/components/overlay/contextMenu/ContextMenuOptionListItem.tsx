@@ -39,6 +39,7 @@ const ContextMenuOptionListItem: FC<ListItemProps<ContextMenuOption>> = ({
   return 'iconName' in item ? (
     <ThemedIconTextButton
       onPress={onItemPress}
+      textNumberOfLines={2}
       textColor={'text'}
       justifyContent={'flex-start'}
       {...item}
@@ -47,6 +48,7 @@ const ContextMenuOptionListItem: FC<ListItemProps<ContextMenuOption>> = ({
   ) : (
     <ThemedButton
       onPress={onItemPress}
+      textNumberOfLines={2}
       textColor={'text'}
       justifyContent={'flex-start'}
       backgroundColor={'background'}

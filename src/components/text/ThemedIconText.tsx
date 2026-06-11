@@ -33,6 +33,7 @@ const ThemedIconText: FC<ThemedIconTextProps> = ({
   iconStyle,
   iconProps,
   text,
+  textNumberOfLines = 1,
   textVariant,
   textFontSize,
   textFontWeight,
@@ -43,7 +44,7 @@ const ThemedIconText: FC<ThemedIconTextProps> = ({
 }) => {
   const themedText = (
     <ThemedText
-      numberOfLines={1}
+      numberOfLines={textNumberOfLines}
       variant={textVariant}
       fontSize={textFontSize}
       fontWeight={textFontWeight}

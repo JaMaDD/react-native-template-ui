@@ -46,3 +46,9 @@ export const elementDefaultDOMRect: DOMRect = {
   ...elementDefaultBoundingClientRect,
   toJSON: () => elementDefaultBoundingClientRect,
 };
+
+/** @internal */
+export enum ElementScreenPosition {
+  Upper = 'upper',
+  Lower = 'lower',
+}

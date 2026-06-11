@@ -1,12 +1,27 @@
-import { useMemo } from 'react';
+import {
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+  type DependencyList,
+} from 'react';
 import {
   useWindowDimensions as useRNWindowDimensions,
+  type ReactNativeElement,
   type ViewStyle,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import type { InsetsStyleConfig } from '../types/style';
 import type { ThemeColors } from '../types/theme';
-import { Orientation, ShadowDirection } from '../utils/style/const';
+import {
+  elementDefaultDOMRect,
+  ElementScreenPosition,
+  Orientation,
+  shadowDefaultBlurRadius,
+  shadowDefaultOffset,
+  ShadowDirection,
+} from '../utils/style/const';
+import { getElementBoundingClientRect } from '../utils/style/func';
 import { useThemeColors, useThemeSpacing } from './theme';
 
 /**
@@ -163,19 +178,53 @@ export function useShadowStyle(
     const shadowColor = themeColors[color];
     switch (direction) {
       case ShadowDirection.Top:
-        return `0px -5px 10px ${shadowColor}`;
+        return `0px -${shadowDefaultOffset}px ${shadowDefaultBlurRadius}px ${shadowColor}`;
       case ShadowDirection.Bottom:
-        return `0px 5px 10px ${shadowColor}`;
+        return `0px ${shadowDefaultOffset}px ${shadowDefaultBlurRadius}px ${shadowColor}`;
       case ShadowDirection.Left:
-        return `-5px 0px 10px ${shadowColor}`;
+        return `-${shadowDefaultOffset}px 0px ${shadowDefaultBlurRadius}px ${shadowColor}`;
       case ShadowDirection.Right:
-        return `5px 0px 10px ${shadowColor}`;
+        return `${shadowDefaultOffset}px 0px ${shadowDefaultBlurRadius}px ${shadowColor}`;
       case ShadowDirection.All:
-        return `0px 0px 10px ${shadowColor}`;
+        return `0px 0px ${shadowDefaultBlurRadius}px ${shadowColor}`;
       default:
         return undefined;
     }
   }, [direction, color, themeColors]);
 
   return { boxShadow };
+}
+
+export function useElementBoundingClientRect<T extends ReactNativeElement>(
+  refreshElementBoundingClientRectDeps: DependencyList = []
+) {
+  const windowHeight = useWindowDimensionsHeight();
+  const ref = useRef<T>(null);
+  const [elementBoundingClientRect, setElementBoundingClientRect] = useState(
+    elementDefaultDOMRect
+  );
+  const [elementScreenPosition, setElementScreenPosition] =
+    useState<ElementScreenPosition>(ElementScreenPosition.Lower);
+  const refreshElementBoundingClientReact = () => {
+    const tempElementScreenPosition = getElementBoundingClientRect(ref);
+    setElementBoundingClientRect(tempElementScreenPosition);
+    setElementScreenPosition(
+      tempElementScreenPosition.y > windowHeight / 2
+        ? ElementScreenPosition.Upper
+        : ElementScreenPosition.Lower
+    );
+  };
+  useLayoutEffect(() => {
+    refreshElementBoundingClientReact();
+  }, [
+    refreshElementBoundingClientReact,
+    ...refreshElementBoundingClientRectDeps,
+  ]);
+
+  return {
+    ref,
+    elementBoundingClientRect,
+    elementScreenPosition,
+    refreshElementBoundingClientReact,
+  };
 }

@@ -35,25 +35,138 @@ export default function App() {
               console.log('text', text);
             }}
           />
+          <ThemedText>testing here</ThemedText>
+          <ThemedText>testing here</ThemedText>
+          <ThemedText>testing here</ThemedText>
+          <ThemedText>testing here</ThemedText>
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
           <ContextMenu
             options={[
               {
                 onPress: () => {
                   console.log('hi');
                 },
-                text: 'hi',
+                text: 'hihihihihihihihihihi',
+              },
+              {
+                onPress: () => {
+                  console.log('bye');
+                },
+                text: 'bye bye',
+              },
+              {
+                onPress: () => {
+                  console.log('bye');
+                },
+                text: 'bye bye',
+              },
+              {
+                onPress: () => {
+                  console.log('bye');
+                },
+                text: 'bye bye',
+              },
+              {
+                onPress: () => {
+                  console.log('bye');
+                },
+                text: 'bye bye',
+              },
+              {
+                onPress: () => {
+                  console.log('bye');
+                },
+                text: 'bye bye',
+              },
+              {
+                onPress: () => {
+                  console.log('bye');
+                },
+                text: 'bye bye',
+              },
+              {
+                onPress: () => {
+                  console.log('bye');
+                },
+                text: 'bye bye',
+              },
+              {
+                onPress: () => {
+                  console.log('bye');
+                },
+                text: 'bye bye',
+              },
+              {
+                onPress: () => {
+                  console.log('bye');
+                },
+                text: 'bye bye',
+              },
+              {
+                onPress: () => {
+                  console.log('bye');
+                },
+                text: 'bye bye',
+              },
+              {
+                onPress: () => {
+                  console.log('bye');
+                },
+                text: 'bye bye',
+              },
+              {
+                onPress: () => {
+                  console.log('bye');
+                },
+                text: 'bye bye',
               },
             ]}
             onDismiss={(result) => {
               console.log('result', result);
             }}
           >
-            <ThemedText>testing here</ThemedText>
+            <ThemedText style={{ backgroundColor: 'red' }}>testiere</ThemedText>
           </ContextMenu>
-          <ThemedText>testing here</ThemedText>
-          <ThemedText>testing here</ThemedText>
-          <ThemedText>testing here</ThemedText>
-          <ThemedText>testing here</ThemedText>
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
           <ThemedView width={100} height={100} backgroundColor={'err'} />
         </ThemedScrollView>
       </ThemedScreenWrap>

@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import { useListItemSeparatorComponent } from '../../../hooks/list';
-import type { ListKeyExtractor } from '../../../types/list';
+import { useWindowDimensionsHeight } from '../../../hooks/style';
+import type { ListKeyExtractor, ListProps } from '../../../types/list';
 import type {
   ContextMenuOption,
   ContextMenuOptionListExtraData,
@@ -15,6 +16,7 @@ const ContextMenuOptionList: FC<ContextMenuOptionListProps> = ({
   optionListItemProps,
   onItemPress,
 }) => {
+  const windowsHeight = useWindowDimensionsHeight();
   const ListItemSeparatorComponent = useListItemSeparatorComponent();
 
   const keyExtractor: ListKeyExtractor<ContextMenuOption> = (_item, index) =>
@@ -22,6 +24,9 @@ const ContextMenuOptionList: FC<ContextMenuOptionListProps> = ({
   const extraData: ContextMenuOptionListExtraData = {
     optionListItemProps,
     onItemPress,
+  };
+  const style: ListProps<ContextMenuOption>['style'] = {
+    maxHeight: windowsHeight * 0.4,
   };
 
   return (
@@ -31,6 +36,7 @@ const ContextMenuOptionList: FC<ContextMenuOptionListProps> = ({
       keyExtractor={keyExtractor}
       extraData={extraData}
       ItemSeparatorComponent={ListItemSeparatorComponent}
+      style={style}
       insetBottom={false}
       {...optionListProps}
     />

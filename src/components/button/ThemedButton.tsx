@@ -20,6 +20,7 @@ import ThemedPressable from './ThemedPressable';
  */
 const ThemedButton: FC<ThemedButtonProps> = ({
   text,
+  textNumberOfLines = 1,
   textVariant,
   textFontSize,
   textFontWeight,
@@ -41,7 +42,7 @@ const ThemedButton: FC<ThemedButtonProps> = ({
       {...props}
     >
       <ThemedText
-        numberOfLines={1}
+        numberOfLines={textNumberOfLines}
         variant={textVariant}
         fontSize={textFontSize}
         fontWeight={textFontWeight}

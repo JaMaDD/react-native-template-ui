@@ -1,3 +1,4 @@
+import type { ResponsiveValue } from '@shopify/restyle';
 import type { ModalProps, ViewStyle } from 'react-native';
 import type { SharedValue } from 'react-native-reanimated';
 import type {
@@ -6,13 +7,18 @@ import type {
   ToastDuration,
   ToastType,
 } from '../utils/overlay/const';
-import type { ThemedButtonProps, ThemedIconTextButtonProps } from './button';
+import type {
+  ThemedButtonProps,
+  ThemedIconTextButtonProps,
+  ThemedPressableProps,
+} from './button';
 import type { ListAnimatedRefObj, ListProps } from './list';
 import type { CustomThemedLoadingProps } from './loading';
 import type { SetState } from './react';
 import type { CustomAnimation } from './reanimated';
 import type { InsetsStyleConfig } from './style';
 import type { CustomThemedTextProps, ThemedTextProps } from './text';
+import type { ThemeBreakpoints } from './theme';
 import type {
   AnimatedThemedViewProps,
   PropsWithRequiredChildren,
@@ -492,6 +498,8 @@ export type ContextMenuProps = PropsWithRequiredChildren<{
   optionListProps?: ContextMenuOptionListProps;
   optionListItemProps?: ContextMenuOptionListItemProps;
   onDismiss?: OverlayOnDismiss<OverlayDismissContextMenuResult>;
+  pressableProps?: Omit<ThemedPressableProps, 'onPress'>;
+  contentWidth?: ResponsiveValue<number, Record<ThemeBreakpoints, number>>;
 }>;
 
 export type ContextMenuOptionListProps = Pick<
