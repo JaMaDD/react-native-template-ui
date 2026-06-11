@@ -6,7 +6,7 @@ import type {
   ToastDuration,
   ToastType,
 } from '../utils/overlay/const';
-import type { ThemedButtonProps } from './button';
+import type { ThemedButtonProps, ThemedIconTextButtonProps } from './button';
 import type { ListAnimatedRefObj, ListProps } from './list';
 import type { CustomThemedLoadingProps } from './loading';
 import type { SetState } from './react';
@@ -83,6 +83,11 @@ export type OverlayDismissActionSheetResult = OverlayDismissBaseResult &
   Pick<ActionSheetProps, 'title'> &
   Pick<ActionSheetOption, 'text'> & {
     resultType: OverlayDismissResultType.ActionSheet;
+  };
+
+export type OverlayDismissContextMenuResult = OverlayDismissBaseResult &
+  Pick<ContextMenuOption, 'text'> & {
+    resultType: OverlayDismissResultType.ContextMenu;
   };
 
 /**
@@ -481,3 +486,33 @@ export type ActionSheetListViewProps = ActionSheetProps &
  * @internal
  */
 export type ActionSheetListViewListRefObj = ListAnimatedRefObj<any>;
+
+export type ContextMenuProps = PropsWithRequiredChildren<{
+  options: ContextMenuOptions;
+  optionListProps?: ContextMenuOptionListProps;
+  optionListItemProps?: ContextMenuOptionListItemProps;
+  onDismiss?: OverlayOnDismiss<OverlayDismissContextMenuResult>;
+}>;
+
+export type ContextMenuOptionListProps = Pick<
+  ContextMenuProps,
+  'options' | 'optionListProps' | 'optionListItemProps'
+> & { onItemPress: (text: string) => void };
+
+export type ContextMenuOptionListItemProps = Omit<
+  ContextMenuOption,
+  'onPress' | 'text' | 'iconName'
+>;
+
+export type ContextMenuOptionListRefObj = ListAnimatedRefObj<ContextMenuOption>;
+
+/** @internal */
+export type ContextMenuOptionListExtraData = Pick<
+  ContextMenuProps,
+  'optionListItemProps'
+> &
+  Pick<ContextMenuOptionListProps, 'onItemPress'>;
+
+export type ContextMenuOption = ThemedButtonProps | ThemedIconTextButtonProps;
+
+export type ContextMenuOptions = ContextMenuOption[];

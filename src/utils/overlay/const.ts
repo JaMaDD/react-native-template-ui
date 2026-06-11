@@ -28,6 +28,7 @@ export enum OverlayDismissResultType {
   Alert = 'alert',
   /** Action sheet overlay */
   ActionSheet = 'actionSheet',
+  ContextMenu = 'contextMenu',
 }
 
 /**

@@ -1,6 +1,10 @@
-import type { RefObject } from 'react';
-import { Dimensions, StyleSheet, type ReactNativeElement } from 'react-native';
-import type { Style, StyleOrStyleProp } from '../../types/style';
+import { Dimensions, StyleSheet } from 'react-native';
+import type {
+  ElementRefObject,
+  Style,
+  StyleOrStyleProp,
+} from '../../types/style';
+import { elementDefaultDOMRect } from './const';
 
 /**
  * Creates a stylesheet from a style object with type safety.
@@ -132,24 +136,6 @@ export function getWindowDimensionsFontScale() {
   return getWindowDimensions().fontScale;
 }
 
-export function getElementBoundingClientRect(
-  ref: RefObject<ReactNativeElement | null>
-): DOMRect {
-  const domRect: Omit<DOMRect, 'toJSON'> = {
-    width: 0,
-    height: 0,
-    x: 0,
-    y: 0,
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-  };
-
-  return (
-    ref.current?.getBoundingClientRect() ?? {
-      ...domRect,
-      toJSON: () => domRect,
-    }
-  );
+export function getElementBoundingClientRect(ref: ElementRefObject): DOMRect {
+  return ref.current?.getBoundingClientRect() ?? elementDefaultDOMRect;
 }

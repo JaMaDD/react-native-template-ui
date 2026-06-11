@@ -9,6 +9,7 @@ export { default as List } from './components/list/List';
 export { default as ThemedLoading } from './components/loading/ThemedLoading';
 export { default as ActionSheet } from './components/overlay/actionSheet/ActionSheet';
 export { default as Alert } from './components/overlay/alert/Alert';
+export { default as ContextMenu } from './components/overlay/contextMenu/ContextMenu';
 export { default as ThemedLoadingModal } from './components/overlay/modal/ThemedLoadingModal';
 export { default as ThemedModal } from './components/overlay/modal/ThemedModal';
 export { default as ThemedToast } from './components/overlay/toast/ThemedToast';
@@ -57,6 +58,8 @@ export * from './types/theme';
 export * from './types/view';
 
 export * from './utils/button/const';
+export * from './utils/common/const';
+export * from './utils/common/func';
 export * from './utils/overlay/const';
 export * from './utils/slider/const';
 export * from './utils/style/const';

@@ -1,29 +1,18 @@
 import {
   BorderSize,
-  getElementBoundingClientRect,
+  ContextMenu,
   ReactNativeTemplateProviders,
   ThemedScreenWrap,
   ThemedScrollView,
+  ThemedText,
   ThemedTextInput,
+  ThemedView,
   useIsDarkColorScheme,
-  useTextInputRef,
 } from '@jamadd/react-native-template-ui';
 import { customDarkTheme, customLightTheme } from './const';
-import { useLayoutEffect } from 'react';
 
 export default function App() {
   const isDarkColorScheme = useIsDarkColorScheme();
-  const textInputRef = useTextInputRef();
-  useLayoutEffect(() => {
-    textInputRef.current?.measure((x, y, width, height) => {
-      console.log('testing here', x, y, width, height);
-    });
-    console.log(
-      'App useLayoutEffect textInputRef',
-      textInputRef.current,
-      getElementBoundingClientRect(textInputRef)
-    );
-  }, [textInputRef]);
 
   return (
     <ReactNativeTemplateProviders
@@ -38,7 +27,6 @@ export default function App() {
       >
         <ThemedScrollView>
           <ThemedTextInput
-            ref={textInputRef}
             borderWidth={BorderSize.S}
             onChange={({ nativeEvent }) => {
               console.log('nativeEvent', nativeEvent);
@@ -47,6 +35,26 @@ export default function App() {
               console.log('text', text);
             }}
           />
+          <ContextMenu
+            options={[
+              {
+                onPress: () => {
+                  console.log('hi');
+                },
+                text: 'hi',
+              },
+            ]}
+            onDismiss={(result) => {
+              console.log('result', result);
+            }}
+          >
+            <ThemedText>testing here</ThemedText>
+          </ContextMenu>
+          <ThemedText>testing here</ThemedText>
+          <ThemedText>testing here</ThemedText>
+          <ThemedText>testing here</ThemedText>
+          <ThemedText>testing here</ThemedText>
+          <ThemedView width={100} height={100} backgroundColor={'err'} />
         </ThemedScrollView>
       </ThemedScreenWrap>
     </ReactNativeTemplateProviders>

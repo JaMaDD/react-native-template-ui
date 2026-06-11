@@ -1,5 +1,7 @@
+import type { RefObject } from 'react';
 import type {
   ImageStyle,
+  ReactNativeElement,
   StyleProp as RNStyleProp,
   TextStyle,
   ViewStyle,
@@ -67,3 +69,5 @@ export type InsetsStyleConfig = {
   /** Spacing value for right inset (overrides insetsPadding) */
   insetPaddingRight?: ThemeSpacing;
 };
+
+export type ElementRefObject = RefObject<ReactNativeElement | null>;
