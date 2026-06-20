@@ -225,11 +225,15 @@ import { ThemedButton } from '@jamadd/react-native-template-ui';
 
 - List
 
-### Icons and Texts
+### Texts and Icons
 
+- ThemedText
 - ThemedIcon
 - ThemedIconText
-- ThemedText
+
+### Text Input
+
+- ThemedTextInput
 
 ### Loading Indicator
 
@@ -242,6 +246,7 @@ import { ThemedButton } from '@jamadd/react-native-template-ui';
 - ThemedLoadingModal
 - ThemedModal
 - ThemedToast
+- ContextMenu
 
 ### Providers
 
