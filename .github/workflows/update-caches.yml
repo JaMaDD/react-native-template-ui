@@ -27,6 +27,10 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
           lookup-only: true
 
+      - name: Update Yarn
+        run: yarn set version latest
+        shell: bash
+
       - name: Install dependencies
         if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile

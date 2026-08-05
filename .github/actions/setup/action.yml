@@ -24,6 +24,10 @@ runs:
         restore-keys: |
           ${{ runner.os }}-yarn-
 
+    - name: Update Yarn
+      run: yarn set version latest
+      shell: bash
+
     - name: Install dependencies
       if: steps.yarn-cache.outputs.cache-hit != 'true'
       run: yarn install --frozen-lockfile
