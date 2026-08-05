@@ -190,5 +190,6 @@
       "release-it"
     ],
     "version": "0.61.0"
-  }
+  },
+  "private": true
 }
