@@ -28,7 +28,7 @@ jobs:
           lookup-only: true
 
       - name: Update Yarn
-        run: yarn set version latest
+        run: yarn set version stable
         shell: bash
 
       - name: Install dependencies
