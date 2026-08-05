@@ -1,7 +1,12 @@
 import { useMappingHelper } from '@shopify/flash-list';
 import { lazy, useLayoutEffect, useMemo, useState, type FC } from 'react';
 import { Platform } from 'react-native';
-import { Gesture, GestureDetector } from 'react-native-gesture-handler';
+import {
+  GestureDetector,
+  useLongPressGesture,
+  usePanGesture,
+  useSimultaneousGestures,
+} from 'react-native-gesture-handler';
 import {
   useAnimatedStyle,
   useSharedValue,
@@ -108,83 +113,67 @@ const Slider: FC<SliderProps> = ({
     () => ({ transform: [{ translateX: xSharedVal.get() - thumbSizeHalf }] }),
     [thumbSizeHalf]
   );
-  const gesture = useMemo(() => {
-    const updateSelectedVal = (x: number) => {
-      if (!stepWidth) {
-        return;
-      }
+  const updateSelectedVal = (x: number) => {
+    if (!stepWidth) {
+      return;
+    }
 
-      if (isNumRange) {
-        const numRange = processedRange as NumberSlider['range'];
-        const numIndex = Math.round(x / stepWidth);
-        const tempSelectedVal = Number(
-          (numRange[1] - numIndex * steps).toFixed(stepsFractionDigits)
+    if (isNumRange) {
+      const numRange = processedRange as NumberSlider['range'];
+      const numIndex = Math.round(x / stepWidth);
+      const tempSelectedVal = Number(
+        (numRange[1] - numIndex * steps).toFixed(stepsFractionDigits)
+      );
+      setSelectedVal?.(tempSelectedVal);
+      onValueChange(tempSelectedVal);
+    } else {
+      const strRange = processedRange as StringSlider['range'];
+      const strIndex = Math.round(x / stepWidth);
+      const tempSelectedVal = strRange[totalSteps - strIndex];
+      setSelectedVal?.(tempSelectedVal);
+      onValueChange(tempSelectedVal!);
+    }
+  };
+  const updateXSharedVal = (x: number, animated = false) => {
+    'worklet';
+    const tempX = Math.min(0, Math.max(x, -(trackWidth ?? 0)));
+    xSharedVal.set(animated ? withTiming(tempX) : tempX);
+    scheduleOnRN(updateSelectedVal, Math.abs(tempX));
+  };
+  const longPressGesture = useLongPressGesture({
+    minDuration: gestureActivateDuration,
+    maxDistance: windowWidth * 10,
+    shouldCancelWhenOutside: false,
+    onActivate: ({ x }) => {
+      if (sliderWidth) {
+        updateXSharedVal(-(sliderWidth - (x + thumbSize * 2)));
+      }
+    },
+    onDeactivate: ({ x }) => {
+      if (sliderWidth && stepWidth) {
+        const nearestStep = Math.round(
+          -(sliderWidth - (x + thumbSize + thumbSizeHalf)) / stepWidth
         );
-        setSelectedVal?.(tempSelectedVal);
-        onValueChange(tempSelectedVal);
-      } else {
-        const strRange = processedRange as StringSlider['range'];
-        const strIndex = Math.round(x / stepWidth);
-        const tempSelectedVal = strRange[totalSteps - strIndex];
-        setSelectedVal?.(tempSelectedVal);
-        onValueChange(tempSelectedVal!);
+        updateXSharedVal(nearestStep * stepWidth, snapToStepAnimated);
       }
-    };
-    const updateXSharedVal = (x: number, animated = false) => {
-      'worklet';
-      const tempX = Math.min(0, Math.max(x, -(trackWidth ?? 0)));
-      xSharedVal.set(animated ? withTiming(tempX) : tempX);
-      scheduleOnRN(updateSelectedVal, Math.abs(tempX));
-    };
-
-    return Gesture.Simultaneous(
-      Gesture.LongPress()
-        .minDuration(gestureActivateDuration)
-        .maxDistance(windowWidth * 10)
-        .shouldCancelWhenOutside(false)
-        .onStart(({ x }) => {
-          if (sliderWidth) {
-            updateXSharedVal(-(sliderWidth - (x + thumbSize * 2)));
-          }
-        })
-        .onEnd(({ x }) => {
-          if (sliderWidth && stepWidth) {
-            const nearestStep = Math.round(
-              -(sliderWidth - (x + thumbSize + thumbSizeHalf)) / stepWidth
-            );
-            updateXSharedVal(nearestStep * stepWidth, snapToStepAnimated);
-          }
-        }),
-      Gesture.Pan()
-        .activateAfterLongPress(gestureActivateDuration)
-        .onChange(({ changeX }) => {
-          updateXSharedVal(xSharedVal.get() + changeX);
-        })
-        .onEnd(() => {
-          if (stepWidth) {
-            const nearestStep = Math.round(xSharedVal.get() / stepWidth);
-            updateXSharedVal(nearestStep * stepWidth, snapToStepAnimated);
-          }
-        })
-    );
-  }, [
-    gestureActivateDuration,
-    windowWidth,
-    stepWidth,
-    isNumRange,
-    processedRange,
-    steps,
-    stepsFractionDigits,
-    setSelectedVal,
-    onValueChange,
-    totalSteps,
-    trackWidth,
-    xSharedVal,
-    sliderWidth,
-    thumbSize,
-    thumbSizeHalf,
-    snapToStepAnimated,
-  ]);
+    },
+  });
+  const panGesture = usePanGesture({
+    activateAfterLongPress: gestureActivateDuration,
+    onUpdate: ({ changeX }) => {
+      updateXSharedVal(xSharedVal.get() + changeX);
+    },
+    onDeactivate: () => {
+      if (stepWidth) {
+        const nearestStep = Math.round(xSharedVal.get() / stepWidth);
+        updateXSharedVal(nearestStep * stepWidth, snapToStepAnimated);
+      }
+    },
+  });
+  const simultaneousGesture = useSimultaneousGestures(
+    longPressGesture,
+    panGesture
+  );
   const updateSliderLayout = (width: number) => {
     const tempWidth = width - thumbSize;
     const tempStepWidth = tempWidth / totalSteps;
@@ -220,7 +209,7 @@ const Slider: FC<SliderProps> = ({
   };
 
   return (
-    <GestureDetector gesture={gesture}>
+    <GestureDetector gesture={simultaneousGesture}>
       <ThemedView
         ref={trackViewRef}
         alignItems={'center'}

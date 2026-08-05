@@ -1,8 +1,17 @@
 import type { FC } from 'react';
+import { lazy } from 'react';
+import type { ThemedIconProps } from '../../types/icon';
 import type { ThemedIconTextProps } from '../../types/text';
-import ThemedIcon from '../icon/ThemedIcon';
+import { isPlatformWeb } from '../../utils/common/func';
 import ThemedView from '../view/ThemedView';
 import ThemedText from './ThemedText';
+
+let ThemedIcon: FC<ThemedIconProps>;
+if (isPlatformWeb()) {
+  ThemedIcon = lazy(() => import('../icon/ThemedIcon'));
+} else {
+  ThemedIcon = require('../icon/ThemedIcon').default;
+}
 
 /**
  * A themed component that displays an icon and text together in a flexible layout.
@@ -32,6 +41,7 @@ const ThemedIconText: FC<ThemedIconTextProps> = ({
   iconColor,
   iconStyle,
   iconProps,
+  iconComponent,
   text,
   textNumberOfLines = 1,
   textVariant,
@@ -65,13 +75,15 @@ const ThemedIconText: FC<ThemedIconTextProps> = ({
       {...props}
     >
       {flip && themedText}
-      <ThemedIcon
-        name={iconName}
-        size={iconSize}
-        color={iconColor}
-        style={iconStyle}
-        {...iconProps}
-      />
+      {iconComponent ?? (
+        <ThemedIcon
+          name={iconName}
+          size={iconSize}
+          color={iconColor}
+          style={iconStyle}
+          {...iconProps}
+        />
+      )}
       {!flip && themedText}
     </ThemedView>
   );

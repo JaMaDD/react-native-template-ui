@@ -1,4 +1,5 @@
 import type { IconName, IconSize } from '@jamadd/react-native-template-icons';
+import type { ReactElement } from 'react';
 import type { TextStyle } from 'react-native';
 import type { StyleOrStyleProp } from './style';
 import type { ThemeBaseProps, ThemeColors } from './theme';
@@ -50,15 +51,25 @@ export type ThemedIconProps = IconProps & ThemeBaseProps;
  * />
  * ```
  */
-export type CustomThemedIconProps = {
-  /** Icon name from the icon library */
-  iconName: ThemedIconProps['name'];
-  /** Icon size (predefined or custom number) */
-  iconSize?: ThemedIconProps['size'];
-  /** Icon color from theme colors */
-  iconColor?: ThemedIconProps['color'];
-  /** Custom style for the icon */
-  iconStyle?: ThemedIconProps['style'];
-  /** Additional icon props (excluding name, size, color, style) */
-  iconProps?: Omit<ThemedIconProps, 'name' | 'size' | 'color' | 'style'>;
-};
+export type CustomThemedIconProps =
+  | {
+      /** Icon name from the icon library */
+      iconName: ThemedIconProps['name'];
+      /** Icon size (predefined or custom number) */
+      iconSize?: ThemedIconProps['size'];
+      /** Icon color from theme colors */
+      iconColor?: ThemedIconProps['color'];
+      /** Custom style for the icon */
+      iconStyle?: ThemedIconProps['style'];
+      /** Additional icon props (excluding name, size, color, style) */
+      iconProps?: Omit<ThemedIconProps, 'name' | 'size' | 'color' | 'style'>;
+      iconComponent?: never;
+    }
+  | {
+      iconComponent: ReactElement;
+      iconName?: never;
+      iconSize?: never;
+      iconColor?: never;
+      iconStyle?: never;
+      iconProps?: never;
+    };

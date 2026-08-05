@@ -1,8 +1,17 @@
 import type { FC } from 'react';
+import { lazy } from 'react';
 import type { ThemedIconButtonProps } from '../../types/button';
+import type { ThemedIconProps } from '../../types/icon';
 import { ButtonScaleRatio } from '../../utils/button/const';
-import ThemedIcon from '../icon/ThemedIcon';
+import { isPlatformWeb } from '../../utils/common/func';
 import ThemedPressable from './ThemedPressable';
+
+let ThemedIcon: FC<ThemedIconProps>;
+if (isPlatformWeb()) {
+  ThemedIcon = lazy(() => import('../icon/ThemedIcon'));
+} else {
+  ThemedIcon = require('../icon/ThemedIcon').default;
+}
 
 /**
  * A themed button component that displays only an icon.
@@ -24,6 +33,7 @@ const ThemedIconButton: FC<ThemedIconButtonProps> = ({
   iconColor,
   iconStyle,
   iconProps,
+  iconComponent,
   ...props
 }) => {
   return (
@@ -33,13 +43,15 @@ const ThemedIconButton: FC<ThemedIconButtonProps> = ({
       padding={'s'}
       {...props}
     >
-      <ThemedIcon
-        name={iconName}
-        size={iconSize}
-        color={iconColor}
-        style={iconStyle}
-        {...iconProps}
-      />
+      {iconComponent ?? (
+        <ThemedIcon
+          name={iconName}
+          size={iconSize}
+          color={iconColor}
+          style={iconStyle}
+          {...iconProps}
+        />
+      )}
     </ThemedPressable>
   );
 };

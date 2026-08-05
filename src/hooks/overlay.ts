@@ -1,6 +1,10 @@
 import { useContext, useEffect, useLayoutEffect, useState } from 'react';
 import type { ScrollView } from 'react-native';
-import { Gesture } from 'react-native-gesture-handler';
+import {
+  useNativeGesture,
+  usePanGesture,
+  useSimultaneousGestures,
+} from 'react-native-gesture-handler';
 import {
   makeMutable,
   useAnimatedRef,
@@ -160,16 +164,16 @@ export function useActionSheetOnDismiss(force = true) {
 
 /** @internal */
 export function useActionSheetGesture(contentGesture: boolean = false) {
-  const onDismiss = useActionSheetOnDismiss(false);
-
   const {
     expandable,
     translateYSharedVal,
     heightSharedVal,
     contentOffsetSharedVal,
   } = getActionSheetContext();
-  const actionSheetGesture = Gesture.Pan()
-    .onChange(({ changeY }) => {
+  const onDismiss = useActionSheetOnDismiss(false);
+  const panGesture = usePanGesture({
+    activeOffsetY: contentGesture ? (contentOffsetSharedVal?.get() ?? 0) : 0,
+    onUpdate: ({ changeY }) => {
       if (!contentGesture || !contentOffsetSharedVal?.get()) {
         if (expandable) {
           heightSharedVal?.set(heightSharedVal.get() - changeY);
@@ -179,12 +183,13 @@ export function useActionSheetGesture(contentGesture: boolean = false) {
           );
         }
       }
-    })
-    .onEnd(() => {
+    },
+    onDeactivate: () => {
       scheduleOnRN(onDismiss);
-    });
+    },
+  });
 
-  return actionSheetGesture;
+  return panGesture;
 }
 
 /** @internal */
@@ -199,16 +204,15 @@ export function useActionSheetHeaderMinHeight() {
 
 /** @internal */
 export function useActionSheetContentGesture() {
-  const gesture = useActionSheetGesture(true);
-
-  const scrollGesture = Gesture.Native().shouldActivateOnStart(true);
   const { contentOffsetSharedVal } = getActionSheetContext();
-  const actionSheetContentGesture = Gesture.Simultaneous(
-    scrollGesture,
-    gesture.activeOffsetY(contentOffsetSharedVal?.get() ?? 0)
-  );
+  const nativeGesture = useNativeGesture({
+    shouldCancelWhenOutside: false,
+  });
+  const gesture = useActionSheetGesture(true);
+  gesture.config.activeOffsetYStart = contentOffsetSharedVal?.get() ?? 0;
+  const simultaneousGestures = useSimultaneousGestures(nativeGesture, gesture);
 
-  return actionSheetContentGesture;
+  return simultaneousGestures;
 }
 
 export function useActionSheetListViewAnimatedRef<T>() {

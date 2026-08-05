@@ -4,19 +4,22 @@ import { Platform } from 'react-native';
 import { useViewRef } from '../../hooks/view';
 import type { ThemedAccordionProps } from '../../types/accordion';
 import type { AnimatedThemedPressableProps } from '../../types/button';
+import type { ThemedIconProps } from '../../types/icon';
 import type { ThemedTextProps } from '../../types/text';
 import type { ThemedViewProps } from '../../types/view';
 import { BorderSize } from '../../utils/theme/const';
 import ThemedPressable from '../button/ThemedPressable';
-import ThemedIcon from '../icon/ThemedIcon';
 import AnimatedThemedView from '../view/AnimatedThemedView';
 import ThemedView from '../view/ThemedView';
 
 let ThemedText: FC<ThemedTextProps>;
+let ThemedIcon: FC<ThemedIconProps>;
 if (Platform.OS === 'web') {
   ThemedText = lazy(() => import('../text/ThemedText'));
+  ThemedIcon = lazy(() => import('../icon/ThemedIcon'));
 } else {
   ThemedText = require('../text/ThemedText').default;
+  ThemedIcon = require('../icon/ThemedIcon').default;
 }
 
 /**
@@ -52,6 +55,7 @@ const ThemedAccordion: FC<ThemedAccordionProps> = ({
   iconColor = 'textButton',
   iconStyle,
   iconProps,
+  iconComponent,
   contentWrapProps,
   children,
 }) => {
@@ -127,14 +131,16 @@ const ThemedAccordion: FC<ThemedAccordionProps> = ({
         ) : (
           <ThemedView />
         )}
-        <ThemedIcon
-          name={opened ? iconNameOpened : iconNameClosed}
-          size={iconSize}
-          color={iconColor}
-          alignSelf={'flex-end'}
-          style={iconStyle}
-          {...iconProps}
-        />
+        {iconComponent ?? (
+          <ThemedIcon
+            name={opened ? iconNameOpened : iconNameClosed}
+            size={iconSize}
+            color={iconColor}
+            alignSelf={'flex-end'}
+            style={iconStyle}
+            {...iconProps}
+          />
+        )}
       </ThemedPressable>
       <ThemedView
         ref={contentRef}

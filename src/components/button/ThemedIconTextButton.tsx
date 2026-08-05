@@ -1,5 +1,6 @@
 import type { FC } from 'react';
 import type { ThemedIconTextButtonProps } from '../../types/button';
+import type { CustomThemedIconProps } from '../../types/icon';
 import { ButtonScaleRatio } from '../../utils/button/const';
 import ThemedIconText from '../text/ThemedIconText';
 import ThemedPressable from './ThemedPressable';
@@ -27,6 +28,7 @@ const ThemedIconTextButton: FC<ThemedIconTextButtonProps> = ({
   iconColor,
   iconStyle,
   iconProps,
+  iconComponent,
   text,
   textNumberOfLines = 1,
   textVariant,
@@ -38,6 +40,16 @@ const ThemedIconTextButton: FC<ThemedIconTextButtonProps> = ({
   children,
   ...props
 }) => {
+  const customThemedIconProps: CustomThemedIconProps = iconComponent
+    ? { iconComponent }
+    : {
+        iconName,
+        iconSize,
+        iconColor,
+        iconStyle,
+        iconProps,
+      };
+
   return (
     <ThemedPressable
       scaleRatio={ButtonScaleRatio.Rectangle}
@@ -49,11 +61,7 @@ const ThemedIconTextButton: FC<ThemedIconTextButtonProps> = ({
       {...props}
     >
       <ThemedIconText
-        iconName={iconName}
-        iconSize={iconSize}
-        iconColor={iconColor}
-        iconStyle={iconStyle}
-        iconProps={iconProps}
+        {...customThemedIconProps}
         text={text}
         textNumberOfLines={textNumberOfLines}
         textVariant={textVariant}
