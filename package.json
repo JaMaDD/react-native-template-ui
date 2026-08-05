@@ -31,8 +31,8 @@
     "!**/.*"
   ],
   "scripts": {
-    "example-clean": "yarn example clean && yarn && yarn example prebuild",
     "example": "yarn workspace react-native-template-ui-example",
+    "example-clean": "yarn example clean && yarn && yarn example prebuild",
     "test": "jest",
     "test-snapshot": "jest --updateSnapshot",
     "test-watch": "jest --watch",
