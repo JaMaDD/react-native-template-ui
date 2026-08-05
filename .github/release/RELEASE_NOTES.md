@@ -1,6 +1,5 @@
 ## What's Changed
 
-- feat: implemented ThemedTextInput component
-- feat: implemented ContextMenu component
-- feat: implemented platform checking functions
-- misc: updated README
+- feat: support custom icon component for ThemedIconText, ThemedIconButton, ThemedIconTextButton and ThemedAccordion
+- misc: migrated react-native-gesture-handler from v2 to v3
+- misc: bumped dependencies to latest versions
