@@ -1,0 +1,229 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ThemedLoadingModal Render & Snapshot 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <Modal
+    animationType="fade"
+    statusBarTranslucent={true}
+    transparent={true}
+    visible={true}
+  >
+    <View
+      style={
+        {
+          "flex": 1,
+        }
+      }
+    >
+      <View
+        accessible={true}
+        role="group"
+        style={
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#00050180",
+              "justifyContent": "center",
+            },
+            {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            },
+          ]
+        }
+      >
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": false,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            [
+              {},
+              {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
+            ]
+          }
+        />
+        <ActivityIndicator
+          color="#7ccf6b"
+          size="large"
+          style={
+            [
+              {},
+            ]
+          }
+        />
+        <Text
+          style={
+            [
+              {
+                "color": "#fafafa",
+                "fontSize": 20,
+                "lineHeight": 24,
+                "marginTop": 16,
+                "maxWidth": "80%",
+                "textAlign": "center",
+              },
+            ]
+          }
+        >
+          Loading...
+        </Text>
+      </View>
+    </View>
+  </Modal>
+</View>
+`;
+
+exports[`ThemedModal Render & Snapshot 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <Modal
+    animationType="fade"
+    statusBarTranslucent={true}
+    transparent={true}
+    visible={true}
+  >
+    <View
+      style={
+        {
+          "flex": 1,
+        }
+      }
+    >
+      <View
+        accessible={true}
+        role="group"
+        style={
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#00050180",
+              "justifyContent": "center",
+            },
+            {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            },
+          ]
+        }
+      >
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": false,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            [
+              {},
+              {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
+            ]
+          }
+        />
+        <Text
+          style={
+            [
+              {
+                "color": "#000501",
+                "fontSize": 20,
+                "lineHeight": 24,
+              },
+            ]
+          }
+        >
+          Modal Content
+        </Text>
+      </View>
+    </View>
+  </Modal>
+</View>
+`;
+
+exports[`ThemedModal Render with visible=false 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+/>
+`;

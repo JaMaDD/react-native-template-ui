@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ThemedIconText Render & Snapshot 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessible={true}
+    role="group"
+    style={
+      [
+        {
+          "alignItems": "center",
+          "backgroundColor": "transparent",
+          "flexDirection": "row",
+          "gap": 10,
+        },
+      ]
+    }
+  >
+    <icon
+      color="#7ccf6b"
+      name="home"
+      size={30}
+      style={
+        [
+          {},
+        ]
+      }
+    />
+    <Text
+      numberOfLines={1}
+      style={
+        [
+          {
+            "color": "#000501",
+            "fontSize": 20,
+            "lineHeight": 24,
+          },
+        ]
+      }
+    >
+      Home
+    </Text>
+  </View>
+</View>
+`;
