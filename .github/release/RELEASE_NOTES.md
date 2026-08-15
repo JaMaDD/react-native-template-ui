@@ -1,3 +1,4 @@
 ## What's Changed
 
-- feat: Added `animated` prop to ThemedAccordion component to control if the height transition is animated or not.
+- feat: Added `onToggle` callback to `ThemedAccordion` component to notify when the accordion is opened or closed.
+- feat: Added `description` related props to `ThemedAccordion` component for enhanced customization of the description text.
