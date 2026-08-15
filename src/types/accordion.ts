@@ -45,5 +45,6 @@ export type ThemedAccordionProps = PropsWithRequiredChildren<
       iconNameClosed?: CustomThemedIconProps['iconName'];
       /** Props for the content container wrapper */
       contentWrapProps?: ThemedViewProps;
+      animated?: boolean;
     }
 >;

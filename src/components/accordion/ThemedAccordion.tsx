@@ -57,6 +57,7 @@ const ThemedAccordion: FC<ThemedAccordionProps> = ({
   iconProps,
   iconComponent,
   contentWrapProps,
+  animated = true,
   children,
 }) => {
   const wrapRef = useViewRef();
@@ -85,8 +86,8 @@ const ThemedAccordion: FC<ThemedAccordionProps> = ({
   const animatedStyle: AnimatedThemedPressableProps['animatedStyle'] = {
     width: '100%',
     height: opened ? contentHeight + headerHeight : headerHeight || undefined,
-    transitionProperty: 'height',
-    transitionDuration: 200,
+    transitionProperty: animated ? 'height' : undefined,
+    transitionDuration: animated ? 200 : undefined,
   };
   const onContentLayout: ThemedViewProps['onLayout'] = ({
     nativeEvent: {
