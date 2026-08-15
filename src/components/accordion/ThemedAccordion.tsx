@@ -138,7 +138,7 @@ const ThemedAccordion: FC<ThemedAccordionProps> = ({
         backgroundColor={'themePri'}
         {...headerWrapProps}
       >
-        <ThemedView flex={1}>
+        <ThemedView flex={1} backgroundColor={'transparent'}>
           {!!text && (
             <ThemedText
               numberOfLines={textNumberOfLines}
