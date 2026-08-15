@@ -1,5 +1,12 @@
 import { IconSize } from '@jamadd/react-native-template-icons';
-import { lazy, useLayoutEffect, useReducer, useState, type FC } from 'react';
+import {
+  lazy,
+  useEffect,
+  useLayoutEffect,
+  useReducer,
+  useState,
+  type FC,
+} from 'react';
 import { Platform } from 'react-native';
 import { useViewRef } from '../../hooks/view';
 import type { ThemedAccordionProps } from '../../types/accordion';
@@ -43,12 +50,21 @@ const ThemedAccordion: FC<ThemedAccordionProps> = ({
   wrapProps,
   headerWrapProps,
   text,
+  textNumberOfLines,
   textVariant,
   textFontSize,
   textFontWeight,
   textColor = 'textButton',
   textStyle,
   textProps,
+  description,
+  descriptionTextNumberOfLines,
+  descriptionTextVariant = 'textS',
+  descriptionTextFontSize,
+  descriptionTextFontWeight,
+  descriptionTextColor = 'textDesc',
+  descriptionTextStyle,
+  descriptionTextProps,
   iconNameOpened = 'up',
   iconNameClosed = 'down',
   iconSize = IconSize.S,
@@ -58,6 +74,7 @@ const ThemedAccordion: FC<ThemedAccordionProps> = ({
   iconComponent,
   contentWrapProps,
   animated = true,
+  onToggle,
   children,
 }) => {
   const wrapRef = useViewRef();
@@ -82,6 +99,9 @@ const ThemedAccordion: FC<ThemedAccordionProps> = ({
       updateContentHeight(contentBounds.height);
     }
   }, [text, textVariant, textFontSize, textFontWeight, iconSize, children]);
+  useEffect(() => {
+    onToggle?.(opened);
+  }, [onToggle, opened]);
 
   const animatedStyle: AnimatedThemedPressableProps['animatedStyle'] = {
     width: '100%',
@@ -118,20 +138,36 @@ const ThemedAccordion: FC<ThemedAccordionProps> = ({
         backgroundColor={'themePri'}
         {...headerWrapProps}
       >
-        {text ? (
-          <ThemedText
-            variant={textVariant}
-            fontSize={textFontSize}
-            fontWeight={textFontWeight}
-            color={textColor}
-            style={textStyle}
-            {...textProps}
-          >
-            {text}
-          </ThemedText>
-        ) : (
-          <ThemedView />
-        )}
+        <ThemedView flex={1}>
+          {!!text && (
+            <ThemedText
+              numberOfLines={textNumberOfLines}
+              variant={textVariant}
+              fontSize={textFontSize}
+              fontWeight={textFontWeight}
+              color={textColor}
+              flex={1}
+              style={textStyle}
+              {...textProps}
+            >
+              {text}
+            </ThemedText>
+          )}
+          {!!description && (
+            <ThemedText
+              numberOfLines={descriptionTextNumberOfLines}
+              variant={descriptionTextVariant}
+              fontSize={descriptionTextFontSize}
+              fontWeight={descriptionTextFontWeight}
+              color={descriptionTextColor}
+              flex={1}
+              style={descriptionTextStyle}
+              {...descriptionTextProps}
+            >
+              {description}
+            </ThemedText>
+          )}
+        </ThemedView>
         {iconComponent ?? (
           <ThemedIcon
             name={opened ? iconNameOpened : iconNameClosed}

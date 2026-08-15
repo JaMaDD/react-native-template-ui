@@ -31,6 +31,14 @@ import type {
 export type ThemedAccordionProps = PropsWithRequiredChildren<
   Partial<CustomThemedTextProps> &
     Omit<CustomThemedIconProps, 'iconName'> & {
+      description?: CustomThemedTextProps['text'];
+      descriptionTextNumberOfLines?: CustomThemedTextProps['textNumberOfLines'];
+      descriptionTextVariant?: CustomThemedTextProps['textVariant'];
+      descriptionTextFontSize?: CustomThemedTextProps['textFontSize'];
+      descriptionTextFontWeight?: CustomThemedTextProps['textFontWeight'];
+      descriptionTextColor?: CustomThemedTextProps['textColor'];
+      descriptionTextStyle?: CustomThemedTextProps['textStyle'];
+      descriptionTextProps?: CustomThemedTextProps['textProps'];
       /** Border width for the accordion container */
       borderWidth?: BorderSize;
       /** Border color from theme colors */
@@ -46,5 +54,6 @@ export type ThemedAccordionProps = PropsWithRequiredChildren<
       /** Props for the content container wrapper */
       contentWrapProps?: ThemedViewProps;
       animated?: boolean;
+      onToggle?: (opened: boolean) => void;
     }
 >;
