@@ -173,7 +173,6 @@ const ThemedAccordion: FC<ThemedAccordionProps> = ({
             name={opened ? iconNameOpened : iconNameClosed}
             size={iconSize}
             color={iconColor}
-            alignSelf={'flex-end'}
             style={iconStyle}
             {...iconProps}
           />
