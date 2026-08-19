@@ -13,6 +13,7 @@ export { default as ContextMenu } from './components/overlay/contextMenu/Context
 export { default as ThemedLoadingModal } from './components/overlay/modal/ThemedLoadingModal';
 export { default as ThemedModal } from './components/overlay/modal/ThemedModal';
 export { default as ThemedToast } from './components/overlay/toast/ThemedToast';
+export { default as AlertProvider } from './components/provider/AlertProvider';
 export { default as GestureProvider } from './components/provider/GestureProvider';
 export { default as InsetsProvider } from './components/provider/InsetsProvider';
 export { default as ReactNativeTemplateProviders } from './components/provider/ReactNativeTemplateProviders';
