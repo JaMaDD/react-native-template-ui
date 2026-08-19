@@ -1,3 +1,3 @@
 ## What's Changed
 
-- fix: incorrect background color for ThemedAccordion header
+- feat: replaced useState/useReducer usages with useRecyclingState in ThemedAccordion for allowing it works better in FlashList
