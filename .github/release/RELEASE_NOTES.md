@@ -1,3 +1,3 @@
 ## What's Changed
 
-- feat: replaced useState/useReducer usages with useRecyclingState in ThemedAccordion for allowing it works better in FlashList
+- feat: added AlertProvider for utilizing Alert component globally
