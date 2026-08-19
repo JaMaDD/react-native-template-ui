@@ -46,7 +46,7 @@ export type ThemedAccordionProps = PropsWithRequiredChildren<
       /** Props for the outer animated container wrapper */
       wrapProps?: AnimatedThemedViewProps;
       /** Props for the pressable header area that toggles the accordion */
-      headerWrapProps?: ThemedPressableProps;
+      headerWrapProps?: Omit<ThemedPressableProps, 'onPress'>;
       /** Icon name to display when the accordion is opened/expanded */
       iconNameOpened?: CustomThemedIconProps['iconName'];
       /** Icon name to display when the accordion is closed/collapsed */

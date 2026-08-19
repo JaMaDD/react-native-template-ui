@@ -1,6 +1,5 @@
 /** @internal */
 import { lazy, type FC } from 'react';
-import { Platform } from 'react-native';
 import { GestureDetector } from 'react-native-gesture-handler';
 import {
   useActionSheetGesture,
@@ -10,6 +9,7 @@ import {
 import type { ThemedIconButtonProps } from '../../../types/button';
 import type { ActionSheetHeaderProps } from '../../../types/overlay';
 import type { ThemedTextProps } from '../../../types/text';
+import { isPlatformWeb } from '../../../utils/common/func';
 import {
   actionSheetHeaderIconSize,
   actionSheetHeaderPadding,
@@ -20,7 +20,7 @@ import ThemedView from '../../view/ThemedView';
 
 let ThemedText: FC<ThemedTextProps>;
 let ThemedIconButton: FC<ThemedIconButtonProps>;
-if (Platform.OS === 'web') {
+if (isPlatformWeb()) {
   ThemedText = lazy(() => import('../../text/ThemedText'));
   ThemedIconButton = lazy(() => import('../../button/ThemedIconButton'));
 } else {

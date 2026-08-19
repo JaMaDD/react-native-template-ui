@@ -1,11 +1,11 @@
 import { lazy, useLayoutEffect, type FC } from 'react';
-import { Platform } from 'react-native';
 import { useSharedValue } from 'react-native-reanimated';
 import { useDeferredState } from '../../hooks/react';
 import { useThemeSpacing } from '../../hooks/theme';
 import type { SliderProps, ThemedSliderProps } from '../../types/slider';
 import type { ThemedTextProps } from '../../types/text';
 import type { ThemedViewProps } from '../../types/view';
+import { isPlatformWeb } from '../../utils/common/func';
 import {
   sliderThumbDefaultSize,
   SliderValueDisplayMode,
@@ -14,7 +14,7 @@ import ThemedView from '../view/ThemedView';
 import Slider from './Slider';
 
 let ThemedText: FC<ThemedTextProps>;
-if (Platform.OS === 'web') {
+if (isPlatformWeb()) {
   ThemedText = lazy(() => import('../text/ThemedText'));
 } else {
   ThemedText = require('../text/ThemedText').default;

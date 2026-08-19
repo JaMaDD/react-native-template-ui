@@ -3,6 +3,7 @@ import { createContext } from 'react';
 import type {
   ActionSheetContextVal,
   AlertContextVal,
+  AlertWrapContextVal,
 } from '../../types/overlay';
 import type { ThemeSpacing, ThemeTextVariants } from '../../types/theme';
 
@@ -84,6 +85,10 @@ export enum ToastDuration {
 
 /** @internal */
 export const AlertContext = createContext<AlertContextVal>({});
+
+export const AlertWrapContext = createContext<AlertWrapContextVal>({
+  addAlert: () => {},
+});
 
 /**
  * Visual styles for alert dialog buttons.

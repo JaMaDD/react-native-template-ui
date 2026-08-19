@@ -184,6 +184,10 @@ export type AlertContextVal = Partial<
   }
 >;
 
+export type AlertWrapContextVal = {
+  addAlert: (alert: Omit<AlertProps, 'visible'>) => void;
+};
+
 /**
  * Props for themed alert dialog component.
  *

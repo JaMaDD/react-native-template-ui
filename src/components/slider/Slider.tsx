@@ -1,6 +1,5 @@
 import { useMappingHelper } from '@shopify/flash-list';
 import { lazy, useLayoutEffect, useMemo, useState, type FC } from 'react';
-import { Platform } from 'react-native';
 import {
   GestureDetector,
   useLongPressGesture,
@@ -22,6 +21,7 @@ import type {
   ThemedSliderStepIndicatorProps,
 } from '../../types/slider';
 import type { ThemedViewProps } from '../../types/view';
+import { isPlatformWeb } from '../../utils/common/func';
 import {
   sliderStepIndicatorDefaultWidth,
   sliderThumbDefaultSize,
@@ -31,7 +31,7 @@ import AnimatedThemedView from '../view/AnimatedThemedView';
 import ThemedView from '../view/ThemedView';
 
 let ThemedSliderStepIndicator: FC<ThemedSliderStepIndicatorProps>;
-if (Platform.OS === 'web') {
+if (isPlatformWeb()) {
   ThemedSliderStepIndicator = lazy(() => import('./ThemedSliderStepIndicator'));
 } else {
   ThemedSliderStepIndicator = require('./ThemedSliderStepIndicator').default;

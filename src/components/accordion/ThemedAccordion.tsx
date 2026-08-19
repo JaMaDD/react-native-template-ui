@@ -1,13 +1,13 @@
 import { IconSize } from '@jamadd/react-native-template-icons';
 import { useRecyclingState } from '@shopify/flash-list';
 import { lazy, useEffect, useLayoutEffect, type FC } from 'react';
-import { Platform } from 'react-native';
 import { useViewRef } from '../../hooks/view';
 import type { ThemedAccordionProps } from '../../types/accordion';
 import type { AnimatedThemedPressableProps } from '../../types/button';
 import type { ThemedIconProps } from '../../types/icon';
 import type { ThemedTextProps } from '../../types/text';
 import type { ThemedViewProps } from '../../types/view';
+import { isPlatformWeb } from '../../utils/common/func';
 import { BorderSize } from '../../utils/theme/const';
 import ThemedPressable from '../button/ThemedPressable';
 import AnimatedThemedView from '../view/AnimatedThemedView';
@@ -15,7 +15,7 @@ import ThemedView from '../view/ThemedView';
 
 let ThemedText: FC<ThemedTextProps>;
 let ThemedIcon: FC<ThemedIconProps>;
-if (Platform.OS === 'web') {
+if (isPlatformWeb()) {
   ThemedText = lazy(() => import('../text/ThemedText'));
   ThemedIcon = lazy(() => import('../icon/ThemedIcon'));
 } else {

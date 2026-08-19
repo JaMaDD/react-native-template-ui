@@ -1,16 +1,16 @@
 import { lazy, type FC } from 'react';
-import { Platform } from 'react-native';
 import type {
   ActionSheetListViewProps,
   ActionSheetOptionsProps,
   ActionSheetProps,
   ActionSheetScrollViewProps,
 } from '../../../types/overlay';
+import { isPlatformWeb } from '../../../utils/common/func';
 
 let ActionSheetOptions: FC<ActionSheetOptionsProps>;
 let ActionSheetScrollView: FC<ActionSheetScrollViewProps>;
 let ActionSheetListView: FC<ActionSheetListViewProps>;
-if (Platform.OS === 'web') {
+if (isPlatformWeb()) {
   ActionSheetOptions = lazy(() => import('./ActionSheetOptions'));
   ActionSheetScrollView = lazy(() => import('./ActionSheetScrollView'));
   ActionSheetListView = lazy(() => import('./ActionSheetListView'));
