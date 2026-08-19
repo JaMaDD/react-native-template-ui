@@ -1,3 +1,3 @@
 ## What's Changed
 
-- fix: missing AlertProvider export
+- feat: added getAlertWrapContext helper function
