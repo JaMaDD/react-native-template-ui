@@ -1,12 +1,6 @@
 import { IconSize } from '@jamadd/react-native-template-icons';
-import {
-  lazy,
-  useEffect,
-  useLayoutEffect,
-  useReducer,
-  useState,
-  type FC,
-} from 'react';
+import { useRecyclingState } from '@shopify/flash-list';
+import { lazy, useEffect, useLayoutEffect, type FC } from 'react';
 import { Platform } from 'react-native';
 import { useViewRef } from '../../hooks/view';
 import type { ThemedAccordionProps } from '../../types/accordion';
@@ -74,21 +68,33 @@ const ThemedAccordion: FC<ThemedAccordionProps> = ({
   iconComponent,
   contentWrapProps,
   animated = true,
+  defaultOpened = false,
   onToggle,
   children,
 }) => {
+  const recyclingStateDeps = [
+    text,
+    textVariant,
+    textFontSize,
+    textFontWeight,
+    iconSize,
+    children,
+  ];
   const wrapRef = useViewRef();
   const headerRef = useViewRef();
   const contentRef = useViewRef();
-  const [headerHeight, setHeaderHeight] = useState(0);
-  const [contentHeight, updateContentHeight] = useReducer(
-    (_prevContentHeight, newContentHeight) => newContentHeight,
-    0
+  const [headerHeight, setHeaderHeight] = useRecyclingState(
+    0,
+    recyclingStateDeps
   );
-  const [opened, toggleAccordion] = useReducer(
-    (prevOpened) => !prevOpened,
-    false
+  const [contentHeight, setContentHeight] = useRecyclingState(
+    0,
+    recyclingStateDeps
   );
+  const [opened, setOpened] = useRecyclingState(defaultOpened, [
+    ...recyclingStateDeps,
+    defaultOpened,
+  ]);
   useLayoutEffect(() => {
     const headerBounds = headerRef.current?.getBoundingClientRect();
     if (headerBounds) {
@@ -96,9 +102,9 @@ const ThemedAccordion: FC<ThemedAccordionProps> = ({
     }
     const contentBounds = contentRef.current?.getBoundingClientRect();
     if (contentBounds) {
-      updateContentHeight(contentBounds.height);
+      setContentHeight(contentBounds.height);
     }
-  }, [text, textVariant, textFontSize, textFontWeight, iconSize, children]);
+  }, recyclingStateDeps);
   useEffect(() => {
     onToggle?.(opened);
   }, [onToggle, opened]);
@@ -109,12 +115,15 @@ const ThemedAccordion: FC<ThemedAccordionProps> = ({
     transitionProperty: animated ? 'height' : undefined,
     transitionDuration: animated ? 200 : undefined,
   };
+  const toggleAccordion = () => {
+    setOpened((prevOpened) => !prevOpened);
+  };
   const onContentLayout: ThemedViewProps['onLayout'] = ({
     nativeEvent: {
       layout: { height },
     },
   }) => {
-    updateContentHeight(height);
+    setContentHeight(height);
   };
 
   return (

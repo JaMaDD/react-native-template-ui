@@ -54,6 +54,7 @@ export type ThemedAccordionProps = PropsWithRequiredChildren<
       /** Props for the content container wrapper */
       contentWrapProps?: ThemedViewProps;
       animated?: boolean;
+      defaultOpened?: boolean;
       onToggle?: (opened: boolean) => void;
     }
 >;
