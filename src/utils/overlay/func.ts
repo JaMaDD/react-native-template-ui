@@ -5,6 +5,7 @@ import {
   ActionSheetExpandableHeightRatio,
   actionSheetMaxHeightRatio,
   AlertContext,
+  AlertWrapContext,
 } from './const';
 
 /**
@@ -20,6 +21,10 @@ import {
  */
 export function getAlertContext() {
   return reactUse(AlertContext);
+}
+
+export function getAlertWrapContext() {
+  return reactUse(AlertWrapContext);
 }
 
 function getActionSheetExpandableHeightByRatio(
