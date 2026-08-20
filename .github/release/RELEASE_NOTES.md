@@ -1,4 +1,3 @@
 ## What's Changed
 
-- fix: fixed incorrect addAlert logic in AlertProvider
-- chore: bumped packages versions
+- fix: fixed incorrect onDismiss prop handling in AlertProvider
