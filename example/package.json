@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "clean": "rm -rf node_modules android ios",
+    "clean": "rm -rf node_modules android ios && yarn && yarn prebuild",
     "prebuild": "expo prebuild",
+    "check": "expo install --check",
     "start": "expo start",
+    "start-reset": "expo start --clear",
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",
@@ -14,23 +16,24 @@
     "build:web": "expo export --platform web"
   },
   "dependencies": {
-    "@expo/metro-runtime": "57.0.8",
+    "@expo/metro-runtime": "57.0.11",
     "@jamadd/react-native-template-icons": "0.4.8",
     "@shopify/flash-list": "2.3.2",
     "@shopify/restyle": "2.4.5",
-    "expo": "57.0.10",
+    "expo": "57.0.14",
     "expo-status-bar": "57.0.1",
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "react-native": "0.86.2",
-    "react-native-gesture-handler": "3.1.0",
+    "react-native-gesture-handler": "3.2.1",
     "react-native-reanimated": "4.5.3",
-    "react-native-safe-area-context": "5.8.1",
+    "react-native-safe-area-context": "5.9.1",
     "react-native-web": "0.21.2",
-    "react-native-worklets": "0.11.3"
+    "react-native-worklets": "0.11.4"
   },
   "private": true,
   "devDependencies": {
+    "baseline-browser-mapping": "^2.11.15",
     "react-native-builder-bob": "^0.43.0",
     "react-native-monorepo-config": "^0.4.0"
   }

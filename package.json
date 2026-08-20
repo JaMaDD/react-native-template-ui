@@ -32,7 +32,6 @@
   ],
   "scripts": {
     "example": "yarn workspace react-native-template-ui-example",
-    "example-clean": "yarn example clean && yarn && yarn example prebuild",
     "test": "jest",
     "test-snapshot": "jest --updateSnapshot",
     "test-watch": "jest --watch",
@@ -97,13 +96,13 @@
     "react": "19.2.8",
     "react-native": "0.86.2",
     "react-native-builder-bob": "^0.43.0",
-    "react-native-gesture-handler": "^3.1.0",
+    "react-native-gesture-handler": "^3.2.1",
     "react-native-reanimated": "^4.5.3",
-    "react-native-safe-area-context": "^5.8.1",
-    "react-native-worklets": "^0.11.3",
+    "react-native-safe-area-context": "^5.9.1",
+    "react-native-worklets": "^0.11.4",
     "react-test-renderer": "^19.2.8",
     "release-it": "^19.2.4",
-    "turbo": "^2.10.8",
+    "turbo": "^2.10.11",
     "typescript": "^6.0.3"
   },
   "peerDependencies": {
@@ -111,10 +110,10 @@
     "@shopify/restyle": ">=2.4.5",
     "react": ">=19.2.8",
     "react-native": ">=0.86.2",
-    "react-native-gesture-handler": ">=3.1.0",
+    "react-native-gesture-handler": ">=3.2.1",
     "react-native-reanimated": ">=4.5.3",
-    "react-native-safe-area-context": ">=5.8.1",
-    "react-native-worklets": ">=0.11.3"
+    "react-native-safe-area-context": ">=5.9.1",
+    "react-native-worklets": ">=0.11.4"
   },
   "workspaces": [
     "example"

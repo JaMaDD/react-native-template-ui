@@ -6,7 +6,6 @@ import { isPlatformWeb } from '../../utils/common/func';
 import { AlertWrapContext } from '../../utils/overlay/const';
 
 let Alert: FC<AlertProps> = require('../overlay/alert/Alert').default;
-
 if (isPlatformWeb()) {
   Alert = lazy(() => import('../overlay/alert/Alert'));
 } else {
@@ -18,7 +17,7 @@ const AlertProvider: FC<PropsWithRequiredChildren> = ({ children }) => {
 
   const alertWrapContextValue: AlertWrapContextVal = {
     addAlert: (alert) => {
-      console.log('addAlert called with:', alert);
+      setAlerts((prevAlerts) => [...prevAlerts, alert]);
     },
   };
   const alert = alerts[0];
