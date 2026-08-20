@@ -9,6 +9,7 @@ import {
 } from './const';
 
 /**
+ * @internal
  * Hook to access the Alert context.
  * Provides access to alert state and control functions.
  *
@@ -27,6 +28,7 @@ export function getAlertWrapContext() {
   return reactUse(AlertWrapContext);
 }
 
+/** @internal */
 function getActionSheetExpandableHeightByRatio(
   ratio: ActionSheetExpandableHeightRatio
 ) {
@@ -34,6 +36,7 @@ function getActionSheetExpandableHeightByRatio(
 }
 
 /**
+ * @internal
  * Calculates the maximum height for an action sheet.
  *
  * @param expandable - Whether the action sheet is expandable (supports multiple height positions)
@@ -53,6 +56,7 @@ export function getActionSheetMaxHeight(expandable: boolean = false) {
 }
 
 /**
+ * @internal
  * Constrains an action sheet height to not exceed the maximum allowed height.
  *
  * @param height - The desired height in pixels
@@ -68,6 +72,7 @@ export function getActionSheetHeight(height: number) {
 }
 
 /**
+ * @internal
  * Gets the maximum height for an expandable action sheet.
  *
  * @returns The maximum expandable height in pixels (90% of screen height)
@@ -82,6 +87,7 @@ export function getActionSheetExpandableHeight() {
 }
 
 /**
+ * @internal
  * Gets the initial height for an expandable action sheet when first shown.
  *
  * @returns The initial height in pixels (60% of screen height)
@@ -97,10 +103,12 @@ export function getActionSheetExpandableInitHeight() {
   );
 }
 
+/** @internal */
 function getActionSheetDismiss(height: number, currentHeight: number) {
   return height / 2 < currentHeight;
 }
 
+/** @internal */
 function getActionSheetExpandableDismiss(currentHight: number) {
   return (
     currentHight <
@@ -112,6 +120,7 @@ function getActionSheetExpandableDismiss(currentHight: number) {
 }
 
 /**
+ * @internal
  * Calculates the snap height for a non-expandable action sheet after user drag gesture ends.
  * Determines whether the sheet should dismiss or snap back to its original height.
  *
@@ -137,6 +146,7 @@ export function getActionSheetSnapHeight(
 }
 
 /**
+ * @internal
  * Calculates the snap height for an expandable action sheet after user drag gesture ends.
  * Determines which height position (top/middle/bottom) the sheet should snap to, or if it should dismiss.
  *
@@ -190,6 +200,7 @@ export function getActionSheetExpandableSnapHeight(
 }
 
 /**
+ * @internal
  * Hook to access the ActionSheet context.
  * Provides access to action sheet state and control functions.
  *

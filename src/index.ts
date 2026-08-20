@@ -62,6 +62,7 @@ export * from './utils/button/const';
 export * from './utils/common/const';
 export * from './utils/common/func';
 export * from './utils/overlay/const';
+export * from './utils/overlay/func';
 export * from './utils/slider/const';
 export * from './utils/style/const';
 export * from './utils/style/func';

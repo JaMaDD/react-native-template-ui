@@ -86,6 +86,7 @@ export enum ToastDuration {
 /** @internal */
 export const AlertContext = createContext<AlertContextVal>({});
 
+/** @internal */
 export const AlertWrapContext = createContext<AlertWrapContextVal>({
   addAlert: () => {},
 });
