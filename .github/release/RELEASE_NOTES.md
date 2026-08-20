@@ -1,3 +1,4 @@
 ## What's Changed
 
-- fix: exposed getAlertWrapContext function
+- fix: fixed incorrect addAlert logic in AlertProvider
+- chore: bumped packages versions
