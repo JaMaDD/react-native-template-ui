@@ -29,7 +29,7 @@ const AlertProvider: FC<PropsWithRequiredChildren> = ({ children }) => {
   return (
     <AlertWrapContext value={alertWrapContextValue}>
       {children}
-      {!!alert && <Alert visible={true} onDismiss={onDismiss} {...alert} />}
+      {!!alert && <Alert {...alert} visible={true} onDismiss={onDismiss} />}
     </AlertWrapContext>
   );
 };
