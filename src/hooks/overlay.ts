@@ -213,12 +213,8 @@ export function useActionSheetHeaderMinHeight() {
 
 /** @internal */
 export function useActionSheetContentGesture() {
-  const { contentOffsetSharedVal } = getActionSheetContext();
-  const nativeGesture = useNativeGesture({
-    shouldCancelWhenOutside: false,
-  });
+  const nativeGesture = useNativeGesture({ shouldCancelWhenOutside: false });
   const gesture = useActionSheetGesture(true);
-  gesture.config.activeOffsetYStart = contentOffsetSharedVal?.get() ?? 0;
   const simultaneousGestures = useSimultaneousGestures(nativeGesture, gesture);
 
   return simultaneousGestures;
