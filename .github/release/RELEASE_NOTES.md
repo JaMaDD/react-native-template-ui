@@ -1,3 +1,4 @@
 ## What's Changed
 
-- Fixed incorrect ActionSheet gesture
+- fix: Fixed ActionSheet items cannot be pressed
+- fix: Added onLayout for ThemedAccordion header to handle dynamic height changes
