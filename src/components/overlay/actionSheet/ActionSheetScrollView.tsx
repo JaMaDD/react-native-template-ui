@@ -21,7 +21,8 @@ const ActionSheetScrollView: FC<ActionSheetScrollViewProps> = ({
   scrollViewProps,
   children,
   onDismiss,
-  dismissable,
+  useModal,
+  dismissible,
   wrapViewProps,
   headerShowIcon,
   headerWrapProps,
@@ -35,7 +36,7 @@ const ActionSheetScrollView: FC<ActionSheetScrollViewProps> = ({
     expandable,
     scrollViewProps,
     onDismiss,
-    dismissable,
+    dismissible,
     actionSheetVisible
   );
 
@@ -43,6 +44,7 @@ const ActionSheetScrollView: FC<ActionSheetScrollViewProps> = ({
     <ActionSheetContext.Provider value={actionSheetContextVal}>
       <ActionSheetWrap
         visible={actionSheetVisible}
+        useModal={useModal}
         wrapViewProps={wrapViewProps}
       >
         <ActionSheetHeader

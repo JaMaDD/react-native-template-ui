@@ -7,14 +7,14 @@ import ThemedView from '../../view/ThemedView';
 
 /**
  * A themed modal component that provides a full-screen overlay with backdrop.
- * Wraps React Native's Modal with theme-aware styling, dismissable backdrop, and gesture support.
+ * Wraps React Native's Modal with theme-aware styling, dismissible backdrop, and gesture support.
  * Serves as the foundation for Alert, ActionSheet, and other overlay components.
  * @param props - Component props of type ThemedModalProps
  * @returns JSX element rendering a themed modal overlay
  * @example
  * <ThemedModal
  *   visible={isVisible}
- *   dismissable={true}
+ *   dismissible={true}
  *   onDismiss={() => setVisible(false)}
  * >
  *   <ThemedView padding="l">
@@ -25,7 +25,7 @@ import ThemedView from '../../view/ThemedView';
 const ThemedModal: FC<ThemedModalProps> = ({
   contentWrapProps,
   onDismiss,
-  dismissable = true,
+  dismissible = true,
   children,
   ...props
 }) => {
@@ -46,7 +46,7 @@ const ThemedModal: FC<ThemedModalProps> = ({
         >
           <ThemedPressable
             onPress={onDismiss ?? null}
-            disabled={!dismissable}
+            disabled={!dismissible}
             style={StyleSheet.absoluteFill}
           />
           {children}

@@ -7,7 +7,6 @@ import {
   AlertContext,
   AlertWrapContext,
 } from './const';
-
 /**
  * @internal
  * Hook to access the Alert context.
@@ -97,7 +96,7 @@ export function getActionSheetExpandableHeight() {
  * const initialHeight = getActionSheetExpandableInitHeight();
  * ```
  */
-export function getActionSheetExpandableInitHeight() {
+export function getActionSheetExpandableInitialHeight() {
   return getActionSheetExpandableHeightByRatio(
     ActionSheetExpandableHeightRatio.Middle
   );
@@ -109,9 +108,9 @@ function getActionSheetDismiss(height: number, currentHeight: number) {
 }
 
 /** @internal */
-function getActionSheetExpandableDismiss(currentHight: number) {
+function getActionSheetExpandableDismiss(currentHeight: number) {
   return (
-    currentHight <
+    currentHeight <
     getActionSheetExpandableHeightByRatio(
       ActionSheetExpandableHeightRatio.Bottom
     ) /
@@ -127,20 +126,23 @@ function getActionSheetExpandableDismiss(currentHight: number) {
  * @param height - The original height of the action sheet in pixels
  * @param currentHeight - The current height after user drag in pixels
  * @param forceDismiss - Whether to force dismissal regardless of current height
+ * @param dismissible - Whether the action sheet is dismissible (default: true)
  * @returns The target snap height - either the original height (dismissed) or 0 (visible)
  *
  * @example
  * ```tsx
- * const snapHeight = getActionSheetSnapHeight(400, 200, false);
+ * const snapHeight = getActionSheetSnapHeight(400, 200, false, true);
  * // Returns 400 to dismiss if dragged past threshold
  * ```
  */
 export function getActionSheetSnapHeight(
   height: number,
   currentHeight: number,
-  forceDismiss: boolean
+  forceDismiss: boolean,
+  dismissible = true
 ) {
-  return forceDismiss || getActionSheetDismiss(height, currentHeight)
+  return forceDismiss ||
+    (dismissible && getActionSheetDismiss(height, currentHeight))
     ? height
     : 0;
 }
@@ -150,21 +152,26 @@ export function getActionSheetSnapHeight(
  * Calculates the snap height for an expandable action sheet after user drag gesture ends.
  * Determines which height position (top/middle/bottom) the sheet should snap to, or if it should dismiss.
  *
- * @param currentHight - The current height after user drag in pixels
+ * @param currentHeight - The current height after user drag in pixels
  * @param forceDismiss - Whether to force dismissal regardless of current height
+ * @param dismissible - Whether the action sheet is dismissible (default: true)
  * @returns The target snap height - 0 for dismissed, or one of the defined snap positions (90%/60%/30% of screen)
  *
  * @example
  * ```tsx
- * const snapHeight = getActionSheetExpandableSnapHeight(500, false);
+ * const snapHeight = getActionSheetExpandableSnapHeight(500, false, true);
  * // Returns closest snap position based on current height
  * ```
  */
 export function getActionSheetExpandableSnapHeight(
-  currentHight: number,
-  forceDismiss: boolean
+  currentHeight: number,
+  forceDismiss: boolean,
+  dismissible = true
 ) {
-  if (forceDismiss || getActionSheetExpandableDismiss(currentHight)) {
+  if (
+    forceDismiss ||
+    (dismissible && getActionSheetExpandableDismiss(currentHeight))
+  ) {
     return 0;
   }
 
@@ -178,16 +185,16 @@ export function getActionSheetExpandableSnapHeight(
   const bottomHeight = getActionSheetExpandableHeightByRatio(
     ActionSheetExpandableHeightRatio.Bottom
   );
-  if (currentHight > middleHeight) {
-    return currentHight >
+  if (currentHeight > middleHeight) {
+    return currentHeight >
       (height *
         (ActionSheetExpandableHeightRatio.Top +
           ActionSheetExpandableHeightRatio.Middle)) /
         2
       ? topHeight
       : middleHeight;
-  } else if (currentHight > bottomHeight) {
-    return currentHight >
+  } else if (currentHeight > bottomHeight) {
+    return currentHeight >
       (height *
         (ActionSheetExpandableHeightRatio.Middle +
           ActionSheetExpandableHeightRatio.Bottom)) /

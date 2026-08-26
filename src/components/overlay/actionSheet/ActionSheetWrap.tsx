@@ -1,5 +1,6 @@
 /** @internal */
-import { type FC } from 'react';
+import type { FC } from 'react';
+import { lazy } from 'react';
 import { useAnimatedStyle } from 'react-native-reanimated';
 import { useActionSheetOnDismiss } from '../../../hooks/overlay';
 import { useShadowStyle } from '../../../hooks/style';
@@ -8,13 +9,20 @@ import type {
   ThemedModalProps,
 } from '../../../types/overlay';
 import type { AnimatedThemedViewProps } from '../../../types/view';
+import { isPlatformWeb } from '../../../utils/common/func';
 import {
   getActionSheetContext,
   getActionSheetMaxHeight,
 } from '../../../utils/overlay/func';
 import { ShadowDirection } from '../../../utils/style/const';
 import AnimatedThemedView from '../../view/AnimatedThemedView';
-import ThemedModal from '../modal/ThemedModal';
+
+let ThemedModal: FC<ThemedModalProps>;
+if (isPlatformWeb()) {
+  ThemedModal = lazy(() => import('../modal/ThemedModal'));
+} else {
+  ThemedModal = require('../modal/ThemedModal').default;
+}
 
 /**
  * @internal
@@ -22,13 +30,14 @@ import ThemedModal from '../modal/ThemedModal';
  * Manages height calculations and translate animations for smooth sheet appearance.
  */
 const ActionSheetWrap: FC<ActionSheetWrapProps> = ({
+  useModal = true,
   wrapViewProps,
   children,
   visible,
 }) => {
   const {
     expandable,
-    dismissable,
+    dismissible,
     translateYSharedVal,
     heightSharedVal,
     expandableHeightSharedVal,
@@ -61,27 +70,34 @@ const ActionSheetWrap: FC<ActionSheetWrapProps> = ({
     shadowStyle,
     wrapViewProps?.style,
   ];
+  const actionSheet = (
+    <AnimatedThemedView
+      position={'absolute'}
+      bottom={0}
+      width={'100%'}
+      maxHeight={getActionSheetMaxHeight(expandable)}
+      overflow={'hidden'}
+      {...wrapViewProps}
+      style={outerWrapStyle}
+      animatedStyle={outerWrapAnimatedStyle}
+    >
+      <AnimatedThemedView animatedStyle={innerWrapAnimatedStyle}>
+        {children}
+      </AnimatedThemedView>
+    </AnimatedThemedView>
+  );
 
-  return (
+  return useModal ? (
     <ThemedModal
       visible={visible}
       contentWrapProps={contentWrapProps}
       onDismiss={onModalDismiss}
-      dismissable={dismissable}
+      dismissible={dismissible}
     >
-      <AnimatedThemedView
-        alignSelf={'stretch'}
-        maxHeight={getActionSheetMaxHeight(expandable)}
-        overflow={'hidden'}
-        {...wrapViewProps}
-        style={outerWrapStyle}
-        animatedStyle={outerWrapAnimatedStyle}
-      >
-        <AnimatedThemedView animatedStyle={innerWrapAnimatedStyle}>
-          {children}
-        </AnimatedThemedView>
-      </AnimatedThemedView>
+      {actionSheet}
     </ThemedModal>
+  ) : (
+    actionSheet
   );
 };
 

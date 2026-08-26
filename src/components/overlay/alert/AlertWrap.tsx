@@ -29,7 +29,7 @@ const AlertWrap: FC<
       | 'title'
       | 'description'
       | 'buttons'
-      | 'dismissable'
+      | 'dismissible'
     > & {
       visible: boolean;
       showSharedVal: AnimationSharedValue;
@@ -41,7 +41,7 @@ const AlertWrap: FC<
   title,
   description,
   buttons,
-  dismissable,
+  dismissible,
   visible,
   showSharedVal,
   children,
@@ -89,7 +89,7 @@ const AlertWrap: FC<
     <ThemedModal
       visible={visible}
       onDismiss={modalOnDismiss}
-      dismissable={dismissable}
+      dismissible={dismissible}
     >
       <AnimatedThemedView
         width={overlayMaxWidthPercent}

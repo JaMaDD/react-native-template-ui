@@ -22,7 +22,8 @@ const ActionSheetOptions: FC<ActionSheetOptionsProps> = ({
   optionListProps,
   optionListItemProps,
   onDismiss,
-  dismissable,
+  useModal,
+  dismissible,
   wrapViewProps,
   headerShowIcon,
   headerWrapProps,
@@ -37,7 +38,7 @@ const ActionSheetOptions: FC<ActionSheetOptionsProps> = ({
     options,
     optionListProps,
     onDismiss,
-    dismissable,
+    dismissible,
     actionSheetVisible
   );
 
@@ -45,6 +46,7 @@ const ActionSheetOptions: FC<ActionSheetOptionsProps> = ({
     <ActionSheetContext.Provider value={actionSheetContextVal}>
       <ActionSheetWrap
         visible={actionSheetVisible}
+        useModal={useModal}
         wrapViewProps={wrapViewProps}
       >
         <ActionSheetHeader

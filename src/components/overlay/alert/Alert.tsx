@@ -44,7 +44,7 @@ const Alert: FC<AlertProps> = ({
   buttonsWrapProps,
   buttonProps,
   onDismiss,
-  dismissable,
+  dismissible,
   visible = true,
 }) => {
   const [alertVisible, setAlertVisible] = useState(visible);
@@ -85,7 +85,7 @@ const Alert: FC<AlertProps> = ({
         title={title}
         description={description}
         buttons={buttons}
-        dismissable={dismissable}
+        dismissible={dismissible}
         visible={alertVisible}
         showSharedVal={showSharedVal}
       >

@@ -20,7 +20,8 @@ const ActionSheetListView: FC<ActionSheetListViewProps> = ({
   expandable,
   listProps,
   onDismiss,
-  dismissable,
+  useModal,
+  dismissible,
   wrapViewProps,
   headerShowIcon,
   headerWrapProps,
@@ -34,7 +35,7 @@ const ActionSheetListView: FC<ActionSheetListViewProps> = ({
     expandable,
     listProps,
     onDismiss,
-    dismissable,
+    dismissible,
     actionSheetVisible
   );
 
@@ -42,6 +43,7 @@ const ActionSheetListView: FC<ActionSheetListViewProps> = ({
     <ActionSheetContext.Provider value={actionSheetContextVal}>
       <ActionSheetWrap
         visible={actionSheetVisible}
+        useModal={useModal}
         wrapViewProps={wrapViewProps}
       >
         <ActionSheetHeader

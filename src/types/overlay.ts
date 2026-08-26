@@ -31,13 +31,13 @@ import type {
 /**
  * Base props for overlay components.
  *
- * Provides common functionality for dismissable overlay components like modals, toasts, and alerts.
+ * Provides common functionality for dismissible overlay components like modals, toasts, and alerts.
  */
 type OverlayProps = {
   /** Callback invoked when the overlay is dismissed */
   onDismiss: () => void;
   /** Whether the overlay can be dismissed by user interaction (e.g., tapping backdrop) */
-  dismissable?: boolean;
+  dismissible?: boolean;
 };
 
 /**
@@ -108,7 +108,7 @@ export type OverlayDismissContextMenuResult = OverlayDismissBaseResult &
  *   type="success"
  *   text="Operation completed successfully"
  *   duration={3000}
- *   dismissable
+ *   dismissible
  * />
  * ```
  */
@@ -140,7 +140,7 @@ export type ThemedToastProps = Omit<OverlayProps, 'onDismiss'> &
  * ```tsx
  * <ThemedModal
  *   visible={isVisible}
- *   dismissable
+ *   dismissible
  *   onDismiss={handleDismiss}
  *   contentWrapProps={{ padding: 'lg' }}
  * >
@@ -347,6 +347,7 @@ export type ActionSheetProps = (Omit<OverlayProps, 'onDismiss'> &
  */
 export type ActionSheetWrapProps = PropsWithRequiredChildren<
   Pick<ModalProps, 'visible'> & {
+    useModal?: boolean;
     /** Props for the animated wrapper view */
     wrapViewProps?: Omit<AnimatedThemedViewProps, 'children' | 'style'> & {
       style?: ViewStyle;
@@ -380,7 +381,7 @@ export type ActionSheetHeaderProps = {
  */
 export type ActionSheetContextVal = Pick<
   ActionSheetProps,
-  'title' | 'expandable' | 'onDismiss' | 'dismissable'
+  'title' | 'expandable' | 'onDismiss' | 'dismissible'
 > & {
   /** Reference to the header view for layout calculations */
   headerViewRef: ViewRefObj;

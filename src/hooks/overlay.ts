@@ -40,7 +40,7 @@ import {
 import {
   getActionSheetContext,
   getActionSheetExpandableHeight,
-  getActionSheetExpandableInitHeight,
+  getActionSheetExpandableInitialHeight,
   getActionSheetExpandableSnapHeight,
   getActionSheetHeight,
   getActionSheetSnapHeight,
@@ -71,11 +71,11 @@ function useActionSheet(actionSheetVisible: boolean) {
       translateYSharedVal.get() === windowHeight
     ) {
       const tempHeight = expandable
-        ? getActionSheetExpandableInitHeight()
+        ? getActionSheetExpandableInitialHeight()
         : height;
       heightSharedVal.set(tempHeight);
       expandableHeightSharedVal.set(tempHeight);
-      translateYSharedVal.set(height);
+      translateYSharedVal.set(expandable ? tempHeight : height);
       updateSharedValWithTiming(translateYSharedVal, 0, {
         duration: actionSheetOpenDuration,
       });
@@ -109,11 +109,13 @@ export function useActionSheetOnDismiss(force = true) {
     title,
     expandable,
     onDismiss,
+    dismissible,
     height,
     translateYSharedVal,
     heightSharedVal,
     expandableHeightSharedVal,
   } = useActionSheetContext();
+
   const actionSheetOnDismiss = (text = overlayDismissResultDefaultText) => {
     if (!height || !heightSharedVal || !translateYSharedVal) {
       return;
@@ -122,11 +124,16 @@ export function useActionSheetOnDismiss(force = true) {
     const tempTranslateYSharedVal =
       translateYSharedVal ?? makeMutable(windowHeight);
     const toVal = expandable
-      ? getActionSheetExpandableSnapHeight(heightSharedVal.get(), force)
+      ? getActionSheetExpandableSnapHeight(
+          heightSharedVal.get(),
+          force,
+          dismissible
+        )
       : getActionSheetSnapHeight(
           height,
           translateYSharedVal?.get() ?? windowHeight,
-          force
+          force,
+          dismissible
         );
     const dismissActionSheet = toVal === (expandable ? 0 : height);
     const animationConfig: Parameters<typeof withTiming>['1'] = {
@@ -172,7 +179,9 @@ export function useActionSheetGesture(contentGesture: boolean = false) {
   } = getActionSheetContext();
   const onDismiss = useActionSheetOnDismiss(false);
   const panGesture = usePanGesture({
-    activeOffsetY: contentGesture ? (contentOffsetSharedVal?.get() ?? 0) : 0,
+    activeOffsetY: contentGesture
+      ? (contentOffsetSharedVal?.get() ?? 0)
+      : [-1, 1],
     onUpdate: ({ changeY }) => {
       if (!contentGesture || !contentOffsetSharedVal?.get()) {
         if (expandable) {
@@ -274,7 +283,7 @@ export function useActionSheetOpts(
   options: ActionSheetOptions,
   optionListProps: ActionSheetOptionListProps | undefined,
   onDismiss: OverlayOnDismiss<OverlayDismissActionSheetResult> | undefined,
-  dismissable: boolean | undefined,
+  dismissible: boolean | undefined,
   actionSheetVisible: boolean
 ) {
   const {
@@ -306,7 +315,7 @@ export function useActionSheetOpts(
     title,
     expandable,
     onDismiss,
-    dismissable,
+    dismissible,
     headerViewRef,
     contentAnimatedRefObj: listViewListAnimatedRefObj,
     height,
@@ -368,7 +377,7 @@ export function useActionSheetScrollView(
   expandable: boolean | undefined,
   scrollViewProps: ActionSheetScrollViewProps['scrollViewProps'] | undefined,
   onDismiss: OverlayOnDismiss<OverlayDismissActionSheetResult> | undefined,
-  dismissable: boolean | undefined,
+  dismissible: boolean | undefined,
   actionSheetVisible: boolean
 ) {
   const {
@@ -404,7 +413,7 @@ export function useActionSheetScrollView(
     title,
     expandable,
     onDismiss,
-    dismissable,
+    dismissible,
     headerViewRef,
     contentAnimatedRefObj: scrollViewAnimatedRefObj,
     height,
@@ -424,7 +433,7 @@ export function useActionSheetListView(
   expandable: boolean | undefined,
   listProps: ActionSheetListViewProps['listProps'] | undefined,
   onDismiss: OverlayOnDismiss<OverlayDismissActionSheetResult> | undefined,
-  dismissable: boolean | undefined,
+  dismissible: boolean | undefined,
   actionSheetVisible: boolean
 ) {
   const {
@@ -460,7 +469,7 @@ export function useActionSheetListView(
     title,
     expandable,
     onDismiss,
-    dismissable,
+    dismissible,
     headerViewRef,
     contentAnimatedRefObj: listViewListAnimatedRefObj,
     height,

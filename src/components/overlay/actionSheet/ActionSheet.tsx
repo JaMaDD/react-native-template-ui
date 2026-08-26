@@ -23,7 +23,7 @@ if (isPlatformWeb()) {
 /**
  * A flexible action sheet component that supports three display modes: options list, scroll view, or list view.
  * Automatically renders the appropriate variant based on provided props (options, children, or listProps).
- * Provides a native-like bottom sheet experience with dismissable backdrop and smooth animations.
+ * Provides a native-like bottom sheet experience with dismissible backdrop and smooth animations.
  * @param props - Component props of type ActionSheetProps
  * @returns JSX element rendering the appropriate action sheet variant or null
  * @example
@@ -38,15 +38,15 @@ if (isPlatformWeb()) {
  * />
  */
 const ActionSheet: FC<ActionSheetProps> = ({
-  dismissable = true,
+  dismissible = true,
   ...props
 }) => {
   if (props.options?.length) {
-    return <ActionSheetOptions dismissable={dismissable} {...props} />;
+    return <ActionSheetOptions dismissible={dismissible} {...props} />;
   } else if (props.children) {
-    return <ActionSheetScrollView dismissable={dismissable} {...props} />;
+    return <ActionSheetScrollView dismissible={dismissible} {...props} />;
   } else if (props.listProps) {
-    return <ActionSheetListView dismissable={dismissable} {...props} />;
+    return <ActionSheetListView dismissible={dismissible} {...props} />;
   } else {
     return null;
   }
