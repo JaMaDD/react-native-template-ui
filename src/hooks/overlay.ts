@@ -213,7 +213,10 @@ export function useActionSheetHeaderMinHeight() {
 
 /** @internal */
 export function useActionSheetContentGesture() {
-  const nativeGesture = useNativeGesture({ shouldCancelWhenOutside: false });
+  const nativeGesture = useNativeGesture({
+    shouldActivateOnStart: true,
+    shouldCancelWhenOutside: false,
+  });
   const gesture = useActionSheetGesture(true);
   const simultaneousGestures = useSimultaneousGestures(nativeGesture, gesture);
 
