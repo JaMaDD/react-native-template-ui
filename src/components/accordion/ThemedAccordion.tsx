@@ -118,6 +118,13 @@ const ThemedAccordion: FC<ThemedAccordionProps> = ({
   const toggleAccordion = () => {
     setOpened((prevOpened) => !prevOpened);
   };
+  const onHeaderLayout: ThemedViewProps['onLayout'] = ({
+    nativeEvent: {
+      layout: { height },
+    },
+  }) => {
+    setHeaderHeight(height);
+  };
   const onContentLayout: ThemedViewProps['onLayout'] = ({
     nativeEvent: {
       layout: { height },
@@ -138,6 +145,7 @@ const ThemedAccordion: FC<ThemedAccordionProps> = ({
       <ThemedPressable
         ref={headerRef}
         onPress={toggleAccordion}
+        onLayout={onHeaderLayout}
         position={'absolute'}
         width={'100%'}
         flexDirection={'row'}

@@ -216,6 +216,7 @@ export function useActionSheetContentGesture() {
   const nativeGesture = useNativeGesture({
     shouldActivateOnStart: true,
     shouldCancelWhenOutside: false,
+    cancelsJSResponder: false,
   });
   const gesture = useActionSheetGesture(true);
   const simultaneousGestures = useSimultaneousGestures(nativeGesture, gesture);
