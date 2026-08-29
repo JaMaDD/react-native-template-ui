@@ -1,4 +1,3 @@
 ## What's Changed
 
-- fix: Fixed ActionSheet items cannot be pressed
-- fix: Added onLayout for ThemedAccordion header to handle dynamic height changes
+- misc: bumped packages versions and fixed type errors after bumping React Native version to 0.87
