@@ -1,11 +1,13 @@
 import type { RefObject } from 'react';
 import type {
   TextInputProps as RNTextInputProps,
-  TextInput,
+  TextInputInstance,
 } from 'react-native';
 import type { ThemedTextProps } from './text';
 import type { ThemeColors } from './theme';
 import type { ThemedViewProps } from './view';
+
+export type TextInputRefObj = RefObject<TextInputInstance | null>;
 
 /** @internal */
 export type TextInputProps = {
@@ -27,5 +29,5 @@ export type ThemedTextInputProps = TextInputProps &
   > &
   Omit<ThemedTextProps, 'children'> &
   Omit<ThemedViewProps, 'ref' | 'children'> & {
-    ref?: RefObject<TextInput | null>;
+    ref?: TextInputRefObj;
   };

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useLayoutEffect, useState } from 'react';
-import type { ScrollView } from 'react-native';
+import type { ScrollView, ViewStyle } from 'react-native';
 import {
   useNativeGesture,
   usePanGesture,
@@ -345,7 +345,13 @@ export function useActionSheetOptItemSize(
     insetBottom: true,
     insetPaddingBottom: 'm',
   }
-) {
+): {
+  itemSize: number;
+  insetsStyle: Pick<
+    ViewStyle,
+    'paddingTop' | 'paddingBottom' | 'paddingLeft' | 'paddingRight'
+  >;
+} {
   const themeSpacing = useThemeSpacing();
   const themeTextVariants = useThemeTextVariants();
   const insetsStyle = useInsetsStyle({
@@ -361,14 +367,12 @@ export function useActionSheetOptItemSize(
     insetPaddingRight,
   });
 
-  const actionSheetOptionItemSize = {
+  return {
     itemSize:
       themeSpacing[actionSheetOptionListItemPadding] * 2 +
       themeTextVariants[actionSheetOptionListItemTextVariant].lineHeight,
     insetsStyle,
   };
-
-  return actionSheetOptionItemSize;
 }
 
 /** @internal */

@@ -1,5 +1,6 @@
 import type { FC } from 'react';
 import { Modal, StyleSheet } from 'react-native';
+import type { ThemedPressableProps } from '../../../types/button';
 import type { ThemedModalProps } from '../../../types/overlay';
 import ThemedPressable from '../../button/ThemedPressable';
 import GestureProvider from '../../provider/GestureProvider';
@@ -29,6 +30,14 @@ const ThemedModal: FC<ThemedModalProps> = ({
   children,
   ...props
 }) => {
+  const onPress: ThemedPressableProps['onPress'] = () => {
+    if (!dismissible) {
+      return;
+    }
+
+    onDismiss?.();
+  };
+
   return (
     <Modal
       animationType={'fade'}
@@ -45,7 +54,7 @@ const ThemedModal: FC<ThemedModalProps> = ({
           {...contentWrapProps}
         >
           <ThemedPressable
-            onPress={onDismiss ?? null}
+            onPress={onPress}
             disabled={!dismissible}
             style={StyleSheet.absoluteFill}
           />

@@ -10,7 +10,7 @@ import type {
 } from '../types/button';
 import type { Timeout } from '../types/react';
 import { ButtonScaleRatio, OnPressDelayType } from '../utils/button/const';
-import { composeStyles } from '../utils/style/func';
+import { composeStyles, flattenStyle } from '../utils/style/func';
 import {
   animatedThemedPressableRestyleFuncs,
   themedPressableRestyleFuncs,
@@ -94,8 +94,15 @@ function usePressableProps({
   PressableProps,
   'onPress' | 'scaleRatio' | 'onPressDelayConfig' | 'style'
 >) {
-  const pressableOnPress = useDelayedOnPress(
-    onPress ?? null,
+  const pressableOnPress: PressableOnPress = (event) => {
+    if (!onPress) {
+      return;
+    }
+
+    onPress(event);
+  };
+  const delayedOnPress = useDelayedOnPress(
+    pressableOnPress,
     onPressDelayConfig
   );
 
@@ -105,10 +112,10 @@ function usePressableProps({
       : ({ pressed }) =>
           composeStyles(
             { transform: [{ scale: pressed ? scaleRatio : 1 }] },
-            style
+            style ? (flattenStyle(style) ?? undefined) : undefined
           );
   const pressableProps: PressableProps = {
-    onPress: pressableOnPress,
+    onPress: delayedOnPress,
     style: styleCb,
   };
 
@@ -172,7 +179,7 @@ export function useAnimatedThemedPressable({
   onPressDelayConfig,
   animatedStyle,
   ...props
-}: AnimatedThemedPressableProps) {
+}: AnimatedThemedPressableProps): Omit<AnimatedPressableProps, 'key'> {
   const { style, ...restyle } = useRestyle(
     animatedThemedPressableRestyleFuncs,
     props
@@ -184,11 +191,9 @@ export function useAnimatedThemedPressable({
     style,
   });
 
-  const animatedThemedPressableProps: Omit<AnimatedPressableProps, 'key'> = {
+  return {
     ...restyle,
     ...pressableProps,
     style: [pressableProps.style, animatedStyle],
   };
-
-  return animatedThemedPressableProps;
 }

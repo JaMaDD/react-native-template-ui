@@ -1,13 +1,14 @@
 import { useRestyle } from '@shopify/restyle';
 import { useEffect, useRef } from 'react';
-import type { View, ViewStyle } from 'react-native';
+import type { StyleProp, ViewInstance, ViewStyle } from 'react-native';
 import type { InsetsStyleConfig } from '../types/style';
 import type {
   AnimatedThemedViewProps,
   AnimatedViewProps,
   ThemedScreenWrapProps,
+  ViewRefObj,
 } from '../types/view';
-import { composeStyles } from '../utils/style/func';
+import { composeStyles, flattenStyle } from '../utils/style/func';
 import { animatedThemedViewRestyleFuncs } from '../utils/theme/restyle';
 import { useInsetsStyle } from './style';
 
@@ -19,8 +20,8 @@ import { useInsetsStyle } from './style';
  * <View ref={viewRef} />
  * // Later: viewRef.current?.measure(...)
  */
-export function useViewRef() {
-  return useRef<View>(null);
+export function useViewRef(): ViewRefObj {
+  return useRef<ViewInstance>(null);
 }
 
 /**
@@ -42,20 +43,18 @@ export function useViewRef() {
 export function useAnimatedThemedView({
   animatedStyle,
   ...props
-}: AnimatedThemedViewProps) {
+}: AnimatedThemedViewProps): AnimatedViewProps {
   const { style, ...restyle } = useRestyle(
     animatedThemedViewRestyleFuncs,
     props
   );
 
-  const animatedThemedViewProps: AnimatedViewProps = {
+  return {
     ...restyle,
     style: [style, animatedStyle],
     accessible: true,
     role: 'group',
   };
-
-  return animatedThemedViewProps;
 }
 
 /**
@@ -92,7 +91,7 @@ export function useThemedScreenWrap({
   | 'effectDependencies'
   | 'style'
   | keyof InsetsStyleConfig
->) {
+>): StyleProp<ViewStyle> {
   const insetsStyle = useInsetsStyle({
     insets,
     insetTop,
@@ -111,5 +110,10 @@ export function useThemedScreenWrap({
     return effectCleanup;
   }, effectDependencies);
 
-  return composeStyles<ViewStyle>(themedScreenWrapStyle, insetsStyle);
+  return composeStyles<ViewStyle>(
+    themedScreenWrapStyle
+      ? (flattenStyle(themedScreenWrapStyle) ?? undefined)
+      : undefined,
+    insetsStyle
+  );
 }

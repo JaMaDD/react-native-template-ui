@@ -2,7 +2,7 @@ import { FlashList, type ListRenderItem } from '@shopify/flash-list';
 import type { ViewStyle } from 'react-native';
 import { useInsetsStyle } from '../../hooks/style';
 import type { ListProps } from '../../types/list';
-import { composeStyles } from '../../utils/style/func';
+import { composeStyles, flattenStyle } from '../../utils/style/func';
 
 /**
  * A high-performance list component built on Shopify's FlashList.
@@ -52,6 +52,8 @@ function List<T>({
   const listContentContainerStyle = composeStyles<ViewStyle>(
     insetsStyle,
     contentContainerStyle
+      ? (flattenStyle(contentContainerStyle) ?? undefined)
+      : undefined
   );
 
   return (

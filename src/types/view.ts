@@ -9,8 +9,8 @@ import type {
   NativeScrollEvent,
   NativeSyntheticEvent,
   ScrollViewProps as RNScrollViewProps,
-  ScrollView,
-  View,
+  ScrollViewInstance,
+  ViewInstance,
   ViewProps,
 } from 'react-native';
 import type { AnimatedRef } from 'react-native-reanimated';
@@ -23,21 +23,21 @@ import type { Theme } from './theme';
  *
  * Used to store and access view references in React components.
  */
-export type ViewRefObj = RefObject<View | null>;
+export type ViewRefObj = RefObject<ViewInstance | null>;
 
 /**
  * RefObject for a React Native ScrollView component.
  *
  * Used to store and access scroll view references for programmatic scrolling.
  */
-export type ScrollViewRefObj = RefObject<ScrollView | null>;
+export type ScrollViewRefObj = RefObject<ScrollViewInstance | null>;
 
 /**
  * Animated RefObject for a ScrollView component.
  *
  * Used with Reanimated for animated scroll operations and gesture handling.
  */
-export type ScrollViewAnimatedRefObj = AnimatedRef<ScrollView>;
+export type ScrollViewAnimatedRefObj = AnimatedRef<ScrollViewInstance>;
 
 /**
  * Callback handler for scroll events.

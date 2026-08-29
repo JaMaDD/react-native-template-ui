@@ -5,11 +5,8 @@ import {
   useState,
   type DependencyList,
 } from 'react';
-import {
-  useWindowDimensions as useRNWindowDimensions,
-  type ReactNativeElement,
-  type ViewStyle,
-} from 'react-native';
+import type { HostInstance, ViewStyle } from 'react-native';
+import { useWindowDimensions as useRNWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import type { InsetsStyleConfig } from '../types/style';
 import type { ThemeColors } from '../types/theme';
@@ -56,14 +53,14 @@ export function useInsetsStyle({
   insetPaddingBottom,
   insetPaddingLeft,
   insetPaddingRight,
-}: InsetsStyleConfig) {
+}: InsetsStyleConfig): Pick<
+  ViewStyle,
+  'paddingTop' | 'paddingBottom' | 'paddingLeft' | 'paddingRight'
+> {
   const { top, bottom, left, right } = useSafeAreaInsets();
   const spacing = useThemeSpacing();
 
-  const insetsStyle: Pick<
-    ViewStyle,
-    'paddingTop' | 'paddingBottom' | 'paddingLeft' | 'paddingRight'
-  > = JSON.parse(
+  return JSON.parse(
     JSON.stringify({
       paddingTop:
         (insetTop ?? insets)
@@ -83,8 +80,6 @@ export function useInsetsStyle({
           : undefined,
     })
   );
-
-  return insetsStyle;
 }
 
 /**
@@ -195,7 +190,7 @@ export function useShadowStyle(
   return { boxShadow };
 }
 
-export function useElementBoundingClientRect<T extends ReactNativeElement>(
+export function useElementBoundingClientRect<T extends HostInstance>(
   refreshElementBoundingClientRectDeps: DependencyList = []
 ) {
   const windowHeight = useWindowDimensionsHeight();

@@ -1,7 +1,7 @@
 import type { RefObject } from 'react';
 import type {
+  HostInstance,
   ImageStyle,
-  ReactNativeElement,
   StyleProp as RNStyleProp,
   TextStyle,
   ViewStyle,
@@ -70,4 +70,4 @@ export type InsetsStyleConfig = {
   insetPaddingRight?: ThemeSpacing;
 };
 
-export type ElementRefObject = RefObject<ReactNativeElement | null>;
+export type ElementRefObject = RefObject<HostInstance | null>;

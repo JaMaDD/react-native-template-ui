@@ -1,7 +1,11 @@
 import { useRestyle } from '@shopify/restyle';
 import { useRef } from 'react';
-import type { TextInput } from 'react-native';
-import type { TextInputProps, ThemedTextInputProps } from '../types/textInput';
+import type { TextInputInstance } from 'react-native';
+import type {
+  TextInputProps,
+  TextInputRefObj,
+  ThemedTextInputProps,
+} from '../types/textInput';
 import type { ThemeTextVariants } from '../types/theme';
 import { textInputDefaultTextVariant } from '../utils/textInput/const';
 import { themedTextInputRestyleFuncs } from '../utils/theme/restyle';
@@ -46,6 +50,6 @@ export function useThemedTextInput({
   };
 }
 
-export function useTextInputRef() {
-  return useRef<TextInput>(null);
+export function useTextInputRef(): TextInputRefObj {
+  return useRef<TextInputInstance>(null);
 }

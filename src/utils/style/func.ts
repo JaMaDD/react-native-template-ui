@@ -1,9 +1,6 @@
+import type { StyleProp } from 'react-native';
 import { Dimensions, StyleSheet } from 'react-native';
-import type {
-  ElementRefObject,
-  Style,
-  StyleOrStyleProp,
-} from '../../types/style';
+import type { ElementRefObject, Style } from '../../types/style';
 import { elementDefaultDOMRect } from './const';
 
 /**
@@ -40,10 +37,7 @@ export function createStyleSheet<T extends Record<string, Style>>(styles: T) {
  * const combinedStyle = composeStyles(baseStyle, overrideStyle);
  * ```
  */
-export function composeStyles<T extends Style>(
-  style1?: StyleOrStyleProp<T>,
-  style2?: StyleOrStyleProp<T>
-) {
+export function composeStyles<T extends Style>(style1?: T, style2?: T) {
   return StyleSheet.compose<T, T, T>(style1, style2);
 }
 
@@ -60,8 +54,8 @@ export function composeStyles<T extends Style>(
  * console.log(flatStyle.backgroundColor); // Access resolved value
  * ```
  */
-export function flattenStyle<T extends Style>(style: StyleOrStyleProp<T>) {
-  return StyleSheet.flatten<T>(style);
+export function flattenStyle<T extends Style>(style: StyleProp<T>) {
+  return StyleSheet.flatten(style) as T;
 }
 
 /**

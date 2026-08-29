@@ -1,5 +1,5 @@
 import { lazy, useReducer, type FC } from 'react';
-import type { View } from 'react-native';
+import type { ViewInstance } from 'react-native';
 import { FadeInDown, FadeInUp } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
@@ -59,7 +59,7 @@ const ContextMenu: FC<ContextMenuProps> = ({
     elementBoundingClientRect: { width, height, x, y },
     elementScreenPosition,
     refreshElementBoundingClientReact,
-  } = useElementBoundingClientRect<View>();
+  } = useElementBoundingClientRect<ViewInstance>();
   const shadowStyle = useShadowStyle(ShadowDirection.All);
 
   const dismissModal = () => {

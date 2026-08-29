@@ -3,7 +3,7 @@ import type { FC } from 'react';
 import { ScrollView } from 'react-native';
 import { useInsetsStyle } from '../../hooks/style';
 import type { ThemedScrollViewProps } from '../../types/view';
-import { composeStyles } from '../../utils/style/func';
+import { composeStyles, flattenStyle } from '../../utils/style/func';
 import { themedScrollViewRestyleFuncs } from '../../utils/theme/restyle';
 
 /**
@@ -51,7 +51,9 @@ const ThemedScrollView: FC<ThemedScrollViewProps> = ({
   });
 
   const contentContainerStyle = composeStyles(
-    restyleContentContainerStyle,
+    restyleContentContainerStyle
+      ? (flattenStyle(restyleContentContainerStyle) ?? undefined)
+      : undefined,
     insetsStyle
   );
 
