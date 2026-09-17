@@ -4,6 +4,7 @@ import type {
   ActionSheetContextVal,
   AlertContextVal,
   AlertWrapContextVal,
+  ToastContextVal,
 } from '../../types/overlay';
 import type { ThemeSpacing, ThemeTextVariants } from '../../types/theme';
 
@@ -37,6 +38,11 @@ export enum OverlayDismissResultType {
  * Used as the dismiss result text when no custom text is provided.
  */
 export const overlayDismissResultDefaultText = 'cancelByUser';
+
+/** @internal */
+export const ToastContext = createContext<ToastContextVal>({
+  addToast: () => {},
+});
 
 /**
  * Position types for toast notifications.

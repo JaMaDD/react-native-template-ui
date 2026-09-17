@@ -40,7 +40,7 @@ const ActionSheetListView: FC<ActionSheetListViewProps> = ({
   );
 
   return (
-    <ActionSheetContext.Provider value={actionSheetContextVal}>
+    <ActionSheetContext value={actionSheetContextVal}>
       <ActionSheetWrap
         visible={actionSheetVisible}
         useModal={useModal}
@@ -54,7 +54,7 @@ const ActionSheetListView: FC<ActionSheetListViewProps> = ({
         />
         <ActionSheetListViewContent listProps={listProps} />
       </ActionSheetWrap>
-    </ActionSheetContext.Provider>
+    </ActionSheetContext>
   );
 };
 

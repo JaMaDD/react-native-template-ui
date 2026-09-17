@@ -78,7 +78,7 @@ const Alert: FC<AlertProps> = ({
   };
 
   return (
-    <AlertContext.Provider value={alertContextVal}>
+    <AlertContext value={alertContextVal}>
       <AlertWrap
         customShowAnimation={customShowAnimation}
         wrapProps={wrapProps}
@@ -97,7 +97,7 @@ const Alert: FC<AlertProps> = ({
         />
         <AlertButtons buttons={buttons} buttonsWrapProps={buttonsWrapProps} />
       </AlertWrap>
-    </AlertContext.Provider>
+    </AlertContext>
   );
 };
 

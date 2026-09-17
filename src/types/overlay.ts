@@ -172,6 +172,10 @@ export type ThemedLoadingModalProps = Omit<ThemedModalProps, 'children'> &
   CustomThemedLoadingProps &
   Partial<CustomThemedTextProps>;
 
+export type ToastContextVal = {
+  addToast: (toast: ThemedToastProps) => void;
+};
+
 /**
  * Context value for alert components.
  *

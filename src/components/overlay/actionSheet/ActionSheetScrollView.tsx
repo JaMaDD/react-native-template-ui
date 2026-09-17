@@ -41,7 +41,7 @@ const ActionSheetScrollView: FC<ActionSheetScrollViewProps> = ({
   );
 
   return (
-    <ActionSheetContext.Provider value={actionSheetContextVal}>
+    <ActionSheetContext value={actionSheetContextVal}>
       <ActionSheetWrap
         visible={actionSheetVisible}
         useModal={useModal}
@@ -57,7 +57,7 @@ const ActionSheetScrollView: FC<ActionSheetScrollViewProps> = ({
           {children}
         </ActionSheetScrollViewContent>
       </ActionSheetWrap>
-    </ActionSheetContext.Provider>
+    </ActionSheetContext>
   );
 };
 

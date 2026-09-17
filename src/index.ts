@@ -18,6 +18,7 @@ export { default as GestureProvider } from './components/provider/GestureProvide
 export { default as InsetsProvider } from './components/provider/InsetsProvider';
 export { default as ReactNativeTemplateProviders } from './components/provider/ReactNativeTemplateProviders';
 export { default as ThemeProvider } from './components/provider/ThemeProvider';
+export { default as ToastProvider } from './components/provider/ToastProvider';
 export { default as ThemedSeparator } from './components/separator/ThemedSeparator';
 export { default as ThemedSlider } from './components/slider/ThemedSlider';
 export { default as ThemedSwitch } from './components/switch/ThemedSwitch';

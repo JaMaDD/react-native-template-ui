@@ -34,8 +34,10 @@ import {
   actionSheetOptionListItemPadding,
   actionSheetOptionListItemTextVariant,
   actionSheetSnapDuration,
+  AlertWrapContext,
   overlayDismissResultDefaultText,
   OverlayDismissResultType,
+  ToastContext,
 } from '../utils/overlay/const';
 import {
   getActionSheetContext,
@@ -49,6 +51,14 @@ import { updateSharedValWithTiming } from '../utils/reanimated/func';
 import { useInsetsStyle, useWindowDimensionsHeight } from './style';
 import { useThemeSpacing, useThemeTextVariants } from './theme';
 import { useViewRef } from './view';
+
+export function useToastContext() {
+  return useContext(ToastContext);
+}
+
+export function useAlertContext() {
+  return useContext(AlertWrapContext);
+}
 
 /** @internal */
 export function useActionSheetContext() {

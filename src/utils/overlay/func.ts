@@ -6,7 +6,13 @@ import {
   actionSheetMaxHeightRatio,
   AlertContext,
   AlertWrapContext,
+  ToastContext,
 } from './const';
+
+export function getToastContext() {
+  return reactUse(ToastContext);
+}
+
 /**
  * @internal
  * Hook to access the Alert context.
@@ -16,14 +22,14 @@ import {
  *
  * @example
  * ```tsx
- * const alertContext = getAlertContext();
+ * const alertContext = getInternalAlertContext();
  * ```
  */
-export function getAlertContext() {
+export function getInternalAlertContext() {
   return reactUse(AlertContext);
 }
 
-export function getAlertWrapContext() {
+export function getAlertContext() {
   return reactUse(AlertWrapContext);
 }
 

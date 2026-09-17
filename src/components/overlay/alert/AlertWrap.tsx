@@ -9,7 +9,7 @@ import type {
   PropsWithRequiredChildren,
 } from '../../../types/view';
 import { overlayMaxWidthPercent } from '../../../utils/overlay/const';
-import { getAlertContext } from '../../../utils/overlay/func';
+import { getInternalAlertContext } from '../../../utils/overlay/func';
 import { updateSharedValWithSpring } from '../../../utils/reanimated/func';
 import { ShadowDirection } from '../../../utils/style/const';
 import AnimatedThemedView from '../../view/AnimatedThemedView';
@@ -76,7 +76,7 @@ const AlertWrap: FC<
     showSharedVal,
   ]);
 
-  const { onDismiss } = getAlertContext();
+  const { onDismiss } = getInternalAlertContext();
   const modalOnDismiss = () => {
     onDismiss?.();
   };
