@@ -1,10 +1,10 @@
 /** @internal */
 import { useLayoutEffect, type FC } from 'react';
+import { useActionSheetInternalContext } from '../../../hooks/overlay';
 import type {
   ActionSheetListViewListRefObj,
   ActionSheetListViewProps,
 } from '../../../types/overlay';
-import { getActionSheetContext } from '../../../utils/overlay/func';
 import List from '../../list/List';
 import ActionSheetContentGesture from './ActionSheetContentGesture';
 
@@ -16,7 +16,8 @@ import ActionSheetContentGesture from './ActionSheetContentGesture';
 const ActionSheetListViewContent: FC<
   Pick<ActionSheetListViewProps, 'listProps'>
 > = ({ listProps }) => {
-  const { contentAnimatedRefObj, setContentHeight } = getActionSheetContext();
+  const { contentAnimatedRefObj, setContentHeight } =
+    useActionSheetInternalContext();
   useLayoutEffect(() => {
     const contentHeight = (
       contentAnimatedRefObj as ActionSheetListViewListRefObj

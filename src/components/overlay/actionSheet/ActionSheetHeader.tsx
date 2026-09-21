@@ -4,6 +4,7 @@ import { GestureDetector } from 'react-native-gesture-handler';
 import {
   useActionSheetGesture,
   useActionSheetHeaderMinHeight,
+  useActionSheetInternalContext,
   useActionSheetOnDismiss,
 } from '../../../hooks/overlay';
 import type { ThemedIconButtonProps } from '../../../types/button';
@@ -14,7 +15,6 @@ import {
   actionSheetHeaderIconSize,
   actionSheetHeaderPadding,
 } from '../../../utils/overlay/const';
-import { getActionSheetContext } from '../../../utils/overlay/func';
 import { BorderSize } from '../../../utils/theme/const';
 import ThemedView from '../../view/ThemedView';
 
@@ -39,11 +39,11 @@ const ActionSheetHeader: FC<ActionSheetHeaderProps> = ({
   headerTextProps,
   headerIconButtonProps,
 }) => {
+  const { title, headerViewRef } = useActionSheetInternalContext();
   const gesture = useActionSheetGesture();
   const minHeight = useActionSheetHeaderMinHeight();
   const onDismiss = useActionSheetOnDismiss();
 
-  const { title, headerViewRef } = getActionSheetContext();
   const onIconPress: ThemedIconButtonProps['onPress'] = () => {
     onDismiss();
   };

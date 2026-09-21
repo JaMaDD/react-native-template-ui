@@ -1,12 +1,13 @@
 import type { ThemedIconButtonProps } from '@jamadd/react-native-template-ui';
 import {
-  getAlertContext,
   ThemedIconButton,
+  useAlertContext,
 } from '@jamadd/react-native-template-ui';
 import type { FC } from 'react';
 
 const AlertButton: FC<{}> = ({}) => {
-  const { addAlert } = getAlertContext();
+  const { addAlert } = useAlertContext();
+
   const onPress: ThemedIconButtonProps['onPress'] = () => {
     addAlert({
       title: 'hello',

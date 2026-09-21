@@ -173,7 +173,7 @@ export type ThemedLoadingModalProps = Omit<ThemedModalProps, 'children'> &
   Partial<CustomThemedTextProps>;
 
 export type ToastContextVal = {
-  addToast: (toast: ThemedToastProps) => void;
+  setToast: (toast: ThemedToastProps) => void;
 };
 
 /**
@@ -181,14 +181,14 @@ export type ToastContextVal = {
  *
  * Provides shared state and callbacks for alert button interactions.
  */
-export type AlertContextVal = Partial<
+export type AlertInternalContextVal = Partial<
   Pick<AlertProps, 'buttonProps'> & {
     /** Callback to dismiss the alert with optional result data */
     onDismiss: (result?: Partial<OverlayDismissAlertResult>) => void;
   }
 >;
 
-export type AlertWrapContextVal = {
+export type AlertContextVal = {
   addAlert: (alert: Omit<AlertProps, 'visible'>) => void;
 };
 
@@ -383,7 +383,7 @@ export type ActionSheetHeaderProps = {
  *
  * @internal
  */
-export type ActionSheetContextVal = Pick<
+export type ActionSheetInternalContextVal = Pick<
   ActionSheetProps,
   'title' | 'expandable' | 'onDismiss' | 'dismissible'
 > & {
@@ -403,6 +403,11 @@ export type ActionSheetContextVal = Pick<
   expandableHeightSharedVal: SharedValue<number>;
   /** Shared value for tracking content scroll offset */
   contentOffsetSharedVal: SharedValue<number>;
+};
+
+/** @internal */
+export type ActionSheetContextVal = {
+  setActionSheet: SetState<ActionSheetProps | undefined>;
 };
 
 /**

@@ -5,7 +5,7 @@ import {
   useActionSheetVisible,
 } from '../../../hooks/overlay';
 import type { ActionSheetListViewProps } from '../../../types/overlay';
-import { ActionSheetContext } from '../../../utils/overlay/const';
+import { ActionSheetInternalContext } from '../../../utils/overlay/const';
 import ActionSheetHeader from './ActionSheetHeader';
 import ActionSheetListViewContent from './ActionSheetListViewContent';
 import ActionSheetWrap from './ActionSheetWrap';
@@ -30,7 +30,7 @@ const ActionSheetListView: FC<ActionSheetListViewProps> = ({
   visible,
 }) => {
   const { actionSheetVisible } = useActionSheetVisible(visible);
-  const actionSheetContextVal = useActionSheetListView(
+  const actionSheetInternalContextVal = useActionSheetListView(
     title,
     expandable,
     listProps,
@@ -40,7 +40,7 @@ const ActionSheetListView: FC<ActionSheetListViewProps> = ({
   );
 
   return (
-    <ActionSheetContext value={actionSheetContextVal}>
+    <ActionSheetInternalContext value={actionSheetInternalContextVal}>
       <ActionSheetWrap
         visible={actionSheetVisible}
         useModal={useModal}
@@ -54,7 +54,7 @@ const ActionSheetListView: FC<ActionSheetListViewProps> = ({
         />
         <ActionSheetListViewContent listProps={listProps} />
       </ActionSheetWrap>
-    </ActionSheetContext>
+    </ActionSheetInternalContext>
   );
 };
 

@@ -2,7 +2,10 @@
 import type { FC } from 'react';
 import { lazy } from 'react';
 import { useAnimatedStyle } from 'react-native-reanimated';
-import { useActionSheetOnDismiss } from '../../../hooks/overlay';
+import {
+  useActionSheetInternalContext,
+  useActionSheetOnDismiss,
+} from '../../../hooks/overlay';
 import { useShadowStyle } from '../../../hooks/style';
 import type {
   ActionSheetWrapProps,
@@ -10,10 +13,7 @@ import type {
 } from '../../../types/overlay';
 import type { AnimatedThemedViewProps } from '../../../types/view';
 import { isPlatformWeb } from '../../../utils/common/func';
-import {
-  getActionSheetContext,
-  getActionSheetMaxHeight,
-} from '../../../utils/overlay/func';
+import { getActionSheetMaxHeight } from '../../../utils/overlay/func';
 import { ShadowDirection } from '../../../utils/style/const';
 import AnimatedThemedView from '../../view/AnimatedThemedView';
 
@@ -41,7 +41,7 @@ const ActionSheetWrap: FC<ActionSheetWrapProps> = ({
     translateYSharedVal,
     heightSharedVal,
     expandableHeightSharedVal,
-  } = getActionSheetContext();
+  } = useActionSheetInternalContext();
   const onDismiss = useActionSheetOnDismiss();
   const shadowStyle = useShadowStyle(ShadowDirection.Top);
   const outerWrapAnimatedStyle = useAnimatedStyle(

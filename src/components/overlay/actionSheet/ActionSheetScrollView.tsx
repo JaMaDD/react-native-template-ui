@@ -5,7 +5,7 @@ import {
   useActionSheetVisible,
 } from '../../../hooks/overlay';
 import type { ActionSheetScrollViewProps } from '../../../types/overlay';
-import { ActionSheetContext } from '../../../utils/overlay/const';
+import { ActionSheetInternalContext } from '../../../utils/overlay/const';
 import ActionSheetHeader from './ActionSheetHeader';
 import ActionSheetScrollViewContent from './ActionSheetScrollViewContent';
 import ActionSheetWrap from './ActionSheetWrap';
@@ -31,7 +31,7 @@ const ActionSheetScrollView: FC<ActionSheetScrollViewProps> = ({
   visible,
 }) => {
   const { actionSheetVisible } = useActionSheetVisible(visible);
-  const actionSheetContextVal = useActionSheetScrollView(
+  const actionSheetInternalContextVal = useActionSheetScrollView(
     title,
     expandable,
     scrollViewProps,
@@ -41,7 +41,7 @@ const ActionSheetScrollView: FC<ActionSheetScrollViewProps> = ({
   );
 
   return (
-    <ActionSheetContext value={actionSheetContextVal}>
+    <ActionSheetInternalContext value={actionSheetInternalContextVal}>
       <ActionSheetWrap
         visible={actionSheetVisible}
         useModal={useModal}
@@ -57,7 +57,7 @@ const ActionSheetScrollView: FC<ActionSheetScrollViewProps> = ({
           {children}
         </ActionSheetScrollViewContent>
       </ActionSheetWrap>
-    </ActionSheetContext>
+    </ActionSheetInternalContext>
   );
 };
 

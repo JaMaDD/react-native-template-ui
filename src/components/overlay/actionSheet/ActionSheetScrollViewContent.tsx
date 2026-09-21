@@ -1,12 +1,12 @@
 /** @internal */
 import { type FC } from 'react';
+import { useActionSheetInternalContext } from '../../../hooks/overlay';
 import type { ActionSheetScrollViewProps } from '../../../types/overlay';
 import type {
   OnContentSizeChange,
   PropsWithRequiredChildren,
   ScrollViewRefObj,
 } from '../../../types/view';
-import { getActionSheetContext } from '../../../utils/overlay/func';
 import ThemedScrollView from '../../view/ThemedScrollView';
 import ActionSheetContentGesture from './ActionSheetContentGesture';
 
@@ -18,7 +18,9 @@ import ActionSheetContentGesture from './ActionSheetContentGesture';
 const ActionSheetScrollViewContent: FC<
   PropsWithRequiredChildren<Pick<ActionSheetScrollViewProps, 'scrollViewProps'>>
 > = ({ scrollViewProps, children }) => {
-  const { contentAnimatedRefObj, setContentHeight } = getActionSheetContext();
+  const { contentAnimatedRefObj, setContentHeight } =
+    useActionSheetInternalContext();
+
   const onContentSizeChange: OnContentSizeChange = (
     width: number,
     height: number

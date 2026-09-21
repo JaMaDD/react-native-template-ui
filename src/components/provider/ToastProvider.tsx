@@ -15,9 +15,7 @@ const ToastProvider: FC<PropsWithRequiredChildren> = ({ children }) => {
   const [toast, setToast] = useState<ThemedToastProps>();
 
   const toastContextValue: ToastContextVal = {
-    addToast: (newToast) => {
-      setToast(newToast);
-    },
+    setToast,
   };
   const onDismiss: ThemedToastProps['onDismiss'] = (result) => {
     toast?.onDismiss?.(result);

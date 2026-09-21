@@ -1,17 +1,17 @@
 /** @internal */
 import { type FC } from 'react';
 import {
+  useActionSheetInternalContext,
   useActionSheetOnDismiss,
   useActionSheetOptItemSize,
 } from '../../../hooks/overlay';
 import type { ListKeyExtractor } from '../../../types/list';
 import type {
-  ActionSheetOptionListExtraData,
   ActionSheetOption,
+  ActionSheetOptionListExtraData,
   ActionSheetOptionListRefObj,
   ActionSheetOptionsProps,
 } from '../../../types/overlay';
-import { getActionSheetContext } from '../../../utils/overlay/func';
 import List from '../../list/List';
 import ActionSheetContentGesture from './ActionSheetContentGesture';
 import ActionSheetOptionListItem from './ActionSheetOptionListItem';
@@ -27,10 +27,10 @@ const ActionSheetOptionList: FC<
     'options' | 'optionListProps' | 'optionListItemProps'
   >
 > = ({ options, optionListProps, optionListItemProps }) => {
+  const { contentAnimatedRefObj } = useActionSheetInternalContext();
   const { insetsStyle } = useActionSheetOptItemSize(optionListProps);
   const onDismiss = useActionSheetOnDismiss();
 
-  const { contentAnimatedRefObj } = getActionSheetContext();
   const keyExtractor: ListKeyExtractor<ActionSheetOption> = ({ text }, index) =>
     `${text}_${index}`;
   const extraData: ActionSheetOptionListExtraData = {

@@ -1,6 +1,7 @@
 import { useEffect, type FC } from 'react';
 import type { ViewStyle } from 'react-native';
 import { useAnimatedStyle, type SharedValue } from 'react-native-reanimated';
+import { useInternalAlertContext } from '../../../hooks/overlay';
 import { useShadowStyle } from '../../../hooks/style';
 import type { AlertProps } from '../../../types/overlay';
 import type { AnimationSharedValue } from '../../../types/reanimated';
@@ -9,7 +10,6 @@ import type {
   PropsWithRequiredChildren,
 } from '../../../types/view';
 import { overlayMaxWidthPercent } from '../../../utils/overlay/const';
-import { getInternalAlertContext } from '../../../utils/overlay/func';
 import { updateSharedValWithSpring } from '../../../utils/reanimated/func';
 import { ShadowDirection } from '../../../utils/style/const';
 import AnimatedThemedView from '../../view/AnimatedThemedView';
@@ -46,6 +46,7 @@ const AlertWrap: FC<
   showSharedVal,
   children,
 }) => {
+  const { onDismiss } = useInternalAlertContext();
   const shadowStyle = useShadowStyle(ShadowDirection.All);
   const animatedStyle = useAnimatedStyle<ViewStyle>(
     () => ({
@@ -76,7 +77,6 @@ const AlertWrap: FC<
     showSharedVal,
   ]);
 
-  const { onDismiss } = getInternalAlertContext();
   const modalOnDismiss = () => {
     onDismiss?.();
   };

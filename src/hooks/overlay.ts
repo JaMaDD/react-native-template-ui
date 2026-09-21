@@ -15,7 +15,7 @@ import {
 import { scheduleOnRN } from 'react-native-worklets';
 import type { ListAnimatedRefObj, ListRef } from '../types/list';
 import type {
-  ActionSheetContextVal,
+  ActionSheetInternalContextVal,
   ActionSheetListViewProps,
   ActionSheetOption,
   ActionSheetOptionListProps,
@@ -30,17 +30,18 @@ import {
   actionSheetDismissDuration,
   actionSheetHeaderIconSize,
   actionSheetHeaderPadding,
+  ActionSheetInternalContext,
   actionSheetOpenDuration,
   actionSheetOptionListItemPadding,
   actionSheetOptionListItemTextVariant,
   actionSheetSnapDuration,
-  AlertWrapContext,
+  AlertContext,
+  AlertInternalContext,
   overlayDismissResultDefaultText,
   OverlayDismissResultType,
   ToastContext,
 } from '../utils/overlay/const';
 import {
-  getActionSheetContext,
   getActionSheetExpandableHeight,
   getActionSheetExpandableInitialHeight,
   getActionSheetExpandableSnapHeight,
@@ -56,11 +57,20 @@ export function useToastContext() {
   return useContext(ToastContext);
 }
 
+/** @internal */
+export function useInternalAlertContext() {
+  return useContext(AlertInternalContext);
+}
+
 export function useAlertContext() {
-  return useContext(AlertWrapContext);
+  return useContext(AlertContext);
 }
 
 /** @internal */
+export function useActionSheetInternalContext() {
+  return useContext(ActionSheetInternalContext);
+}
+
 export function useActionSheetContext() {
   return useContext(ActionSheetContext);
 }
@@ -68,12 +78,12 @@ export function useActionSheetContext() {
 /** @internal */
 function useActionSheet(actionSheetVisible: boolean) {
   const windowHeight = useWindowDimensionsHeight();
+  const { expandable } = useActionSheetInternalContext();
   const headerViewRef = useViewRef();
   const [height, setHeight] = useState(0);
   const translateYSharedVal = useSharedValue(windowHeight);
   const heightSharedVal = useSharedValue(0);
   const expandableHeightSharedVal = useSharedValue(0);
-  const { expandable } = getActionSheetContext();
   useEffect(() => {
     if (
       actionSheetVisible &&
@@ -124,7 +134,7 @@ export function useActionSheetOnDismiss(force = true) {
     translateYSharedVal,
     heightSharedVal,
     expandableHeightSharedVal,
-  } = useActionSheetContext();
+  } = useActionSheetInternalContext();
 
   const actionSheetOnDismiss = (text = overlayDismissResultDefaultText) => {
     if (!height || !heightSharedVal || !translateYSharedVal) {
@@ -186,7 +196,7 @@ export function useActionSheetGesture(contentGesture: boolean = false) {
     translateYSharedVal,
     heightSharedVal,
     contentOffsetSharedVal,
-  } = getActionSheetContext();
+  } = useActionSheetInternalContext();
   const onDismiss = useActionSheetOnDismiss(false);
   const panGesture = usePanGesture({
     activeOffsetY: contentGesture
@@ -242,7 +252,7 @@ export function useActionSheetScrollViewAnimatedRef() {
   return useAnimatedRef<ScrollView>();
 }
 
-/** @interal */
+/** @internal */
 export function useActionSheetListViewRefAndOffset<T>(
   refObj?: ListAnimatedRefObj<T>
 ) {
@@ -259,7 +269,7 @@ export function useActionSheetListViewRefAndOffset<T>(
   return actionSheetListViewAnimatedRef;
 }
 
-/** @interal */
+/** @internal */
 export function useActionSheetScrollViewRefAndOffset(
   refObj?: ScrollViewAnimatedRefObj
 ) {
@@ -295,7 +305,7 @@ export function useActionSheetOpts(
   onDismiss: OverlayOnDismiss<OverlayDismissActionSheetResult> | undefined,
   dismissible: boolean | undefined,
   actionSheetVisible: boolean
-) {
+): ActionSheetInternalContextVal {
   const {
     headerViewRef,
     height,
@@ -321,7 +331,7 @@ export function useActionSheetOpts(
     });
   }, [actionSheetVisible]);
 
-  const actionSheetContextVal: ActionSheetContextVal = {
+  return {
     title,
     expandable,
     onDismiss,
@@ -334,8 +344,6 @@ export function useActionSheetOpts(
     expandableHeightSharedVal,
     contentOffsetSharedVal,
   };
-
-  return actionSheetContextVal;
 }
 
 /** @internal */
@@ -393,7 +401,7 @@ export function useActionSheetScrollView(
   onDismiss: OverlayOnDismiss<OverlayDismissActionSheetResult> | undefined,
   dismissible: boolean | undefined,
   actionSheetVisible: boolean
-) {
+): ActionSheetInternalContextVal {
   const {
     headerViewRef,
     height,
@@ -423,7 +431,7 @@ export function useActionSheetScrollView(
     }
   }, [headerHeight, contentHeight]);
 
-  const actionSheetContextVal: ActionSheetContextVal = {
+  return {
     title,
     expandable,
     onDismiss,
@@ -437,8 +445,6 @@ export function useActionSheetScrollView(
     expandableHeightSharedVal,
     contentOffsetSharedVal,
   };
-
-  return actionSheetContextVal;
 }
 
 /** @internal */
@@ -449,7 +455,7 @@ export function useActionSheetListView(
   onDismiss: OverlayOnDismiss<OverlayDismissActionSheetResult> | undefined,
   dismissible: boolean | undefined,
   actionSheetVisible: boolean
-) {
+): ActionSheetInternalContextVal {
   const {
     headerViewRef,
     height,
@@ -479,7 +485,7 @@ export function useActionSheetListView(
     }
   }, [headerHeight, contentHeight]);
 
-  const actionSheetContextVal: ActionSheetContextVal = {
+  return {
     title,
     expandable,
     onDismiss,
@@ -493,6 +499,4 @@ export function useActionSheetListView(
     expandableHeightSharedVal,
     contentOffsetSharedVal,
   };
-
-  return actionSheetContextVal;
 }

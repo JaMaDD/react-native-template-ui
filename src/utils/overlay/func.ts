@@ -5,7 +5,6 @@ import {
   ActionSheetExpandableHeightRatio,
   actionSheetMaxHeightRatio,
   AlertContext,
-  AlertWrapContext,
   ToastContext,
 } from './const';
 
@@ -13,24 +12,12 @@ export function getToastContext() {
   return reactUse(ToastContext);
 }
 
-/**
- * @internal
- * Hook to access the Alert context.
- * Provides access to alert state and control functions.
- *
- * @returns The alert context value
- *
- * @example
- * ```tsx
- * const alertContext = getInternalAlertContext();
- * ```
- */
-export function getInternalAlertContext() {
+export function getAlertContext() {
   return reactUse(AlertContext);
 }
 
-export function getAlertContext() {
-  return reactUse(AlertWrapContext);
+export function getActionSheetContext() {
+  return reactUse(ActionSheetContext);
 }
 
 /** @internal */
@@ -210,20 +197,4 @@ export function getActionSheetExpandableSnapHeight(
   } else {
     return bottomHeight;
   }
-}
-
-/**
- * @internal
- * Hook to access the ActionSheet context.
- * Provides access to action sheet state and control functions.
- *
- * @returns The action sheet context value
- *
- * @example
- * ```tsx
- * const actionSheetContext = getActionSheetContext();
- * ```
- */
-export function getActionSheetContext() {
-  return reactUse(ActionSheetContext);
 }

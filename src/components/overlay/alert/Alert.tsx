@@ -1,12 +1,12 @@
 import { useLayoutEffect, useState, type FC } from 'react';
 import { useAnimationSharedVal } from '../../../hooks/reanimated';
 import type {
-  AlertContextVal,
+  AlertInternalContextVal,
   AlertProps,
   OverlayDismissAlertResult,
 } from '../../../types/overlay';
 import {
-  AlertContext,
+  AlertInternalContext,
   overlayDismissResultDefaultText,
   OverlayDismissResultType,
 } from '../../../utils/overlay/const';
@@ -63,7 +63,7 @@ const Alert: FC<AlertProps> = ({
     onDismiss?.(result ? { ...tempResult, ...result } : tempResult);
     setAlertVisible(false);
   };
-  const alertContextVal: AlertContextVal = {
+  const alertContextVal: AlertInternalContextVal = {
     buttonProps,
     onDismiss: (result) => {
       if (customHideAnimation) {
@@ -78,7 +78,7 @@ const Alert: FC<AlertProps> = ({
   };
 
   return (
-    <AlertContext value={alertContextVal}>
+    <AlertInternalContext value={alertContextVal}>
       <AlertWrap
         customShowAnimation={customShowAnimation}
         wrapProps={wrapProps}
@@ -97,7 +97,7 @@ const Alert: FC<AlertProps> = ({
         />
         <AlertButtons buttons={buttons} buttonsWrapProps={buttonsWrapProps} />
       </AlertWrap>
-    </AlertContext>
+    </AlertInternalContext>
   );
 };
 

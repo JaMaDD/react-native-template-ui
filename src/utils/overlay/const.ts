@@ -2,8 +2,9 @@ import { IconSize } from '@jamadd/react-native-template-icons';
 import { createContext } from 'react';
 import type {
   ActionSheetContextVal,
+  ActionSheetInternalContextVal,
   AlertContextVal,
-  AlertWrapContextVal,
+  AlertInternalContextVal,
   ToastContextVal,
 } from '../../types/overlay';
 import type { ThemeSpacing, ThemeTextVariants } from '../../types/theme';
@@ -41,7 +42,7 @@ export const overlayDismissResultDefaultText = 'cancelByUser';
 
 /** @internal */
 export const ToastContext = createContext<ToastContextVal>({
-  addToast: () => {},
+  setToast: () => {},
 });
 
 /**
@@ -90,10 +91,10 @@ export enum ToastDuration {
 }
 
 /** @internal */
-export const AlertContext = createContext<AlertContextVal>({});
+export const AlertInternalContext = createContext<AlertInternalContextVal>({});
 
 /** @internal */
-export const AlertWrapContext = createContext<AlertWrapContextVal>({
+export const AlertContext = createContext<AlertContextVal>({
   addAlert: () => {},
 });
 
@@ -121,9 +122,14 @@ export enum AlertButtonType {
 }
 
 /** @internal */
-export const ActionSheetContext = createContext<Partial<ActionSheetContextVal>>(
-  {}
-);
+export const ActionSheetInternalContext = createContext<
+  Partial<ActionSheetInternalContextVal>
+>({});
+
+/** @internal */
+export const ActionSheetContext = createContext<ActionSheetContextVal>({
+  setActionSheet: () => {},
+});
 
 /** @internal */
 export const actionSheetOpenDuration = 300;
