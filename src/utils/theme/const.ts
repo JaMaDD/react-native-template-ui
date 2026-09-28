@@ -88,8 +88,10 @@ export enum Spacing {
  * ```
  */
 export enum FontSize {
-  /** Extra small - 12px */
-  XS = 12,
+  /** Extra extra small - 12px */
+  XXS = 12,
+  /** Extra extra small - 14px */
+  XS = 14,
   /** Small - 16px */
   S = 16,
   /** Medium - 20px */
@@ -98,6 +100,8 @@ export enum FontSize {
   L = 24,
   /** Extra large - 28px */
   XL = 28,
+  /** Extra extra extra large - 36px */
+  XXL = 32,
 }
 
 /** @internal */
@@ -118,6 +122,8 @@ const FontLineHeightRatio = 1.4;
  * ```
  */
 export enum FontLineHeight {
+  /** Extra extra small line height - 16.8px (12px * 1.4) */
+  XXS = FontSize.XXS * FontLineHeightRatio,
   /** Extra small line height - 16.8px (12px * 1.4) */
   XS = FontSize.XS * FontLineHeightRatio,
   /** Small line height - 22.4px (16px * 1.4) */
@@ -128,6 +134,8 @@ export enum FontLineHeight {
   L = FontSize.L * FontLineHeightRatio,
   /** Extra large line height - 39.2px (28px * 1.4) */
   XL = FontSize.XL * FontLineHeightRatio,
+  /** Extra extra large line height - 44.8px (32px * 1.4) */
+  XXL = FontSize.XXL * FontLineHeightRatio,
 }
 
 /**
@@ -222,6 +230,11 @@ export enum ZIndex {
 
 /** @internal */
 const textVariants = {
+  textXXS: {
+    fontSize: FontSize.XXS,
+    lineHeight: FontLineHeight.XXS,
+    color: 'text',
+  },
   textXS: {
     fontSize: FontSize.XS,
     lineHeight: FontLineHeight.XS,
@@ -245,6 +258,11 @@ const textVariants = {
   textXL: {
     fontSize: FontSize.XL,
     lineHeight: FontLineHeight.XL,
+    color: 'text',
+  },
+  textXXL: {
+    fontSize: FontSize.XXL,
+    lineHeight: FontLineHeight.XXL,
     color: 'text',
   },
 };
@@ -315,6 +333,10 @@ export const lightTheme = createTheme({
   },
   textVariants: {
     ...textVariants,
+    textXXSBold: {
+      ...textVariants.textXXS,
+      fontWeight: 'bold',
+    },
     textXSBold: {
       ...textVariants.textXS,
       fontWeight: 'bold',
@@ -335,7 +357,11 @@ export const lightTheme = createTheme({
       ...textVariants.textXL,
       fontWeight: 'bold',
     },
-    defaults: textVariants.textM,
+    textXXLBold: {
+      ...textVariants.textXXL,
+      fontWeight: 'bold',
+    },
+    defaults: textVariants.textS,
   },
 });
 

@@ -1,5 +1,5 @@
 import { type FC } from 'react';
-import { useInternalAlertContext } from '../../../hooks/overlay';
+import { useAlertInternalContext } from '../../../hooks/overlay';
 import type { ThemedButtonProps } from '../../../types/button';
 import type { AlertButtonProps } from '../../../types/overlay';
 import { AlertButtonType } from '../../../utils/overlay/const';
@@ -17,7 +17,7 @@ const AlertButton: FC<AlertButtonProps> = ({
   onPress,
   props,
 }) => {
-  const { buttonProps, onDismiss } = useInternalAlertContext();
+  const { buttonProps, onDismiss } = useAlertInternalContext();
 
   const themedButtonOnPress: ThemedButtonProps['onPress'] = (event) => {
     onPress?.(event);

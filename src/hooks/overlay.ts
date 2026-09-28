@@ -58,7 +58,7 @@ export function useToastContext() {
 }
 
 /** @internal */
-export function useInternalAlertContext() {
+export function useAlertInternalContext() {
   return useContext(AlertInternalContext);
 }
 

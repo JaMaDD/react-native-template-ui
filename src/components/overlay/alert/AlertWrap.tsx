@@ -1,7 +1,7 @@
 import { useEffect, type FC } from 'react';
 import type { ViewStyle } from 'react-native';
 import { useAnimatedStyle, type SharedValue } from 'react-native-reanimated';
-import { useInternalAlertContext } from '../../../hooks/overlay';
+import { useAlertInternalContext } from '../../../hooks/overlay';
 import { useShadowStyle } from '../../../hooks/style';
 import type { AlertProps } from '../../../types/overlay';
 import type { AnimationSharedValue } from '../../../types/reanimated';
@@ -46,7 +46,7 @@ const AlertWrap: FC<
   showSharedVal,
   children,
 }) => {
-  const { onDismiss } = useInternalAlertContext();
+  const { onDismiss } = useAlertInternalContext();
   const shadowStyle = useShadowStyle(ShadowDirection.All);
   const animatedStyle = useAnimatedStyle<ViewStyle>(
     () => ({
