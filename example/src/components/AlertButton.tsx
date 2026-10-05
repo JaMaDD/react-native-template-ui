@@ -3,12 +3,11 @@ import {
   ThemedIconButton,
   ThemedView,
   useActionSheetContext,
-  useAlertContext,
 } from '@jamadd/react-native-template-ui';
 import type { FC } from 'react';
 
 const AlertButton: FC<{}> = ({}) => {
-  const { addAlert } = useAlertContext();
+  // const { addAlert } = useAlertContext();
   const { setActionSheet } = useActionSheetContext();
 
   const onPress: ThemedIconButtonProps['onPress'] = () => {
