@@ -1,4 +1,4 @@
 ## What's Changed
 
-- feat: updated font sizes and text variants
-- misc: renamed internal alert context hook
+- feat: create AppStateProvider component
+- breaking: renamed common related utils to react utils folder
