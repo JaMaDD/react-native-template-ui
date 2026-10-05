@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import { lazy } from 'react';
 import type { ThemedIconProps } from '../../types/icon';
 import type { ThemedIconTextProps } from '../../types/text';
-import { isPlatformWeb } from '../../utils/common/func';
+import { isPlatformWeb } from '../../utils/react/func';
 import ThemedView from '../view/ThemedView';
 import ThemedText from './ThemedText';
 

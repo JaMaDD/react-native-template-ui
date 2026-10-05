@@ -1,9 +1,9 @@
 import type { FC } from 'react';
 import { lazy, useState } from 'react';
-import type { AlertProps, AlertContextVal } from '../../types/overlay';
+import type { AlertContextVal, AlertProps } from '../../types/overlay';
 import type { PropsWithRequiredChildren } from '../../types/view';
-import { isPlatformWeb } from '../../utils/common/func';
 import { AlertContext } from '../../utils/overlay/const';
+import { isPlatformWeb } from '../../utils/react/func';
 
 let Alert: FC<AlertProps> = require('../overlay/alert/Alert').default;
 if (isPlatformWeb()) {

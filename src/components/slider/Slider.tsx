@@ -21,7 +21,7 @@ import type {
   ThemedSliderStepIndicatorProps,
 } from '../../types/slider';
 import type { ThemedViewProps } from '../../types/view';
-import { isPlatformWeb } from '../../utils/common/func';
+import { isPlatformWeb } from '../../utils/react/func';
 import {
   sliderStepIndicatorDefaultWidth,
   sliderThumbDefaultSize,

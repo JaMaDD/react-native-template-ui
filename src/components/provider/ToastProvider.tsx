@@ -1,7 +1,7 @@
 import { lazy, useState, type FC } from 'react';
 import type { ThemedToastProps, ToastContextVal } from '../../types/overlay';
 import type { PropsWithRequiredChildren } from '../../types/view';
-import { isPlatformWeb } from '../../utils/common/func';
+import { isPlatformWeb } from '../../utils/react/func';
 import { ToastContext } from '../../utils/overlay/const';
 
 let ThemedToast: FC<ThemedToastProps>;

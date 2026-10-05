@@ -1,4 +1,15 @@
-import { useDeferredValue, useEffect, useRef, useState } from 'react';
+import {
+  useContext,
+  useDeferredValue,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
+import { AppStateContext } from '../utils/react/const';
+
+export function useAppStateContext() {
+  return useContext(AppStateContext);
+}
 
 /**
  * Hook to manage a timeout with automatic cleanup.

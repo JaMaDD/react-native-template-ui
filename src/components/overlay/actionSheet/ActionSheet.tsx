@@ -5,7 +5,7 @@ import type {
   ActionSheetProps,
   ActionSheetScrollViewProps,
 } from '../../../types/overlay';
-import { isPlatformWeb } from '../../../utils/common/func';
+import { isPlatformWeb } from '../../../utils/react/func';
 
 let ActionSheetOptions: FC<ActionSheetOptionsProps>;
 let ActionSheetScrollView: FC<ActionSheetScrollViewProps>;

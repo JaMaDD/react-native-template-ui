@@ -4,7 +4,7 @@ import type {
   ActionSheetProps,
 } from '../../types/overlay';
 import type { PropsWithRequiredChildren } from '../../types/view';
-import { isPlatformWeb } from '../../utils/common/func';
+import { isPlatformWeb } from '../../utils/react/func';
 import { ActionSheetContext } from '../../utils/overlay/const';
 
 let ActionSheet: FC<ActionSheetProps>;

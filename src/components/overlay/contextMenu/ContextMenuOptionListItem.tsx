@@ -8,7 +8,7 @@ import type {
   ContextMenuOption,
   ContextMenuOptionListExtraData,
 } from '../../../types/overlay';
-import { isPlatformWeb } from '../../../utils/common/func';
+import { isPlatformWeb } from '../../../utils/react/func';
 
 let ThemedIconTextButton: FC<ThemedIconTextButtonProps>;
 let ThemedButton: FC<ThemedButtonProps>;

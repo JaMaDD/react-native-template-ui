@@ -5,7 +5,7 @@ import { useThemeSpacing } from '../../hooks/theme';
 import type { SliderProps, ThemedSliderProps } from '../../types/slider';
 import type { ThemedTextProps } from '../../types/text';
 import type { ThemedViewProps } from '../../types/view';
-import { isPlatformWeb } from '../../utils/common/func';
+import { isPlatformWeb } from '../../utils/react/func';
 import {
   sliderThumbDefaultSize,
   SliderValueDisplayMode,

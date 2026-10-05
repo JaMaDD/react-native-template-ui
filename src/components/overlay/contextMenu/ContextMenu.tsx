@@ -16,7 +16,7 @@ import type {
   ThemedModalProps,
 } from '../../../types/overlay';
 import type { AnimatedThemedViewProps } from '../../../types/view';
-import { isPlatformWeb } from '../../../utils/common/func';
+import { isPlatformWeb } from '../../../utils/react/func';
 import { OverlayDismissResultType } from '../../../utils/overlay/const';
 import {
   ElementScreenPosition,

@@ -7,7 +7,7 @@ import type { AnimatedThemedPressableProps } from '../../types/button';
 import type { ThemedIconProps } from '../../types/icon';
 import type { ThemedTextProps } from '../../types/text';
 import type { ThemedViewProps } from '../../types/view';
-import { isPlatformWeb } from '../../utils/common/func';
+import { isPlatformWeb } from '../../utils/react/func';
 import { BorderSize } from '../../utils/theme/const';
 import ThemedPressable from '../button/ThemedPressable';
 import AnimatedThemedView from '../view/AnimatedThemedView';

@@ -3,7 +3,7 @@ import { lazy } from 'react';
 import type { ThemedIconButtonProps } from '../../types/button';
 import type { ThemedIconProps } from '../../types/icon';
 import { ButtonScaleRatio } from '../../utils/button/const';
-import { isPlatformWeb } from '../../utils/common/func';
+import { isPlatformWeb } from '../../utils/react/func';
 import ThemedPressable from './ThemedPressable';
 
 let ThemedIcon: FC<ThemedIconProps>;

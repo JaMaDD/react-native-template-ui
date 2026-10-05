@@ -12,7 +12,7 @@ import type {
   ThemedModalProps,
 } from '../../../types/overlay';
 import type { AnimatedThemedViewProps } from '../../../types/view';
-import { isPlatformWeb } from '../../../utils/common/func';
+import { isPlatformWeb } from '../../../utils/react/func';
 import { getActionSheetMaxHeight } from '../../../utils/overlay/func';
 import { ShadowDirection } from '../../../utils/style/const';
 import AnimatedThemedView from '../../view/AnimatedThemedView';

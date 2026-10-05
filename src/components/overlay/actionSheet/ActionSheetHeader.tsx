@@ -10,7 +10,7 @@ import {
 import type { ThemedIconButtonProps } from '../../../types/button';
 import type { ActionSheetHeaderProps } from '../../../types/overlay';
 import type { ThemedTextProps } from '../../../types/text';
-import { isPlatformWeb } from '../../../utils/common/func';
+import { isPlatformWeb } from '../../../utils/react/func';
 import {
   actionSheetHeaderIconSize,
   actionSheetHeaderPadding,

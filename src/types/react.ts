@@ -1,5 +1,6 @@
 import type { Dispatch, SetStateAction } from 'react';
-import type { LayoutChangeEvent } from 'react-native';
+import type { AppStateStatus, LayoutChangeEvent } from 'react-native';
+import type { PropsWithRequiredChildren } from './view';
 
 /**
  * Type for setTimeout return value.
@@ -38,3 +39,17 @@ export type SetState<T> = Dispatch<SetStateAction<T>>;
  * ```
  */
 export type OnLayout = (event: LayoutChangeEvent) => void;
+
+export type AppStateProviderProps = PropsWithRequiredChildren<{
+  enableStatusListener?: boolean;
+  enableBlurListener?: boolean;
+  enableFocusListener?: boolean;
+  enableMemoryWarningListener?: boolean;
+}>;
+
+export type AppStateContextVal = {
+  status: AppStateStatus;
+  blurCount: number;
+  focusCount: number;
+  memoryWarningCount: number;
+};
