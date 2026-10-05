@@ -1,4 +1,5 @@
 import type { ResponsiveValue } from '@shopify/restyle';
+import type { ReactNode } from 'react';
 import type { ModalProps, ViewStyle } from 'react-native';
 import type { SharedValue } from 'react-native-reanimated';
 import type {
@@ -308,6 +309,7 @@ export type ActionSheetProps = (Omit<OverlayProps, 'onDismiss'> &
     expandable?: boolean;
     /** Callback invoked when the action sheet is dismissed */
     onDismiss?: OverlayOnDismiss<OverlayDismissActionSheetResult>;
+    maxHeight?: number;
   }) &
   (
     | {
@@ -366,13 +368,14 @@ export type ActionSheetWrapProps = PropsWithRequiredChildren<
  */
 export type ActionSheetHeaderProps = {
   /** Whether to show the close icon button in the header */
-  headerShowIcon?: boolean;
+  headerShowDismissIcon?: boolean;
   /** Props for the header container wrapper */
   headerWrapProps?: Omit<ThemedViewProps, 'children'>;
   /** Props for the header title text */
   headerTextProps?: Omit<ThemedTextProps, 'children'>;
   /** Props for the header close icon button */
   headerIconButtonProps?: Omit<ThemedButtonProps, 'onPress'>;
+  headerChildren?: ReactNode;
 };
 
 /**
@@ -385,7 +388,7 @@ export type ActionSheetHeaderProps = {
  */
 export type ActionSheetInternalContextVal = Pick<
   ActionSheetProps,
-  'title' | 'expandable' | 'onDismiss' | 'dismissible'
+  'title' | 'expandable' | 'onDismiss' | 'maxHeight' | 'dismissible'
 > & {
   /** Reference to the header view for layout calculations */
   headerViewRef: ViewRefObj;

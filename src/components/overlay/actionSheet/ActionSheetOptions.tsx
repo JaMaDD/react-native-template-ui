@@ -22,13 +22,15 @@ const ActionSheetOptions: FC<ActionSheetOptionsProps> = ({
   optionListProps,
   optionListItemProps,
   onDismiss,
+  maxHeight,
   useModal,
   dismissible,
   wrapViewProps,
-  headerShowIcon,
+  headerShowDismissIcon,
   headerWrapProps,
   headerTextProps,
   headerIconButtonProps,
+  headerChildren,
   visible,
 }) => {
   const { actionSheetVisible } = useActionSheetVisible(visible);
@@ -38,6 +40,7 @@ const ActionSheetOptions: FC<ActionSheetOptionsProps> = ({
     options,
     optionListProps,
     onDismiss,
+    maxHeight,
     dismissible,
     actionSheetVisible
   );
@@ -50,10 +53,11 @@ const ActionSheetOptions: FC<ActionSheetOptionsProps> = ({
         wrapViewProps={wrapViewProps}
       >
         <ActionSheetHeader
-          headerShowIcon={headerShowIcon}
+          headerShowDismissIcon={headerShowDismissIcon}
           headerWrapProps={headerWrapProps}
           headerTextProps={headerTextProps}
           headerIconButtonProps={headerIconButtonProps}
+          headerChildren={headerChildren}
         />
         <ActionSheetOptionList
           options={options}

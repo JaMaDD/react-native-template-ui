@@ -3,6 +3,7 @@ import { getWindowDimensionsHeight } from '../style/func';
 import {
   ActionSheetContext,
   ActionSheetExpandableHeightRatio,
+  ActionSheetInternalContext,
   actionSheetMaxHeightRatio,
   AlertContext,
   ToastContext,
@@ -16,15 +17,21 @@ export function getAlertContext() {
   return reactUse(AlertContext);
 }
 
+/** @internal */
+export function getActionSheetInternalContext() {
+  return reactUse(ActionSheetInternalContext);
+}
+
 export function getActionSheetContext() {
   return reactUse(ActionSheetContext);
 }
 
 /** @internal */
 function getActionSheetExpandableHeightByRatio(
-  ratio: ActionSheetExpandableHeightRatio
+  ratio: ActionSheetExpandableHeightRatio,
+  maxHeight?: number
 ) {
-  return getWindowDimensionsHeight() * ratio;
+  return (maxHeight || getWindowDimensionsHeight()) * ratio;
 }
 
 /**
@@ -39,12 +46,16 @@ function getActionSheetExpandableHeightByRatio(
  * const maxHeight = getActionSheetMaxHeight(true);
  * ```
  */
-export function getActionSheetMaxHeight(expandable: boolean = false) {
+export function getActionSheetMaxHeight(
+  expandable: boolean = false,
+  maxHeight?: number
+) {
   return expandable
     ? getActionSheetExpandableHeightByRatio(
-        ActionSheetExpandableHeightRatio.Top
+        ActionSheetExpandableHeightRatio.Top,
+        maxHeight
       )
-    : getWindowDimensionsHeight() * actionSheetMaxHeightRatio;
+    : (maxHeight || getWindowDimensionsHeight()) * actionSheetMaxHeightRatio;
 }
 
 /**
@@ -59,8 +70,8 @@ export function getActionSheetMaxHeight(expandable: boolean = false) {
  * const constrainedHeight = getActionSheetHeight(800);
  * ```
  */
-export function getActionSheetHeight(height: number) {
-  return Math.min(height, getActionSheetMaxHeight());
+export function getActionSheetHeight(height: number, maxHeight?: number) {
+  return Math.min(height, getActionSheetMaxHeight(false, maxHeight));
 }
 
 /**
@@ -74,8 +85,8 @@ export function getActionSheetHeight(height: number) {
  * const expandableHeight = getActionSheetExpandableHeight();
  * ```
  */
-export function getActionSheetExpandableHeight() {
-  return getActionSheetMaxHeight(true);
+export function getActionSheetExpandableHeight(maxHeight?: number) {
+  return getActionSheetMaxHeight(true, maxHeight);
 }
 
 /**
@@ -89,9 +100,10 @@ export function getActionSheetExpandableHeight() {
  * const initialHeight = getActionSheetExpandableInitHeight();
  * ```
  */
-export function getActionSheetExpandableInitialHeight() {
+export function getActionSheetExpandableInitialHeight(maxHeight?: number) {
   return getActionSheetExpandableHeightByRatio(
-    ActionSheetExpandableHeightRatio.Middle
+    ActionSheetExpandableHeightRatio.Middle,
+    maxHeight
   );
 }
 
@@ -159,6 +171,7 @@ export function getActionSheetSnapHeight(
 export function getActionSheetExpandableSnapHeight(
   currentHeight: number,
   forceDismiss: boolean,
+  maxHeight?: number,
   dismissible = true
 ) {
   if (
@@ -168,15 +181,18 @@ export function getActionSheetExpandableSnapHeight(
     return 0;
   }
 
-  const height = getWindowDimensionsHeight();
+  const height = maxHeight || getWindowDimensionsHeight();
   const topHeight = getActionSheetExpandableHeightByRatio(
-    ActionSheetExpandableHeightRatio.Top
+    ActionSheetExpandableHeightRatio.Top,
+    maxHeight
   );
   const middleHeight = getActionSheetExpandableHeightByRatio(
-    ActionSheetExpandableHeightRatio.Middle
+    ActionSheetExpandableHeightRatio.Middle,
+    maxHeight
   );
   const bottomHeight = getActionSheetExpandableHeightByRatio(
-    ActionSheetExpandableHeightRatio.Bottom
+    ActionSheetExpandableHeightRatio.Bottom,
+    maxHeight
   );
   if (currentHeight > middleHeight) {
     return currentHeight >

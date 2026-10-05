@@ -1,5 +1,5 @@
 /** @internal */
-import { lazy, type FC } from 'react';
+import { lazy, type FC, type ReactNode } from 'react';
 import { GestureDetector } from 'react-native-gesture-handler';
 import {
   useActionSheetGesture,
@@ -10,11 +10,11 @@ import {
 import type { ThemedIconButtonProps } from '../../../types/button';
 import type { ActionSheetHeaderProps } from '../../../types/overlay';
 import type { ThemedTextProps } from '../../../types/text';
-import { isPlatformWeb } from '../../../utils/react/func';
 import {
   actionSheetHeaderIconSize,
-  actionSheetHeaderPadding,
+  actionSheetHeaderPaddingKey,
 } from '../../../utils/overlay/const';
+import { isPlatformWeb } from '../../../utils/react/func';
 import { BorderSize } from '../../../utils/theme/const';
 import ThemedView from '../../view/ThemedView';
 
@@ -34,10 +34,11 @@ if (isPlatformWeb()) {
  * Supports gesture detection for drag-to-dismiss functionality.
  */
 const ActionSheetHeader: FC<ActionSheetHeaderProps> = ({
-  headerShowIcon = true,
+  headerShowDismissIcon = true,
   headerWrapProps,
   headerTextProps,
   headerIconButtonProps,
+  headerChildren,
 }) => {
   const { title, headerViewRef } = useActionSheetInternalContext();
   const gesture = useActionSheetGesture();
@@ -47,35 +48,61 @@ const ActionSheetHeader: FC<ActionSheetHeaderProps> = ({
   const onIconPress: ThemedIconButtonProps['onPress'] = () => {
     onDismiss();
   };
+  const hasHeaderContent = !!title || headerShowDismissIcon;
+  const headerContent: ReactNode = (
+    <ThemedView
+      ref={headerChildren ? undefined : headerViewRef}
+      justifyContent={'center'}
+      alignItems={'center'}
+      minHeight={hasHeaderContent ? minHeight : undefined}
+      padding={headerChildren ? undefined : actionSheetHeaderPaddingKey}
+      borderBottomWidth={headerChildren ? undefined : BorderSize.S}
+      borderColor={'border'}
+      {...headerWrapProps}
+    >
+      {!!title || headerShowDismissIcon ? (
+        <>
+          {!!title && (
+            <ThemedText variant={'textMBold'} {...headerTextProps}>
+              {title}
+            </ThemedText>
+          )}
+          {headerShowDismissIcon && (
+            <ThemedIconButton
+              onPress={onIconPress}
+              iconName={'cross'}
+              iconSize={actionSheetHeaderIconSize}
+              position={'absolute'}
+              left={0}
+              {...headerIconButtonProps}
+            />
+          )}
+        </>
+      ) : (
+        <ThemedView
+          width={'10%'}
+          height={BorderSize.XL}
+          backgroundColor={'separator'}
+        />
+      )}
+    </ThemedView>
+  );
 
   return (
     <GestureDetector gesture={gesture}>
-      <ThemedView
-        ref={headerViewRef}
-        justifyContent={'center'}
-        alignItems={'center'}
-        minHeight={minHeight}
-        padding={actionSheetHeaderPadding}
-        borderBottomWidth={BorderSize.S}
-        borderColor={'border'}
-        {...headerWrapProps}
-      >
-        {!!title && (
-          <ThemedText variant={'textMBold'} {...headerTextProps}>
-            {title}
-          </ThemedText>
-        )}
-        {headerShowIcon && (
-          <ThemedIconButton
-            onPress={onIconPress}
-            iconName={'cross'}
-            iconSize={actionSheetHeaderIconSize}
-            position={'absolute'}
-            left={0}
-            {...headerIconButtonProps}
-          />
-        )}
-      </ThemedView>
+      {headerChildren ? (
+        <ThemedView
+          ref={headerViewRef}
+          padding={actionSheetHeaderPaddingKey}
+          borderBottomWidth={BorderSize.S}
+          gap={actionSheetHeaderPaddingKey}
+        >
+          {headerContent}
+          {headerChildren}
+        </ThemedView>
+      ) : (
+        headerContent
+      )}
     </GestureDetector>
   );
 };

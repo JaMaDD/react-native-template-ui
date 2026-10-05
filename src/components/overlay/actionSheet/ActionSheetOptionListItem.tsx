@@ -7,7 +7,7 @@ import type {
   ActionSheetOptionListExtraData,
 } from '../../../types/overlay';
 import {
-  actionSheetOptionListItemPadding,
+  actionSheetOptionListItemPaddingKey,
   actionSheetOptionListItemTextVariant,
 } from '../../../utils/overlay/const';
 import ThemedButton from '../../button/ThemedButton';
@@ -32,7 +32,7 @@ const ActionSheetOptionListItem: FC<ListItemProps<ActionSheetOption>> = ({
     <ThemedButton
       onPress={onItemPress}
       alignItems={'flex-start'}
-      paddingVertical={actionSheetOptionListItemPadding}
+      paddingVertical={actionSheetOptionListItemPaddingKey}
       backgroundColor={'background'}
       text={text}
       textVariant={

@@ -22,11 +22,13 @@ const ActionSheetListView: FC<ActionSheetListViewProps> = ({
   onDismiss,
   useModal,
   dismissible,
+  maxHeight,
   wrapViewProps,
-  headerShowIcon,
+  headerShowDismissIcon,
   headerWrapProps,
   headerTextProps,
   headerIconButtonProps,
+  headerChildren,
   visible,
 }) => {
   const { actionSheetVisible } = useActionSheetVisible(visible);
@@ -35,6 +37,7 @@ const ActionSheetListView: FC<ActionSheetListViewProps> = ({
     expandable,
     listProps,
     onDismiss,
+    maxHeight,
     dismissible,
     actionSheetVisible
   );
@@ -47,10 +50,11 @@ const ActionSheetListView: FC<ActionSheetListViewProps> = ({
         wrapViewProps={wrapViewProps}
       >
         <ActionSheetHeader
-          headerShowIcon={headerShowIcon}
+          headerShowDismissIcon={headerShowDismissIcon}
           headerWrapProps={headerWrapProps}
           headerTextProps={headerTextProps}
           headerIconButtonProps={headerIconButtonProps}
+          headerChildren={headerChildren}
         />
         <ActionSheetListViewContent listProps={listProps} />
       </ActionSheetWrap>

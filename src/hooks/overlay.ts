@@ -29,10 +29,10 @@ import {
   ActionSheetContext,
   actionSheetDismissDuration,
   actionSheetHeaderIconSize,
-  actionSheetHeaderPadding,
+  actionSheetHeaderPaddingKey,
   ActionSheetInternalContext,
   actionSheetOpenDuration,
-  actionSheetOptionListItemPadding,
+  actionSheetOptionListItemPaddingKey,
   actionSheetOptionListItemTextVariant,
   actionSheetSnapDuration,
   AlertContext,
@@ -76,9 +76,12 @@ export function useActionSheetContext() {
 }
 
 /** @internal */
-function useActionSheet(actionSheetVisible: boolean) {
+function useActionSheet(
+  expandable: boolean | undefined,
+  maxHeight: number | undefined,
+  actionSheetVisible: boolean
+) {
   const windowHeight = useWindowDimensionsHeight();
-  const { expandable } = useActionSheetInternalContext();
   const headerViewRef = useViewRef();
   const [height, setHeight] = useState(0);
   const translateYSharedVal = useSharedValue(windowHeight);
@@ -91,7 +94,7 @@ function useActionSheet(actionSheetVisible: boolean) {
       translateYSharedVal.get() === windowHeight
     ) {
       const tempHeight = expandable
-        ? getActionSheetExpandableInitialHeight()
+        ? getActionSheetExpandableInitialHeight(maxHeight)
         : height;
       heightSharedVal.set(tempHeight);
       expandableHeightSharedVal.set(tempHeight);
@@ -105,8 +108,8 @@ function useActionSheet(actionSheetVisible: boolean) {
   const updateHeight = (tempHeight: number) => {
     setHeight(
       expandable
-        ? getActionSheetExpandableHeight()
-        : getActionSheetHeight(tempHeight)
+        ? getActionSheetExpandableHeight(maxHeight)
+        : getActionSheetHeight(tempHeight, maxHeight)
     );
   };
 
@@ -129,6 +132,7 @@ export function useActionSheetOnDismiss(force = true) {
     title,
     expandable,
     onDismiss,
+    maxHeight,
     dismissible,
     height,
     translateYSharedVal,
@@ -147,6 +151,7 @@ export function useActionSheetOnDismiss(force = true) {
       ? getActionSheetExpandableSnapHeight(
           heightSharedVal.get(),
           force,
+          maxHeight,
           dismissible
         )
       : getActionSheetSnapHeight(
@@ -226,7 +231,7 @@ export function useActionSheetHeaderMinHeight() {
   const themeSpacing = useThemeSpacing();
 
   const actionSheetHeaderMinHeight =
-    actionSheetHeaderIconSize + themeSpacing[actionSheetHeaderPadding] * 2;
+    actionSheetHeaderIconSize + themeSpacing[actionSheetHeaderPaddingKey] * 2;
 
   return actionSheetHeaderMinHeight;
 }
@@ -303,6 +308,7 @@ export function useActionSheetOpts(
   options: ActionSheetOptions,
   optionListProps: ActionSheetOptionListProps | undefined,
   onDismiss: OverlayOnDismiss<OverlayDismissActionSheetResult> | undefined,
+  maxHeight: number | undefined,
   dismissible: boolean | undefined,
   actionSheetVisible: boolean
 ): ActionSheetInternalContextVal {
@@ -313,7 +319,7 @@ export function useActionSheetOpts(
     heightSharedVal,
     expandableHeightSharedVal,
     updateHeight,
-  } = useActionSheet(actionSheetVisible);
+  } = useActionSheet(expandable, maxHeight, actionSheetVisible);
   const { listViewListAnimatedRefObj, contentOffsetSharedVal } =
     useActionSheetListViewRefAndOffset<ActionSheetOption>(optionListProps?.ref);
 
@@ -335,6 +341,7 @@ export function useActionSheetOpts(
     title,
     expandable,
     onDismiss,
+    maxHeight,
     dismissible,
     headerViewRef,
     contentAnimatedRefObj: listViewListAnimatedRefObj,
@@ -387,7 +394,7 @@ export function useActionSheetOptItemSize(
 
   return {
     itemSize:
-      themeSpacing[actionSheetOptionListItemPadding] * 2 +
+      themeSpacing[actionSheetOptionListItemPaddingKey] * 2 +
       themeTextVariants[actionSheetOptionListItemTextVariant].lineHeight,
     insetsStyle,
   };
@@ -399,6 +406,7 @@ export function useActionSheetScrollView(
   expandable: boolean | undefined,
   scrollViewProps: ActionSheetScrollViewProps['scrollViewProps'] | undefined,
   onDismiss: OverlayOnDismiss<OverlayDismissActionSheetResult> | undefined,
+  maxHeight: number | undefined,
   dismissible: boolean | undefined,
   actionSheetVisible: boolean
 ): ActionSheetInternalContextVal {
@@ -409,7 +417,7 @@ export function useActionSheetScrollView(
     heightSharedVal,
     expandableHeightSharedVal,
     updateHeight,
-  } = useActionSheet(actionSheetVisible);
+  } = useActionSheet(expandable, maxHeight, actionSheetVisible);
   const { scrollViewAnimatedRefObj, contentOffsetSharedVal } =
     useActionSheetScrollViewRefAndOffset(scrollViewProps?.ref);
   const [headerHeight, setHeaderHeight] = useState(0);
@@ -435,6 +443,7 @@ export function useActionSheetScrollView(
     title,
     expandable,
     onDismiss,
+    maxHeight,
     dismissible,
     headerViewRef,
     contentAnimatedRefObj: scrollViewAnimatedRefObj,
@@ -453,6 +462,7 @@ export function useActionSheetListView(
   expandable: boolean | undefined,
   listProps: ActionSheetListViewProps['listProps'] | undefined,
   onDismiss: OverlayOnDismiss<OverlayDismissActionSheetResult> | undefined,
+  maxHeight: number | undefined,
   dismissible: boolean | undefined,
   actionSheetVisible: boolean
 ): ActionSheetInternalContextVal {
@@ -463,7 +473,7 @@ export function useActionSheetListView(
     heightSharedVal,
     expandableHeightSharedVal,
     updateHeight,
-  } = useActionSheet(actionSheetVisible);
+  } = useActionSheet(expandable, maxHeight, actionSheetVisible);
   const { listViewListAnimatedRefObj, contentOffsetSharedVal } =
     useActionSheetListViewRefAndOffset(listProps?.ref);
   const [headerHeight, setHeaderHeight] = useState(0);
@@ -489,6 +499,7 @@ export function useActionSheetListView(
     title,
     expandable,
     onDismiss,
+    maxHeight,
     dismissible,
     headerViewRef,
     contentAnimatedRefObj: listViewListAnimatedRefObj,

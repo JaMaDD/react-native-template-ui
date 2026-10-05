@@ -154,10 +154,10 @@ export enum ActionSheetExpandableHeightRatio {
 export const actionSheetHeaderIconSize: IconSize = IconSize.M;
 
 /** @internal */
-export const actionSheetHeaderPadding: ThemeSpacing = 'm';
+export const actionSheetHeaderPaddingKey: ThemeSpacing = 'm';
 
 /** @internal */
-export const actionSheetOptionListItemPadding: ThemeSpacing = 'm';
+export const actionSheetOptionListItemPaddingKey: ThemeSpacing = 'm';
 
 /** @internal */
 export const actionSheetOptionListItemTextVariant: ThemeTextVariants = 'textM';
