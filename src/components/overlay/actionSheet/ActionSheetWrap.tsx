@@ -12,8 +12,8 @@ import type {
   ThemedModalProps,
 } from '../../../types/overlay';
 import type { AnimatedThemedViewProps } from '../../../types/view';
-import { isPlatformWeb } from '../../../utils/react/func';
 import { getActionSheetMaxHeight } from '../../../utils/overlay/func';
+import { isPlatformWeb } from '../../../utils/react/func';
 import { ShadowDirection } from '../../../utils/style/const';
 import AnimatedThemedView from '../../view/AnimatedThemedView';
 
@@ -81,7 +81,10 @@ const ActionSheetWrap: FC<ActionSheetWrapProps> = ({
       style={outerWrapStyle}
       animatedStyle={outerWrapAnimatedStyle}
     >
-      <AnimatedThemedView animatedStyle={innerWrapAnimatedStyle}>
+      <AnimatedThemedView
+        backgroundColor={'transparent'}
+        animatedStyle={innerWrapAnimatedStyle}
+      >
         {children}
       </AnimatedThemedView>
     </AnimatedThemedView>

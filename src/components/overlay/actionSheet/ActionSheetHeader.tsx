@@ -58,7 +58,8 @@ const ActionSheetHeader: FC<ActionSheetHeaderProps> = ({
       padding={headerChildren ? undefined : actionSheetHeaderPaddingKey}
       borderBottomWidth={headerChildren ? undefined : BorderSize.S}
       borderColor={'border'}
-      {...headerWrapProps}
+      backgroundColor={'transparent'}
+      {...(headerChildren ? undefined : headerWrapProps)}
     >
       {!!title || headerShowDismissIcon ? (
         <>
@@ -96,6 +97,7 @@ const ActionSheetHeader: FC<ActionSheetHeaderProps> = ({
           padding={actionSheetHeaderPaddingKey}
           borderBottomWidth={BorderSize.S}
           gap={actionSheetHeaderPaddingKey}
+          {...headerWrapProps}
         >
           {headerContent}
           {headerChildren}
