@@ -16,8 +16,8 @@ import type {
   ThemedModalProps,
 } from '../../../types/overlay';
 import type { AnimatedThemedViewProps } from '../../../types/view';
-import { isPlatformWeb } from '../../../utils/react/func';
 import { OverlayDismissResultType } from '../../../utils/overlay/const';
+import { isPlatformWeb } from '../../../utils/react/func';
 import {
   ElementScreenPosition,
   ShadowDirection,
@@ -96,11 +96,11 @@ const ContextMenu: FC<ContextMenuProps> = ({
   const contentTop: AnimatedThemedViewProps['top'] =
     elementScreenPosition === ElementScreenPosition.Upper
       ? undefined
-      : insetsTop + y + height;
+      : y + height;
   const contentBottom: AnimatedThemedViewProps['bottom'] =
     elementScreenPosition === ElementScreenPosition.Lower
       ? undefined
-      : windowHeight - insetsTop - y;
+      : windowHeight - y;
   const contentLeft: AnimatedThemedViewProps['left'] =
     contentWidth === windowWidth
       ? 0
