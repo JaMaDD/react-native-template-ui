@@ -307,6 +307,7 @@ export type ActionSheetProps = (Omit<OverlayProps, 'onDismiss'> &
     title?: string;
     /** Whether the action sheet can expand to full screen height */
     expandable?: boolean;
+    expandableOnSnapToHeight?: (height: number) => void;
     /** Callback invoked when the action sheet is dismissed */
     onDismiss?: OverlayOnDismiss<OverlayDismissActionSheetResult>;
     maxHeight?: number;
@@ -388,7 +389,12 @@ export type ActionSheetHeaderProps = {
  */
 export type ActionSheetInternalContextVal = Pick<
   ActionSheetProps,
-  'title' | 'expandable' | 'onDismiss' | 'maxHeight' | 'dismissible'
+  | 'title'
+  | 'expandable'
+  | 'expandableOnSnapToHeight'
+  | 'onDismiss'
+  | 'maxHeight'
+  | 'dismissible'
 > & {
   /** Reference to the header view for layout calculations */
   headerViewRef: ViewRefObj;

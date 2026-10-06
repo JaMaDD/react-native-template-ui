@@ -15,6 +15,7 @@ import ActionSheetWrap from './ActionSheetWrap';
 const ActionSheetListView: FC<ActionSheetListViewProps> = ({
   title,
   expandable,
+  expandableOnSnapToHeight,
   listProps,
   onDismiss,
   useModal,
@@ -32,6 +33,7 @@ const ActionSheetListView: FC<ActionSheetListViewProps> = ({
     useActionSheetListView(
       title,
       expandable,
+      expandableOnSnapToHeight,
       listProps,
       onDismiss,
       maxHeight,

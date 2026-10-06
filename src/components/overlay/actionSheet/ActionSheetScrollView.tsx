@@ -15,6 +15,7 @@ import ActionSheetWrap from './ActionSheetWrap';
 const ActionSheetScrollView: FC<ActionSheetScrollViewProps> = ({
   title,
   expandable,
+  expandableOnSnapToHeight,
   scrollViewProps,
   children,
   onDismiss,
@@ -33,6 +34,7 @@ const ActionSheetScrollView: FC<ActionSheetScrollViewProps> = ({
     useActionSheetScrollView(
       title,
       expandable,
+      expandableOnSnapToHeight,
       scrollViewProps,
       onDismiss,
       maxHeight,

@@ -15,6 +15,7 @@ import ActionSheetWrap from './ActionSheetWrap';
 const ActionSheetOptions: FC<ActionSheetOptionsProps> = ({
   title,
   expandable,
+  expandableOnSnapToHeight,
   options,
   optionListProps,
   optionListItemProps,
@@ -34,6 +35,7 @@ const ActionSheetOptions: FC<ActionSheetOptionsProps> = ({
     useActionSheetOpts(
       title,
       expandable,
+      expandableOnSnapToHeight,
       options,
       optionListProps,
       onDismiss,

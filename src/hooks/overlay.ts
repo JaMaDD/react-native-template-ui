@@ -134,6 +134,7 @@ export function useActionSheetOnDismiss(force = true) {
   const {
     title,
     expandable,
+    expandableOnSnapToHeight,
     onDismiss,
     maxHeight,
     dismissible,
@@ -172,6 +173,7 @@ export function useActionSheetOnDismiss(force = true) {
     const cb = () => {
       if (!dismissActionSheet) {
         expandableHeightSharedVal?.set(toVal);
+        expandableOnSnapToHeight?.(toVal);
 
         return;
       }
@@ -298,6 +300,7 @@ export function useActionSheetScrollViewRefAndOffset(
 export function useActionSheetOpts(
   title: string | undefined,
   expandable: boolean | undefined,
+  expandableOnSnapToHeight: ((height: number) => void) | undefined,
   options: ActionSheetOptions,
   optionListProps: ActionSheetOptionListProps | undefined,
   onDismiss: OverlayOnDismiss<OverlayDismissActionSheetResult> | undefined,
@@ -336,6 +339,7 @@ export function useActionSheetOpts(
   return {
     title,
     expandable,
+    expandableOnSnapToHeight,
     onDismiss,
     maxHeight,
     dismissible,
@@ -401,6 +405,7 @@ export function useActionSheetOptItemSize(
 export function useActionSheetScrollView(
   title: string | undefined,
   expandable: boolean | undefined,
+  expandableOnSnapToHeight: ((height: number) => void) | undefined,
   scrollViewProps: ActionSheetScrollViewProps['scrollViewProps'] | undefined,
   onDismiss: OverlayOnDismiss<OverlayDismissActionSheetResult> | undefined,
   maxHeight: number | undefined,
@@ -442,6 +447,7 @@ export function useActionSheetScrollView(
   return {
     title,
     expandable,
+    expandableOnSnapToHeight,
     onDismiss,
     maxHeight,
     dismissible,
@@ -461,6 +467,7 @@ export function useActionSheetScrollView(
 export function useActionSheetListView(
   title: string | undefined,
   expandable: boolean | undefined,
+  expandableOnSnapToHeight: ((height: number) => void) | undefined,
   listProps: ActionSheetListViewProps['listProps'] | undefined,
   onDismiss: OverlayOnDismiss<OverlayDismissActionSheetResult> | undefined,
   maxHeight: number | undefined,
@@ -502,6 +509,7 @@ export function useActionSheetListView(
   return {
     title,
     expandable,
+    expandableOnSnapToHeight,
     onDismiss,
     maxHeight,
     dismissible,
