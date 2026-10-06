@@ -1,7 +1,6 @@
 import { lazy, useReducer, type FC } from 'react';
 import type { ViewInstance } from 'react-native';
 import { FadeInDown, FadeInUp } from 'react-native-reanimated';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
   useElementBoundingClientRect,
   useShadowStyle,
@@ -48,7 +47,6 @@ const ContextMenu: FC<ContextMenuProps> = ({
 }) => {
   const windowWidth = useWindowDimensionsWidth();
   const windowHeight = useWindowDimensionsHeight();
-  const { top: insetsTop } = useSafeAreaInsets();
   const breakpoint = useThemeBreakpoint();
   const [visible, updateVisible] = useReducer(
     (_prevVisible, nextVisible) => nextVisible,
