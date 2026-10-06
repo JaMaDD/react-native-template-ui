@@ -40,9 +40,17 @@ const AppStateProvider: FC<AppStateProviderProps> = ({
           case 'background':
           case 'inactive':
           case 'extension':
+            if (!enableBlurListener) {
+              break;
+            }
+
             setBlurCount((prevBlurCount) => prevBlurCount + 1);
             break;
           case 'active':
+            if (!enableFocusListener) {
+              break;
+            }
+
             setFocusCount((prevFocusCount) => prevFocusCount + 1);
             break;
         }
