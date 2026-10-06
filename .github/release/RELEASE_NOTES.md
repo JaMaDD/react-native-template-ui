@@ -1,3 +1,3 @@
 ## What's Changed
 
-- feat: implemented usePrevious hook
+- misc: updated action sheet styles
