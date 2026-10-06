@@ -81,3 +81,12 @@ export function useDeferredState<T>(initialState?: T) {
 
   return { state, setState, deferredState };
 }
+
+export function usePrevious<T>(value: T) {
+  const previousRef = useRef<T | undefined>(undefined);
+  useEffect(() => {
+    previousRef.current = value;
+  }, [value]);
+
+  return previousRef;
+}
