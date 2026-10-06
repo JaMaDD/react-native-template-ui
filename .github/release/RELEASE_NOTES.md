@@ -1,3 +1,3 @@
 ## What's Changed
 
-- feat: added expandableOnSnapToHeight for action sheet components
+- bugfix: fixed missing expandableOnSnapToHeight initial trigger
