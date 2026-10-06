@@ -10,6 +10,8 @@ import {
   addAppStateChangeEventListener,
   addAppStateFocusEventListener,
   addAppStateMemoryWarningEventListener,
+  isPlatformAndroid,
+  isPlatformIOS,
 } from '../../utils/react/func';
 
 const AppStateProvider: FC<AppStateProviderProps> = ({
@@ -24,18 +26,33 @@ const AppStateProvider: FC<AppStateProviderProps> = ({
   const [focusCount, setFocusCount] = useState(0);
   const [memoryWarningCount, setMemoryWarningCount] = useState(0);
   useEffect(() => {
-    if (!enableStatusListener) {
+    if (
+      !enableStatusListener &&
+      (!isPlatformIOS() || (!enableBlurListener && !enableFocusListener))
+    ) {
       return;
     }
 
     const { remove } = addAppStateChangeEventListener((appState) => {
       setStatus(appState);
+      if (isPlatformIOS()) {
+        switch (appState) {
+          case 'background':
+          case 'inactive':
+          case 'extension':
+            setBlurCount((prevBlurCount) => prevBlurCount + 1);
+            break;
+          case 'active':
+            setFocusCount((prevFocusCount) => prevFocusCount + 1);
+            break;
+        }
+      }
     });
 
     return remove;
   }, [enableStatusListener]);
   useEffect(() => {
-    if (!enableBlurListener) {
+    if (!enableBlurListener || !isPlatformAndroid()) {
       return;
     }
 
@@ -46,7 +63,7 @@ const AppStateProvider: FC<AppStateProviderProps> = ({
     return remove;
   }, [enableBlurListener]);
   useEffect(() => {
-    if (!enableFocusListener) {
+    if (!enableFocusListener || !isPlatformAndroid()) {
       return;
     }
 
@@ -57,7 +74,7 @@ const AppStateProvider: FC<AppStateProviderProps> = ({
     return remove;
   }, [enableFocusListener]);
   useEffect(() => {
-    if (!enableMemoryWarningListener) {
+    if (!enableMemoryWarningListener || !isPlatformIOS()) {
       return;
     }
 
