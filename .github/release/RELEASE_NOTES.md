@@ -1,3 +1,3 @@
 ## What's Changed
 
-- bugfix: fixed iOS incorrect AppState handling
+- feat: added left position support for ContextMenu
