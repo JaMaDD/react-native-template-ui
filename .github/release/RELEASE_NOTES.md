@@ -1,3 +1,3 @@
 ## What's Changed
 
-- bugfix: fixed iOS incorrect AppState event listener usages
+- bugfix: fixed iOS incorrect AppState handling
