@@ -43,6 +43,7 @@ const ContextMenu: FC<ContextMenuProps> = ({
   onDismiss,
   pressableProps,
   contentWidth: propsContentWidth,
+  contentPosition = 'right',
   children,
 }) => {
   const windowWidth = useWindowDimensionsWidth();
@@ -99,12 +100,12 @@ const ContextMenu: FC<ContextMenuProps> = ({
     elementScreenPosition === ElementScreenPosition.Lower
       ? undefined
       : windowHeight - y;
+  const baseContentLeft =
+    contentPosition === 'left' ? x : x + width - contentWidth;
   const contentLeft: AnimatedThemedViewProps['left'] =
     contentWidth === windowWidth
       ? 0
-      : contentWidth > x + width
-        ? x
-        : x + width - contentWidth;
+      : Math.min(Math.max(0, baseContentLeft), windowWidth - contentWidth);
 
   return (
     <>

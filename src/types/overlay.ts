@@ -517,6 +517,7 @@ export type ContextMenuProps = PropsWithRequiredChildren<{
   onDismiss?: OverlayOnDismiss<OverlayDismissContextMenuResult>;
   pressableProps?: Omit<ThemedPressableProps, 'onPress'>;
   contentWidth?: ResponsiveValue<number, Record<ThemeBreakpoints, number>>;
+  contentPosition?: 'left' | 'right';
 }>;
 
 export type ContextMenuOptionListProps = Pick<
