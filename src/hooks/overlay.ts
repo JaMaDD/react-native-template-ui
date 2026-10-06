@@ -78,6 +78,7 @@ export function useActionSheetContext() {
 /** @internal */
 function useActionSheet(
   expandable: boolean | undefined,
+  expandableOnSnapToHeight: ((toVal: number) => void) | undefined,
   maxHeight: number | undefined,
   visible = true
 ) {
@@ -106,6 +107,7 @@ function useActionSheet(
       updateSharedValWithTiming(translateYSharedVal, 0, {
         duration: actionSheetOpenDuration,
       });
+      expandableOnSnapToHeight?.(tempHeight);
     }
   }, [actionSheetVisible, height]);
 
@@ -318,7 +320,7 @@ export function useActionSheetOpts(
     heightSharedVal,
     expandableHeightSharedVal,
     updateHeight,
-  } = useActionSheet(expandable, maxHeight, visible);
+  } = useActionSheet(expandable, expandableOnSnapToHeight, maxHeight, visible);
   const { listViewListAnimatedRefObj, contentOffsetSharedVal } =
     useActionSheetListViewRefAndOffset<ActionSheetOption>(optionListProps?.ref);
 
@@ -422,7 +424,7 @@ export function useActionSheetScrollView(
     heightSharedVal,
     expandableHeightSharedVal,
     updateHeight,
-  } = useActionSheet(expandable, maxHeight, visible);
+  } = useActionSheet(expandable, expandableOnSnapToHeight, maxHeight, visible);
   const { scrollViewAnimatedRefObj, contentOffsetSharedVal } =
     useActionSheetScrollViewRefAndOffset(scrollViewProps?.ref);
   const [headerHeight, setHeaderHeight] = useState(0);
@@ -484,7 +486,7 @@ export function useActionSheetListView(
     heightSharedVal,
     expandableHeightSharedVal,
     updateHeight,
-  } = useActionSheet(expandable, maxHeight, visible);
+  } = useActionSheet(expandable, expandableOnSnapToHeight, maxHeight, visible);
   const { listViewListAnimatedRefObj, contentOffsetSharedVal } =
     useActionSheetListViewRefAndOffset(listProps?.ref);
   const [headerHeight, setHeaderHeight] = useState(0);
