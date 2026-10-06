@@ -79,14 +79,18 @@ export function useActionSheetContext() {
 function useActionSheet(
   expandable: boolean | undefined,
   maxHeight: number | undefined,
-  actionSheetVisible: boolean
+  visible = true
 ) {
   const windowHeight = useWindowDimensionsHeight();
   const headerViewRef = useViewRef();
+  const [actionSheetVisible, setActionSheetVisible] = useState(visible);
   const [height, setHeight] = useState(0);
   const translateYSharedVal = useSharedValue(windowHeight);
   const heightSharedVal = useSharedValue(0);
   const expandableHeightSharedVal = useSharedValue(0);
+  useLayoutEffect(() => {
+    setActionSheetVisible(visible);
+  }, [visible]);
   useEffect(() => {
     if (
       actionSheetVisible &&
@@ -113,16 +117,15 @@ function useActionSheet(
     );
   };
 
-  const actionSheet = {
+  return {
     headerViewRef,
+    actionSheetVisible,
     height,
     translateYSharedVal,
     heightSharedVal,
     expandableHeightSharedVal,
     updateHeight,
   };
-
-  return actionSheet;
 }
 
 /** @internal */
@@ -292,16 +295,6 @@ export function useActionSheetScrollViewRefAndOffset(
 }
 
 /** @internal */
-export function useActionSheetVisible(visible = true) {
-  const [actionSheetVisible, setActionSheetVisible] = useState(visible);
-  useLayoutEffect(() => {
-    setActionSheetVisible(visible);
-  }, [visible]);
-
-  return { actionSheetVisible, setActionSheetVisible };
-}
-
-/** @internal */
 export function useActionSheetOpts(
   title: string | undefined,
   expandable: boolean | undefined,
@@ -310,16 +303,19 @@ export function useActionSheetOpts(
   onDismiss: OverlayOnDismiss<OverlayDismissActionSheetResult> | undefined,
   maxHeight: number | undefined,
   dismissible: boolean | undefined,
-  actionSheetVisible: boolean
-): ActionSheetInternalContextVal {
+  visible?: boolean
+): ActionSheetInternalContextVal & {
+  actionSheetVisible: boolean;
+} {
   const {
     headerViewRef,
+    actionSheetVisible,
     height,
     translateYSharedVal,
     heightSharedVal,
     expandableHeightSharedVal,
     updateHeight,
-  } = useActionSheet(expandable, maxHeight, actionSheetVisible);
+  } = useActionSheet(expandable, maxHeight, visible);
   const { listViewListAnimatedRefObj, contentOffsetSharedVal } =
     useActionSheetListViewRefAndOffset<ActionSheetOption>(optionListProps?.ref);
 
@@ -345,6 +341,7 @@ export function useActionSheetOpts(
     dismissible,
     headerViewRef,
     contentAnimatedRefObj: listViewListAnimatedRefObj,
+    actionSheetVisible,
     height,
     translateYSharedVal,
     heightSharedVal,
@@ -408,16 +405,19 @@ export function useActionSheetScrollView(
   onDismiss: OverlayOnDismiss<OverlayDismissActionSheetResult> | undefined,
   maxHeight: number | undefined,
   dismissible: boolean | undefined,
-  actionSheetVisible: boolean
-): ActionSheetInternalContextVal {
+  visible?: boolean
+): ActionSheetInternalContextVal & {
+  actionSheetVisible: boolean;
+} {
   const {
     headerViewRef,
+    actionSheetVisible,
     height,
     translateYSharedVal,
     heightSharedVal,
     expandableHeightSharedVal,
     updateHeight,
-  } = useActionSheet(expandable, maxHeight, actionSheetVisible);
+  } = useActionSheet(expandable, maxHeight, visible);
   const { scrollViewAnimatedRefObj, contentOffsetSharedVal } =
     useActionSheetScrollViewRefAndOffset(scrollViewProps?.ref);
   const [headerHeight, setHeaderHeight] = useState(0);
@@ -447,6 +447,7 @@ export function useActionSheetScrollView(
     dismissible,
     headerViewRef,
     contentAnimatedRefObj: scrollViewAnimatedRefObj,
+    actionSheetVisible,
     height,
     setContentHeight,
     translateYSharedVal,
@@ -464,16 +465,19 @@ export function useActionSheetListView(
   onDismiss: OverlayOnDismiss<OverlayDismissActionSheetResult> | undefined,
   maxHeight: number | undefined,
   dismissible: boolean | undefined,
-  actionSheetVisible: boolean
-): ActionSheetInternalContextVal {
+  visible?: boolean
+): ActionSheetInternalContextVal & {
+  actionSheetVisible: boolean;
+} {
   const {
     headerViewRef,
+    actionSheetVisible,
     height,
     translateYSharedVal,
     heightSharedVal,
     expandableHeightSharedVal,
     updateHeight,
-  } = useActionSheet(expandable, maxHeight, actionSheetVisible);
+  } = useActionSheet(expandable, maxHeight, visible);
   const { listViewListAnimatedRefObj, contentOffsetSharedVal } =
     useActionSheetListViewRefAndOffset(listProps?.ref);
   const [headerHeight, setHeaderHeight] = useState(0);
@@ -503,6 +507,7 @@ export function useActionSheetListView(
     dismissible,
     headerViewRef,
     contentAnimatedRefObj: listViewListAnimatedRefObj,
+    actionSheetVisible,
     height,
     setContentHeight,
     translateYSharedVal,

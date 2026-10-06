@@ -1,9 +1,6 @@
 /** @internal */
 import type { FC } from 'react';
-import {
-  useActionSheetOpts,
-  useActionSheetVisible,
-} from '../../../hooks/overlay';
+import { useActionSheetOpts } from '../../../hooks/overlay';
 import type { ActionSheetOptionsProps } from '../../../types/overlay';
 import { ActionSheetInternalContext } from '../../../utils/overlay/const';
 import ActionSheetHeader from './ActionSheetHeader';
@@ -33,17 +30,17 @@ const ActionSheetOptions: FC<ActionSheetOptionsProps> = ({
   headerChildren,
   visible,
 }) => {
-  const { actionSheetVisible } = useActionSheetVisible(visible);
-  const actionSheetInternalContextVal = useActionSheetOpts(
-    title,
-    expandable,
-    options,
-    optionListProps,
-    onDismiss,
-    maxHeight,
-    dismissible,
-    actionSheetVisible
-  );
+  const { actionSheetVisible, ...actionSheetInternalContextVal } =
+    useActionSheetOpts(
+      title,
+      expandable,
+      options,
+      optionListProps,
+      onDismiss,
+      maxHeight,
+      dismissible,
+      visible
+    );
 
   return (
     <ActionSheetInternalContext value={actionSheetInternalContextVal}>

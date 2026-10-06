@@ -1,9 +1,6 @@
 /** @internal */
 import type { FC } from 'react';
-import {
-  useActionSheetScrollView,
-  useActionSheetVisible,
-} from '../../../hooks/overlay';
+import { useActionSheetScrollView } from '../../../hooks/overlay';
 import type { ActionSheetScrollViewProps } from '../../../types/overlay';
 import { ActionSheetInternalContext } from '../../../utils/overlay/const';
 import ActionSheetHeader from './ActionSheetHeader';
@@ -32,16 +29,16 @@ const ActionSheetScrollView: FC<ActionSheetScrollViewProps> = ({
   headerChildren,
   visible,
 }) => {
-  const { actionSheetVisible } = useActionSheetVisible(visible);
-  const actionSheetInternalContextVal = useActionSheetScrollView(
-    title,
-    expandable,
-    scrollViewProps,
-    onDismiss,
-    maxHeight,
-    dismissible,
-    actionSheetVisible
-  );
+  const { actionSheetVisible, ...actionSheetInternalContextVal } =
+    useActionSheetScrollView(
+      title,
+      expandable,
+      scrollViewProps,
+      onDismiss,
+      maxHeight,
+      dismissible,
+      visible
+    );
 
   return (
     <ActionSheetInternalContext value={actionSheetInternalContextVal}>

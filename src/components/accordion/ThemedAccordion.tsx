@@ -138,7 +138,7 @@ const ThemedAccordion: FC<ThemedAccordionProps> = ({
       ref={wrapRef}
       animatedStyle={animatedStyle}
       overflow={'hidden'}
-      borderBottomWidth={borderWidth}
+      borderWidth={borderWidth}
       borderColor={borderColor}
       {...wrapProps}
     >
@@ -202,9 +202,6 @@ const ThemedAccordion: FC<ThemedAccordionProps> = ({
         top={headerHeight}
         width={'100%'}
         padding={'s'}
-        borderStartWidth={borderWidth}
-        borderEndWidth={borderWidth}
-        borderColor={borderColor}
         {...contentWrapProps}
       >
         {children}
