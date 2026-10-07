@@ -107,7 +107,7 @@ const ThemedAccordion: FC<ThemedAccordionProps> = ({
   }, recyclingStateDeps);
   useEffect(() => {
     onToggle?.(opened);
-  }, [onToggle, opened]);
+  }, [opened]);
 
   const animatedStyle: AnimatedThemedPressableProps['animatedStyle'] = {
     width: '100%',
