@@ -1,3 +1,3 @@
 ## What's Changed
 
-- bugfix: fixed missing expandableOnSnapToHeight initial trigger
+- bugfix: fixed incorrect onToggle usage for ThemedAccordion
