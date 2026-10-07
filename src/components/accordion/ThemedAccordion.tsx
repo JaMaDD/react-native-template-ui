@@ -78,7 +78,6 @@ const ThemedAccordion: FC<ThemedAccordionProps> = ({
     textFontSize,
     textFontWeight,
     iconSize,
-    children,
   ];
   const wrapRef = useViewRef();
   const headerRef = useViewRef();
