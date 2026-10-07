@@ -1,3 +1,3 @@
 ## What's Changed
 
-- bugfix: fixed incorrect onToggle usage for ThemedAccordion
+- bugfix: fixed incorrect incorrect recyclingStateDeps for ThemedAccordionß
