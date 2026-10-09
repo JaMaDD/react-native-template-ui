@@ -1,3 +1,3 @@
 ## What's Changed
 
-- bugfix: fixed incorrect incorrect recyclingStateDeps for ThemedAccordionß
+- feat: applied animated prop for ThemedSwitch and action sheet components
