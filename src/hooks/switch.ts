@@ -20,6 +20,7 @@ export function useThemedSwitch(
   onPress: ThemedSwitchProps['onPress'],
   enabled: ThemedSwitchProps['enabled'] = false,
   size: ThemedSwitchProps['size'] = SwitchSize.M,
+  animated: ThemedSwitchProps['animated'] = true,
   onPressDelayConfig?: ThemedSwitchProps['onPressDelayConfig'],
   customEnableAnimation?: ThemedSwitchProps['customEnableAnimation'],
   customDisableAnimation?: ThemedSwitchProps['customDisableAnimation'],
@@ -44,7 +45,7 @@ export function useThemedSwitch(
       updateSharedValWithTiming(
         enabledSharedVal as SharedValue<number>,
         toVal,
-        { duration: switchAnimationDuration },
+        { duration: animated ? switchAnimationDuration : 0 },
         cb
       );
     }

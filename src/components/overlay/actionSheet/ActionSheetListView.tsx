@@ -21,6 +21,7 @@ const ActionSheetListView: FC<ActionSheetListViewProps> = ({
   useModal,
   dismissible,
   maxHeight,
+  animated,
   wrapViewProps,
   headerShowDismissIcon,
   headerWrapProps,
@@ -37,6 +38,7 @@ const ActionSheetListView: FC<ActionSheetListViewProps> = ({
       listProps,
       onDismiss,
       maxHeight,
+      animated,
       dismissible,
       visible
     );

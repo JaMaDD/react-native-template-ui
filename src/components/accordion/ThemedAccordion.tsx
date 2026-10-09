@@ -111,8 +111,8 @@ const ThemedAccordion: FC<ThemedAccordionProps> = ({
   const animatedStyle: AnimatedThemedPressableProps['animatedStyle'] = {
     width: '100%',
     height: opened ? contentHeight + headerHeight : headerHeight || undefined,
-    transitionProperty: animated ? 'height' : undefined,
-    transitionDuration: animated ? 200 : undefined,
+    transitionProperty: 'height',
+    transitionDuration: animated ? 200 : 0,
   };
   const toggleAccordion = () => {
     setOpened((prevOpened) => !prevOpened);

@@ -40,6 +40,7 @@ const ActionSheetOptions: FC<ActionSheetOptionsProps> = ({
       optionListProps,
       onDismiss,
       maxHeight,
+      animated,
       dismissible,
       visible
     );

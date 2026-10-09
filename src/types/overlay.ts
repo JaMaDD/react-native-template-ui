@@ -311,6 +311,7 @@ export type ActionSheetProps = (Omit<OverlayProps, 'onDismiss'> &
     /** Callback invoked when the action sheet is dismissed */
     onDismiss?: OverlayOnDismiss<OverlayDismissActionSheetResult>;
     maxHeight?: number;
+    animated?: boolean;
   }) &
   (
     | {
@@ -394,6 +395,7 @@ export type ActionSheetInternalContextVal = Pick<
   | 'expandableOnSnapToHeight'
   | 'onDismiss'
   | 'maxHeight'
+  | 'animated'
   | 'dismissible'
 > & {
   /** Reference to the header view for layout calculations */

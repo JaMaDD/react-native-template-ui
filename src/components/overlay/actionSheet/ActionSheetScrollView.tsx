@@ -22,6 +22,7 @@ const ActionSheetScrollView: FC<ActionSheetScrollViewProps> = ({
   useModal,
   dismissible,
   maxHeight,
+  animated,
   wrapViewProps,
   headerShowDismissIcon,
   headerWrapProps,
@@ -38,6 +39,7 @@ const ActionSheetScrollView: FC<ActionSheetScrollViewProps> = ({
       scrollViewProps,
       onDismiss,
       maxHeight,
+      animated,
       dismissible,
       visible
     );

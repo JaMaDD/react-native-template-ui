@@ -68,6 +68,8 @@ export type ThemedSwitchProps = Omit<
   enabled?: boolean;
   /** Size of the switch (predefined size or custom number) */
   size?: SwitchSize | number;
+  /** Whether the switch should animate state changes */
+  animated?: boolean;
   /** Configuration for debouncing or throttling press events */
   onPressDelayConfig?: OnPressDelayConfig;
   /** Custom animation when enabling the switch (animates to 1) */
