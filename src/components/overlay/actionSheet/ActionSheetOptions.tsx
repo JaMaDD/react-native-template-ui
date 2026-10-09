@@ -21,6 +21,7 @@ const ActionSheetOptions: FC<ActionSheetOptionsProps> = ({
   optionListItemProps,
   onDismiss,
   maxHeight,
+  animated,
   useModal,
   dismissible,
   wrapViewProps,
