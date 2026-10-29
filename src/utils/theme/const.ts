@@ -40,6 +40,7 @@ export enum Palette {
   Grey = '#6b7b6b',
   /** Red - used for errors and destructive actions */
   Red = '#cc2e28',
+  Blue = '#1591EA',
 }
 
 /**
@@ -298,6 +299,7 @@ export const lightTheme = createTheme({
     border: Palette.Grey,
     separator: Palette.Silver,
     err: Palette.Red,
+    url: Palette.Blue,
   },
   spacing: {
     none: Spacing.None,
