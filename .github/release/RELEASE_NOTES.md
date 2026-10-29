@@ -1,3 +1,3 @@
 ## What's Changed
 
-- feat: applied animated prop for ThemedSwitch and action sheet components
+- misc: added Blue color to the palette and url theme color
