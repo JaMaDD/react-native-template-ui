@@ -8,7 +8,7 @@ import {
   ThemedView,
   useActionSheetContext,
 } from '@jamadd/react-native-template-ui';
-import { useEffect, useRef, type FC } from 'react';
+import { useRef, type FC } from 'react';
 
 const AlertButton: FC<{}> = ({}) => {
   // const { addAlert } = useAlertContext();
