@@ -14,8 +14,8 @@ import ActionSheetContentGesture from './ActionSheetContentGesture';
  * Measures list container dimensions for proper sheet sizing.
  */
 const ActionSheetListViewContent: FC<
-  Pick<ActionSheetListViewProps, 'listProps'>
-> = ({ listProps }) => {
+  Pick<ActionSheetListViewProps, 'listProps' | 'contentGestureEnabled'>
+> = ({ listProps, contentGestureEnabled }) => {
   const { contentAnimatedRefObj, setContentHeight } =
     useActionSheetInternalContext();
   useLayoutEffect(() => {
@@ -26,7 +26,7 @@ const ActionSheetListViewContent: FC<
   });
 
   return (
-    <ActionSheetContentGesture>
+    <ActionSheetContentGesture contentGestureEnabled={contentGestureEnabled}>
       <List
         ref={contentAnimatedRefObj as ActionSheetListViewListRefObj}
         {...listProps}

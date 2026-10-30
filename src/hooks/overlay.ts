@@ -28,6 +28,7 @@ import type { ScrollViewAnimatedRefObj } from '../types/view';
 import {
   ActionSheetContext,
   actionSheetDismissDuration,
+  ActionSheetExpandableHeightRatio,
   actionSheetHeaderIconSize,
   actionSheetHeaderPaddingKey,
   ActionSheetInternalContext,
@@ -78,9 +79,10 @@ export function useActionSheetContext() {
 /** @internal */
 function useActionSheet(
   expandable: boolean | undefined,
+  expandableInitialHeightRatio: ActionSheetExpandableHeightRatio | undefined,
   expandableOnSnapToHeight: ((toVal: number) => void) | undefined,
   maxHeight: number | undefined,
-  animated: boolean | undefined,
+  animated = true,
   visible = true
 ) {
   const windowHeight = useWindowDimensionsHeight();
@@ -100,7 +102,10 @@ function useActionSheet(
       translateYSharedVal.get() === windowHeight
     ) {
       const tempHeight = expandable
-        ? getActionSheetExpandableInitialHeight(maxHeight)
+        ? getActionSheetExpandableInitialHeight(
+            maxHeight,
+            expandableInitialHeightRatio
+          )
         : height;
       heightSharedVal.set(tempHeight);
       expandableHeightSharedVal.set(tempHeight);
@@ -306,12 +311,13 @@ export function useActionSheetScrollViewRefAndOffset(
 export function useActionSheetOpts(
   title: string | undefined,
   expandable: boolean | undefined,
+  expandableInitialHeightRatio: ActionSheetExpandableHeightRatio | undefined,
   expandableOnSnapToHeight: ((height: number) => void) | undefined,
   options: ActionSheetOptions,
   optionListProps: ActionSheetOptionListProps | undefined,
   onDismiss: OverlayOnDismiss<OverlayDismissActionSheetResult> | undefined,
   maxHeight: number | undefined,
-  animated: boolean | undefined,
+  animated = true,
   dismissible: boolean | undefined,
   visible?: boolean
 ): ActionSheetInternalContextVal & {
@@ -327,6 +333,7 @@ export function useActionSheetOpts(
     updateHeight,
   } = useActionSheet(
     expandable,
+    expandableInitialHeightRatio,
     expandableOnSnapToHeight,
     maxHeight,
     animated,
@@ -334,7 +341,6 @@ export function useActionSheetOpts(
   );
   const { listViewListAnimatedRefObj, contentOffsetSharedVal } =
     useActionSheetListViewRefAndOffset<ActionSheetOption>(optionListProps?.ref);
-
   const { itemSize, insetsStyle } = useActionSheetOptItemSize(optionListProps);
   useLayoutEffect(() => {
     if (!actionSheetVisible) {
@@ -419,11 +425,12 @@ export function useActionSheetOptItemSize(
 export function useActionSheetScrollView(
   title: string | undefined,
   expandable: boolean | undefined,
+  expandableInitialHeightRatio: ActionSheetExpandableHeightRatio | undefined,
   expandableOnSnapToHeight: ((height: number) => void) | undefined,
   scrollViewProps: ActionSheetScrollViewProps['scrollViewProps'] | undefined,
   onDismiss: OverlayOnDismiss<OverlayDismissActionSheetResult> | undefined,
   maxHeight: number | undefined,
-  animated: boolean | undefined,
+  animated = true,
   dismissible: boolean | undefined,
   visible?: boolean
 ): ActionSheetInternalContextVal & {
@@ -439,6 +446,7 @@ export function useActionSheetScrollView(
     updateHeight,
   } = useActionSheet(
     expandable,
+    expandableInitialHeightRatio,
     expandableOnSnapToHeight,
     maxHeight,
     animated,
@@ -489,11 +497,12 @@ export function useActionSheetScrollView(
 export function useActionSheetListView(
   title: string | undefined,
   expandable: boolean | undefined,
+  expandableInitialHeightRatio: ActionSheetExpandableHeightRatio | undefined,
   expandableOnSnapToHeight: ((height: number) => void) | undefined,
   listProps: ActionSheetListViewProps['listProps'] | undefined,
   onDismiss: OverlayOnDismiss<OverlayDismissActionSheetResult> | undefined,
   maxHeight: number | undefined,
-  animated: boolean | undefined,
+  animated = true,
   dismissible: boolean | undefined,
   visible?: boolean
 ): ActionSheetInternalContextVal & {
@@ -509,6 +518,7 @@ export function useActionSheetListView(
     updateHeight,
   } = useActionSheet(
     expandable,
+    expandableInitialHeightRatio,
     expandableOnSnapToHeight,
     maxHeight,
     animated,

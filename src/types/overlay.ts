@@ -1,8 +1,9 @@
 import type { ResponsiveValue } from '@shopify/restyle';
-import type { ReactNode } from 'react';
+import type { ReactNode, RefObject } from 'react';
 import type { ModalProps, ViewStyle } from 'react-native';
 import type { SharedValue } from 'react-native-reanimated';
 import type {
+  ActionSheetExpandableHeightRatio,
   AlertButtonType,
   OverlayDismissResultType,
   ToastDuration,
@@ -302,16 +303,18 @@ export type AlertButtonProps = Pick<ThemedButtonProps, 'text'> & {
  */
 export type ActionSheetProps = (Omit<OverlayProps, 'onDismiss'> &
   Omit<ActionSheetWrapProps, 'children'> &
-  ActionSheetHeaderProps & {
+  Omit<ActionSheetHeaderProps, 'headerTitle'> & {
     /** Optional title text for the action sheet header */
     title?: string;
     /** Whether the action sheet can expand to full screen height */
     expandable?: boolean;
+    expandableInitialHeightRatio?: ActionSheetExpandableHeightRatio;
     expandableOnSnapToHeight?: (height: number) => void;
     /** Callback invoked when the action sheet is dismissed */
     onDismiss?: OverlayOnDismiss<OverlayDismissActionSheetResult>;
     maxHeight?: number;
     animated?: boolean;
+    contentGestureEnabled?: boolean;
   }) &
   (
     | {
@@ -363,12 +366,17 @@ export type ActionSheetWrapProps = PropsWithRequiredChildren<
   }
 >;
 
+export type ActionSheetHeaderRef = { setTitle: SetState<string | undefined> };
+
 /**
  * Props for action sheet header configuration.
  *
  * Controls the appearance of the action sheet header including title and close icon.
  */
 export type ActionSheetHeaderProps = {
+  headerRef?: RefObject<ActionSheetHeaderRef | null | undefined>;
+  /** Title text for the header */
+  headerTitle?: string;
   /** Whether to show the close icon button in the header */
   headerShowDismissIcon?: boolean;
   /** Props for the header container wrapper */
@@ -500,8 +508,8 @@ export type ActionSheetOptions = ActionSheetOption[];
  *
  * @internal
  */
-export type ActionSheetScrollViewProps = ActionSheetProps &
-  Required<Pick<ActionSheetProps, 'children'>>;
+export type ActionSheetScrollViewProps =
+  PropsWithRequiredChildren<ActionSheetProps>;
 
 /**
  * Action sheet props variant with required list props.

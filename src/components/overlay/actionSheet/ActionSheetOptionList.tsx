@@ -24,9 +24,17 @@ import ActionSheetOptionListItem from './ActionSheetOptionListItem';
 const ActionSheetOptionList: FC<
   Pick<
     ActionSheetOptionsProps,
-    'options' | 'optionListProps' | 'optionListItemProps'
+    | 'options'
+    | 'optionListProps'
+    | 'optionListItemProps'
+    | 'contentGestureEnabled'
   >
-> = ({ options, optionListProps, optionListItemProps }) => {
+> = ({
+  options,
+  optionListProps,
+  optionListItemProps,
+  contentGestureEnabled,
+}) => {
   const { contentAnimatedRefObj } = useActionSheetInternalContext();
   const { insetsStyle } = useActionSheetOptItemSize(optionListProps);
   const onDismiss = useActionSheetOnDismiss();
@@ -39,7 +47,7 @@ const ActionSheetOptionList: FC<
   };
 
   return (
-    <ActionSheetContentGesture>
+    <ActionSheetContentGesture contentGestureEnabled={contentGestureEnabled}>
       <List
         ref={contentAnimatedRefObj as ActionSheetOptionListRefObj}
         data={options}

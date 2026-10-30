@@ -15,6 +15,7 @@ import ActionSheetWrap from './ActionSheetWrap';
 const ActionSheetScrollView: FC<ActionSheetScrollViewProps> = ({
   title,
   expandable,
+  expandableInitialHeightRatio,
   expandableOnSnapToHeight,
   scrollViewProps,
   children,
@@ -23,7 +24,9 @@ const ActionSheetScrollView: FC<ActionSheetScrollViewProps> = ({
   dismissible,
   maxHeight,
   animated,
+  contentGestureEnabled,
   wrapViewProps,
+  headerRef,
   headerShowDismissIcon,
   headerWrapProps,
   headerTextProps,
@@ -35,6 +38,7 @@ const ActionSheetScrollView: FC<ActionSheetScrollViewProps> = ({
     useActionSheetScrollView(
       title,
       expandable,
+      expandableInitialHeightRatio,
       expandableOnSnapToHeight,
       scrollViewProps,
       onDismiss,
@@ -52,13 +56,17 @@ const ActionSheetScrollView: FC<ActionSheetScrollViewProps> = ({
         wrapViewProps={wrapViewProps}
       >
         <ActionSheetHeader
+          headerRef={headerRef}
           headerShowDismissIcon={headerShowDismissIcon}
           headerWrapProps={headerWrapProps}
           headerTextProps={headerTextProps}
           headerIconButtonProps={headerIconButtonProps}
           headerChildren={headerChildren}
         />
-        <ActionSheetScrollViewContent scrollViewProps={scrollViewProps}>
+        <ActionSheetScrollViewContent
+          scrollViewProps={scrollViewProps}
+          contentGestureEnabled={contentGestureEnabled}
+        >
           {children}
         </ActionSheetScrollViewContent>
       </ActionSheetWrap>

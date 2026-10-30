@@ -16,8 +16,13 @@ import ActionSheetContentGesture from './ActionSheetContentGesture';
  * Manages content size changes for dynamic sheet height.
  */
 const ActionSheetScrollViewContent: FC<
-  PropsWithRequiredChildren<Pick<ActionSheetScrollViewProps, 'scrollViewProps'>>
-> = ({ scrollViewProps, children }) => {
+  PropsWithRequiredChildren<
+    Pick<
+      ActionSheetScrollViewProps,
+      'scrollViewProps' | 'contentGestureEnabled'
+    >
+  >
+> = ({ scrollViewProps, contentGestureEnabled, children }) => {
   const { contentAnimatedRefObj, setContentHeight } =
     useActionSheetInternalContext();
 
@@ -30,7 +35,7 @@ const ActionSheetScrollViewContent: FC<
   };
 
   return (
-    <ActionSheetContentGesture>
+    <ActionSheetContentGesture contentGestureEnabled={contentGestureEnabled}>
       <ThemedScrollView
         ref={contentAnimatedRefObj as ScrollViewRefObj}
         {...scrollViewProps}

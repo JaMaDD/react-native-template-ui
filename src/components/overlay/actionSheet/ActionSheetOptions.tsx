@@ -15,6 +15,7 @@ import ActionSheetWrap from './ActionSheetWrap';
 const ActionSheetOptions: FC<ActionSheetOptionsProps> = ({
   title,
   expandable,
+  expandableInitialHeightRatio,
   expandableOnSnapToHeight,
   options,
   optionListProps,
@@ -22,9 +23,11 @@ const ActionSheetOptions: FC<ActionSheetOptionsProps> = ({
   onDismiss,
   maxHeight,
   animated,
+  contentGestureEnabled,
   useModal,
   dismissible,
   wrapViewProps,
+  headerRef,
   headerShowDismissIcon,
   headerWrapProps,
   headerTextProps,
@@ -36,6 +39,7 @@ const ActionSheetOptions: FC<ActionSheetOptionsProps> = ({
     useActionSheetOpts(
       title,
       expandable,
+      expandableInitialHeightRatio,
       expandableOnSnapToHeight,
       options,
       optionListProps,
@@ -54,6 +58,7 @@ const ActionSheetOptions: FC<ActionSheetOptionsProps> = ({
         wrapViewProps={wrapViewProps}
       >
         <ActionSheetHeader
+          headerRef={headerRef}
           headerShowDismissIcon={headerShowDismissIcon}
           headerWrapProps={headerWrapProps}
           headerTextProps={headerTextProps}
@@ -64,6 +69,7 @@ const ActionSheetOptions: FC<ActionSheetOptionsProps> = ({
           options={options}
           optionListProps={optionListProps}
           optionListItemProps={optionListItemProps}
+          contentGestureEnabled={contentGestureEnabled}
         />
       </ActionSheetWrap>
     </ActionSheetInternalContext>

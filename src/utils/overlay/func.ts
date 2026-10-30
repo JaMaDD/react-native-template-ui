@@ -100,11 +100,11 @@ export function getActionSheetExpandableHeight(maxHeight?: number) {
  * const initialHeight = getActionSheetExpandableInitHeight();
  * ```
  */
-export function getActionSheetExpandableInitialHeight(maxHeight?: number) {
-  return getActionSheetExpandableHeightByRatio(
-    ActionSheetExpandableHeightRatio.Middle,
-    maxHeight
-  );
+export function getActionSheetExpandableInitialHeight(
+  maxHeight?: number,
+  initialHeightRatio = ActionSheetExpandableHeightRatio.Middle
+) {
+  return getActionSheetExpandableHeightByRatio(initialHeightRatio, maxHeight);
 }
 
 /** @internal */

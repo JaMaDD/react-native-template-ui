@@ -15,6 +15,7 @@ import ActionSheetWrap from './ActionSheetWrap';
 const ActionSheetListView: FC<ActionSheetListViewProps> = ({
   title,
   expandable,
+  expandableInitialHeightRatio,
   expandableOnSnapToHeight,
   listProps,
   onDismiss,
@@ -22,7 +23,9 @@ const ActionSheetListView: FC<ActionSheetListViewProps> = ({
   dismissible,
   maxHeight,
   animated,
+  contentGestureEnabled,
   wrapViewProps,
+  headerRef,
   headerShowDismissIcon,
   headerWrapProps,
   headerTextProps,
@@ -34,6 +37,7 @@ const ActionSheetListView: FC<ActionSheetListViewProps> = ({
     useActionSheetListView(
       title,
       expandable,
+      expandableInitialHeightRatio,
       expandableOnSnapToHeight,
       listProps,
       onDismiss,
@@ -51,13 +55,17 @@ const ActionSheetListView: FC<ActionSheetListViewProps> = ({
         wrapViewProps={wrapViewProps}
       >
         <ActionSheetHeader
+          headerRef={headerRef}
           headerShowDismissIcon={headerShowDismissIcon}
           headerWrapProps={headerWrapProps}
           headerTextProps={headerTextProps}
           headerIconButtonProps={headerIconButtonProps}
           headerChildren={headerChildren}
         />
-        <ActionSheetListViewContent listProps={listProps} />
+        <ActionSheetListViewContent
+          listProps={listProps}
+          contentGestureEnabled={contentGestureEnabled}
+        />
       </ActionSheetWrap>
     </ActionSheetInternalContext>
   );

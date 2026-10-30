@@ -143,11 +143,10 @@ export const actionSheetDismissDuration = 150;
 /** @internal */
 export const actionSheetMaxHeightRatio = 0.6;
 
-/** @internal */
 export enum ActionSheetExpandableHeightRatio {
   Top = 0.9,
   Middle = 0.6,
-  Bottom = 0.3,
+  Bottom = 0.4,
 }
 
 /** @internal */

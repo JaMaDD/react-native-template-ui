@@ -1,5 +1,6 @@
 /** @internal */
-import { lazy, type FC, type ReactNode } from 'react';
+import type { FC, ReactNode } from 'react';
+import { lazy, useLayoutEffect, useState } from 'react';
 import { GestureDetector } from 'react-native-gesture-handler';
 import {
   useActionSheetGesture,
@@ -34,6 +35,7 @@ if (isPlatformWeb()) {
  * Supports gesture detection for drag-to-dismiss functionality.
  */
 const ActionSheetHeader: FC<ActionSheetHeaderProps> = ({
+  headerRef,
   headerShowDismissIcon = true,
   headerWrapProps,
   headerTextProps,
@@ -44,11 +46,21 @@ const ActionSheetHeader: FC<ActionSheetHeaderProps> = ({
   const gesture = useActionSheetGesture();
   const minHeight = useActionSheetHeaderMinHeight();
   const onDismiss = useActionSheetOnDismiss();
+  const [headerTitle, setHeaderTitle] = useState(title);
+  useLayoutEffect(() => {
+    if (!headerRef) {
+      return;
+    }
+
+    headerRef.current = {
+      setTitle: setHeaderTitle,
+    };
+  }, [headerRef]);
 
   const onIconPress: ThemedIconButtonProps['onPress'] = () => {
     onDismiss();
   };
-  const hasHeaderContent = !!title || headerShowDismissIcon;
+  const hasHeaderContent = !!headerTitle || headerShowDismissIcon;
   const headerContent: ReactNode = (
     <ThemedView
       ref={headerChildren ? undefined : headerViewRef}
@@ -61,11 +73,11 @@ const ActionSheetHeader: FC<ActionSheetHeaderProps> = ({
       backgroundColor={'transparent'}
       {...(headerChildren ? undefined : headerWrapProps)}
     >
-      {!!title || headerShowDismissIcon ? (
+      {!!headerTitle || headerShowDismissIcon ? (
         <>
-          {!!title && (
+          {!!headerTitle && (
             <ThemedText variant={'textMBold'} {...headerTextProps}>
-              {title}
+              {headerTitle}
             </ThemedText>
           )}
           {headerShowDismissIcon && (
