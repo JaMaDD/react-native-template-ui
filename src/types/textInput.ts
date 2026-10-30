@@ -9,7 +9,6 @@ import type { ThemedViewProps } from './view';
 
 export type TextInputRefObj = RefObject<TextInputInstance | null>;
 
-/** @internal */
 export type TextInputProps = {
   cursorColor?: ThemeColors;
   selectionHandleColor?: ThemeColors;

@@ -424,7 +424,6 @@ export type ActionSheetInternalContextVal = Pick<
   contentOffsetSharedVal: SharedValue<number>;
 };
 
-/** @internal */
 export type ActionSheetContextVal = {
   setActionSheet: SetState<ActionSheetProps | undefined>;
 };
