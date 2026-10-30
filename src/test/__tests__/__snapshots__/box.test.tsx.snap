@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AnimatedBox Render & Snapshot 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    collapsable={false}
+    jestAnimatedProps={
+      {
+        "value": {},
+      }
+    }
+    jestAnimatedStyle={
+      {
+        "value": {},
+      }
+    }
+    nativeID="0"
+    style={
+      [
+        {},
+      ]
+    }
+    testID="animated-box"
+  />
+</View>
+`;
+
+exports[`Box Render & Snapshot 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      [
+        {},
+      ]
+    }
+    testID="box"
+  />
+</View>
+`;
