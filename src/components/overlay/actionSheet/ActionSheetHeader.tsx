@@ -9,6 +9,7 @@ import {
   useActionSheetOnDismiss,
 } from '../../../hooks/overlay';
 import type { ThemedIconButtonProps } from '../../../types/button';
+import type { CustomThemedIconProps } from '../../../types/icon';
 import type { ActionSheetHeaderProps } from '../../../types/overlay';
 import type { ThemedTextProps } from '../../../types/text';
 import {
@@ -39,7 +40,7 @@ const ActionSheetHeader: FC<ActionSheetHeaderProps> = ({
   headerShowDismissIcon = true,
   headerWrapProps,
   headerTextProps,
-  headerIconButtonProps,
+  headerIconButtonProps = {},
   headerChildren,
 }) => {
   const { title, headerViewRef } = useActionSheetInternalContext();
@@ -61,6 +62,24 @@ const ActionSheetHeader: FC<ActionSheetHeaderProps> = ({
     onDismiss();
   };
   const hasHeaderContent = !!headerTitle || headerShowDismissIcon;
+  const {
+    iconComponent,
+    iconName,
+    iconSize,
+    iconColor,
+    iconStyle,
+    iconProps,
+    ...tempHeaderIconButtonProps
+  } = headerIconButtonProps;
+  const dismissIconProps: CustomThemedIconProps = iconComponent
+    ? { iconComponent }
+    : {
+        iconName: iconName ?? 'cross',
+        iconSize: iconSize ?? actionSheetHeaderIconSize,
+        iconColor,
+        iconStyle,
+        iconProps,
+      };
   const headerContent: ReactNode = (
     <ThemedView
       ref={headerChildren ? undefined : headerViewRef}
@@ -83,11 +102,10 @@ const ActionSheetHeader: FC<ActionSheetHeaderProps> = ({
           {headerShowDismissIcon && (
             <ThemedIconButton
               onPress={onIconPress}
-              iconName={'cross'}
-              iconSize={actionSheetHeaderIconSize}
               position={'absolute'}
               left={0}
-              {...headerIconButtonProps}
+              {...tempHeaderIconButtonProps}
+              {...dismissIconProps}
             />
           )}
         </>

@@ -11,6 +11,7 @@ import type {
 } from '../utils/overlay/const';
 import type {
   ThemedButtonProps,
+  ThemedIconButtonProps,
   ThemedIconTextButtonProps,
   ThemedPressableProps,
 } from './button';
@@ -384,7 +385,7 @@ export type ActionSheetHeaderProps = {
   /** Props for the header title text */
   headerTextProps?: Omit<ThemedTextProps, 'children'>;
   /** Props for the header close icon button */
-  headerIconButtonProps?: Omit<ThemedButtonProps, 'onPress'>;
+  headerIconButtonProps?: Omit<ThemedIconButtonProps, 'onPress'>;
   headerChildren?: ReactNode;
 };
 

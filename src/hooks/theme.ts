@@ -1,10 +1,10 @@
+import type { PropValue, ResponsiveValue } from '@shopify/restyle';
 import {
   useResponsiveProp,
   useTheme as useRestyleTheme,
-  type PropValue,
-  type ResponsiveValue,
 } from '@shopify/restyle';
-import { useColorScheme, type ColorSchemeName } from 'react-native';
+import type { ColorSchemeName } from 'react-native';
+import { useColorScheme } from 'react-native';
 import type { Theme, ThemeBreakpoints } from '../types/theme';
 import { darkTheme, lightTheme } from '../utils/theme/const';
 
