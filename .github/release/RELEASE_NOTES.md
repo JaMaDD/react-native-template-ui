@@ -1,3 +1,3 @@
 ## What's Changed
 
-- bugfix: fixed incorrect type for ActionSheetHeader
+- feat: supported animated prop for ThemedToast
