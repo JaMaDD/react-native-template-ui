@@ -88,6 +88,7 @@ export enum ToastDuration {
   Short = 3000,
   /** Long duration - 5 seconds */
   Long = 5000,
+  Immediate = 0,
 }
 
 /** @internal */

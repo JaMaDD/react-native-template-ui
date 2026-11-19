@@ -36,6 +36,7 @@ const ThemedToast: FC<ThemedToastProps> = ({
   type = ToastType.Bottom,
   duration = ToastDuration.Short,
   onDismiss,
+  animated = true,
   top: propsTop,
   bottom: propsBottom,
   left: propsLeft,
@@ -94,6 +95,7 @@ const ThemedToast: FC<ThemedToastProps> = ({
   }, [type, showSharedVal, paddingTop, paddingBottom]);
   useEffect(() => {
     showSharedVal.set(withTiming(1));
+    const tempDuration = animated ? duration : ToastDuration.Immediate;
     const timeout = setTimeout(() => {
       showSharedVal.set(
         withTiming(0, undefined, () => {
@@ -102,12 +104,12 @@ const ThemedToast: FC<ThemedToastProps> = ({
               resultType: OverlayDismissResultType.Toast,
               type,
               text,
-              duration,
+              duration: tempDuration,
             });
           }
         })
       );
-    }, duration);
+    }, tempDuration);
 
     return () => {
       clearTimeout(timeout);

@@ -132,6 +132,7 @@ export type ThemedToastProps = Omit<OverlayProps, 'onDismiss'> &
     duration?: ToastDuration;
     /** Callback invoked when the toast is dismissed */
     onDismiss?: OverlayOnDismiss<OverlayDismissToastResult>;
+    animated?: boolean;
   };
 
 /**
