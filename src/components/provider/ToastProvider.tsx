@@ -1,8 +1,8 @@
 import { lazy, useState, type FC } from 'react';
 import type { ThemedToastProps, ToastContextVal } from '../../types/overlay';
 import type { PropsWithRequiredChildren } from '../../types/view';
-import { isPlatformWeb } from '../../utils/react/func';
 import { ToastContext } from '../../utils/overlay/const';
+import { isPlatformWeb } from '../../utils/react/func';
 
 let ThemedToast: FC<ThemedToastProps>;
 if (isPlatformWeb()) {
@@ -14,8 +14,11 @@ if (isPlatformWeb()) {
 const ToastProvider: FC<PropsWithRequiredChildren> = ({ children }) => {
   const [toast, setToast] = useState<ThemedToastProps>();
 
+  const handleToast = (toastProps: ThemedToastProps) => {
+    setToast((previousToast) => previousToast ?? toastProps);
+  };
   const toastContextValue: ToastContextVal = {
-    setToast,
+    setToast: handleToast,
   };
   const onDismiss: ThemedToastProps['onDismiss'] = (result) => {
     toast?.onDismiss?.(result);
