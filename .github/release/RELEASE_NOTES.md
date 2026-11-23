@@ -1,3 +1,3 @@
 ## What's Changed
 
-- bugfix: fixed incorrect ThemedToast animated handling
+- feat: added number support for ThemedToast duration prop
