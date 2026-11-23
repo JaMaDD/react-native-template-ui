@@ -129,7 +129,7 @@ export type ThemedToastProps = Omit<OverlayProps, 'onDismiss'> &
     /** Visual style of the toast (e.g., 'success', 'error', 'info') */
     type?: ToastType;
     /** Duration in milliseconds before the toast auto-dismisses */
-    duration?: ToastDuration;
+    duration?: ToastDuration | number;
     /** Callback invoked when the toast is dismissed */
     onDismiss?: OverlayOnDismiss<OverlayDismissToastResult>;
     animated?: boolean;
