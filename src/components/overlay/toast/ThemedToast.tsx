@@ -48,6 +48,7 @@ const ThemedToast: FC<ThemedToastProps> = ({
   insetPaddingLeft,
   insetPaddingRight,
   text,
+  textNumberOfLines = 1,
   textVariant = 'textS',
   textFontSize,
   textFontWeight,
@@ -163,7 +164,7 @@ const ThemedToast: FC<ThemedToastProps> = ({
       {...props}
     >
       <ThemedText
-        numberOfLines={1}
+        numberOfLines={textNumberOfLines}
         variant={textVariant}
         fontSize={textFontSize}
         fontWeight={textFontWeight}
