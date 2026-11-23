@@ -1,3 +1,3 @@
 ## What's Changed
 
-- feat: added number support for ThemedToast duration prop
+- feat: added support for ThemedToast textNumberOfLines prop
