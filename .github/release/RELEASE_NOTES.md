@@ -1,3 +1,3 @@
 ## What's Changed
 
-- feat: supported animated prop for ThemedToast
+- bugfix: fixed incorrect ThemedToast animated handling
