@@ -66,7 +66,7 @@ export type OverlayOnDismiss<T> = (result: T) => void;
  * Contains toast-specific information like type, text, and duration.
  */
 type OverlayDismissToastResult = OverlayDismissBaseResult &
-  Pick<ThemedToastProps, 'type' | 'text' | 'duration'> & {
+  Pick<ThemedToastProps, 'type' | 'text' | 'duration' | 'animated'> & {
     resultType: OverlayDismissResultType.Toast;
   };
 

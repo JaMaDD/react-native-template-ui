@@ -3,6 +3,7 @@ import {
   interpolate,
   useAnimatedStyle,
   withTiming,
+  type WithTimingConfig,
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
 import { useAnimationSharedVal } from '../../../hooks/reanimated';
@@ -94,22 +95,25 @@ const ThemedToast: FC<ThemedToastProps> = ({
     };
   }, [type, showSharedVal, paddingTop, paddingBottom]);
   useEffect(() => {
-    showSharedVal.set(withTiming(1));
-    const tempDuration = animated ? duration : ToastDuration.Immediate;
+    const userConfig: WithTimingConfig | undefined = animated
+      ? undefined
+      : { duration: 0 };
+    showSharedVal.set(withTiming(1, userConfig));
     const timeout = setTimeout(() => {
       showSharedVal.set(
-        withTiming(0, undefined, () => {
+        withTiming(0, userConfig, () => {
           if (onDismiss) {
             scheduleOnRN(onDismiss, {
               resultType: OverlayDismissResultType.Toast,
               type,
               text,
-              duration: tempDuration,
+              duration: duration,
+              animated,
             });
           }
         })
       );
-    }, tempDuration);
+    }, duration);
 
     return () => {
       clearTimeout(timeout);
